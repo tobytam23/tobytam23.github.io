@@ -495,15 +495,15 @@
 </ul>
 </li>
 <li>启发式函数**h(n)**一致性：对于任意节点𝑛1和𝑛2，若 ℎ(𝑛1) ≤ 𝑐(𝑛1 → 𝑛2) + ℎ(𝑛2) 则ℎ(𝑛)具有一致性。<ul>
-<li>为什么叫一致性，因为保证f值是<strong>非递减</strong>的。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240702224627410.png" srcset="/img/loading.gif" lazyload alt="image-20240702224627410"></li>
+<li>为什么叫一致性，因为保证f值是<strong>非递减</strong>的。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240702224627410.png" srcset="/img/loading.gif" lazyload alt="image-20240702224627410"></li>
 </ul>
 </li>
 <li><strong>证明：一致性可推可采纳性：</strong><ol>
 <li>假设启发式函数 h(n)是一致的。</li>
 <li>假设 h(n) 不是可采纳的。这意味着存在某个节点 n 使得 h(n)&gt;h∗(n)。</li>
 <li>选择一个实际从起始节点 s 到目标节点的最优路径，并设这个路径为 s,n1,n2,…,ng，其中 ng 是目标节点。</li>
-<li>在这条路径上，由于 h 是一致的，我们有： <img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240702223842521.png" srcset="/img/loading.gif" lazyload alt="image-20240702223842521"></li>
-<li>由于目标节点 ng 的启发值为零（即 h(ng)&#x3D;0），将这些不等式相加得到： <img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240702223905637.png" srcset="/img/loading.gif" lazyload alt="image-20240702223905637"></li>
+<li>在这条路径上，由于 h 是一致的，我们有： <img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240702223842521.png" srcset="/img/loading.gif" lazyload alt="image-20240702223842521"></li>
+<li>由于目标节点 ng 的启发值为零（即 h(ng)&#x3D;0），将这些不等式相加得到： <img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240702223905637.png" srcset="/img/loading.gif" lazyload alt="image-20240702223905637"></li>
 <li>因为 c(s,ng)c(s, n_g)c(s,ng) 就是从 sss 到 ngn_gng 的最小实际代价 h∗(s)h^*(s)h∗(s)，所以： h(s)≤h∗(s)</li>
 <li>这与假设的 h(s)&gt;h∗(s) 矛盾。因此，假设 h(n) 不是可采纳的前提是错误的。</li>
 </ol>
@@ -525,10 +525,10 @@
 <li>定义：假设对方能总是做出最优的行动，己方总是做出能最小化对方获得的收益的行动，通过最小化对方的收益，可以最大化己方的收益。</li>
 <li>使用<strong>深度优先搜索</strong>。（模拟算法很重要）</li>
 </ol>
-<h4 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h4><p>只要计算节点n的一部分子节点就可以确定在<code>MiniMax</code>算法中我们不会考虑走到节点n了；如果已经确定节点n不会被考虑，那么也就不用继续计算n的子节点了。如下图：<code>x</code>和<code>y</code>已经不用被搜索了。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621191942772.png" srcset="/img/loading.gif" lazyload alt="image-20240621191942772" style="zoom:67%;" /></p>
+<h4 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h4><p>只要计算节点n的一部分子节点就可以确定在<code>MiniMax</code>算法中我们不会考虑走到节点n了；如果已经确定节点n不会被考虑，那么也就不用继续计算n的子节点了。如下图：<code>x</code>和<code>y</code>已经不用被搜索了。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240621191942772" style="zoom:67%;"></p>
 <ul>
-<li>MAX剪枝：对于Max节点n，如果它的α(子) ≥ β(父)的时候，就可以停止遍历n的子节点了。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621192426769.png" srcset="/img/loading.gif" lazyload alt="image-20240621192426769"></li>
-<li>MIN剪枝：对于Min节点n，如果它的α(父) ≥ β(子)的时候，就可以停止遍历n的子节点了。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621192631831.png" srcset="/img/loading.gif" lazyload alt="image-20240621192631831"></li>
+<li>MAX剪枝：对于Max节点n，如果它的α(子) ≥ β(父)的时候，就可以停止遍历n的子节点了。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621192426769.png" srcset="/img/loading.gif" lazyload alt="image-20240621192426769"></li>
+<li>MIN剪枝：对于Min节点n，如果它的α(父) ≥ β(子)的时候，就可以停止遍历n的子节点了。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621192631831.png" srcset="/img/loading.gif" lazyload alt="image-20240621192631831"></li>
 </ul>
 <p>简单来说，对于Min节点n, 如果β值变得 ≤ 某个Max 祖先节点的α值, 那么就可以停止扩展n节点了。Max节点也是一样的。</p>
 <p><strong>要记得！是α ≥ β就可以发生剪枝！</strong></p>
@@ -544,7 +544,7 @@
 <li>它们通常能在很大状态空间中找到合理的解。</li>
 </ol>
 </li>
-<li>可以把爬山法想象成一种地形图，既有“位置”（用状态定义），又有“高度”（用启发式函数定义）。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621202221480.png" srcset="/img/loading.gif" lazyload alt="image-20240621202221480"></li>
+<li>可以把爬山法想象成一种地形图，既有“位置”（用状态定义），又有“高度”（用启发式函数定义）。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621202221480.png" srcset="/img/loading.gif" lazyload alt="image-20240621202221480"></li>
 <li>爬山法的缺点：容易陷入局部最优解。<ol>
 <li>局部最大值：局部极大值是一个比它的每个邻居状态都高的峰顶，但是比全局最大值要低。爬山法找不到最优解。</li>
 <li>山脊：就是一系列的局部最大值，爬山法搜索容易陷入死循环。</li>
@@ -555,9 +555,9 @@
 </ul>
 <h3 id="爬山法和模拟退火的区别"><a href="#爬山法和模拟退火的区别" class="headerlink" title="爬山法和模拟退火的区别"></a>爬山法和模拟退火的区别</h3><p>因为爬山法是局部贪婪算法，所以容易陷入局部最优解；模拟退火算法是全局优化算法，它可以接受比当前更差的解，所以不会容易陷入局部最优解，并且随着时间慢慢降低接受差解的概率。</p>
 <h3 id="模拟退火"><a href="#模拟退火" class="headerlink" title="模拟退火"></a>模拟退火</h3><p>三函数两准则(状态生成函数 状态接受函数 降温函数 退火结束准则 内循环终止准则)</p>
-<p>流程图：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240703143135428.png" srcset="/img/loading.gif" lazyload alt="image-20240703143135428"></p>
-<p><img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240703144219931.png" srcset="/img/loading.gif" lazyload alt="image-20240703144219931"></p>
-<h3 id="遗传算法（基本操作）"><a href="#遗传算法（基本操作）" class="headerlink" title="遗传算法（基本操作）"></a>遗传算法（基本操作）</h3><p>遗传算法的一般步骤为<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621213314264.png" srcset="/img/loading.gif" lazyload alt="image-20240621213314264"></p>
+<p>流程图：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240703143135428.png" srcset="/img/loading.gif" lazyload alt="image-20240703143135428"></p>
+<p><img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240703144219931.png" srcset="/img/loading.gif" lazyload alt="image-20240703144219931"></p>
+<h3 id="遗传算法（基本操作）"><a href="#遗传算法（基本操作）" class="headerlink" title="遗传算法（基本操作）"></a>遗传算法（基本操作）</h3><p>遗传算法的一般步骤为<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621213314264.png" srcset="/img/loading.gif" lazyload alt="image-20240621213314264"></p>
 <p>流程中，不一定每个个体都会发生<strong>交叉</strong>和<strong>变异</strong>，都是有概率的。</p>
 <p>包括编码、适应度函数、<strong>选择</strong>、<strong>交叉</strong>、<strong>变异</strong>。(后面三种为基本操作)</p>
 <ul>
@@ -567,19 +567,19 @@
 </li>
 <li><p>选择：选择是用来确定重组或交叉个体，以及被选个体将产生多少个子代个体。适应度越大的个体被选择的概率越大。选择方法有：</p>
 <ol>
-<li>轮盘赌：首先按照适应度比例分配给每个个体被选中的概率，然后所有个体被选中概率之和为1，再随机[0,1]生成浮点数，看落在哪个区间，就选择哪个个体。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621212351847.png" srcset="/img/loading.gif" lazyload alt="image-20240621212351847"></li>
+<li>轮盘赌：首先按照适应度比例分配给每个个体被选中的概率，然后所有个体被选中概率之和为1，再随机[0,1]生成浮点数，看落在哪个区间，就选择哪个个体。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621212351847.png" srcset="/img/loading.gif" lazyload alt="image-20240621212351847"></li>
 <li>锦标赛选择：就是按照轮盘赌抽几个个体进行适应度比较，适应度高的个体被选择，一直重复执行下去。</li>
 </ol>
 </li>
 <li><p>交叉：结合父代中选择的个体中的信息而产生新的个体。交叉方法有：</p>
 <ol>
-<li>单点交叉：在个体串中随机设定一个交叉点，实行交叉时，该点前或后的两个个体的部分结构进行互换，并生成两个新的个体。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621213039839.png" srcset="/img/loading.gif" lazyload alt="image-20240621213039839"></li>
+<li>单点交叉：在个体串中随机设定一个交叉点，实行交叉时，该点前或后的两个个体的部分结构进行互换，并生成两个新的个体。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621213039839.png" srcset="/img/loading.gif" lazyload alt="image-20240621213039839"></li>
 <li>两点交叉：随机设置两个交叉点，将两个交叉点之间的码串相互交换。</li>
 </ol>
 </li>
 <li><p>变异：子代基因按小概率扰动产生的变化。变异方法有：</p>
 <ol>
-<li>位点变异：群体中的个体码串，随机挑选一个或多个基因座，并 对这些基因座的基因值以变异概率作变动。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621213549835.png" srcset="/img/loading.gif" lazyload alt="image-20240621213549835"></li>
+<li>位点变异：群体中的个体码串，随机挑选一个或多个基因座，并 对这些基因座的基因值以变异概率作变动。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621213549835.png" srcset="/img/loading.gif" lazyload alt="image-20240621213549835"></li>
 </ol>
 </li>
 <li><p>遗传算法的特点：遗传搜索是针对<strong>一组候选解决方案</strong>（individuals）而不是单个候选方案进行的。在搜索过程中，算法会保留当前一代的一组个体。遗传算法的每次迭代都会创建下一代个体。相反，大多数其他搜索算法都维持单个解决方案，并迭代地修改它以寻找最佳解决方案。例如，梯度下降算法沿当前最陡下降方向迭代移动当前解，梯度方向为给定函数的梯度的负数。</p>
@@ -594,7 +594,7 @@
 <li>贝叶斯网络边缘概率及条件概率计算。</li>
 </ol>
 <h3 id="贝叶斯网络定义及表示"><a href="#贝叶斯网络定义及表示" class="headerlink" title="贝叶斯网络定义及表示"></a>贝叶斯网络定义及表示</h3><ul>
-<li>定义：它由一个有向无环图（表达了变量之间的有向依赖关系）和一系列条件概率表（衡量了上述关系的强度）组成。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623174719759.png" srcset="/img/loading.gif" lazyload alt="image-20240623174719759"></li>
+<li>定义：它由一个有向无环图（表达了变量之间的有向依赖关系）和一系列条件概率表（衡量了上述关系的强度）组成。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623174719759.png" srcset="/img/loading.gif" lazyload alt="image-20240623174719759"></li>
 <li>补充：P(e)可推出P(<del>e)（一个参数），需要知道P(c|e)和P(c|</del>e)可推出P(<del>c|e)和P(</del>c|~e)（两个参数）。以此类推。</li>
 <li>贝叶斯网络的构建：<ol>
 <li>在某种变量顺序下，对所有变量的联合概率应用链式 法则 Pr(X1,…,Xn) &#x3D; Pr(Xn|X1,…, Xn-1)Pr(Xn-1|X1,…, Xn-2)…Pr(X1)</li>
@@ -605,25 +605,25 @@
 </li>
 </ul>
 <h3 id="朴素贝叶斯方法（上网找些题目看看）"><a href="#朴素贝叶斯方法（上网找些题目看看）" class="headerlink" title="朴素贝叶斯方法（上网找些题目看看）"></a>朴素贝叶斯方法（上网找些题目看看）</h3><ul>
-<li>定义：就是人为定义条件独立的变量，使得式子变得更加简单。即类似**P(A,B,C,D) &#x3D; P(A|B)P(C|B)P(D|B)**。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623180235338.png" srcset="/img/loading.gif" lazyload alt="image-20240623180235338"></li>
+<li>定义：就是人为定义条件独立的变量，使得式子变得更加简单。即类似**P(A,B,C,D) &#x3D; P(A|B)P(C|B)P(D|B)**。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623180235338.png" srcset="/img/loading.gif" lazyload alt="image-20240623180235338"></li>
 <li>就是先算给定x向量情况下y为正的可能性和y为负的可能性。</li>
 </ul>
 <p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/doge_coding/article/details/130307202">轻松搞定朴素贝叶斯(有例题)_朴素贝叶斯算法例题-CSDN博客</a>这个讲的挺好的。</p>
 <h3 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h3><ul>
-<li>极大似然法：就是先把式子列出来，然后对数，再对该式子求导并且等于0。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623180513734.png" srcset="/img/loading.gif" lazyload alt="image-20240623180513734"></li>
+<li>极大似然法：就是先把式子列出来，然后对数，再对该式子求导并且等于0。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623180513734.png" srcset="/img/loading.gif" lazyload alt="image-20240623180513734"></li>
 </ul>
 <h3 id="贝叶斯网络的D-分离"><a href="#贝叶斯网络的D-分离" class="headerlink" title="贝叶斯网络的D-分离"></a>贝叶斯网络的D-分离</h3><ul>
-<li><p>串形连接： 在串行连接中A通过事件B影响C，同样事件C也是用过事件B影响A。我们认为当<strong>证据B确定时</strong>，A、C条件独立。<img src="https://i.loli.net/2020/01/12/SAgIbNLnD4xKqGs.png" srcset="/img/loading.gif" lazyload alt="image-20200112230651132.png" style="zoom: 200%;" /></p>
+<li><p>串形连接： 在串行连接中A通过事件B影响C，同样事件C也是用过事件B影响A。我们认为当<strong>证据B确定时</strong>，A、C条件独立。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习" srcset="/img/loading.gif" lazyload alt="image-20200112230651132.png" style="zoom: 200%;"></p>
 </li>
-<li><p>共同的原因：<strong>给定父节点的前提下</strong>，子节点们条件独立。<img src="https://i.loli.net/2020/01/12/a7VzY1tb5vM4snc.png" srcset="/img/loading.gif" lazyload alt="image-20200112231016234.png" style="zoom:200%;" /></p>
+<li><p>共同的原因：<strong>给定父节点的前提下</strong>，子节点们条件独立。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习" srcset="/img/loading.gif" lazyload alt="image-20200112231016234.png" style="zoom:200%;"></p>
 </li>
-<li><p>共同的作用：<strong>当不给定子节点时</strong>，父节点们条件独立。<img src="https://i.loli.net/2020/01/12/CevZnGT2z467yiX.png" srcset="/img/loading.gif" lazyload alt="image-20200112231325308.png" style="zoom:200%;" /></p>
+<li><p>共同的作用：<strong>当不给定子节点时</strong>，父节点们条件独立。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习" srcset="/img/loading.gif" lazyload alt="image-20200112231325308.png" style="zoom:200%;"></p>
 </li>
 <li><p>若存在一条路径将这两个节点（直接）连通，则称这两个节点是<strong>相关</strong>的。若不存在这样的路径将这两个节 点连通，则这两个节点就是<strong>独立</strong>的。</p>
 </li>
 </ul>
 <h3 id="贝叶斯网络计算"><a href="#贝叶斯网络计算" class="headerlink" title="贝叶斯网络计算"></a>贝叶斯网络计算</h3><ul>
-<li>就是一直使用加法原理把父节点加入到式子中，然后链式法则，再对式子展开（条件独立就可以删除）。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623181434174.png" srcset="/img/loading.gif" lazyload alt="image-20240623181434174"></li>
+<li>就是一直使用加法原理把父节点加入到式子中，然后链式法则，再对式子展开（条件独立就可以删除）。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623181434174.png" srcset="/img/loading.gif" lazyload alt="image-20240623181434174"></li>
 </ul>
 <h2 id="第七章-机器学习"><a href="#第七章-机器学习" class="headerlink" title="第七章 机器学习"></a>第七章 机器学习</h2><h3 id="考点-5"><a href="#考点-5" class="headerlink" title="考点"></a>考点</h3><ol>
 <li>监督学习（分类与回归，感知机、逻辑回归；神经网络、<strong>反向传播</strong>、CNN、RNN）；</li>
@@ -634,10 +634,10 @@
 <li>定义：会给定<strong>输入特征</strong>和输出的<strong>标签</strong>（Y）</li>
 </ul>
 <h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
-<li>定义：预测<strong>离散</strong>型变量。给定(x1, y1), (x2, y2), …, (xn, yn)，学习一个输入x、预测y的函数f(x)。y是<strong>离散</strong>的。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623195838671.png" srcset="/img/loading.gif" lazyload alt="image-20240623195838671"></li>
+<li>定义：预测<strong>离散</strong>型变量。给定(x1, y1), (x2, y2), …, (xn, yn)，学习一个输入x、预测y的函数f(x)。y是<strong>离散</strong>的。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623195838671.png" srcset="/img/loading.gif" lazyload alt="image-20240623195838671"></li>
 </ul>
 <h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><ul>
-<li>定义：预测<strong>连续</strong>性变量。给定(x1, y1), (x2, y2), …, (xn, yn)，学习 一个输入x、预测y的函数f(x) 。y是<strong>连续</strong>的。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623200254815.png" srcset="/img/loading.gif" lazyload alt="image-20240623200254815"></li>
+<li>定义：预测<strong>连续</strong>性变量。给定(x1, y1), (x2, y2), …, (xn, yn)，学习 一个输入x、预测y的函数f(x) 。y是<strong>连续</strong>的。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623200254815.png" srcset="/img/loading.gif" lazyload alt="image-20240623200254815"></li>
 </ul>
 <p>联结主义（Connetionism）学派：认为人工智能源于<strong>仿生学</strong>。（神经网络）</p>
 <h4 id="感知机学习"><a href="#感知机学习" class="headerlink" title="感知机学习"></a>感知机学习</h4><p>解决<strong>二分类问题</strong>的算法。是有监督学习中的<strong>分类</strong>。</p>
@@ -664,7 +664,7 @@
 </li>
 </ol>
 </li>
-<li><p>分类图片如下：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623210433383.png" srcset="/img/loading.gif" lazyload alt="image-20240623210433383" style="zoom:67%;" /></p>
+<li><p>分类图片如下：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240623210433383" style="zoom:67%;"></p>
 </li>
 </ul>
 <h4 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h4><p>感知机算法只要计算的分数大于0输出标签为真，可是分数<strong>1</strong>和<strong>1000</strong>也是输出标签为真。</p>
@@ -697,14 +697,14 @@
 </li>
 </ul>
 <h4 id="人工神经网络"><a href="#人工神经网络" class="headerlink" title="人工神经网络"></a>人工神经网络</h4><h5 id="单层神经网络"><a href="#单层神经网络" class="headerlink" title="单层神经网络"></a>单层神经网络</h5><ul>
-<li>定义：一个基本的神经网络包括：<strong>输入</strong>、<strong>计算</strong>、<strong>输出</strong>。下图是一个典型的人工神经网络模型，它包含3个输入，1个 输出，以及2个计算功能。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624000843701.png" srcset="/img/loading.gif" lazyload alt="image-20240624000843701" style="zoom:67%;" /></li>
+<li>定义：一个基本的神经网络包括：<strong>输入</strong>、<strong>计算</strong>、<strong>输出</strong>。下图是一个典型的人工神经网络模型，它包含3个输入，1个 输出，以及2个计算功能。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624000843701" style="zoom:67%;"></li>
 <li>人工神经元：人工神经网络中的计算单位。由下列部分组成：<ol>
 <li>输入信号xi</li>
 <li>一个激活层对输入信号乘上加权求和，神经元的激活层由加权输入的总和确定。</li>
 <li>一个阈值函数 f(x)，该函数通过确定激活是低于还是高于阈值来计算最终输出。</li>
 </ol>
 </li>
-<li>应用：可以实现“与”、“或”功能，可是不能处理异或。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624002553421.png" srcset="/img/loading.gif" lazyload alt="image-20240624002553421" style="zoom: 50%;" /></li>
+<li>应用：可以实现“与”、“或”功能，可是不能处理异或。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624002553421" style="zoom: 50%;"></li>
 </ul>
 <h5 id="多层神经网络"><a href="#多层神经网络" class="headerlink" title="多层神经网络"></a>多层神经网络</h5><p>优势：单层神经网络只能处理线性问题，而两层神经网络可以无限逼近<strong>任意连续函数</strong>。面对复杂的非线性分类任务，带一个隐藏层的两层神经网络可以分类的很好。输入和输出节点之间的附加层称为<strong>隐藏层</strong>。</p>
 <p>原因：从输入层到隐藏层时， 数据发生了<strong>空间变换</strong>。这是因为输入层的阈值函数是<strong>非线性</strong>的，对数据进行了转换。</p>
@@ -721,25 +721,25 @@
 </li>
 </ol>
 <p>损失函数：定义为最小二乘法：<br>$$<br>E &#x3D; \frac{1}{2} e^2 &#x3D; \frac{1}{2} (T - O)^2<br>$$<br>为了使用梯度下降调整权重 wjk,我们首先计算在wjk 上误差E的偏导数：<br>$$<br>\begin{align*}<br>\frac{\partial E}{\partial w_{jk}} &amp;&#x3D; \frac{\partial E}{\partial e} \times \frac{\partial e}{\partial O_k} \times \frac{\partial O_k}{\partial w_{jk}} \<br>&amp;&#x3D; -\left( e \right) \times \left( O_k (1 - O_k) \right) \times \left( O_j \right) \<br>&amp;&#x3D; -(T_k - O_k) O_k (1 - O_k) O_j<br>\end{align*}<br>$$</p>
-<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624193053302.png" srcset="/img/loading.gif" lazyload alt="image-20240624193053302" style="zoom:80%;" />
+<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193053302" style="zoom:80%;">
 
 <p>前向传播输入：</p>
 <ul>
-<li>净输入：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624193550696.png" srcset="/img/loading.gif" lazyload alt="image-20240624193550696"></li>
-<li>净输出：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624193620428.png" srcset="/img/loading.gif" lazyload alt="image-20240624193620428"></li>
+<li>净输入：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624193550696.png" srcset="/img/loading.gif" lazyload alt="image-20240624193550696"></li>
+<li>净输出：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624193620428.png" srcset="/img/loading.gif" lazyload alt="image-20240624193620428"></li>
 </ul>
 <p>反向传播误差：</p>
 <ul>
-<li>对于<strong>输出层</strong>，定义误差为：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624193737699.png" srcset="/img/loading.gif" lazyload alt="image-20240624193737699" style="zoom:80%;" /></li>
-<li>对于<strong>隐藏层</strong>，定义误差为：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624193803486.png" srcset="/img/loading.gif" lazyload alt="image-20240624193803486" style="zoom:80%;" /></li>
-<li><strong>权重更新公式</strong>（利用梯度下降）：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624193903303.png" srcset="/img/loading.gif" lazyload alt="image-20240624193903303" style="zoom:80%;" /></li>
+<li>对于<strong>输出层</strong>，定义误差为：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193737699" style="zoom:80%;"></li>
+<li>对于<strong>隐藏层</strong>，定义误差为：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193803486" style="zoom:80%;"></li>
+<li><strong>权重更新公式</strong>（利用梯度下降）：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193903303" style="zoom:80%;"></li>
 <li>缺点：很容易梯度消失，每传递一层梯度就是原本的0.25倍。</li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/BlairGrowing/p/14982115.html">(<em>´∇｀</em>) 欢迎回来！ (cnblogs.com)</a>把这题刷一下基本没问题了(更改偏置b1和b2的时候，这个偏置项有点特殊，可以看成是一个隐藏层的节点进行处理，o1和o2的Err值都对它影响）<img src="C:\Users\tam15\Documents\WeChat Files\wxid_canjzsfhjgsb22\FileStorage\Temp\b9a535cdb2ab277d41473d468584db9.jpg" srcset="/img/loading.gif" lazyload alt="b9a535cdb2ab277d41473d468584db9" style="zoom: 50%;" /></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/BlairGrowing/p/14982115.html">(<em>´∇｀</em>) 欢迎回来！ (cnblogs.com)</a>把这题刷一下基本没问题了(更改偏置b1和b2的时候，这个偏置项有点特殊，可以看成是一个隐藏层的节点进行处理，o1和o2的Err值都对它影响）<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="b9a535cdb2ab277d41473d468584db9" style="zoom: 50%;"></li>
 </ul>
 <h4 id="卷积神经网络-CNN"><a href="#卷积神经网络-CNN" class="headerlink" title="卷积神经网络(CNN)"></a>卷积神经网络(CNN)</h4><ul>
 <li><p>是<strong>深度学习</strong>算法。主要用于图像识别。</p>
 </li>
-<li><p>卷积计算：如下图<img src="https://img-blog.csdnimg.cn/ea3d406273ef408a9a0e1a0903cf24d5.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;" /></p>
+<li><p>卷积计算：如下图<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;"></p>
 <p>描述卷积的四个量：卷积核个数、<strong>卷积核大小f</strong>、<strong>填充0值p</strong>、<strong>步长s</strong>。</p>
 <p>假设原本大小为拿，卷积结果大小为(n可以是高或者宽)<br>$$<br>\frac{n + 2p - f}{s} + 1<br>$$</p>
 </li>
@@ -771,17 +771,17 @@
 </li>
 <li><p>因为其余的神经网络输出只和当前时刻网络的输入相关。可是像预测天气这种问题还是很需要<strong>之前</strong>的数据的。这是一个<strong>有记忆</strong>的神经网络。<img src="https://img-blog.csdnimg.cn/a9f135e2447f4c91aceb93f646580000.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 </li>
-<li><p>例如像判断广州是目的地还是出发地，需要看前一个英文单词，所以需要用到之前的记忆。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624215758219.png" srcset="/img/loading.gif" lazyload alt="image-20240624215758219" style="zoom:50%;" /></p>
+<li><p>例如像判断广州是目的地还是出发地，需要看前一个英文单词，所以需要用到之前的记忆。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215758219" style="zoom:50%;"></p>
 </li>
-<li><p>简单来说，就是隐藏层的输出还存储在记忆中，并且记忆内容作为隐藏层的输入。<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624214743675.png" srcset="/img/loading.gif" lazyload alt="image-20240624214743675" style="zoom:50%;" /></p>
+<li><p>简单来说，就是隐藏层的输出还存储在记忆中，并且记忆内容作为隐藏层的输入。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624214743675" style="zoom:50%;"></p>
 </li>
 <li><p>例子如下：假设所有权重都是1，激活函数都是线性的。</p>
 </li>
-<li><p>第一步：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624215015924.png" srcset="/img/loading.gif" lazyload alt="image-20240624215015924" style="zoom:50%;" /></p>
+<li><p>第一步：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215015924" style="zoom:50%;"></p>
 </li>
-<li><p>第二步：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624215128804.png" srcset="/img/loading.gif" lazyload alt="image-20240624215128804" style="zoom:50%;" /></p>
+<li><p>第二步：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215128804" style="zoom:50%;"></p>
 </li>
-<li><p>第三步：<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240624215206066.png" srcset="/img/loading.gif" lazyload alt="image-20240624215206066" style="zoom:50%;" /></p>
+<li><p>第三步：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215206066" style="zoom:50%;"></p>
 </li>
 <li><p><strong>不同的</strong>输入顺序会影响到循环神经网络的输出，因为是<strong>有记忆</strong>的！</p>
 </li>
@@ -850,7 +850,7 @@
 <p>强化学习的基本目标是：<strong>找到最大化奖励的策略</strong>。</p>
 <ul>
 <li><p>状态值函数V(s)：用于评断当前状态s在给定策略π下，未来累计的期望值。<br>$$<br>V^{\pi}(s) &#x3D; \mathbb{E}<em>{\pi} \left[ \sum</em>{t&#x3D;0}^{\infty} \gamma^t R_{t+1} \mid S_0 &#x3D; s \right]<br>$$</p>
-<img src="C:\Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240625155050199.png" srcset="/img/loading.gif" lazyload alt="image-20240625155050199" style="zoom:50%;" />
+<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240625155050199" style="zoom:50%;">
 
 <p>两条公式是<strong>等价</strong>的。</p>
 </li>
@@ -985,9 +985,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0/" title="操作系统复习">
+                      <a href="/2024/12/03/helloworld/" title="First Post!!">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">操作系统复习</span>
+                        <span class="hidden-mobile">First Post!!</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -995,8 +995,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/02/show-photo/" title="show-photo">
-                        <span class="hidden-mobile">show-photo</span>
+                      <a href="/2024/12/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0/" title="操作系统复习">
+                        <span class="hidden-mobile">操作系统复习</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
