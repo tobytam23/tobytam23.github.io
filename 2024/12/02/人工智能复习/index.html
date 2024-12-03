@@ -26,12 +26,12 @@
 <meta property="og:site_name" content="TAM CHEOK HANG">
 <meta property="og:description" content="这是本人在大二下考试前总结的内容，希望对大家有所帮助！">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://tobytam23.github.io/img/1.png">
+<meta property="og:image" content="https://tobytam23.github.io/img/artificial_intelligence_compressed.jpg">
 <meta property="article:published_time" content="2024-12-02T14:45:00.000Z">
-<meta property="article:modified_time" content="2024-12-03T08:49:51.285Z">
+<meta property="article:modified_time" content="2024-12-03T13:07:19.976Z">
 <meta property="article:author" content="tanzhuoheng">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tobytam23.github.io/img/1.png">
+<meta name="twitter:image" content="https://tobytam23.github.io/img/artificial_intelligence_compressed.jpg">
   
   
   
@@ -525,7 +525,7 @@
 <li>定义：假设对方能总是做出最优的行动，己方总是做出能最小化对方获得的收益的行动，通过最小化对方的收益，可以最大化己方的收益。</li>
 <li>使用<strong>深度优先搜索</strong>。（模拟算法很重要）</li>
 </ol>
-<h4 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h4><p>只要计算节点n的一部分子节点就可以确定在<code>MiniMax</code>算法中我们不会考虑走到节点n了；如果已经确定节点n不会被考虑，那么也就不用继续计算n的子节点了。如下图：<code>x</code>和<code>y</code>已经不用被搜索了。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240621191942772" style="zoom:67%;"></p>
+<h4 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h4><p>只要计算节点n的一部分子节点就可以确定在<code>MiniMax</code>算法中我们不会考虑走到节点n了；如果已经确定节点n不会被考虑，那么也就不用继续计算n的子节点了。如下图：<code>x</code>和<code>y</code>已经不用被搜索了。<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240621191942772" style="zoom:67%;"></p>
 <ul>
 <li>MAX剪枝：对于Max节点n，如果它的α(子) ≥ β(父)的时候，就可以停止遍历n的子节点了。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621192426769.png" srcset="/img/loading.gif" lazyload alt="image-20240621192426769"></li>
 <li>MIN剪枝：对于Min节点n，如果它的α(父) ≥ β(子)的时候，就可以停止遍历n的子节点了。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240621192631831.png" srcset="/img/loading.gif" lazyload alt="image-20240621192631831"></li>
@@ -613,11 +613,11 @@
 <li>极大似然法：就是先把式子列出来，然后对数，再对该式子求导并且等于0。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/Users\tam15\AppData\Roaming\Typora\typora-user-images\image-20240623180513734.png" srcset="/img/loading.gif" lazyload alt="image-20240623180513734"></li>
 </ul>
 <h3 id="贝叶斯网络的D-分离"><a href="#贝叶斯网络的D-分离" class="headerlink" title="贝叶斯网络的D-分离"></a>贝叶斯网络的D-分离</h3><ul>
-<li><p>串形连接： 在串行连接中A通过事件B影响C，同样事件C也是用过事件B影响A。我们认为当<strong>证据B确定时</strong>，A、C条件独立。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习" srcset="/img/loading.gif" lazyload alt="image-20200112230651132.png" style="zoom: 200%;"></p>
+<li><p>串形连接： 在串行连接中A通过事件B影响C，同样事件C也是用过事件B影响A。我们认为当<strong>证据B确定时</strong>，A、C条件独立。<img src="/2024/12/02/人工智能复习/" srcset="/img/loading.gif" lazyload alt="image-20200112230651132.png" style="zoom: 200%;"></p>
 </li>
-<li><p>共同的原因：<strong>给定父节点的前提下</strong>，子节点们条件独立。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习" srcset="/img/loading.gif" lazyload alt="image-20200112231016234.png" style="zoom:200%;"></p>
+<li><p>共同的原因：<strong>给定父节点的前提下</strong>，子节点们条件独立。<img src="/2024/12/02/人工智能复习/" srcset="/img/loading.gif" lazyload alt="image-20200112231016234.png" style="zoom:200%;"></p>
 </li>
-<li><p>共同的作用：<strong>当不给定子节点时</strong>，父节点们条件独立。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习" srcset="/img/loading.gif" lazyload alt="image-20200112231325308.png" style="zoom:200%;"></p>
+<li><p>共同的作用：<strong>当不给定子节点时</strong>，父节点们条件独立。<img src="/2024/12/02/人工智能复习/" srcset="/img/loading.gif" lazyload alt="image-20200112231325308.png" style="zoom:200%;"></p>
 </li>
 <li><p>若存在一条路径将这两个节点（直接）连通，则称这两个节点是<strong>相关</strong>的。若不存在这样的路径将这两个节 点连通，则这两个节点就是<strong>独立</strong>的。</p>
 </li>
@@ -664,7 +664,7 @@
 </li>
 </ol>
 </li>
-<li><p>分类图片如下：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240623210433383" style="zoom:67%;"></p>
+<li><p>分类图片如下：<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240623210433383" style="zoom:67%;"></p>
 </li>
 </ul>
 <h4 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h4><p>感知机算法只要计算的分数大于0输出标签为真，可是分数<strong>1</strong>和<strong>1000</strong>也是输出标签为真。</p>
@@ -697,14 +697,14 @@
 </li>
 </ul>
 <h4 id="人工神经网络"><a href="#人工神经网络" class="headerlink" title="人工神经网络"></a>人工神经网络</h4><h5 id="单层神经网络"><a href="#单层神经网络" class="headerlink" title="单层神经网络"></a>单层神经网络</h5><ul>
-<li>定义：一个基本的神经网络包括：<strong>输入</strong>、<strong>计算</strong>、<strong>输出</strong>。下图是一个典型的人工神经网络模型，它包含3个输入，1个 输出，以及2个计算功能。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624000843701" style="zoom:67%;"></li>
+<li>定义：一个基本的神经网络包括：<strong>输入</strong>、<strong>计算</strong>、<strong>输出</strong>。下图是一个典型的人工神经网络模型，它包含3个输入，1个 输出，以及2个计算功能。<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624000843701" style="zoom:67%;"></li>
 <li>人工神经元：人工神经网络中的计算单位。由下列部分组成：<ol>
 <li>输入信号xi</li>
 <li>一个激活层对输入信号乘上加权求和，神经元的激活层由加权输入的总和确定。</li>
 <li>一个阈值函数 f(x)，该函数通过确定激活是低于还是高于阈值来计算最终输出。</li>
 </ol>
 </li>
-<li>应用：可以实现“与”、“或”功能，可是不能处理异或。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624002553421" style="zoom: 50%;"></li>
+<li>应用：可以实现“与”、“或”功能，可是不能处理异或。<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624002553421" style="zoom: 50%;"></li>
 </ul>
 <h5 id="多层神经网络"><a href="#多层神经网络" class="headerlink" title="多层神经网络"></a>多层神经网络</h5><p>优势：单层神经网络只能处理线性问题，而两层神经网络可以无限逼近<strong>任意连续函数</strong>。面对复杂的非线性分类任务，带一个隐藏层的两层神经网络可以分类的很好。输入和输出节点之间的附加层称为<strong>隐藏层</strong>。</p>
 <p>原因：从输入层到隐藏层时， 数据发生了<strong>空间变换</strong>。这是因为输入层的阈值函数是<strong>非线性</strong>的，对数据进行了转换。</p>
@@ -721,7 +721,7 @@
 </li>
 </ol>
 <p>损失函数：定义为最小二乘法：<br>$$<br>E &#x3D; \frac{1}{2} e^2 &#x3D; \frac{1}{2} (T - O)^2<br>$$<br>为了使用梯度下降调整权重 wjk,我们首先计算在wjk 上误差E的偏导数：<br>$$<br>\begin{align*}<br>\frac{\partial E}{\partial w_{jk}} &amp;&#x3D; \frac{\partial E}{\partial e} \times \frac{\partial e}{\partial O_k} \times \frac{\partial O_k}{\partial w_{jk}} \<br>&amp;&#x3D; -\left( e \right) \times \left( O_k (1 - O_k) \right) \times \left( O_j \right) \<br>&amp;&#x3D; -(T_k - O_k) O_k (1 - O_k) O_j<br>\end{align*}<br>$$</p>
-<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193053302" style="zoom:80%;">
+<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193053302" style="zoom:80%;">
 
 <p>前向传播输入：</p>
 <ul>
@@ -730,16 +730,16 @@
 </ul>
 <p>反向传播误差：</p>
 <ul>
-<li>对于<strong>输出层</strong>，定义误差为：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193737699" style="zoom:80%;"></li>
-<li>对于<strong>隐藏层</strong>，定义误差为：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193803486" style="zoom:80%;"></li>
-<li><strong>权重更新公式</strong>（利用梯度下降）：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193903303" style="zoom:80%;"></li>
+<li>对于<strong>输出层</strong>，定义误差为：<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193737699" style="zoom:80%;"></li>
+<li>对于<strong>隐藏层</strong>，定义误差为：<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193803486" style="zoom:80%;"></li>
+<li><strong>权重更新公式</strong>（利用梯度下降）：<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624193903303" style="zoom:80%;"></li>
 <li>缺点：很容易梯度消失，每传递一层梯度就是原本的0.25倍。</li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/BlairGrowing/p/14982115.html">(<em>´∇｀</em>) 欢迎回来！ (cnblogs.com)</a>把这题刷一下基本没问题了(更改偏置b1和b2的时候，这个偏置项有点特殊，可以看成是一个隐藏层的节点进行处理，o1和o2的Err值都对它影响）<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="b9a535cdb2ab277d41473d468584db9" style="zoom: 50%;"></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/BlairGrowing/p/14982115.html">(<em>´∇｀</em>) 欢迎回来！ (cnblogs.com)</a>把这题刷一下基本没问题了(更改偏置b1和b2的时候，这个偏置项有点特殊，可以看成是一个隐藏层的节点进行处理，o1和o2的Err值都对它影响）<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="b9a535cdb2ab277d41473d468584db9" style="zoom: 50%;"></li>
 </ul>
 <h4 id="卷积神经网络-CNN"><a href="#卷积神经网络-CNN" class="headerlink" title="卷积神经网络(CNN)"></a>卷积神经网络(CNN)</h4><ul>
 <li><p>是<strong>深度学习</strong>算法。主要用于图像识别。</p>
 </li>
-<li><p>卷积计算：如下图<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;"></p>
+<li><p>卷积计算：如下图<img src="/2024/12/02/人工智能复习/" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;"></p>
 <p>描述卷积的四个量：卷积核个数、<strong>卷积核大小f</strong>、<strong>填充0值p</strong>、<strong>步长s</strong>。</p>
 <p>假设原本大小为拿，卷积结果大小为(n可以是高或者宽)<br>$$<br>\frac{n + 2p - f}{s} + 1<br>$$</p>
 </li>
@@ -771,17 +771,17 @@
 </li>
 <li><p>因为其余的神经网络输出只和当前时刻网络的输入相关。可是像预测天气这种问题还是很需要<strong>之前</strong>的数据的。这是一个<strong>有记忆</strong>的神经网络。<img src="https://img-blog.csdnimg.cn/a9f135e2447f4c91aceb93f646580000.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 </li>
-<li><p>例如像判断广州是目的地还是出发地，需要看前一个英文单词，所以需要用到之前的记忆。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215758219" style="zoom:50%;"></p>
+<li><p>例如像判断广州是目的地还是出发地，需要看前一个英文单词，所以需要用到之前的记忆。<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215758219" style="zoom:50%;"></p>
 </li>
-<li><p>简单来说，就是隐藏层的输出还存储在记忆中，并且记忆内容作为隐藏层的输入。<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624214743675" style="zoom:50%;"></p>
+<li><p>简单来说，就是隐藏层的输出还存储在记忆中，并且记忆内容作为隐藏层的输入。<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624214743675" style="zoom:50%;"></p>
 </li>
 <li><p>例子如下：假设所有权重都是1，激活函数都是线性的。</p>
 </li>
-<li><p>第一步：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215015924" style="zoom:50%;"></p>
+<li><p>第一步：<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215015924" style="zoom:50%;"></p>
 </li>
-<li><p>第二步：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215128804" style="zoom:50%;"></p>
+<li><p>第二步：<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215128804" style="zoom:50%;"></p>
 </li>
-<li><p>第三步：<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215206066" style="zoom:50%;"></p>
+<li><p>第三步：<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240624215206066" style="zoom:50%;"></p>
 </li>
 <li><p><strong>不同的</strong>输入顺序会影响到循环神经网络的输出，因为是<strong>有记忆</strong>的！</p>
 </li>
@@ -850,7 +850,7 @@
 <p>强化学习的基本目标是：<strong>找到最大化奖励的策略</strong>。</p>
 <ul>
 <li><p>状态值函数V(s)：用于评断当前状态s在给定策略π下，未来累计的期望值。<br>$$<br>V^{\pi}(s) &#x3D; \mathbb{E}<em>{\pi} \left[ \sum</em>{t&#x3D;0}^{\infty} \gamma^t R_{t+1} \mid S_0 &#x3D; s \right]<br>$$</p>
-<img src="/2024/12/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240625155050199" style="zoom:50%;">
+<img src="/2024/12/02/人工智能复习/undefined" srcset="/img/loading.gif" lazyload alt="image-20240625155050199" style="zoom:50%;">
 
 <p>两条公式是<strong>等价</strong>的。</p>
 </li>
