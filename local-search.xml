@@ -4,6 +4,32 @@
   
   
   <entry>
+    <title>HEXO博客的初步使用</title>
+    <link href="/2024/12/03/HEXO%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/"/>
+    <url>/2024/12/03/HEXO%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<p>mtfk</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>test</title>
+    <link href="/2024/12/03/test/"/>
+    <url>/2024/12/03/test/</url>
+    
+    <content type="html"><![CDATA[<h1 id="testing"><a href="#testing" class="headerlink" title="testing"></a>testing</h1><p>下面有一张照片。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>First Post!!</title>
     <link href="/2024/12/03/helloworld/"/>
     <url>/2024/12/03/helloworld/</url>
