@@ -6,6 +6,19 @@
 
 
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false}
+        ]
+      });
+    });
+  </script>
   <meta charset="UTF-8">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
@@ -47,6 +60,8 @@
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -86,7 +101,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -240,7 +259,7 @@
         
         
         
-          145 mins
+          146 mins
         
       </span>
     
@@ -282,25 +301,34 @@
             
               <div class="markdown-body">
                 
-                <h1 id="数据库复习内容"><a href="#数据库复习内容" class="headerlink" title="数据库复习内容"></a>数据库复习内容</h1><p>作者：哈利波特👑</p>
+                <h1 id="数据库复习内容"><a class="markdownIt-Anchor" href="#数据库复习内容"></a> 数据库复习内容</h1>
+<p>作者：哈利波特👑</p>
 <p>加油！有些公式不想打了，就直接复制图片了… 复习时间不够…</p>
-<h2 id="第一章-引言"><a href="#第一章-引言" class="headerlink" title="第一章 引言"></a>第一章 引言</h2><h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>定义：描述事务的基本符号，是数据库的基本对象。</p>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>定义：互相关联的数据集合 或 长期储存在计算机内、有组织的、可<strong>共享</strong>的大量数据集合。</p>
+<h2 id="第一章-引言"><a class="markdownIt-Anchor" href="#第一章-引言"></a> 第一章 引言</h2>
+<h3 id="数据"><a class="markdownIt-Anchor" href="#数据"></a> 数据</h3>
+<p>定义：描述事务的基本符号，是数据库的基本对象。</p>
+<h3 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h3>
+<p>定义：互相关联的数据集合 或 长期储存在计算机内、有组织的、可<strong>共享</strong>的大量数据集合。</p>
 <p>数据模型：数据库结构的基础</p>
 <ul>
-<li><p><strong>关系模型</strong></p>
+<li>
+<p><strong>关系模型</strong></p>
 <p>一个表就是一个关系。</p>
 <p>System-R 是关系模型。</p>
 <p><strong>用的最广泛</strong>。</p>
 </li>
-<li><p><strong>实体-联系模型</strong></p>
+<li>
+<p><strong>实体-联系模型</strong></p>
 </li>
-<li><p><strong>半结构化模型</strong></p>
+<li>
+<p><strong>半结构化模型</strong></p>
 </li>
-<li><p><strong>基于对象的模型。</strong></p>
+<li>
+<p><strong>基于对象的模型。</strong></p>
 </li>
 </ul>
-<h3 id="数据库管理系统-DBMS"><a href="#数据库管理系统-DBMS" class="headerlink" title="数据库管理系统(DBMS)"></a><strong>数据库管理系统(DBMS)</strong></h3><p>是一个在操作系统下定义的<strong>系统软件</strong>。</p>
+<h3 id="数据库管理系统dbms"><a class="markdownIt-Anchor" href="#数据库管理系统dbms"></a> <strong>数据库管理系统(DBMS)</strong></h3>
+<p>是一个在操作系统下定义的<strong>系统软件</strong>。</p>
 <p>定义：由一个<strong>互相关联的数据的集合</strong>（数据库）和一组用<strong>以访问这些数据的程序</strong>所组成。</p>
 <p>目的：提供一种<strong>方便</strong>、<strong>高效</strong>地存取数据库信息的途径。</p>
 <p>核心功能：<strong>数据定义</strong>、<strong>数据操作</strong>、<strong>数据安全</strong>、<strong>数据恢复和备份</strong>、<strong>并发控制</strong>、<strong>事务管理</strong>。</p>
@@ -311,37 +339,46 @@
 <li>数据备份与恢复：提供数据备份和灾难恢复机制。</li>
 <li>并发控制：管理多个用户同时访问数据，避免冲突和数据不一致。</li>
 </ul>
-<h3 id="数据库系统"><a href="#数据库系统" class="headerlink" title="数据库系统"></a>数据库系统</h3><p>定义：由数据库、数据库管理系统、应用系统、数据库管理员（或用户）所组成。</p>
+<h3 id="数据库系统"><a class="markdownIt-Anchor" href="#数据库系统"></a> 数据库系统</h3>
+<p>定义：由数据库、数据库管理系统、应用系统、数据库管理员（或用户）所组成。</p>
 <p>目的：为用户提供抽象的数据视图，隐藏对数据的维护。</p>
-<h3 id="文件系统的弊端"><a href="#文件系统的弊端" class="headerlink" title="文件系统的弊端"></a>文件系统的弊端</h3><p>数据的冗余和不一致性、数据访问困难、数据孤立、完整性问题、原子性问题等等。</p>
+<h3 id="文件系统的弊端"><a class="markdownIt-Anchor" href="#文件系统的弊端"></a> 文件系统的弊端</h3>
+<p>数据的冗余和不一致性、数据访问困难、数据孤立、完整性问题、原子性问题等等。</p>
 <ul>
 <li>一个学生同时有两个专业，就会在两个文件存储信息。</li>
 <li>如果临时想要查询文件的子文件，都不行。</li>
 <li>很难增加新的约束。</li>
 </ul>
-<h3 id="数据抽象"><a href="#数据抽象" class="headerlink" title="数据抽象"></a>数据抽象</h3><p>一个可用的系统一定要<strong>高效</strong>的检索数据。</p>
+<h3 id="数据抽象"><a class="markdownIt-Anchor" href="#数据抽象"></a> 数据抽象</h3>
+<p>一个可用的系统一定要<strong>高效</strong>的检索数据。</p>
 <p>系统开发人员通过将数据抽象成 <strong>物理层</strong>、<strong>逻辑层</strong>、<strong>视图层</strong> 来对用户屏蔽复杂性。</p>
 <ul>
-<li><p><strong>物理层</strong></p>
+<li>
+<p><strong>物理层</strong></p>
 <p>最低层次的抽象，描述数据如何存储。</p>
 </li>
-<li><p><strong>逻辑层</strong></p>
+<li>
+<p><strong>逻辑层</strong></p>
 <p>描述数据库存储什么数据以及数据之间的联系。</p>
 </li>
-<li><p><strong>视图层</strong></p>
+<li>
+<p><strong>视图层</strong></p>
 <p>只描述数据库的某一部分。</p>
 </li>
 </ul>
-<p><strong>物理数据独立性：</strong>应用程序不依赖物理模式，物理模式隐藏在逻辑模式下，可以在应用程序不受影响的情况下轻易更改。即使物理模式改变了，也无需重写应用程序。</p>
-<p><strong>逻辑数据独立性：</strong>指数据库的逻辑结构（表的属性）发生变化时，不会影响用户的外部视图或应用程序对数据的访问。</p>
-<h3 id="数据库系统模式（考点）"><a href="#数据库系统模式（考点）" class="headerlink" title="数据库系统模式（考点）"></a>数据库系统模式（考点）</h3><p>特定时刻存储的数据库中的信息集合称作数据库的一个<strong>实例</strong>。</p>
+<p>**物理数据独立性：**应用程序不依赖物理模式，物理模式隐藏在逻辑模式下，可以在应用程序不受影响的情况下轻易更改。即使物理模式改变了，也无需重写应用程序。</p>
+<p>**逻辑数据独立性：**指数据库的逻辑结构（表的属性）发生变化时，不会影响用户的外部视图或应用程序对数据的访问。</p>
+<h3 id="数据库系统模式考点"><a class="markdownIt-Anchor" href="#数据库系统模式考点"></a> 数据库系统模式（考点）</h3>
+<p>特定时刻存储的数据库中的信息集合称作数据库的一个<strong>实例</strong>。</p>
 <p>数据库总体的设计称为<strong>数据库模式</strong>。按照刚刚所说的三个层次划分，数据库系统模式有<strong>物理模式</strong>、<strong>逻辑模式</strong>、<strong>子模式</strong>。</p>
 <blockquote>
 <p>数据库系统模式就是变量类型，实例就是该变量在某个特定时间的值。</p>
 </blockquote>
-<h3 id="数据库语言"><a href="#数据库语言" class="headerlink" title="数据库语言"></a>数据库语言</h3><p>分为<strong>数据定义语言</strong>（DDL）和<strong>数据操纵语言</strong>（DML）。</p>
+<h3 id="数据库语言"><a class="markdownIt-Anchor" href="#数据库语言"></a> 数据库语言</h3>
+<p>分为<strong>数据定义语言</strong>（DDL）和<strong>数据操纵语言</strong>（DML）。</p>
 <ul>
-<li><p><strong>数据定义语言</strong></p>
+<li>
+<p><strong>数据定义语言</strong></p>
 <p>例如 <code>create</code>、<code>alter</code>等等。</p>
 <p>有<strong>域约束</strong>和<strong>引用完整性</strong>和<strong>授权</strong>。</p>
 <ul>
@@ -350,286 +387,348 @@
 <li>授权就是<code>grant</code>。</li>
 </ul>
 </li>
-<li><p><strong>数据操纵语言</strong></p>
+<li>
+<p><strong>数据操纵语言</strong></p>
 <p>分为过程化的 DML 和声明式的 DML。</p>
 <ul>
-<li><p><strong>过程化</strong></p>
+<li>
+<p><strong>过程化</strong></p>
 <p>要求指定用户需要什么数据以及<strong>如何获得这些数据</strong>。</p>
 </li>
-<li><p><strong>声明式（非过程化）</strong></p>
+<li>
+<p><strong>声明式（非过程化）</strong></p>
 <p>要求指定用户需要什么数据即可。</p>
 <p><strong>SQL是非过程化的！</strong></p>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="存储管理器"><a href="#存储管理器" class="headerlink" title="存储管理器"></a>存储管理器</h3><p><strong>存储管理器</strong>是数据库管理系统中的一个核心组件，负责管理和存储数据库中的数据。</p>
+<h3 id="存储管理器"><a class="markdownIt-Anchor" href="#存储管理器"></a> 存储管理器</h3>
+<p><strong>存储管理器</strong>是数据库管理系统中的一个核心组件，负责管理和存储数据库中的数据。</p>
 <p>负责将原始数据通过操作系统提供的文件系统存储在磁盘上。</p>
 <p>实现了以下几种数据结构：</p>
 <ul>
-<li><p><strong>数据文件</strong></p>
+<li>
+<p><strong>数据文件</strong></p>
 <p>存储数据库本身。</p>
 </li>
-<li><p><strong>数据字典</strong></p>
+<li>
+<p><strong>数据字典</strong></p>
 <p>数据字典是<strong>元数据</strong>的存储库，包含数据库中对象的定义、类型、约束等信息。</p>
 <p>它帮助DBMS管理和验证数据库的结构，并允许系统在执行查询时参考这些元数据。</p>
 </li>
-<li><p><strong>索引</strong></p>
+<li>
+<p><strong>索引</strong></p>
 <p>提供对数据项的快速访问。</p>
 </li>
 </ul>
 <p><strong>数据字典（Data Dictionary）是一个存储数据库元数据的系统，用于描述和管理数据库中的所有数据元素、结构、约束和关系。</strong></p>
-<h3 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h3><p><strong>事务</strong>是指一组数据库操作的集合，这些操作要么完全执行（提交），要么完全不执行（回滚）。</p>
+<h3 id="事务管理"><a class="markdownIt-Anchor" href="#事务管理"></a> 事务管理</h3>
+<p><strong>事务</strong>是指一组数据库操作的集合，这些操作要么完全执行（提交），要么完全不执行（回滚）。</p>
 <p>事务管理确保数据库操作在执行过程中满足<strong>ACID</strong>特性，即<strong>原子性</strong>、<strong>一致性</strong>、<strong>隔离性</strong>和<strong>持久性</strong>。</p>
 <ul>
-<li><p><strong>原子性</strong></p>
+<li>
+<p><strong>原子性</strong></p>
 <p>原子性保证事务中的所有操作要么完全执行，要么完全不执行。</p>
 <p>事务中的每个操作都是一个不可分割的单位。</p>
 </li>
-<li><p><strong>一致性</strong></p>
+<li>
+<p><strong>一致性</strong></p>
 <p>一致性确保数据库从一个有效的状态转换到另一个有效的状态。</p>
 <p>即银行转账之后，a 和 b 的余额应该是不变的。</p>
 </li>
-<li><p><strong>隔离性</strong></p>
+<li>
+<p><strong>隔离性</strong></p>
 <p>隔离性确保多个事务并发执行时，一个事务的执行不会受到其他事务的干扰。</p>
 </li>
-<li><p><strong>持久性</strong></p>
+<li>
+<p><strong>持久性</strong></p>
 <p>持久性确保一旦事务提交，事务的所有操作对数据库的更改是永久性的，即使系统发生崩溃也不会丢失。</p>
 </li>
 </ul>
 <p>原子性和持久性是靠恢复管理器实现。 隔离性是由并发控制管理器实现的。</p>
 <p>为了保证原子性，经常需要<strong>故障修复</strong>，即将数据库恢复到该失败事务开始执行以前的状态。</p>
 <p>事务管理器包括 <strong>恢复管理器</strong> 和 <strong>并发控制管理器</strong> 组成。</p>
-<h3 id="数据库系统-1"><a href="#数据库系统-1" class="headerlink" title="数据库系统"></a>数据库系统</h3><p>由三个子系统组成，分别是<strong>存储管理器子系统</strong>、<strong>编译管理器子系统</strong>（DDL和DML语句）、<strong>事务管理器子系统</strong>。</p>
+<h3 id="数据库系统-2"><a class="markdownIt-Anchor" href="#数据库系统-2"></a> 数据库系统</h3>
+<p>由三个子系统组成，分别是<strong>存储管理器子系统</strong>、<strong>编译管理器子系统</strong>（DDL和DML语句）、<strong>事务管理器子系统</strong>。</p>
 <p>数据库系统的基本特征：数据共享性、独立性和冗余度小。</p>
 <p>数据库系统包括<strong>数据库</strong>和<strong>数据库管理系统</strong>（DBMS）。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>SQL 语言是为做决策而产生的，是<strong>查询密集</strong>。 1980年代的数据库都是<strong>更新密集</strong>的。</p>
+<h3 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h3>
+<p>SQL 语言是为做决策而产生的，是<strong>查询密集</strong>。 1980年代的数据库都是<strong>更新密集</strong>的。</p>
 <p>1990年加入对象-关系模型。</p>
 <p>**实体-联系数据模型(E-R)**是广泛用于设计数据库的。</p>
-<p><strong>过程化DML（如PL&#x2F;SQL, T-SQL）</strong></p>
+<p><strong>过程化DML（如PL/SQL, T-SQL）</strong></p>
 <p><strong>非过程化DML（如SQL）</strong></p>
-<p>在数据库中存储的是_________。<br>A、数据 B、数据模型<br>C、信息 <strong>D、数据以及数据之间的联系</strong></p>
+<p>在数据库中存储的是_________。<br>
+A、数据 B、数据模型<br>
+C、信息 <strong>D、数据以及数据之间的联系</strong></p>
 <p>正确答案：D</p>
-<p>数据库的_________是指数据的正确性和相容性。<br>A、恢复 B、安全性 C、并发控制 <strong>D、完整性</strong><br>正确答案：D</p>
+<p>数据库的_________是指数据的正确性和相容性。<br>
+A、恢复 B、安全性 C、并发控制 <strong>D、完整性</strong><br>
+正确答案：D</p>
 <p>数据模型是由<strong>数据结构</strong>、<strong>数据操作</strong>、和<strong>完整性约束</strong>三部分组成的。</p>
-<p>在数据库的三级模式结构中，用来描述数据库中全体数据的全局逻辑结构和特征的是__________。<br>正确答案： 逻辑模式</p>
-<p>数据库系统的核心是____________________。<br>正确答案：数据库管理系统或DBMS</p>
+<p>在数据库的三级模式结构中，用来描述数据库中全体数据的全局逻辑结构和特征的是__________。<br>
+正确答案： 逻辑模式</p>
+<p>数据库系统的核心是____________________。<br>
+正确答案：数据库管理系统或DBMS</p>
 <p>对DB的数据主要是两个操作：查询和更新。</p>
 <p>SQL server中，每个表最多1024列。</p>
- 
-
- 
-
- 
-
- 
-
- 
-
-
-
-<h2 id="第二章-关系模型介绍"><a href="#第二章-关系模型介绍" class="headerlink" title="第二章 关系模型介绍"></a>第二章 关系模型介绍</h2><h3 id="关系数据库的结构"><a href="#关系数据库的结构" class="headerlink" title="关系数据库的结构"></a>关系数据库的结构</h3><p>关系数据库由<strong>表</strong>构成（实际上就是表的集合）。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102170853391.png" srcset="/img/loading.gif" lazyload class title="image-20250102170853391"> 
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102170931020.png" srcset="/img/loading.gif" lazyload class title="image-20250102170931020"> 
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102170954330.png" srcset="/img/loading.gif" lazyload class title="image-20250102170954330"> 
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102171019865.png" srcset="/img/loading.gif" lazyload class title="image-20250102171019865"> 
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102171334654.png" srcset="/img/loading.gif" lazyload class title="image-20250102171334654"> 
+<h2 id="第二章-关系模型介绍"><a class="markdownIt-Anchor" href="#第二章-关系模型介绍"></a> 第二章 关系模型介绍</h2>
+<h3 id="关系数据库的结构"><a class="markdownIt-Anchor" href="#关系数据库的结构"></a> 关系数据库的结构</h3>
+<p>关系数据库由<strong>表</strong>构成（实际上就是表的集合）。</p>
 <p>在关系模型中，<strong>关系</strong> 被用来指代 <strong>表</strong>，<strong>元组</strong> 被用来指代 <strong>行</strong>，<strong>属性</strong> 被用来指代 <strong>列</strong>。</p>
 <ul>
 <li>关系实际上是元组的集合。</li>
 </ul>
-<p>对于每个属性的取值都有一个范围，这个范围就是<strong>域</strong>。并且该域中的元素都是<strong>不可再分（原子）</strong>的。</p>
+<p>对于每个属性的取值都有一个范围，这个范围就是<strong>域</strong>。并且该域中的元素都是**不可再分（原子）**的。</p>
 <p>数据库模式：数据库的逻辑设计；数据库实例：某⼀时刻数据库中的数据的快照。关系模式、关系实例与之类似。</p>
 <ul>
-<li><p>关系模式由<strong>属性列表</strong>和<strong>各属性对应的域</strong>组成（可能包括主码约束）。</p>
+<li>
+<p>关系模式由<strong>属性列表</strong>和<strong>各属性对应的域</strong>组成（可能包括主码约束）。</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">Students</span>(<span class="hljs-attribute">student_id</span>: INT, <span class="hljs-attribute">name</span>: <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>), <span class="hljs-attribute">age</span>: INT)<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>模式很少改变，但是实例会随着时间发生改变。</p>
+<li>
+<p>模式很少改变，但是实例会随着时间发生改变。</p>
 </li>
 </ul>
-<h3 id="码（妈的）"><a href="#码（妈的）" class="headerlink" title="码（妈的）"></a>码（妈的）</h3><p><strong>超码：</strong>一个或多个属性的集合，这个集合可以唯⼀地区分出⼀个元组（行）。</p>
-<p><strong>候选码：</strong>最小超码，可能有多个。</p>
-<p><strong>主码：</strong>人为选中，作为⼀行的区分标准的<strong>候选码</strong>。</p>
+<h3 id="码妈的"><a class="markdownIt-Anchor" href="#码妈的"></a> 码（妈的）</h3>
+<p>**超码：**一个或多个属性的集合，这个集合可以唯⼀地区分出⼀个元组（行）。</p>
+<p>**候选码：**最小超码，可能有多个。</p>
+<p><strong>主码：<strong>人为选中，作为⼀行的区分标准的</strong>候选码</strong>。</p>
 <p><strong>外码：</strong>：关系 r1 的属性中可能包含了关系 r2 的主码，这个属性在 上称作参照 r1 的外码，r1 称作外码依赖的参照关系， r2 称作外码依赖的被参照关系。（<strong>必须是 r2 的主码！！</strong>）</p>
-<p><strong>参照完整性约束：</strong>参照关系中的任意元组的特定属性的取值必须等于被参照关系中某个元组的特定属性的取值。这个对比外码放松了条件！不需要是主码！</p>
-<h3 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h3><p>看那个 pdf，这里没时间写了。</p>
+<p>**参照完整性约束：**参照关系中的任意元组的特定属性的取值必须等于被参照关系中某个元组的特定属性的取值。这个对比外码放松了条件！不需要是主码！</p>
+<h3 id="关系代数"><a class="markdownIt-Anchor" href="#关系代数"></a> 关系代数</h3>
+<p>看那个 pdf，这里没时间写了。</p>
 <p>在关系代数运算中，五种基本运算为<strong>并</strong>、<strong>差</strong>、<strong>选择</strong>、<strong>投影</strong>、<strong>笛卡尔积</strong>。</p>
 <p><strong>关系运算的结果也是关系（表）。</strong></p>
 <p>笛卡尔积运算跟连接不一样！结果一共有 n1 x n2 个元组。</p>
 <p>集合运算 交 并 差的运算，记得是集合！所以并集中重复的部分只会保留一个！需要满足两个关系是<strong>属性数量一</strong>致并且<strong>属性的域相同</strong>。</p>
 <p>这里简单的提下<strong>除法</strong>，除法的定义是如果关系 R 有 ABC 三个属性，关系 S 有 AB两个属性。那么R 除 S的集合结果是在 R 中找出属性 AB 取值跟 S 中的属性 AB 取值一样的元组。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ol>
 <li><strong>一个数据库可以有多个关系模式</strong></li>
 <li><strong>每个关系模式可以包含多个表</strong></li>
 </ol>
 <blockquote>
 <p>假设有一个数据库 <code>CompanyDB</code>，该数据库包含多个关系模式，每个关系模式下有多个表：</p>
 <ul>
-<li>**<code>HRSchema</code>**（人力资源模式）：包含 <code>Employees</code>（员工表）、<code>Departments</code>（部门表）、<code>Salaries</code>（薪资表）。</li>
-<li>**<code>FinanceSchema</code>**（财务模式）：包含 <code>Invoices</code>（发票表）、<code>Transactions</code>（交易表）。</li>
-<li>**<code>SalesSchema</code>**（销售模式）：包含 <code>Customers</code>（客户表）、<code>Orders</code>（订单表）、<code>Products</code>（产品表）。</li>
+<li><strong><code>HRSchema</code></strong>（人力资源模式）：包含 <code>Employees</code>（员工表）、<code>Departments</code>（部门表）、<code>Salaries</code>（薪资表）。</li>
+<li><strong><code>FinanceSchema</code></strong>（财务模式）：包含 <code>Invoices</code>（发票表）、<code>Transactions</code>（交易表）。</li>
+<li><strong><code>SalesSchema</code></strong>（销售模式）：包含 <code>Customers</code>（客户表）、<code>Orders</code>（订单表）、<code>Products</code>（产品表）。</li>
 </ul>
 </blockquote>
-<h3 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h3><p>对关系的完整性约束通常包括_________三种。<br>A、实体完整性、属性完整性、关系完整性；<br>B、实体完整性、参照完整性、用户定义完整；<br>C、实体完整性、属性完整性、用户定义完整；<br>D、实体完整性、属性完整性、参照完整性；<br>正确答案：B</p>
+<h3 id="其他-2"><a class="markdownIt-Anchor" href="#其他-2"></a> 其他</h3>
+<p>对关系的完整性约束通常包括_________三种。<br>
+A、实体完整性、属性完整性、关系完整性；<br>
+B、实体完整性、参照完整性、用户定义完整；<br>
+C、实体完整性、属性完整性、用户定义完整；<br>
+D、实体完整性、属性完整性、参照完整性；<br>
+正确答案：B</p>
 <p>主键应该体现它的<strong>唯一</strong>和<strong>非空</strong>性。</p>
 <p>在关系模式中，使用<strong>二维表</strong>表示数据。</p>
- 
-
-
-
-<h2 id="第三章-SQL介绍"><a href="#第三章-SQL介绍" class="headerlink" title="第三章 SQL介绍"></a>第三章 SQL介绍</h2><p>建表的时候的 primary key 和 foreign key 都是属于完整性约束，SQL 禁止任何破坏完整性约束的数据库更新。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102171834713.png" srcset="/img/loading.gif" lazyload class title="image-20250102171834713"> 
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102172022836.png" srcset="/img/loading.gif" lazyload class title="image-20250102172022836">
+<h2 id="第三章-sql介绍"><a class="markdownIt-Anchor" href="#第三章-sql介绍"></a> 第三章 SQL介绍</h2>
+<p>建表的时候的 primary key 和 foreign key 都是属于完整性约束，SQL 禁止任何破坏完整性约束的数据库更新。</p>
 <p>一个数据库管理系统的实例可以创建多个数据库，一个数据库可以有多个关系模式，一个关系模式可以由多个表组成。</p>
-<h3 id="sql基本结构与关系代数对应"><a href="#sql基本结构与关系代数对应" class="headerlink" title="sql基本结构与关系代数对应"></a>sql基本结构与关系代数对应</h3><p>关系代数是<strong>集合运算</strong>！sql不是….</p>
+<h3 id="sql基本结构与关系代数对应"><a class="markdownIt-Anchor" href="#sql基本结构与关系代数对应"></a> sql基本结构与关系代数对应</h3>
+<p>关系代数是<strong>集合运算</strong>！sql不是…</p>
 <ol>
-<li><p><strong><code>SELECT</code> 对应 π（投影）</strong></p>
+<li>
+<p><strong><code>SELECT</code> 对应 π（投影）</strong></p>
 <p>但是并不等价，因为<code>select</code>会返回重复的行，但$$\pi$$是<strong>集合运算</strong>不会返回重复的行。</p>
 </li>
-<li><p><strong><code>FROM</code> 对应笛卡尔积（×）</strong></p>
+<li>
+<p><strong><code>FROM</code> 对应笛卡尔积（×）</strong></p>
 </li>
-<li><p><strong><code>WHERE</code> 对应 σ（选择）</strong></p>
+<li>
+<p><strong><code>WHERE</code> 对应 σ（选择）</strong></p>
 </li>
-<li><p><strong><code>as</code>对应P</strong></p>
+<li>
+<p><strong><code>as</code>对应P</strong></p>
 </li>
 </ol>
-<h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><ol>
-<li><strong><code>FROM</code></strong><br>执行首先发生在 <code>FROM</code> 子句，确定从哪个表（或视图）中获取数据。如果有多个表，数据库会先执行 <code>JOIN</code> 操作来将它们结合在一起。</li>
-<li><strong><code>ON</code></strong><br>如果查询中涉及连接（<code>JOIN</code>），数据库会首先根据 <code>ON</code> 子句中指定的条件来匹配连接的行。</li>
-<li><strong><code>JOIN</code></strong><br>对于多表查询，数据库在 <code>FROM</code> 中确定了表并处理了 <code>ON</code> 中的连接条件后，会执行连接操作（如 <code>INNER JOIN</code>、<code>LEFT JOIN</code> 等）。</li>
-<li><strong><code>WHERE</code></strong><br>在从表中获取数据后，数据库会通过 <code>WHERE</code> 子句来过滤行，仅保留符合条件的行。</li>
-<li><strong><code>GROUP BY</code></strong><br>接着，数据库会根据 <code>GROUP BY</code> 子句对结果进行分组。如果查询涉及聚合函数（如 <code>COUNT</code>、<code>SUM</code>、<code>AVG</code> 等），它们会在分组之后应用。</li>
-<li><strong><code>HAVING</code></strong><br><code>HAVING</code> 子句与 <code>WHERE</code> 类似，但它是在分组之后对聚合结果进行过滤的。<code>WHERE</code> 是用来过滤行的，而 <code>HAVING</code> 用来过滤分组。</li>
-<li><strong><code>SELECT</code></strong><br>在数据被过滤并分组后，<code>SELECT</code> 子句决定了最终查询返回哪些列。如果查询中有聚合函数（如 <code>SUM</code>、<code>AVG</code> 等），此时会计算聚合值。</li>
-<li><strong><code>DISTINCT</code></strong><br>在选择列后，如果查询使用了 <code>DISTINCT</code> 关键字，数据库会去除重复的行。</li>
-<li><strong><code>ORDER BY</code></strong><br><code>ORDER BY</code> 用于对查询结果进行排序。排序通常是在所有其他操作完成后执行的。</li>
+<h3 id="执行顺序"><a class="markdownIt-Anchor" href="#执行顺序"></a> 执行顺序</h3>
+<ol>
+<li><strong><code>FROM</code></strong><br>
+执行首先发生在 <code>FROM</code> 子句，确定从哪个表（或视图）中获取数据。如果有多个表，数据库会先执行 <code>JOIN</code> 操作来将它们结合在一起。</li>
+<li><strong><code>ON</code></strong><br>
+如果查询中涉及连接（<code>JOIN</code>），数据库会首先根据 <code>ON</code> 子句中指定的条件来匹配连接的行。</li>
+<li><strong><code>JOIN</code></strong><br>
+对于多表查询，数据库在 <code>FROM</code> 中确定了表并处理了 <code>ON</code> 中的连接条件后，会执行连接操作（如 <code>INNER JOIN</code>、<code>LEFT JOIN</code> 等）。</li>
+<li><strong><code>WHERE</code></strong><br>
+在从表中获取数据后，数据库会通过 <code>WHERE</code> 子句来过滤行，仅保留符合条件的行。</li>
+<li><strong><code>GROUP BY</code></strong><br>
+接着，数据库会根据 <code>GROUP BY</code> 子句对结果进行分组。如果查询涉及聚合函数（如 <code>COUNT</code>、<code>SUM</code>、<code>AVG</code> 等），它们会在分组之后应用。</li>
+<li><strong><code>HAVING</code></strong><br>
+<code>HAVING</code> 子句与 <code>WHERE</code> 类似，但它是在分组之后对聚合结果进行过滤的。<code>WHERE</code> 是用来过滤行的，而 <code>HAVING</code> 用来过滤分组。</li>
+<li><strong><code>SELECT</code></strong><br>
+在数据被过滤并分组后，<code>SELECT</code> 子句决定了最终查询返回哪些列。如果查询中有聚合函数（如 <code>SUM</code>、<code>AVG</code> 等），此时会计算聚合值。</li>
+<li><strong><code>DISTINCT</code></strong><br>
+在选择列后，如果查询使用了 <code>DISTINCT</code> 关键字，数据库会去除重复的行。</li>
+<li><strong><code>ORDER BY</code></strong><br>
+<code>ORDER BY</code> 用于对查询结果进行排序。排序通常是在所有其他操作完成后执行的。</li>
 </ol>
-<h3 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h3><ul>
+<h3 id="字符串运算"><a class="markdownIt-Anchor" href="#字符串运算"></a> 字符串运算</h3>
+<ul>
 <li><code>INtro%</code>匹配以 INtro 打头的任意字符串。</li>
 <li><code>%comp%</code>匹配任意包含 comp 的字符串。</li>
 <li><code>___</code>匹配只有三个字符的任意字符串</li>
 <li><code>___%</code>匹配至少含有三个字符的任意字符串。</li>
 </ul>
-<h3 id="排序-order-by"><a href="#排序-order-by" class="headerlink" title="排序 order by"></a>排序 order by</h3><p>可以选择多个属性进行排序，例如对salary升序，但是对salary一样的元组进行 name 降序排列。</p>
+<h3 id="排序-order-by"><a class="markdownIt-Anchor" href="#排序-order-by"></a> 排序 order by</h3>
+<p>可以选择多个属性进行排序，例如对salary升序，但是对salary一样的元组进行 name 降序排列。</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> *<br><span class="hljs-keyword">from</span> instructor<br><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> salary <span class="hljs-keyword">asc</span>, <span class="hljs-type">name</span> <span class="hljs-keyword">desc</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h3><p>SQL 中的 union、intersect、except对应 并、交、差。</p>
+<h3 id="集合运算"><a class="markdownIt-Anchor" href="#集合运算"></a> 集合运算</h3>
+<p>SQL 中的 union、intersect、except对应 并、交、差。</p>
 <ol>
-<li><p><code>UNION</code>（并集）：</p>
+<li>
+<p><code>UNION</code>（并集）：</p>
 <p><code>UNION</code> 用于合并两个查询的结果集，并去除重复的行。</p>
 <p>保留重复的行需要<code>union all</code>！！</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> column1, column2<br><span class="hljs-keyword">FROM</span> table1<br><span class="hljs-keyword">UNION</span><br><span class="hljs-keyword">SELECT</span> column1, column2<br><span class="hljs-keyword">FROM</span> table2;<br></code></pre></td></tr></table></figure>
 </li>
-<li><p><code>INTERSECT</code>（交集）：</p>
+<li>
+<p><code>INTERSECT</code>（交集）：</p>
 <p><code>INTERSECT</code> 用于返回两个查询结果中的公共部分（交集）。</p>
 <p>保留重复的行需要<code>intersect all</code>！！</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> column1, column2<br><span class="hljs-keyword">FROM</span> table1<br><span class="hljs-keyword">INTERSECT</span><br><span class="hljs-keyword">SELECT</span> column1, column2<br><span class="hljs-keyword">FROM</span> table2;<br></code></pre></td></tr></table></figure>
 </li>
-<li><p><code>EXCEPT</code>（差集）：</p>
+<li>
+<p><code>EXCEPT</code>（差集）：</p>
 <p><code>EXCEPT</code> 用于返回第一个查询结果中有而第二个查询结果中没有的行。</p>
 <p>保留重复的行需要<code>except all</code>！！</p>
 <blockquote>
 <p>去除重复项的操作是在集合差运算前，所以假设c1有四个重复的元组a，c2有两个重复的元组a，那么最后a不会有输出。</p>
 <p>若except all ，最终会有两个a输出。</p>
 </blockquote>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> column1, column2<br><span class="hljs-keyword">FROM</span> table1<br><span class="hljs-keyword">EXCEPT</span><br><span class="hljs-keyword">SELECT</span> column1, column2<br><span class="hljs-keyword">FROM</span> table2;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> column1, column2<br><span class="hljs-keyword">FROM</span> table1<br><span class="hljs-keyword">EXCEPT</span><br><span class="hljs-keyword">SELECT</span> column1, column2<br><span class="hljs-keyword">FROM</span> table2;<br></code></pre></td></tr></table></figure>
+</li>
 </ol>
-<h3 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h3><p>定义 true false 之外的第三种逻辑值 unknown。</p>
+<h3 id="空值"><a class="markdownIt-Anchor" href="#空值"></a> 空值</h3>
+<p>定义 true false 之外的第三种逻辑值 unknown。</p>
 <ul>
-<li><strong>and</strong><ul>
-<li><strong>false</strong> and <strong>unknown</strong> &#x3D; <strong>false</strong></li>
-<li><strong>unknown</strong> and <strong>unknown</strong> &#x3D; <strong>unknown</strong></li>
+<li><strong>and</strong>
+<ul>
+<li><strong>false</strong> and <strong>unknown</strong> = <strong>false</strong></li>
+<li><strong>unknown</strong> and <strong>unknown</strong> = <strong>unknown</strong></li>
 </ul>
 </li>
-<li><strong>or</strong><ul>
-<li><strong>true</strong> or <strong>unknown</strong> &#x3D; <strong>true</strong></li>
-<li><strong>false</strong> or <strong>unknown</strong> &#x3D; <strong>unknown</strong></li>
-<li><strong>unknown</strong>  or <strong>unknown</strong>  &#x3D; <strong>unknown</strong></li>
+<li><strong>or</strong>
+<ul>
+<li><strong>true</strong> or <strong>unknown</strong> = <strong>true</strong></li>
+<li><strong>false</strong> or <strong>unknown</strong> = <strong>unknown</strong></li>
+<li><strong>unknown</strong>  or <strong>unknown</strong>  = <strong>unknown</strong></li>
 </ul>
 </li>
-<li><strong>not</strong><ul>
-<li>not <strong>unknown</strong>  &#x3D; <strong>unknown</strong> </li>
+<li><strong>not</strong>
+<ul>
+<li>not <strong>unknown</strong>  = <strong>unknown</strong></li>
 <li>如果 r.a 为空，那么 1 &lt; r.a 和 not(1&lt;r.a) 都为空。</li>
 </ul>
 </li>
 </ul>
-<h3 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h3><p>在 SQL 中，聚集函数用于对一组数据进行操作，生成单个结果。常见的聚集函数有 <code>AVG</code>（计算平均值）、<code>SUM</code>（求和）、<code>COUNT</code>（计数）、<code>MAX</code>（最大值）、<code>MIN</code>（最小值）。</p>
+<h3 id="聚集函数"><a class="markdownIt-Anchor" href="#聚集函数"></a> 聚集函数</h3>
+<p>在 SQL 中，聚集函数用于对一组数据进行操作，生成单个结果。常见的聚集函数有 <code>AVG</code>（计算平均值）、<code>SUM</code>（求和）、<code>COUNT</code>（计数）、<code>MAX</code>（最大值）、<code>MIN</code>（最小值）。</p>
 <ul>
-<li><p><strong>平均值</strong></p>
+<li>
+<p><strong>平均值</strong></p>
 <p><code>AVG</code> 函数计算一列数据的平均值，即所有数据值的总和除以数据的数量。</p>
 <p>计算平均值的时候，保留重复项是很重要的。</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">SELECT</span> AVG(<span class="hljs-built_in">column_name</span>)<br><span class="hljs-keyword">FROM</span> <span class="hljs-built_in">table_name</span><br><span class="hljs-keyword">WHERE</span> condition;<br></code></pre></td></tr></table></figure>
-
 <p><strong>注意</strong>：<code>AVG</code> 函数忽略 <code>NULL</code> 值，也就是说，如果某一行的该列是 <code>NULL</code>，则该行不会计入总和和计数。</p>
 </li>
-<li><p><strong>计数</strong></p>
+<li>
+<p><strong>计数</strong></p>
 <p><code>COUNT(*)</code> 计算结果集中所有行的数量，不会忽略 <code>NULL</code> 或空值，它包括所有的行。</p>
 <p><code>COUNT(column_name)</code> 与 <code>COUNT(*)</code> 不同，<code>COUNT(column_name)</code> 会忽略该列中的 <code>NULL</code> 值。</p>
-
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20241231201207905.png" srcset="/img/loading.gif" lazyload class title="image-20241231201207905">
 <p><code>COUNT(DISTINCT column_name)</code> 计算特定列中唯一非空值（<code>NOT NULL</code>）的数量，重复值会被去除。</p>
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20241231201226183.png" srcset="/img/loading.gif" lazyload class title="image-20241231201226183">
 </li>
-<li><p>求和</p>
+<li>
+<p>求和</p>
 <p><code>SUM</code> 函数是 SQL 中常用的聚集函数之一，用于计算某一列中所有数值的总和。</p>
 <p>跟 <code>count</code>一样，<code>SUM(column_name)</code> 用于对指定列中的所有非空数值进行求和。该函数只适用于数值型数据列，且会忽略 <code>NULL</code> 值。</p>
 </li>
-<li><p>最大最小值</p>
+<li>
+<p>最大最小值</p>
 <p>这个就不讲了。</p>
 </li>
 </ul>
 <p>除了<code>count(*)</code>以外的所有聚集函数都忽略<code>NULL</code>！！</p>
-<h3 id="分组聚集-group-by"><a href="#分组聚集-group-by" class="headerlink" title="分组聚集 group by"></a>分组聚集 group by</h3><p>在 <code>group by</code>中，只有group by 的属性和聚集函数可以被 <code>select</code>。</p>
+<h3 id="分组聚集-group-by"><a class="markdownIt-Anchor" href="#分组聚集-group-by"></a> 分组聚集 group by</h3>
+<p>在 <code>group by</code>中，只有group by 的属性和聚集函数可以被 <code>select</code>。</p>
 <p>搭配<code>having</code>使用。</p>
-<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><h4 id="集合比较"><a href="#集合比较" class="headerlink" title="集合比较"></a>集合比较</h4><ul>
-<li><p><code>SOME</code> 会检查子查询返回的多个值，只要<strong>至少有一个</strong>值满足条件，整个条件成立。</p>
+<h3 id="子查询"><a class="markdownIt-Anchor" href="#子查询"></a> 子查询</h3>
+<h4 id="集合比较"><a class="markdownIt-Anchor" href="#集合比较"></a> 集合比较</h4>
+<ul>
+<li>
+<p><code>SOME</code> 会检查子查询返回的多个值，只要<strong>至少有一个</strong>值满足条件，整个条件成立。</p>
 <p>如果我们想查找所有价格大于<strong>至少</strong>有一个订单中的产品的价格的产品，可以使用 <code>SOME</code>：</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> product_name, price<br><span class="hljs-keyword">FROM</span> Products<br><span class="hljs-keyword">WHERE</span> price &gt; <span class="hljs-keyword">SOME</span> (<span class="hljs-keyword">SELECT</span> price <span class="hljs-keyword">FROM</span> Orders <span class="hljs-keyword">WHERE</span> Orders.product_id = Products.product_id);<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>这里，<code>SOME</code> 检查 <code>Products</code> 中的每个产品的价格是否大于<strong>至少一个</strong>订单中的相应产品价格。</li>
 </ul>
 </li>
-<li><p><code>ALL</code> 会检查子查询返回的所有值，只有<strong>所有值</strong>都满足条件时，整个条件才成立。</p>
+<li>
+<p><code>ALL</code> 会检查子查询返回的所有值，只有<strong>所有值</strong>都满足条件时，整个条件才成立。</p>
 <p>继续使用上面的 <code>Products</code> 和 <code>Orders</code> 表。如果我们想查找价格大于<strong>所有</strong>订单中该产品价格的产品，可以使用 <code>ALL</code>：</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> product_name, price<br><span class="hljs-keyword">FROM</span> Products<br><span class="hljs-keyword">WHERE</span> price &gt; <span class="hljs-keyword">ALL</span> (<span class="hljs-keyword">SELECT</span> price <span class="hljs-keyword">FROM</span> Orders <span class="hljs-keyword">WHERE</span> Orders.product_id = Products.product_id);<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>这里，<code>ALL</code> 检查 <code>Products</code> 中的每个产品的价格是否大于<strong>所有</strong>订单中的相应产品价格。</li>
 </ul>
 </li>
-<li><p><code>EXISTS</code> 用于判断子查询是否返回结果。如果子查询有结果（即返回至少一行数据），<code>EXISTS</code> 返回 <code>TRUE</code>；如果子查询没有结果，则返回 <code>FALSE</code>。</p>
+<li>
+<p><code>EXISTS</code> 用于判断子查询是否返回结果。如果子查询有结果（即返回至少一行数据），<code>EXISTS</code> 返回 <code>TRUE</code>；如果子查询没有结果，则返回 <code>FALSE</code>。</p>
 <p>假设我们希望查找那些有订单记录的产品，可以使用 <code>EXISTS</code>：</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> product_name<br><span class="hljs-keyword">FROM</span> Products p<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">EXISTS</span> (<br>    <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span> <br>    <span class="hljs-keyword">FROM</span> Orders o <br>    <span class="hljs-keyword">WHERE</span> o.product_id = p.product_id<br>);<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>这里，<code>EXISTS</code> 检查是否存在至少一个订单与 <code>Products</code> 中的产品相关联。如果存在这样的订单，<code>EXISTS</code> 返回 <code>TRUE</code>，因此该产品会被选中。</li>
 </ul>
 </li>
-<li><p><code>with</code>语句用于临时定义一个表。</p>
+<li>
+<p><code>with</code>语句用于临时定义一个表。</p>
 </li>
-<li><p>标量子查询，只要<code>select</code>语句的返回值是一个包含单个属性的元组（值），可以出现在<code>select</code>、<code>where</code>、<code>having</code>中。</p>
+<li>
+<p>标量子查询，只要<code>select</code>语句的返回值是一个包含单个属性的元组（值），可以出现在<code>select</code>、<code>where</code>、<code>having</code>中。</p>
 </li>
 </ul>
-<p><strong>不相关子查询：</strong>子查询的查询条件不依赖于父查询，由里向外逐层处理。既每一个子查询在上级查询处理之前求解，子查询的结果用于建立其子查询的查找条件。</p>
-<p><strong>相关子查询：</strong>子查询的查询条件依赖于父查询，首先取外层查询中的表的第一个元组，根据它与内层查询相关的属性值的属性值处理查询内层查询，若 where 子句返回的值为真，则取此元组放入查询结果表，然后再取外层表的下一个元组，重复这一过程，直至外层表全部检测完为止。</p>
-<h3 id="其他-2"><a href="#其他-2" class="headerlink" title="其他"></a>其他</h3><ul>
+<p>**不相关子查询：**子查询的查询条件不依赖于父查询，由里向外逐层处理。既每一个子查询在上级查询处理之前求解，子查询的结果用于建立其子查询的查找条件。</p>
+<p>**相关子查询：**子查询的查询条件依赖于父查询，首先取外层查询中的表的第一个元组，根据它与内层查询相关的属性值的属性值处理查询内层查询，若 where 子句返回的值为真，则取此元组放入查询结果表，然后再取外层表的下一个元组，重复这一过程，直至外层表全部检测完为止。</p>
+<h3 id="其他-3"><a class="markdownIt-Anchor" href="#其他-3"></a> 其他</h3>
+<ul>
 <li><code>as</code>不能出现在<code>where</code>里面！</li>
 </ul>
-
-
-
-
-<h2 id="第四章-中级sql"><a href="#第四章-中级sql" class="headerlink" title="第四章 中级sql"></a>第四章 中级sql</h2><ul>
-<li><p><strong>内连接</strong></p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102172115269.png" srcset="/img/loading.gif" lazyload class title="image-20250102172115269">
+<h2 id="第四章-中级sql"><a class="markdownIt-Anchor" href="#第四章-中级sql"></a> 第四章 中级sql</h2>
+<ul>
+<li>
+<p><strong>内连接</strong></p>
 <p>内连接只返回两个表中<strong>有匹配的</strong>记录。如果两个表中某一行没有匹配的记录，那么这行数据不会出现在结果中。</p>
 </li>
-<li><p><strong>左外连接</strong></p>
+<li>
+<p><strong>左外连接</strong></p>
 <p>返回<strong>左表</strong>的所有记录，右表中没有匹配的行会显示为 <code>NULL</code>。</p>
 </li>
-<li><p><strong>右外连接</strong></p>
+<li>
+<p><strong>右外连接</strong></p>
 <p>返回<strong>右表</strong>的所有记录，左表中没有匹配的行会显示为 <code>NULL</code>。</p>
 </li>
-<li><p><strong>全外连接</strong></p>
+<li>
+<p><strong>全外连接</strong></p>
 <p>返回<strong>两个表</strong>的所有记录，左右表中没有匹配的行都会显示为 <code>NULL</code>。</p>
 </li>
 </ul>
 <p>以上四种连接输出顺序：公共属性，左边表属性，右边表属性。</p>
 <p>以上的四种连接都只会输出一次进行连接的属性，但是如果使用 on 的话就会输出两个连接的属性。</p>
-<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><blockquote>
+<h3 id="视图"><a class="markdownIt-Anchor" href="#视图"></a> 视图</h3>
+<blockquote>
 <p>简单来说，就显示表的子集，是虚拟的。</p>
 </blockquote>
 <p><strong>视图</strong>是数据库中的虚拟表，它通过一个<strong>查询</strong>来表示数据，而不存储实际的数据。视图可以帮助简化复杂查询，增强数据的安全性，并提供更直观的接口。</p>
@@ -638,7 +737,8 @@
 <li>可以被当成一个表查询</li>
 <li>可以建立视图的视图</li>
 </ul>
-<h4 id="视图更新"><a href="#视图更新" class="headerlink" title="视图更新"></a>视图更新</h4><p>条件如下：</p>
+<h4 id="视图更新"><a class="markdownIt-Anchor" href="#视图更新"></a> 视图更新</h4>
+<p>条件如下：</p>
 <ul>
 <li>视图只涉及一个表</li>
 <li><code>SELECT</code>子句只包含关系的属性名</li>
@@ -646,60 +746,79 @@
 <li>没有出现在<code>SELECT</code>中的属性都可以取<code>NULL</code>。</li>
 </ul>
 <p><code>with check option</code>可以判断加入视图的元组是否满足创建视图的条件。</p>
-<h3 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h3><p>单个关系上的约束有：</p>
+<h3 id="完整性约束"><a class="markdownIt-Anchor" href="#完整性约束"></a> 完整性约束</h3>
+<p>单个关系上的约束有：</p>
 <ul>
-<li><p><strong>not null</strong></p>
+<li>
+<p><strong>not null</strong></p>
 </li>
-<li><p><strong>unique</strong></p>
+<li>
+<p><strong>unique</strong></p>
 <p>这意味着，<strong>两个元组（行）中对应 <code>UNIQUE</code> 列的 <code>NULL</code> 值可以同时出现</strong>，因为 SQL 不认为两个 <code>NULL</code> 值是相等的，它们被视为不同的值。</p>
 </li>
-<li><p><strong>check(&lt; 谓词 &gt;)</strong></p>
+<li>
+<p><strong>check(&lt; 谓词 &gt;)</strong></p>
 <p>只要谓词不为假，check 就成立。为<code>NULL</code>也成立喔！！</p>
 </li>
 </ul>
-<h4 id="引用完整性"><a href="#引用完整性" class="headerlink" title="引用完整性"></a>引用完整性</h4><p><strong>外码</strong></p>
+<h4 id="引用完整性"><a class="markdownIt-Anchor" href="#引用完整性"></a> 引用完整性</h4>
+<p><strong>外码</strong></p>
 <p><strong>外键约束</strong>用于确保两个表之间的数据一致性。当我们在表中定义外键时，通常会为外键约束指定不同的级联操作。</p>
 <ul>
-<li><strong>DELETE CASCADE</strong><ul>
+<li><strong>DELETE CASCADE</strong>
+<ul>
 <li><strong>定义</strong>：当父表中的某个记录被删除时，<strong>所有引用该记录的子表中的记录也会被自动删除</strong>。</li>
 </ul>
 </li>
-<li><strong>SET NULL</strong><ul>
-<li><strong>定义</strong>：当父表中的某个记录被删除时，**子表中所有引用该记录的外键列的值会被设置为 <code>NULL</code>**。</li>
+<li><strong>SET NULL</strong>
+<ul>
+<li><strong>定义</strong>：当父表中的某个记录被删除时，<strong>子表中所有引用该记录的外键列的值会被设置为 <code>NULL</code></strong>。</li>
 </ul>
 </li>
-<li><strong>RESTRICT</strong><ul>
+<li><strong>RESTRICT</strong>
+<ul>
 <li><strong>定义</strong>：当父表中的某个记录被删除时，如果子表中有任何记录引用该父记录，<strong>删除操作将被拒绝</strong>。</li>
 </ul>
 </li>
 </ul>
-<h3 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h3><p>grant select on book to user1 with grant option</p>
+<h3 id="授权"><a class="markdownIt-Anchor" href="#授权"></a> 授权</h3>
+<p>grant select on book to user1 with grant option</p>
 <p>revoke select on book from user1</p>
-<h3 id="其他-3"><a href="#其他-3" class="headerlink" title="其他"></a>其他</h3><p>视图是由<strong>基本表</strong>或者<strong>视图</strong>导出的。</p>
-<p>SQL语言中，条件年龄 BETWEEN 18 AND 30表示年龄在18至30之间，且_________。<br>A、包括30岁但不包括18岁 B、包括18岁和30岁<br>C、包括18岁但不包括30岁 D、不包括18岁和30岁<br>正确答案：B</p>
-<p>允许取空值但不允许出现重复值的约束是_________。<br>A、NULL B、PRIMARY KEY<br>C、UNIQUE D、FOREIGN KEY<br>正确答案：C</p>
-<h2 id="第五章-高级sql"><a href="#第五章-高级sql" class="headerlink" title="第五章 高级sql"></a>第五章 高级sql</h2><h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p><strong>触发器</strong>是一种数据库对象，它是在数据库操作（如 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>）发生时自动执行的特定操作。触发器能够帮助自动化数据验证、修改、记录日志、执行业务规则等任务。</p>
+<h3 id="其他-4"><a class="markdownIt-Anchor" href="#其他-4"></a> 其他</h3>
+<p>视图是由<strong>基本表</strong>或者<strong>视图</strong>导出的。</p>
+<p>SQL语言中，条件年龄 BETWEEN 18 AND 30表示年龄在18至30之间，且_________。<br>
+A、包括30岁但不包括18岁 B、包括18岁和30岁<br>
+C、包括18岁但不包括30岁 D、不包括18岁和30岁<br>
+正确答案：B</p>
+<p>允许取空值但不允许出现重复值的约束是_________。<br>
+A、NULL B、PRIMARY KEY<br>
+C、UNIQUE D、FOREIGN KEY<br>
+正确答案：C</p>
+<h2 id="第五章-高级sql"><a class="markdownIt-Anchor" href="#第五章-高级sql"></a> 第五章 高级sql</h2>
+<h3 id="触发器"><a class="markdownIt-Anchor" href="#触发器"></a> 触发器</h3>
+<p><strong>触发器</strong>是一种数据库对象，它是在数据库操作（如 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>）发生时自动执行的特定操作。触发器能够帮助自动化数据验证、修改、记录日志、执行业务规则等任务。</p>
 <p>触发器通常是在表或视图上的某些事件发生时被触发。常见的触发器事件有：</p>
 <ul>
-<li>**<code>INSERT</code>**：在向表中插入数据时触发。</li>
-<li>**<code>UPDATE</code>**：在更新表中的数据时触发。</li>
-<li>**<code>DELETE</code>**：在删除表中的数据时触发。</li>
+<li><strong><code>INSERT</code></strong>：在向表中插入数据时触发。</li>
+<li><strong><code>UPDATE</code></strong>：在更新表中的数据时触发。</li>
+<li><strong><code>DELETE</code></strong>：在删除表中的数据时触发。</li>
 </ul>
 <p><strong>SQL Server 触发器语法</strong></p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> trigger_name <span class="hljs-keyword">ON</span> <span class="hljs-built_in">table_name</span><br>[ <span class="hljs-keyword">FOR</span> &#123; <span class="hljs-keyword">INSERT</span> | <span class="hljs-keyword">DELETE</span> | <span class="hljs-keyword">UPDATE</span> &#125; ]<br>[ <span class="hljs-keyword">AS</span> ]<br><span class="hljs-keyword">BEGIN</span><br>    <span class="hljs-comment">-- 触发器的逻辑</span><br><span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure>
-
 <p><strong>触发器类型</strong></p>
 <ol>
-<li><p><strong>AFTER 触发器</strong></p>
+<li>
+<p><strong>AFTER 触发器</strong></p>
 <p><strong>定义</strong>：在执行 <code>INSERT</code>、<code>UPDATE</code> 或 <code>DELETE</code> 操作后触发。SQL Server 中没有 <code>BEFORE</code> 触发器，因此所有触发器默认在操作之后执行。</p>
 </li>
-<li><p><strong>INSTEAD OF 触发器</strong></p>
+<li>
+<p><strong>INSTEAD OF 触发器</strong></p>
 <p><strong>定义</strong>：用于代替 <code>INSERT</code>、<code>UPDATE</code> 或 <code>DELETE</code> 操作。在触发器触发时，原始的操作被替代为触发器定义的逻辑。</p>
 </li>
-<li><p><strong>BEFORE 触发器</strong></p>
+<li>
+<p><strong>BEFORE 触发器</strong></p>
 <p><strong>定义</strong>：在进行 <code>INSERT</code>、<code>UPDATE</code> 或 <code>DELETE</code> 操作之前触发。可以用于在操作前检查或修改即将进行的操作数据。</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">trigger</span>&lt;触发器名&gt;<br> &#123;<span class="hljs-keyword">before</span> | <span class="hljs-keyword">after</span>&#125;&lt;触发事件&gt;<br> <span class="hljs-keyword">on</span> &lt;表名&gt;<br> <span class="hljs-keyword">referencing new</span> | <span class="hljs-built_in">old</span> <span class="hljs-keyword">row</span> <span class="hljs-keyword">as</span> &lt;变量&gt;<br> <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span>&#123;<span class="hljs-keyword">row</span> | <span class="hljs-keyword">statement</span>&#125;<br> [<span class="hljs-keyword">when</span> &lt;触发条件&gt;] &lt;触发动作体&gt;;<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li><code>FOR EACH ROW</code>子句之后，对于新插入的每一行上面进行迭代。</li>
 <li><code>REFERENCING NEW ROW AS NEW</code>子句创建一个过度变量。</li>
@@ -709,337 +828,431 @@
 </ol>
 <p>在 SQL Server 中，触发器提供了两个伪表来访问 <code>INSERT</code>、<code>UPDATE</code> 和 <code>DELETE</code> 操作中的数据：</p>
 <ul>
-<li>**<code>INSERTED</code>**：在 <code>INSERT</code> 和 <code>UPDATE</code> 操作中，存储新插入或更新的行数据。</li>
-<li>**<code>DELETED</code>**：在 <code>DELETE</code> 和 <code>UPDATE</code> 操作中，存储删除的行数据（或在 <code>UPDATE</code> 中存储更新前的行数据）。</li>
+<li><strong><code>INSERTED</code></strong>：在 <code>INSERT</code> 和 <code>UPDATE</code> 操作中，存储新插入或更新的行数据。</li>
+<li><strong><code>DELETED</code></strong>：在 <code>DELETE</code> 和 <code>UPDATE</code> 操作中，存储删除的行数据（或在 <code>UPDATE</code> 中存储更新前的行数据）。</li>
 </ul>
 <p>触发器只能定义在基本表上，不能<strong>定义在视图上</strong>。</p>
-<h3 id="其他（必考）"><a href="#其他（必考）" class="headerlink" title="其他（必考）"></a>其他（必考）</h3>
-
-<h2 id="第六章-使用E-R模型的数据库设计"><a href="#第六章-使用E-R模型的数据库设计" class="headerlink" title="第六章 使用E-R模型的数据库设计"></a>第六章 使用E-R模型的数据库设计</h2><p>实体 - 联系模型用于表示<strong>概念设计</strong>。逻辑（概念）模式定义了实体、实体的属性、实体间的联系、实体和联系上的约束等。</p>
+<h3 id="其他必考"><a class="markdownIt-Anchor" href="#其他必考"></a> 其他（必考）</h3>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102172327543.png" srcset="/img/loading.gif" lazyload class title="image-20250102172327543">
+<h2 id="第六章-使用e-r模型的数据库设计"><a class="markdownIt-Anchor" href="#第六章-使用e-r模型的数据库设计"></a> 第六章 使用E-R模型的数据库设计</h2>
+<p>实体 - 联系模型用于表示<strong>概念设计</strong>。逻辑（概念）模式定义了实体、实体的属性、实体间的联系、实体和联系上的约束等。</p>
 <blockquote>
 <p>就是只考虑需要的功能，不需要考虑如何实现。</p>
 </blockquote>
 <p>数据库设计中要避免的缺陷是<strong>冗余</strong>、<strong>不完整</strong>。</p>
-<h3 id="E-R模型的基本概念："><a href="#E-R模型的基本概念：" class="headerlink" title="E-R模型的基本概念："></a><strong>E-R模型的基本概念</strong>：</h3><ul>
-<li><p><strong>实体</strong>：表示现实世界中的对象，具有独立存在的意义，例如学生、课程、员工等。实体通过一组<strong>属性</strong>来描述。</p>
+<h3 id="e-r模型的基本概念"><a class="markdownIt-Anchor" href="#e-r模型的基本概念"></a> <strong>E-R模型的基本概念</strong>：</h3>
+<ul>
+<li>
+<p><strong>实体</strong>：表示现实世界中的对象，具有独立存在的意义，例如学生、课程、员工等。实体通过一组<strong>属性</strong>来描述。</p>
 <p>实体要有<strong>主键</strong>！！</p>
 </li>
-<li><p><strong>实体集</strong>：是相同类型的实体的集合。</p>
+<li>
+<p><strong>实体集</strong>：是相同类型的实体的集合。</p>
 </li>
-<li><p><strong>联系</strong>：表示实体之间的联系或交互，例如学生和课程之间的“选修”关系。</p>
+<li>
+<p><strong>联系</strong>：表示实体之间的联系或交互，例如学生和课程之间的“选修”关系。</p>
 </li>
-<li><p><strong>联系集</strong>：是相同类型联系的集合。实体集 E1、E2 … 参与联系集 R。</p>
+<li>
+<p><strong>联系集</strong>：是相同类型联系的集合。实体集 E1、E2 … 参与联系集 R。</p>
 </li>
-<li><p><strong>弱实体（Weak Entity）</strong>：没有足够的属性来唯一标识的实体，它依赖于其他实体的主键来构成自己的主键。</p>
+<li>
+<p><strong>弱实体（Weak Entity）</strong>：没有足够的属性来唯一标识的实体，它依赖于其他实体的主键来构成自己的主键。</p>
 <p>类似需要外键（即别人的主码）来描述自己。</p>
 </li>
 </ul>
 <p>联系集的<strong>度</strong>定义为<strong>实体集参与的数量</strong>。</p>
 <p>构成 E-R 模型的三个元素：<strong>实体</strong>、<strong>属性</strong>、<strong>联系</strong>。</p>
-<h3 id="复杂属性"><a href="#复杂属性" class="headerlink" title="复杂属性"></a>复杂属性</h3><ul>
-<li><p>简单和复合。</p>
+<h3 id="复杂属性"><a class="markdownIt-Anchor" href="#复杂属性"></a> 复杂属性</h3>
+<ul>
+<li>
+<p>简单和复合。</p>
 <p>简单属性就是<strong>不可再分</strong>的，复合属性就是<strong>可再分</strong>的。</p>
 </li>
-<li><p>单值和多值</p>
+<li>
+<p>单值和多值</p>
 <p>像电话号码这类属性就是多值属性。<code>&#123;&#125;</code></p>
 </li>
-<li><p>派生属性</p>
+<li>
+<p>派生属性</p>
 <p>可以从其他的属性中计算得到。派生属性的值不存储在数据库中。<code>()</code></p>
 </li>
 </ul>
-<h3 id="映射基数"><a href="#映射基数" class="headerlink" title="映射基数"></a>映射基数</h3><p>映射基数主要有以下几种类型：</p>
+<h3 id="映射基数"><a class="markdownIt-Anchor" href="#映射基数"></a> 映射基数</h3>
+<p>映射基数主要有以下几种类型：</p>
 <ol>
-<li><p><strong>一对一（1:1）</strong></p>
+<li>
+<p><strong>一对一（1:1）</strong></p>
 <p>在一对一关系中，一个实体的每个实例最多只能与另一个实体的一个实例关联，反之亦然。</p>
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101003530903.png" srcset="/img/loading.gif" lazyload class title="image-20250101003530903">
 </li>
-<li><p><strong>一对多（1:N）</strong></p>
+<li>
+<p><strong>一对多（1:N）</strong></p>
 <p>在一对多关系中，一个实体的每个实例可以与另一个实体的多个实例关联，但另一个实体的每个实例只能与一个实体的实例关联。</p>
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101003607184.png" srcset="/img/loading.gif" lazyload class title="image-20250101003607184">
 </li>
-<li><p><strong>多对多（M:N）</strong></p>
+<li>
+<p><strong>多对多（M:N）</strong></p>
 <p>在多对多关系中，一个实体的每个实例可以与另一个实体的多个实例关联，反之亦然。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101003540720.png" srcset="/img/loading.gif" lazyload class title="image-20250101003540720">
 </li>
 </ol>
 <p>需要记得是可以<strong>为零的</strong>！！如果想要一个实体集在联系集中全部参与，记得<strong>要双线</strong>！！</p>
-
-
-<h3 id="主码"><a href="#主码" class="headerlink" title="主码"></a>主码</h3><p>多对多的主码是 两个实体集的主码的并集。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101004910218.png" srcset="/img/loading.gif" lazyload class title="image-20250101004910218">
+<h3 id="主码"><a class="markdownIt-Anchor" href="#主码"></a> 主码</h3>
+<p>多对多的主码是 两个实体集的主码的并集。</p>
 <p>一对多或者多对一的主码是 “多”那方的主码。</p>
 <p>一对一的主码是 任一实体集的主码。</p>
-<h3 id="弱实体集"><a href="#弱实体集" class="headerlink" title="弱实体集"></a>弱实体集</h3><p>在<strong>实体-关系模型（E-R模型）</strong>中，<strong>弱实体集</strong>是指无法单独唯一标识其实例的实体集。弱实体集通常依赖于另一个实体集来进行标识（称为<strong>标识性实体集</strong>）因此无法独立存在。</p>
+<h3 id="弱实体集"><a class="markdownIt-Anchor" href="#弱实体集"></a> 弱实体集</h3>
+<p>在<strong>实体-关系模型（E-R模型）<strong>中，<strong>弱实体集</strong>是指无法单独唯一标识其实例的实体集。弱实体集通常依赖于另一个实体集来进行标识（称为</strong>标识性实体集</strong>）因此无法独立存在。</p>
 <p><strong>没有完整的主键</strong>：弱实体集没有自己的主键，它需要依赖另一个实体集的主键来唯一标识每个实体。（外键）</p>
 <p>主码由 标识性实体集（主码）和弱实体集的分辨符（即弱实体自己的主码）构成。</p>
 <p>弱实体和联系都是<strong>双边框</strong>的。</p>
 <p>标识性实体集 和 弱实体集 必须是一对多的。</p>
-<h3 id="转换为关系模型"><a href="#转换为关系模型" class="headerlink" title="转换为关系模型"></a>转换为关系模型</h3><h4 id="1-实体集到关系模型"><a href="#1-实体集到关系模型" class="headerlink" title="1. 实体集到关系模型"></a>1. <strong>实体集到关系模型</strong></h4><p>每个<strong>实体集</strong>（Entity Set）转换为一个<strong>关系</strong>（Relation）。实体集中的每个属性都变成关系的一个字段。具体步骤如下：</p>
+<h3 id="转换为关系模型"><a class="markdownIt-Anchor" href="#转换为关系模型"></a> 转换为关系模型</h3>
+<h4 id="1-实体集到关系模型"><a class="markdownIt-Anchor" href="#1-实体集到关系模型"></a> 1. <strong>实体集到关系模型</strong></h4>
+<p>每个<strong>实体集</strong>（Entity Set）转换为一个<strong>关系</strong>（Relation）。实体集中的每个属性都变成关系的一个字段。具体步骤如下：</p>
 <ul>
 <li><strong>实体集</strong>：每个实体集（矩形框）会成为一个关系（表）。</li>
 <li><strong>属性</strong>：实体集中的每个属性都变为关系表中的一列（列名）。</li>
 <li><strong>主键</strong>：实体集中的主键属性在关系中作为<strong>主键</strong>。</li>
 </ul>
-<h4 id="2-联系集到关系模型"><a href="#2-联系集到关系模型" class="headerlink" title="2. 联系集到关系模型"></a>2. <strong>联系集到关系模型</strong></h4><ol>
-<li><p><strong>一对一（1:1）关系</strong>：</p>
+<h4 id="2-联系集到关系模型"><a class="markdownIt-Anchor" href="#2-联系集到关系模型"></a> 2. <strong>联系集到关系模型</strong></h4>
+<ol>
+<li>
+<p><strong>一对一（1:1）关系</strong>：</p>
 <p>如果联系集是<strong>一对一</strong>（1:1）将其作为两个实体集之一的属性。</p>
 </li>
-<li><p><strong>一对多（1:N）关系</strong>：</p>
+<li>
+<p><strong>一对多（1:N）关系</strong>：</p>
 <p>对于一对多的关系，在“多方”实体集的表中加入“单方”实体集的主键作为外键。</p>
 </li>
-<li><p><strong>多对多（M:N）关系</strong>：</p>
+<li>
+<p><strong>多对多（M:N）关系</strong>：</p>
 <p>对于多对多的关系集，需要创建一个<strong>关联表</strong>。关联表的字段包括两个实体集的主键作为外键，以及可能的额外属性。</p>
 </li>
 </ol>
-<h4 id="3-弱实体集到关系模型"><a href="#3-弱实体集到关系模型" class="headerlink" title="3. 弱实体集到关系模型"></a>3. <strong>弱实体集到关系模型</strong></h4><p>对于<strong>弱实体集</strong>，需要使用其依赖的<strong>强实体集</strong>的主键以及弱实体集的部分属性来唯一标识弱实体集的实例。</p>
-<h4 id="4-多值属性到关系模型"><a href="#4-多值属性到关系模型" class="headerlink" title="4. 多值属性到关系模型"></a>4. 多值属性到关系模型</h4><p>在关系模型中，每个多值属性转换为一个独立的关系（表）。该表包括原实体集的主键。该关系的所有属性为主码。</p>
-<h3 id="其他-4"><a href="#其他-4" class="headerlink" title="其他"></a>其他</h3><p>一般动作用联系集。</p>
-<h2 id="第七章-关系数据库设计"><a href="#第七章-关系数据库设计" class="headerlink" title="第七章 关系数据库设计"></a>第七章 关系数据库设计</h2><p>关系数据库设计的⽬的是得到⼀组合适的关系模式，使其不含<strong>冗余</strong>，<strong>结构良好</strong>，便于获取信息。</p>
+<h4 id="3-弱实体集到关系模型"><a class="markdownIt-Anchor" href="#3-弱实体集到关系模型"></a> 3. <strong>弱实体集到关系模型</strong></h4>
+<p>对于<strong>弱实体集</strong>，需要使用其依赖的<strong>强实体集</strong>的主键以及弱实体集的部分属性来唯一标识弱实体集的实例。</p>
+<h4 id="4-多值属性到关系模型"><a class="markdownIt-Anchor" href="#4-多值属性到关系模型"></a> 4. 多值属性到关系模型</h4>
+<p>在关系模型中，每个多值属性转换为一个独立的关系（表）。该表包括原实体集的主键。该关系的所有属性为主码。</p>
+<h3 id="其他-5"><a class="markdownIt-Anchor" href="#其他-5"></a> 其他</h3>
+<p>一般动作用联系集。</p>
+<h2 id="第七章-关系数据库设计"><a class="markdownIt-Anchor" href="#第七章-关系数据库设计"></a> 第七章 关系数据库设计</h2>
+<p>关系数据库设计的⽬的是得到⼀组合适的关系模式，使其不含<strong>冗余</strong>，<strong>结构良好</strong>，便于获取信息。</p>
 <p>用于设计关系数据库的方法是使用一个叫<strong>规范化</strong>的过程。</p>
 <blockquote>
 <p>简单来说判断关系好不好，不好就无损分解，使它变好。</p>
 </blockquote>
-<h3 id="分解"><a href="#分解" class="headerlink" title="分解"></a>分解</h3><ul>
-<li><p><strong>有损分解</strong> </p>
+<h3 id="分解"><a class="markdownIt-Anchor" href="#分解"></a> 分解</h3>
+<ul>
+<li>
+<p><strong>有损分解</strong></p>
 <p>对于分解后的两个模式进行自然连接后，无法完整地得到原有的信息。</p>
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101104738208.png" srcset="/img/loading.gif" lazyload class title="image-20250101104738208">
 </li>
-<li><p><strong>无损分解</strong> </p>
+<li>
+<p><strong>无损分解</strong></p>
 <p>对于分解后的两个模式进行自然连接后，能够完整地得到原有的信息。</p>
 </li>
 </ul>
-<h3 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h3><p><strong>函数依赖</strong>是一个形如 $$\alpha \rightarrow \beta$$ 的逻辑推理公式，表示属性集 $$\alpha$$ <strong>决定</strong>（determine）属性集 $$\beta$$，或称 $$\beta$$ <strong>依赖</strong> $$\alpha$$。同一模式中包含的多条函数依赖称为函数依赖集。</p>
-<p>例如，R 上的两个属性 $$\alpha$$ 和 $$\beta$$，如果关系实例中的所有元组对 $$t_1$$, $$t_2$$ 都符合若 $$t_1[\alpha] &#x3D; t_2[\alpha]$$，则$$t_1[\beta] &#x3D; t_2[\beta]$$。也就是说，只要我们知道 $$\alpha$$ 的值，就能唯一确定 $$\beta$$ 的值，称 $$\alpha$$ 决定 $$\beta$$。特别地，如果 $$\beta \subseteq \alpha$$，称为平凡的函数依赖。</p>
-<p>由此，我们得出<strong>超码</strong>的新定义：对于关系 R 和函数依赖集 K，若 $$K \rightarrow R$$ 在 r(R) 上成立，则 K 是 r(R) 的一个超码。</p>
-<p>若$$R_1$$, $$R_2$$ 是 R 的无损分解，则 r(R) 上的函数依赖集闭包 $$F^+$$ 中至少存在以下依赖中的一个：</p>
+<h3 id="函数依赖"><a class="markdownIt-Anchor" href="#函数依赖"></a> 函数依赖</h3>
+<p><strong>函数依赖</strong>是一个形如 $$\alpha \rightarrow \beta$$ 的逻辑推理公式，表示属性集 $$\alpha$$ <strong>决定</strong>（determine）属性集 $$\beta$$，或称 $$\beta$$ <strong>依赖</strong> $$\alpha$$。同一模式中包含的多条函数依赖称为函数依赖集。</p>
+<p>例如，R 上的两个属性 $$\alpha$$ 和 $$\beta$$，如果关系实例中的所有元组对 $$t_1$$, $$t_2$$ 都符合若 $$t_1[\alpha] = t_2[\alpha]$$，则$$t_1[\beta] = t_2[\beta]$$。也就是说，只要我们知道 $$\alpha$$ 的值，就能唯一确定 $$\beta$$ 的值，称 $$\alpha$$ 决定 $$\beta$$。特别地，如果 $$\beta \subseteq \alpha$$，称为平凡的函数依赖。</p>
+<p>由此，我们得出<strong>超码</strong>的新定义：对于关系 R 和函数依赖集 K，若 $$K \rightarrow R$$ 在 r® 上成立，则 K 是 r® 的一个超码。</p>
+<p>若$$R_1$$, $$R_2$$ 是 R 的无损分解，则 r® 上的函数依赖集闭包 $$F^+$$ 中至少存在以下依赖中的一个：</p>
 <ul>
-<li><p>$$R_1 \cap R_2 \rightarrow R_1 ;$$$$R_1 \cap R_2 \rightarrow R_12 $$;</p>
-</li>
-<li><p>即 $$R_1 \cap R_2$$ 是 $$R_1$$ 或 $$R_2$$ 的超码。连接的属性一定要是某一边的主码，自然连接数量才不会变多。</p>
+<li>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 31: …ightarrow R_1 ;$̲$$$R_1 \cap R_2…">R_1 \cap R_2 \rightarrow R_1 ;$$$$R_1 \cap R_2 \rightarrow R_12 $$;
+
+</p>
 </li>
 </ul>
-<h4 id="平凡依赖的例子"><a href="#平凡依赖的例子" class="headerlink" title="平凡依赖的例子"></a>平凡依赖的例子</h4><p>关系模式 <strong>R(A, B, C)</strong></p>
+<h4 id="平凡依赖的例子"><a class="markdownIt-Anchor" href="#平凡依赖的例子"></a> 平凡依赖的例子</h4>
+<p>关系模式 <strong>R(A, B, C)</strong></p>
 <ul>
-<li>依赖关系：<ul>
-<li><strong>A → A</strong><br>这是一个平凡依赖，因为被依赖的属性 <strong>A</strong> 已经包含在决定属性 <strong>A</strong> 中。</li>
-<li><strong>AB → A</strong><br>这是一个平凡依赖，因为被依赖的属性 <strong>A</strong> 是决定属性 <strong>AB</strong> 的子集。</li>
+<li>依赖关系：
+<ul>
+<li><strong>A → A</strong><br>
+这是一个平凡依赖，因为被依赖的属性 <strong>A</strong> 已经包含在决定属性 <strong>A</strong> 中。</li>
+<li><strong>AB → A</strong><br>
+这是一个平凡依赖，因为被依赖的属性 <strong>A</strong> 是决定属性 <strong>AB</strong> 的子集。</li>
 </ul>
 </li>
 </ul>
-<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><h4 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h4><p>域是原子的，不可分的，即域只有单一的值。</p>
-<h4 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h4><p>非码属性需要整个主码来推出，不能由主码的一部分推出。</p>
-<h4 id="BCNF范式"><a href="#BCNF范式" class="headerlink" title="BCNF范式"></a>BCNF范式</h4><p><strong>比第三范式严格</strong>。</p>
+<h3 id="范式"><a class="markdownIt-Anchor" href="#范式"></a> 范式</h3>
+<h4 id="第一范式"><a class="markdownIt-Anchor" href="#第一范式"></a> 第一范式</h4>
+<p>域是原子的，不可分的，即域只有单一的值。</p>
+<h4 id="第二范式"><a class="markdownIt-Anchor" href="#第二范式"></a> 第二范式</h4>
+<p>非码属性需要整个主码来推出，不能由主码的一部分推出。</p>
+<h4 id="bcnf范式"><a class="markdownIt-Anchor" href="#bcnf范式"></a> BCNF范式</h4>
+<p><strong>比第三范式严格</strong>。</p>
 <p>一个关系模式 <strong>R</strong> 满足 BC 范式，当且仅当：</p>
 <ul>
 <li>对于 R 中的每一个非平凡函数依赖 <strong>X → Y</strong>，<strong>X</strong> 是 <strong>R</strong> 的一个超码。</li>
 </ul>
-<h4 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h4><p>比第二范式严格，比 BCNF 放松。</p>
+<h4 id="第三范式"><a class="markdownIt-Anchor" href="#第三范式"></a> 第三范式</h4>
+<p>比第二范式严格，比 BCNF 放松。</p>
 <p>在 2NF 的基础上，消除了非主属性对码的传递函数依赖。</p>
 <p>简单来说，就是满足：</p>
 <ul>
 <li>对于 R 中的每一个非平凡函数依赖 <strong>X → Y</strong>，当<strong>Y</strong>是非主码属性的时候，<strong>X</strong>一定是超码。</li>
 </ul>
-<h4 id="BCNF与第三范式区别"><a href="#BCNF与第三范式区别" class="headerlink" title="BCNF与第三范式区别"></a>BCNF与第三范式区别</h4><p>若<strong>Y</strong>是主码，则一定满足第三范式！！但不一定满足BCNF范式。</p>
+<h4 id="bcnf与第三范式区别"><a class="markdownIt-Anchor" href="#bcnf与第三范式区别"></a> BCNF与第三范式区别</h4>
+<p>若<strong>Y</strong>是主码，则一定满足第三范式！！但不一定满足BCNF范式。</p>
 <p><strong>BCNF分解 不满足 保持依赖 只满足无损分解！第三范式分解满足两个！！</strong></p>
 <ul>
 <li>一个规范化过程是<strong>依赖保持的</strong>，如果在分解后的所有子关系模式中，所有原始关系模式的函数依赖都能够在这些子关系模式中找到相应的依赖，或者通过子关系模式中的依赖推导出来。</li>
 </ul>
-<h4 id="第四范式"><a href="#第四范式" class="headerlink" title="第四范式"></a>第四范式</h4><p>比 BCNF 严格。</p>
-<p>只能有一个多值依赖，BCNF 可以有多个。 </p>
-<h3 id="Armstrong-公理系统"><a href="#Armstrong-公理系统" class="headerlink" title="Armstrong 公理系统"></a>Armstrong 公理系统</h3><p>反复运用以下三条 Armstrong 公理，就能通过 FFF 求出 F+F^+F+，保证结果是正确有效的。</p>
+<h4 id="第四范式"><a class="markdownIt-Anchor" href="#第四范式"></a> 第四范式</h4>
+<p>比 BCNF 严格。</p>
+<p>只能有一个多值依赖，BCNF 可以有多个。</p>
+<h3 id="armstrong-公理系统"><a class="markdownIt-Anchor" href="#armstrong-公理系统"></a> Armstrong 公理系统</h3>
+<p>反复运用以下三条 Armstrong 公理，就能通过 FFF 求出 F+F^+F+，保证结果是正确有效的。</p>
 <ul>
 <li><strong>自反律</strong>：若 $$\alpha$$ 为一属性集，$$\beta \subseteq \alpha$$，则$$\alpha \rightarrow \beta$$</li>
 <li><strong>增补律</strong>：若 $$\alpha \rightarrow \beta$$，$$\gamma$$ 为一属性集，则$$\gamma\alpha \rightarrow \gamma\beta$$</li>
 <li><strong>传递律</strong>：若 $$\alpha \rightarrow \beta$$ 且$$\beta \rightarrow \gamma$$，则$$\alpha \rightarrow \gamma$$</li>
-<li><strong>合并律</strong>：若$\alpha \rightarrow \beta$  且  $$\alpha \rightarrow \gamma$$ ,则$$\alpha \rightarrow \beta\gamma$$</li>
-<li><strong>分解律</strong>：若$$\alpha \rightarrow \beta\gamma$$,则$\alpha \rightarrow \beta$  且  $$\alpha \rightarrow \gamma$$</li>
-<li><strong>伪传递律</strong>：若$\alpha \rightarrow \beta$  且  $$\gamma\beta \rightarrow \delta$$,则$$\gamma\alpha \rightarrow \delta$$</li>
+<li><strong>合并律</strong>：若<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha \rightarrow \beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>  且  $$\alpha \rightarrow \gamma$$ ,则$$\alpha \rightarrow \beta\gamma$$</li>
+<li><strong>分解律</strong>：若$$\alpha \rightarrow \beta\gamma$$,则<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha \rightarrow \beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>  且  $$\alpha \rightarrow \gamma$$</li>
+<li><strong>伪传递律</strong>：若<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha \rightarrow \beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>  且  $$\gamma\beta \rightarrow \delta$$,则$$\gamma\alpha \rightarrow \delta$$</li>
 </ul>
-<h3 id="属性闭包"><a href="#属性闭包" class="headerlink" title="属性闭包"></a>属性闭包</h3><p>给定一个关系模式 <strong>R</strong> 和一组属性 <strong>X</strong>，属性闭包 <strong>X⁺</strong> 是 <strong>X</strong> 在一组函数依赖 <strong>F</strong> 下能够决定的所有属性的集合。换句话说，<strong>X⁺</strong> 包含了所有可以通过函数依赖从 <strong>X</strong> 推导出的属性。</p>
+<h3 id="属性闭包"><a class="markdownIt-Anchor" href="#属性闭包"></a> 属性闭包</h3>
+<p>给定一个关系模式 <strong>R</strong> 和一组属性 <strong>X</strong>，属性闭包 <strong>X⁺</strong> 是 <strong>X</strong> 在一组函数依赖 <strong>F</strong> 下能够决定的所有属性的集合。换句话说，<strong>X⁺</strong> 包含了所有可以通过函数依赖从 <strong>X</strong> 推导出的属性。</p>
 <p><strong>确定候选键</strong>：通过计算属性闭包，可以判断一组属性是否能唯一标识关系中的所有元组。</p>
-<h3 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h3><p>就是精简化 F，同时$$F^+$$不变。</p>
-<h4 id="无关属性"><a href="#无关属性" class="headerlink" title="无关属性"></a>无关属性</h4><p>在函数依赖 $$\alpha \rightarrow \beta$$ 中：</p>
+<h3 id="正则覆盖"><a class="markdownIt-Anchor" href="#正则覆盖"></a> 正则覆盖</h3>
+<p>就是精简化 F，同时$$F^+$$不变。</p>
+<h4 id="无关属性"><a class="markdownIt-Anchor" href="#无关属性"></a> 无关属性</h4>
+<p>在函数依赖 $$\alpha \rightarrow \beta$$ 中：</p>
 <ul>
 <li>要证明 $$\alpha$$ 中的属性 A 是无关的，计算 $$(\alpha - A)$$的闭包，如果闭包内属性包含$$\beta$$中所有属性，A 就是无关属性。</li>
 <li>要证明 $$\beta$$ 中的属性 A 是无关的，计算 $$\alpha $$的闭包，如果闭包内属性包含A，A 就是无关属性。</li>
 </ul>
-
-
-<p><a target="_blank" rel="noopener" href="https://tencentcloud.csdn.net/667e50041116284a36444689.html?dp_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTIyNTQ5MSwiZXhwIjoxNzM2MzEwMDA4LCJpYXQiOjE3MzU3MDUyMDgsInVzZXJuYW1lIjoidG9ieXRhbTIzIn0.X4-Aj--ACcQR-HBVPi_j793U-dfprfaIBPD5MD_pL6I">【数据库系统原理复习】正则覆盖&#x2F;最小覆盖 canonical&#x2F;minimal cover_sql_真的很拉风-腾讯云开发者社区</a></p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101121620500.png" srcset="/img/loading.gif" lazyload class title="image-20250101121620500">
+<p><a target="_blank" rel="noopener" href="https://tencentcloud.csdn.net/667e50041116284a36444689.html?dp_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTIyNTQ5MSwiZXhwIjoxNzM2MzEwMDA4LCJpYXQiOjE3MzU3MDUyMDgsInVzZXJuYW1lIjoidG9ieXRhbTIzIn0.X4-Aj--ACcQR-HBVPi_j793U-dfprfaIBPD5MD_pL6I">【数据库系统原理复习】正则覆盖/最小覆盖 canonical/minimal cover_sql_真的很拉风-腾讯云开发者社区</a></p>
 <p>这个例子讲的很好</p>
 <p>计算方法：</p>
 <ol>
-<li><p><strong>将右侧复合的函数依赖全部拆开。</strong></p>
-
+<li>
+<p><strong>将右侧复合的函数依赖全部拆开。</strong></p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101122201830.png" srcset="/img/loading.gif" lazyload class title="image-20250101122201830">
 </li>
-<li><p><strong>去掉重复的。</strong></p>
-
+<li>
+<p><strong>去掉重复的。</strong></p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101122254644.png" srcset="/img/loading.gif" lazyload class title="image-20250101122254644">
 </li>
-<li><p><strong>看看左边能不能拆开。</strong></p>
-
+<li>
+<p><strong>看看左边能不能拆开。</strong></p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101122306914.png" srcset="/img/loading.gif" lazyload class title="image-20250101122306914">
 </li>
-<li><p><strong>合并。</strong></p>
+<li>
+<p><strong>合并。</strong></p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101122325855.png" srcset="/img/loading.gif" lazyload class title="image-20250101122325855">
 </li>
 </ol>
-<h3 id="分解-1"><a href="#分解-1" class="headerlink" title="分解"></a>分解</h3><h4 id="BCNF分解"><a href="#BCNF分解" class="headerlink" title="BCNF分解"></a>BCNF分解</h4><p>满足无损分解，不满足保持依赖。</p>
-<p><strong>将每个依赖拆开成Ri，将Ri的主码加回去原本的依赖集内</strong></p>
-<h4 id="3NF分解"><a href="#3NF分解" class="headerlink" title="3NF分解"></a>3NF分解</h4><p>满足无损分解和保持函数依赖。</p>
+<h3 id="分解-2"><a class="markdownIt-Anchor" href="#分解-2"></a> 分解</h3>
+<h4 id="bcnf分解"><a class="markdownIt-Anchor" href="#bcnf分解"></a> BCNF分解</h4>
+<p>满足无损分解，不满足保持依赖。</p>
+<p><strong>将每个依赖拆开成Ri，将Ri的主码加回去原本的依赖集内</strong><img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101125306477.png" srcset="/img/loading.gif" lazyload class title="image-20250101125306477"></p>
+<h4 id="3nf分解"><a class="markdownIt-Anchor" href="#3nf分解"></a> 3NF分解</h4>
+<p>满足无损分解和保持函数依赖。</p>
 <p><strong>将每个依赖拆分开成Ri，如果最后所有的Ri都没有候选码，就加上候选码成为最后一个Ri。</strong></p>
-
-
-<h4 id="4NF分解（与BCNF类似）"><a href="#4NF分解（与BCNF类似）" class="headerlink" title="4NF分解（与BCNF类似）"></a>4NF分解（与BCNF类似）</h4>
-
-<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="多值依赖"></a>多值依赖</h3><p>一个 a 值对应了多个 b 值。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101125337412.png" srcset="/img/loading.gif" lazyload class title="image-20250101125337412">
+<h4 id="4nf分解与bcnf类似"><a class="markdownIt-Anchor" href="#4nf分解与bcnf类似"></a> 4NF分解（与BCNF类似）</h4>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101140544731.png" srcset="/img/loading.gif" lazyload class title="image-20250101140544731">
+<h3 id="多值依赖"><a class="markdownIt-Anchor" href="#多值依赖"></a> 多值依赖</h3>
+<p>一个 a 值对应了多个 b 值。</p>
 <p><strong>固定 a 值，更换 b 值，如果更换之后的元组还存在 R 中，则 a 多值依赖 b。</strong></p>
-<p>函数依赖是一个 a 值只能对应一个 b 值。 </p>
-
-
+<p>函数依赖是一个 a 值只能对应一个 b 值。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101135850657.png" srcset="/img/loading.gif" lazyload class title="image-20250101135850657">
 <p>性质如下：</p>
-  
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101140151306.png" srcset="/img/loading.gif" lazyload class title="image-20250101140151306">  
 <p>第一个很明显，多值依赖是一个a对应多个b，那么函数依赖一个a对应一个b当然满足。</p>
-<h3 id="其他-5"><a href="#其他-5" class="headerlink" title="其他"></a>其他</h3><p>在下列关于规范化理论的叙述中，不正确的是_________。<br>A、任何一个关系模式一定有键。<br>B、任何一个包含两个属性的关系模式一定满足3NF。<br>C、任何一个包含两个属性的关系模式一定满足BCNF。<br>D、任何一个包含三个属性的关系模式一定满足2NF。<br>正确答案：D</p>
-<p>在数据库设计中数据流图（DFD）和数据字典(DD)主要用来描述结构化方法中的_________阶段的工具。<br>A、概念结构设计 B、需求分析<br>C、可行性分析 D、逻辑结构设计<br>正确答案：B</p>
-<p>15、关于BC范式下列说法正确的是_________。<br>A、如果R∈3NF ，则R一定是BCNF<br>B、若R∈3NF，且不存在主属性对非码的函数依赖，则其是BCNF<br>C、如果R∈BCNF，则R∈3NF<br>D、以上说法都不对<br>正确答案：C</p>
-
-
+<h3 id="其他-6"><a class="markdownIt-Anchor" href="#其他-6"></a> 其他</h3>
+<p>在下列关于规范化理论的叙述中，不正确的是_________。<br>
+A、任何一个关系模式一定有键。<br>
+B、任何一个包含两个属性的关系模式一定满足3NF。<br>
+C、任何一个包含两个属性的关系模式一定满足BCNF。<br>
+D、任何一个包含三个属性的关系模式一定满足2NF。<br>
+正确答案：D</p>
+<p>在数据库设计中数据流图（DFD）和数据字典(DD)主要用来描述结构化方法中的_________阶段的工具。<br>
+A、概念结构设计 B、需求分析<br>
+C、可行性分析 D、逻辑结构设计<br>
+正确答案：B</p>
+<p>15、关于BC范式下列说法正确的是_________。<br>
+A、如果R∈3NF ，则R一定是BCNF<br>
+B、若R∈3NF，且不存在主属性对非码的函数依赖，则其是BCNF<br>
+C、如果R∈BCNF，则R∈3NF<br>
+D、以上说法都不对<br>
+正确答案：C</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102041027178.png" srcset="/img/loading.gif" lazyload class title="image-20250102041027178">
 <p>答案是一范式。</p>
-
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102172509016.png" srcset="/img/loading.gif" lazyload class title="image-20250102172509016">
 <p>上面的第五题原因是关系模式的属性一定是不可分的，刚好满足了第一范式的定义。</p>
-
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102172648097.png" srcset="/img/loading.gif" lazyload class title="image-20250102172648097">
 <p>设计一个数据库需要六个流程：需求分析，概念设计，逻辑设计，物理设计，数据库实施，运行数据库和维护数据库。</p>
- 
-
-<h2 id="第十二章-物理存储系统"><a href="#第十二章-物理存储系统" class="headerlink" title="第十二章 物理存储系统"></a>第十二章 物理存储系统</h2><h3 id="物理存储介质"><a href="#物理存储介质" class="headerlink" title="物理存储介质"></a>物理存储介质</h3><p>分为三层，头两层是主存储器，然后是辅助存储器，最后是三级存储器。</p>
-
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102172930520.png" srcset="/img/loading.gif" lazyload class title="image-20250102172930520"> 
+<h2 id="第十二章-物理存储系统"><a class="markdownIt-Anchor" href="#第十二章-物理存储系统"></a> 第十二章 物理存储系统</h2>
+<h3 id="物理存储介质"><a class="markdownIt-Anchor" href="#物理存储介质"></a> 物理存储介质</h3>
+<p>分为三层，头两层是主存储器，然后是辅助存储器，最后是三级存储器。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/e30477b69ea4c0a2b2ce73c801632667.png" srcset="/img/loading.gif" lazyload class title="在这里插入图片描述">
 <p>主存储器都是<strong>易失去</strong>的，其余的都是<strong>不易失去</strong>。</p>
-<h4 id="主存"><a href="#主存" class="headerlink" title="主存"></a>主存</h4><ul>
+<h4 id="主存"><a class="markdownIt-Anchor" href="#主存"></a> 主存</h4>
+<ul>
 <li>易失。</li>
 <li>读写速度很块。</li>
 <li>随机访问。</li>
 </ul>
-<h4 id="固态硬盘-SSD"><a href="#固态硬盘-SSD" class="headerlink" title="固态硬盘 SSD"></a>固态硬盘 SSD</h4><ul>
+<h4 id="固态硬盘-ssd"><a class="markdownIt-Anchor" href="#固态硬盘-ssd"></a> 固态硬盘 SSD</h4>
+<ul>
 <li>不易失。</li>
 <li>用闪存实现。</li>
 <li>随机访问。</li>
 </ul>
-<h4 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h4><ul>
+<h4 id="磁盘"><a class="markdownIt-Anchor" href="#磁盘"></a> 磁盘</h4>
+<ul>
 <li>不易失。</li>
 <li>随机访问。</li>
 </ul>
-<h4 id="磁带"><a href="#磁带" class="headerlink" title="磁带"></a>磁带</h4><ul>
+<h4 id="磁带"><a class="markdownIt-Anchor" href="#磁带"></a> 磁带</h4>
+<ul>
 <li>随机访问。</li>
 <li><strong>顺序访问</strong>。</li>
 </ul>
 <p>以上四种存储器从上到下容量增大，访问时间越长。</p>
-<h3 id="磁盘-1"><a href="#磁盘-1" class="headerlink" title="磁盘"></a>磁盘</h3>
-
+<h3 id="磁盘-2"><a class="markdownIt-Anchor" href="#磁盘-2"></a> 磁盘</h3>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/format,png.jpeg" srcset="/img/loading.gif" lazyload class title="简单理解磁盘结构-CSDN博客">
 <p>分为多个磁盘面，每个磁盘面有多个磁道，每个磁道有多个扇区。</p>
-<h4 id="存取时间模型"><a href="#存取时间模型" class="headerlink" title="存取时间模型"></a>存取时间模型</h4><ol>
-<li><p><strong>寻道时间</strong></p>
+<h4 id="存取时间模型"><a class="markdownIt-Anchor" href="#存取时间模型"></a> 存取时间模型</h4>
+<ol>
+<li>
+<p><strong>寻道时间</strong></p>
 <p>寻道时间是指磁头从当前磁道移动到目标磁道所需的时间。</p>
 </li>
-<li><p><strong>旋转延迟</strong></p>
+<li>
+<p><strong>旋转延迟</strong></p>
 <p>旋转延迟是指盘片旋转到磁头所在扇区的时间，即磁头等待数据扇区旋转到其下方的时间。</p>
 </li>
-<li><p><strong>数据传输时间</strong></p>
+<li>
+<p><strong>数据传输时间</strong></p>
 <p>数据传输时间是指从磁头读取数据到数据传输到系统的时间，或者将数据从系统传输到磁头的时间。</p>
 </li>
 </ol>
 <p><strong>访问时间</strong>是发出请求到数据开始传输之间的时间，即<strong>寻道时间</strong>加<strong>旋转延迟</strong>。</p>
-<h2 id="第十三章-数据存储结构"><a href="#第十三章-数据存储结构" class="headerlink" title="第十三章 数据存储结构"></a>第十三章 数据存储结构</h2><h3 id="文件组织（记录格式）"><a href="#文件组织（记录格式）" class="headerlink" title="文件组织（记录格式）"></a>文件组织（记录格式）</h3><h4 id="定长记录"><a href="#定长记录" class="headerlink" title="定长记录"></a>定长记录</h4><p>定长记录是指每条记录的长度（即所占用的存储空间）相同的记录组织方式。在这种组织方式下，所有字段的字节数预先确定，且每条记录严格按照固定长度存储。</p>
+<h2 id="第十三章-数据存储结构"><a class="markdownIt-Anchor" href="#第十三章-数据存储结构"></a> 第十三章 数据存储结构</h2>
+<h3 id="文件组织记录格式"><a class="markdownIt-Anchor" href="#文件组织记录格式"></a> 文件组织（记录格式）</h3>
+<h4 id="定长记录"><a class="markdownIt-Anchor" href="#定长记录"></a> 定长记录</h4>
+<p>定长记录是指每条记录的长度（即所占用的存储空间）相同的记录组织方式。在这种组织方式下，所有字段的字节数预先确定，且每条记录严格按照固定长度存储。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Fixed<br>(<br>col1 <span class="hljs-type">int</span>              <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>col2 <span class="hljs-type">char</span>(<span class="hljs-number">5</span>)          <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>col3 <span class="hljs-type">char</span>(<span class="hljs-number">3</span>)          <span class="hljs-keyword">NULL</span>,<br>col4 <span class="hljs-type">float</span>            <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br>)<br></code></pre></td></tr></table></figure>
-
-<h4 id="不定长记录"><a href="#不定长记录" class="headerlink" title="不定长记录"></a>不定长记录</h4><p>不定长记录是指每条记录的长度可以变化的记录组织方式。在这种组织方式下，记录中的字段长度不固定，可以根据实际数据的需求动态调整。</p>
- 
-
-<h3 id="文件中记录的组织"><a href="#文件中记录的组织" class="headerlink" title="文件中记录的组织"></a>文件中记录的组织</h3><ul>
-<li><p><strong>堆文件组织</strong></p>
+<h4 id="不定长记录"><a class="markdownIt-Anchor" href="#不定长记录"></a> 不定长记录</h4>
+<p>不定长记录是指每条记录的长度可以变化的记录组织方式。在这种组织方式下，记录中的字段长度不固定，可以根据实际数据的需求动态调整。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101161253922.png" srcset="/img/loading.gif" lazyload class title="image-20250101161253922"> 
+<h3 id="文件中记录的组织"><a class="markdownIt-Anchor" href="#文件中记录的组织"></a> 文件中记录的组织</h3>
+<ul>
+<li>
+<p><strong>堆文件组织</strong></p>
 <p>堆文件组织是指记录在文件中无特定顺序地存储，每条记录可以存放在文件的任何位置。通常，一个关系对应一个单独的文件，记录插入时只需在文件末尾添加新记录。</p>
 </li>
-<li><p><strong>顺序文件组织</strong></p>
+<li>
+<p><strong>顺序文件组织</strong></p>
 <p>记录根据搜索码的值顺序存储，搜索码是任意属性或属性的集合（不必是超码） 。</p>
 </li>
-<li><p><strong>散列文件组织</strong></p>
+<li>
+<p><strong>散列文件组织</strong></p>
 <p>散列文件组织是通过对记录的某些属性应用散列函数，来确定记录存储的位置（即存储块）。散列函数将搜索码映射到文件的某个存储块中，实现<strong>快速的随机访问</strong>。</p>
 </li>
-<li><p><strong>多表聚簇文件组织</strong></p>
-<p>多表聚簇文件组织是指在同一个存储块中存储两个或多个关系中相关的记录。这种组织方式可以高效地处理连接操作，因为相关记录被存储在一起，减少了磁盘I&#x2F;O操作。</p>
+<li>
+<p><strong>多表聚簇文件组织</strong></p>
+<p>多表聚簇文件组织是指在同一个存储块中存储两个或多个关系中相关的记录。这种组织方式可以高效地处理连接操作，因为相关记录被存储在一起，减少了磁盘I/O操作。</p>
 <p><strong>join 操作的时候会很方便，但是如果平时的简单查询则需要访问更多的块。</strong></p>
 </li>
 </ul>
-<h3 id="缓冲区管理（LRU-MRU）"><a href="#缓冲区管理（LRU-MRU）" class="headerlink" title="缓冲区管理（LRU MRU）"></a>缓冲区管理（LRU MRU）</h3><p>缓冲区是主存用于存储磁盘块拷贝的那部分。</p>
+<h3 id="缓冲区管理lru-mru"><a class="markdownIt-Anchor" href="#缓冲区管理lru-mru"></a> 缓冲区管理（LRU MRU）</h3>
+<p>缓冲区是主存用于存储磁盘块拷贝的那部分。</p>
 <p>当数据库中的程序需要磁盘中的块，首先先看缓冲区，如果没有的话就将要访问的块调入缓冲区内，使用（MRU或者LRU）算法决定调出的块。</p>
 <ol>
-<li><p><strong>最近最少使用（LRU）</strong></p>
+<li>
+<p><strong>最近最少使用（LRU）</strong></p>
 <p>最近最少使用（LRU）策略选择在最近一段时间内最少被访问的数据块进行替换。即，最久未被使用的数据块优先被淘汰。</p>
 <ul>
 <li><strong>符合时间局部性原理</strong>：大多数应用程序具有时间局部性，即最近访问的数据块可能在不久的将来再次被访问。LRU策略能够有效利用这一特性，保留频繁访问的数据块。</li>
 <li><strong>适用于事务处理系统中频繁访问相同数据块。</strong></li>
 </ul>
 </li>
-<li><p><strong>最近最常使用（MRU）</strong></p>
+<li>
+<p><strong>最近最常使用（MRU）</strong></p>
 <p>最近最常使用（MRU）策略选择在最近一段时间内最频繁被访问的数据块进行替换。即，最近被频繁访问的数据块优先被淘汰。</p>
 <ul>
 <li><strong>适用于批量处理或一次性访问大量数据后不再访问。</strong></li>
 </ul>
 </li>
 </ol>
-<h2 id="第十四章-索引"><a href="#第十四章-索引" class="headerlink" title="第十四章 索引"></a>第十四章 索引</h2><p>用于在文件中查找记录的属性为<strong>搜索码</strong>。</p>
+<h2 id="第十四章-索引"><a class="markdownIt-Anchor" href="#第十四章-索引"></a> 第十四章 索引</h2>
+<p>用于在文件中查找记录的属性为<strong>搜索码</strong>。</p>
 <blockquote>
 <p><strong>不一定是主码！！！</strong></p>
 </blockquote>
 <p>索引分为<strong>顺序索引</strong>和<strong>散列索引</strong>。</p>
-<h3 id="顺序索引"><a href="#顺序索引" class="headerlink" title="顺序索引"></a>顺序索引</h3><p>顺序索引是一种索引方式，其中索引项按照搜索码的顺序排列。</p>
+<h3 id="顺序索引"><a class="markdownIt-Anchor" href="#顺序索引"></a> 顺序索引</h3>
+<p>顺序索引是一种索引方式，其中索引项按照搜索码的顺序排列。</p>
 <p>每个索引记录包含搜索码值及其对应的数据记录的存储地址。</p>
 <ul>
-<li><p><strong>聚集索引（主索引）</strong></p>
+<li>
+<p><strong>聚集索引（主索引）</strong></p>
 <p>搜索码在顺序索引的基础上，还定义了文件存储的次序。<strong>可以是稠密或者稀疏的</strong>。</p>
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101170638563.png" srcset="/img/loading.gif" lazyload class title="image-20250101170638563">
 </li>
-<li><p><strong>非聚集索引（辅助索引）</strong></p>
+<li>
+<p><strong>非聚集索引（辅助索引）</strong></p>
 <p>搜索码指定的次序和文件存储的次序不同。<strong>一定要是稠密的！</strong></p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101171416244.png" srcset="/img/loading.gif" lazyload class title="image-20250101171416244">
 </li>
 </ul>
 <p>常常使用的顺序索引有<strong>稠密索引</strong>和<strong>稀疏索引</strong>两类。</p>
-<h4 id="稠密索引"><a href="#稠密索引" class="headerlink" title="稠密索引"></a>稠密索引</h4><p>在稠密索引中，对于文件的<strong>每个搜索码值都有一个索引项</strong>。</p>
+<h4 id="稠密索引"><a class="markdownIt-Anchor" href="#稠密索引"></a> 稠密索引</h4>
+<p>在稠密索引中，对于文件的<strong>每个搜索码值都有一个索引项</strong>。</p>
 <ul>
-<li><p><strong>稠密聚集索引</strong></p>
+<li>
+<p><strong>稠密聚集索引</strong></p>
 <p>索引记录包括搜索码值以及指向具有该搜索码值的第一条数据记录的指针。</p>
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101170808338.png" srcset="/img/loading.gif" lazyload class title="image-20250101170808338">
 </li>
-<li><p><strong>稠密非聚集索引</strong></p>
+<li>
+<p><strong>稠密非聚集索引</strong></p>
 <p>索引记录必须指向具有相同搜索码值的所有记录的指针列表。</p>
 </li>
 </ul>
-<h4 id="稀疏索引"><a href="#稀疏索引" class="headerlink" title="稀疏索引"></a>稀疏索引</h4><p>在稀疏索引中，<strong>只为某些搜索码值建立索引</strong>。</p>
-
-
-<p><strong>一定要搭配聚集索引使用！！</strong>否则根本找不到对应的数据记录。</p>
-<h4 id="稠密索引和稀疏索引比较"><a href="#稠密索引和稀疏索引比较" class="headerlink" title="稠密索引和稀疏索引比较"></a>稠密索引和稀疏索引比较</h4><p>稠密索引访问速度更快，但是稀疏索引占据内存更小。</p>
-<h4 id="多级索引"><a href="#多级索引" class="headerlink" title="多级索引"></a>多级索引</h4><p>发现我书本上关于这部分内容是完全没写笔记的，应该不重要。</p>
- 
-
-<h4 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h4><p><strong>聚集索引 可以是 稠密或者稀疏的。</strong></p>
+<h4 id="稀疏索引"><a class="markdownIt-Anchor" href="#稀疏索引"></a> 稀疏索引</h4>
+<p>在稀疏索引中，<strong>只为某些搜索码值建立索引</strong>。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101170918642.png" srcset="/img/loading.gif" lazyload class title="image-20250101170918642">
+<p>**一定要搭配聚集索引使用！！**否则根本找不到对应的数据记录。</p>
+<h4 id="稠密索引和稀疏索引比较"><a class="markdownIt-Anchor" href="#稠密索引和稀疏索引比较"></a> 稠密索引和稀疏索引比较</h4>
+<p>稠密索引访问速度更快，但是稀疏索引占据内存更小。</p>
+<h4 id="多级索引"><a class="markdownIt-Anchor" href="#多级索引"></a> 多级索引</h4>
+<p>发现我书本上关于这部分内容是完全没写笔记的，应该不重要。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101171907408.png" srcset="/img/loading.gif" lazyload class title="image-20250101171907408"> 
+<h4 id="小总结"><a class="markdownIt-Anchor" href="#小总结"></a> 小总结</h4>
+<p><strong>聚集索引 可以是 稠密或者稀疏的。</strong></p>
 <p><strong>非聚集索引一定是稠密的。</strong></p>
 <p><strong>所以稀疏索引一定是 聚集的。</strong></p>
-<h4 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+树索引"></a>B+树索引</h4><p>本质上是多级索引。</p>
-
-
+<h4 id="b树索引"><a class="markdownIt-Anchor" href="#b树索引"></a> B+树索引</h4>
+<p>本质上是多级索引。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101172348729.png" srcset="/img/loading.gif" lazyload class title="image-20250101172348729">
 <ul>
-<li><p><strong>根节点</strong></p>
+<li>
+<p><strong>根节点</strong></p>
 <p><strong>指针数量</strong>：根节点至少有<strong>两个指针</strong>（除非树中只有一个节点，即根节点本身也是叶节点）。</p>
 </li>
-<li><p><strong>内部节点</strong></p>
+<li>
+<p><strong>内部节点</strong></p>
 <p><strong>关键字存储</strong>：仅存储用于引导搜索的关键字，不存储实际的数据记录。</p>
-<p><strong>指针数量</strong>：每个内部节点至少有⌈n&#x2F;2⌉个子节点指针（其中n为B+树的阶数），最多有n个子节点指针。</p>
+<p><strong>指针数量</strong>：每个内部节点至少有⌈n/2⌉个子节点指针（其中n为B+树的阶数），最多有n个子节点指针。</p>
 <p><strong>稀疏索引</strong>：内部节点的关键字是稀疏的，仅涵盖了叶节点关键字的子集，减少了索引的大小。</p>
 </li>
-<li><p><strong>叶节点</strong></p>
+<li>
+<p><strong>叶节点</strong></p>
 <p><strong>关键字和数据指针</strong>：每个叶节点存储键值及其对应的数据记录指针。</p>
 <p><strong>链表连接</strong>：所有叶节点通过链表按关键字顺序相连，支持顺序遍历。</p>
-<p><strong>指针数量</strong>：每个叶节点至少有⌈m&#x2F;2⌉ - 1个关键字，最多有m - 1个关键字（其中m为B+树的阶数）。</p>
+<p><strong>指针数量</strong>：每个叶节点至少有⌈m/2⌉ - 1个关键字，最多有m - 1个关键字（其中m为B+树的阶数）。</p>
 </li>
 </ul>
 <blockquote>
@@ -1052,82 +1265,107 @@
 <li><strong>叶节点通过链表相连，支持高效的范围查询</strong></li>
 <li><strong>高度平衡，所有叶节点在同一层</strong></li>
 </ol>
-<h4 id="B-树插入"><a href="#B-树插入" class="headerlink" title="B+树插入"></a>B+树插入</h4><ul>
-<li><p>叶子节点拆分</p>
+<h4 id="b树插入"><a class="markdownIt-Anchor" href="#b树插入"></a> B+树插入</h4>
+<ul>
+<li>
+<p>叶子节点拆分</p>
 <p>拆分完后将右边最小的那个搜索码值加入到父节点中。</p>
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101175243513.png" srcset="/img/loading.gif" lazyload class title="image-20250101175243513">
 </li>
-<li><p>内部节点拆分</p>
+<li>
+<p>内部节点拆分</p>
 <p>将拆出来右边最小的搜索码值从该层去掉并加入到父节点中。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101175338529.png" srcset="/img/loading.gif" lazyload class title="image-20250101175338529">
 </li>
 </ul>
-<h4 id="B-树删除"><a href="#B-树删除" class="headerlink" title="B+树删除"></a>B+树删除</h4><p>分成两种情况讨论：</p>
-<h5 id="问兄弟节点能不能借一个搜索码值："><a href="#问兄弟节点能不能借一个搜索码值：" class="headerlink" title="问兄弟节点能不能借一个搜索码值："></a>问兄弟节点能不能借一个搜索码值：</h5><ul>
-<li><p><strong>叶子节点</strong></p>
+<h4 id="b树删除"><a class="markdownIt-Anchor" href="#b树删除"></a> B+树删除</h4>
+<p>分成两种情况讨论：</p>
+<h5 id="问兄弟节点能不能借一个搜索码值"><a class="markdownIt-Anchor" href="#问兄弟节点能不能借一个搜索码值"></a> 问兄弟节点能不能借一个搜索码值：</h5>
+<ul>
+<li>
+<p><strong>叶子节点</strong></p>
 <p>将从兄弟那借到的搜索码值 A 写到父节点上。</p>
-   
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101180019753.png" srcset="/img/loading.gif" lazyload class title="image-20250101180019753">   
 </li>
-<li><p><strong>内部节点</strong></p>
+<li>
+<p><strong>内部节点</strong></p>
 <p>将从兄弟那借来的搜索码值 A 放到父节点，将原本的父节点值 B 加入到叶子节点中。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101180208209.png" srcset="/img/loading.gif" lazyload class title="image-20250101180208209"> 
 </li>
 </ul>
-<h5 id="借不到搜索码值，需要合并"><a href="#借不到搜索码值，需要合并" class="headerlink" title="借不到搜索码值，需要合并"></a>借不到搜索码值，需要合并</h5><ul>
-<li><p><strong>叶子节点合并</strong></p>
+<h5 id="借不到搜索码值需要合并"><a class="markdownIt-Anchor" href="#借不到搜索码值需要合并"></a> 借不到搜索码值，需要合并</h5>
+<ul>
+<li>
+<p><strong>叶子节点合并</strong></p>
 <p>合并后删除原父节点，并重新分配父节点。</p>
- 
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101180421723.png" srcset="/img/loading.gif" lazyload class title="image-20250101180421723"> 
 </li>
-<li><p><strong>内部节点合并</strong></p>
+<li>
+<p><strong>内部节点合并</strong></p>
 <p>这种情况通常是内部节点已经为空了。</p>
 <p>需要将父节点的搜索码值拉下来。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101180824616.png" srcset="/img/loading.gif" lazyload class title="image-20250101180824616"> 
 </li>
 </ul>
-<h4 id="B-树高度"><a href="#B-树高度" class="headerlink" title="B+树高度"></a>B+树高度</h4><p>B+树的高度即它的最坏情况下查询复杂度，最坏情况下，每个内层的指针数为$$⌈\frac{n}{2}⌉$$。<br>$$<br>h &#x3D; \log_{⌈\frac{n}{2}⌉}(k)<br>$$</p>
-<h3 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h3><p>哈希索引通过将关键字通过哈希函数映射到特定的位置，从而实现快速的数据定位和访问。</p>
+<h4 id="b树高度"><a class="markdownIt-Anchor" href="#b树高度"></a> B+树高度</h4>
+<p>B+树的高度即它的最坏情况下查询复杂度，最坏情况下，每个内层的指针数为$$⌈\frac{n}{2}⌉$$。</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>h</mi><mo>=</mo><msub><mo><mi>log</mi><mo>⁡</mo></mo><mrow><mo stretchy="false">⌈</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo stretchy="false">⌉</mo></mrow></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h = \log_{⌈\frac{n}{2}⌉}(k)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.23494em;vertical-align:-0.4849399999999999em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2808599999999999em;"><span style="top:-2.75586em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">⌈</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6915428571428572em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span><span class="mclose mtight">⌉</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4849399999999999em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span></span></p>
+<h3 id="哈希索引"><a class="markdownIt-Anchor" href="#哈希索引"></a> 哈希索引</h3>
+<p>哈希索引通过将关键字通过哈希函数映射到特定的位置，从而实现快速的数据定位和访问。</p>
 <p><strong>与B+树索引不同，哈希索引主要优化等值查询（如<code>=</code>操作），而不支持范围查询（如<code>BETWEEN</code>或<code>&lt;</code>, <code>&gt;</code>等操作）</strong></p>
 <p>感觉不会考。</p>
-
-
-<h2 id="第十五章-查询处理"><a href="#第十五章-查询处理" class="headerlink" title="第十五章 查询处理"></a>第十五章 查询处理</h2><p>因为老师这部分讲的太烂了，我实在找不到重点。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101191040094.png" srcset="/img/loading.gif" lazyload class title="image-20250101191040094">
+<h2 id="第十五章-查询处理"><a class="markdownIt-Anchor" href="#第十五章-查询处理"></a> 第十五章 查询处理</h2>
+<p>因为老师这部分讲的太烂了，我实在找不到重点。</p>
 <p>查询处理：指从数据库中提取数据所做的一系列活动。这些活动包括：<strong>将 SQL 语句编译成在文件系统的物理层上使用的表达式</strong>、<strong>查询优化</strong>、<strong>查询执行</strong>。</p>
- 
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101194708031.png" srcset="/img/loading.gif" lazyload class title="image-20250101194708031"> 
 <p>要全面说明如何执行一个查询，不仅要提供关系代数表达式，还要对表达式加上注释来说明如何执行每个操作。注释可以声明某个具体操作所采用的算法，或将要使用的一个或多个特定的索引。</p>
 <p><strong>执行原语</strong>是数据库管理系统（DBMS）中最基本的操作单元，用于实现关系代数中的各类操作。</p>
 <p>用于执行一个查询的原语操作序列称为<strong>查询执行计划</strong>。</p>
 <p><strong>常见的查询执行计划有下面所讲的四种连接运算。</strong></p>
- 
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101195512982.png" srcset="/img/loading.gif" lazyload class title="image-20250101195512982"> 
 <p><strong>查询执行引擎</strong>接受一个查询执行计划，执行该计划并把结果返回给查询。</p>
 <p>构造最小查询代价的查询执行计划是系统的责任，这项工作叫<strong>查询优化</strong>。</p>
 <p>优化器通常努力去尽可能<strong>降低查询计划总的资源消耗</strong>，而不是<strong>尽可能缩低响应时间</strong>。</p>
-<h3 id="选择运算"><a href="#选择运算" class="headerlink" title="选择运算"></a>选择运算</h3>
-
+<h3 id="选择运算"><a class="markdownIt-Anchor" href="#选择运算"></a> 选择运算</h3>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250101201122111.png" srcset="/img/loading.gif" lazyload class title="image-20250101201122111">
 <p>定义$$t_s$$为磁盘访问时间（寻道加旋转延迟），$$t_T$$为块传输时间。</p>
-<h4 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h4><ul>
-<li><p><strong>A1</strong></p>
+<h4 id="线性搜索"><a class="markdownIt-Anchor" href="#线性搜索"></a> 线性搜索</h4>
+<ul>
+<li>
+<p><strong>A1</strong></p>
 <p>假设文件的块是<strong>顺序</strong>存储。即我们只需要在磁盘中访问第一个文件块，然后一直顺着一直读下去即可。</p>
 </li>
-<li><p><strong>A1</strong></p>
+<li>
+<p><strong>A1</strong></p>
 <p>因为等值成立就可以返回了，平均需要扫描一半的文件块。</p>
 </li>
 </ul>
-<h4 id="B-树聚集索引"><a href="#B-树聚集索引" class="headerlink" title="B+树聚集索引"></a>B+树聚集索引</h4><ul>
-<li><p><strong>A2</strong></p>
+<h4 id="b树聚集索引"><a class="markdownIt-Anchor" href="#b树聚集索引"></a> B+树聚集索引</h4>
+<ul>
+<li>
+<p><strong>A2</strong></p>
 <p>假设树高为$$h_i$$，那么需要从上到下访问$$h_i$$个块（读索引时间），然后获得最终的记录的地址，再去访问。</p>
 </li>
-<li><p><strong>A3</strong></p>
+<li>
+<p><strong>A3</strong></p>
 <p>因为搜索码不是主码，所以最终的索引会有多条记录，但是因为是聚集索引，所以它们是连续存储的。</p>
 </li>
 </ul>
-<h4 id="B-树辅助索引"><a href="#B-树辅助索引" class="headerlink" title="B+树辅助索引"></a>B+树辅助索引</h4><ul>
-<li><p><strong>A4</strong></p>
+<h4 id="b树辅助索引"><a class="markdownIt-Anchor" href="#b树辅助索引"></a> B+树辅助索引</h4>
+<ul>
+<li>
+<p><strong>A4</strong></p>
 <p>搜索码为主码的等值比较跟 A2 一样。</p>
 </li>
-<li><p><strong>A4</strong></p>
+<li>
+<p><strong>A4</strong></p>
 <p>因为搜索码不是码，所以最终的索引会有多条记录，并且因为是辅助索引，所以这些记录不是连续存储的。</p>
 </li>
 </ul>
-<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>对不能全部放入内存中的关系进行的排序称为<strong>外排序</strong>。</p>
+<h3 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h3>
+<p>对不能全部放入内存中的关系进行的排序称为<strong>外排序</strong>。</p>
 <p>其实只介绍了<strong>归并算法</strong>。</p>
 <p>基本流程：假设内存最多可存 M 个块</p>
 <ul>
@@ -1136,18 +1374,17 @@
 <li>不断重复第二步，直到归并段数小于 M（此时可以一次性排序）</li>
 </ul>
 <p>每执行一趟归并，归并段就会减少为原来的$$\frac{1}{M-1}$$。</p>
-
-
-
-
-<h4 id="嵌套循环连接"><a href="#嵌套循环连接" class="headerlink" title="嵌套循环连接"></a>嵌套循环连接</h4>
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/ba476c927017d6b7a75ce553f2382989.png" srcset="/img/loading.gif" lazyload class title="img">
+<h4 id="嵌套循环连接"><a class="markdownIt-Anchor" href="#嵌套循环连接"></a> 嵌套循环连接</h4>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/dba8c9d4f061e8795f9a931ed0f40ea4-1735736420914-11.png" srcset="/img/loading.gif" lazyload class title="img">
 <p>最坏情况下：(R 外 S 内)</p>
 <ul>
-<li><p>块传输：$$n_r*b_s + b_r$$</p>
-<p>因为一旦确定一个关系 r 的元组，就需要传输$$b_s$$次块进行一次循环，然后外循环本来也需要传输”自己”进内存$$b_r$$块。</p>
+<li>
+<p>块传输：$$n_r*b_s + b_r$$</p>
+<p>因为一旦确定一个关系 r 的元组，就需要传输$$b_s$$次块进行一次循环，然后外循环本来也需要传输&quot;自己&quot;进内存$$b_r$$块。</p>
 </li>
-<li><p>寻道次数：$$n_r+b_r$$</p>
+<li>
+<p>寻道次数：$$n_r+b_r$$</p>
 <p>因为一旦确定关系 r 的元组，就需要寻道一次（for 内循环 s），一共需要寻道 $$n_r$$次。外循环需要寻道$$b_r$$次。</p>
 </li>
 </ul>
@@ -1155,89 +1392,127 @@
 <ul>
 <li>只需要一次读全部的关系进内存，需要两次寻道（分别找关系 r 和关系 s 的第一个块），要传输$$b_r+b_s$$次块。</li>
 </ul>
-<h4 id="块嵌套循环连接"><a href="#块嵌套循环连接" class="headerlink" title="块嵌套循环连接"></a>块嵌套循环连接</h4><p>分析跟上面一样，只不过外层循环以块做单位进行循环，而不是元组。</p>
-
-
+<h4 id="块嵌套循环连接"><a class="markdownIt-Anchor" href="#块嵌套循环连接"></a> 块嵌套循环连接</h4>
+<p>分析跟上面一样，只不过外层循环以块做单位进行循环，而不是元组。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/dbe323c0cc7915337b9b7689f0f71f52.png" srcset="/img/loading.gif" lazyload class title="img">
 <p>最坏情况下：(R 外 S 内)</p>
 <ul>
-<li><p>块传输次数：$$b_r*b_s + b_r$$</p>
-<p>因为一旦确定一个关系 r 的块，就需要传输$$b_s$$次块进行一次循环，然后外循环本来也需要传输”自己”进内存$$b_r$$块。</p>
+<li>
+<p>块传输次数：$$b_r*b_s + b_r$$</p>
+<p>因为一旦确定一个关系 r 的块，就需要传输$$b_s$$次块进行一次循环，然后外循环本来也需要传输&quot;自己&quot;进内存$$b_r$$块。</p>
 </li>
-<li><p>寻道次数：$$b_r+b_r$$</p>
+<li>
+<p>寻道次数：$$b_r+b_r$$</p>
 <p>因为一旦确定关系 r 的块，就需要寻道一次（for 内循环 s），一共需要寻道 $$n_r$$次。外循环需要寻道$$b_r$$次。</p>
 </li>
 </ul>
 <p>最好情况分析跟上面类似。</p>
-<h4 id="归并连接"><a href="#归并连接" class="headerlink" title="归并连接"></a>归并连接</h4><p>简单来说，就是和两个已经排好序的关系进行归并。</p>
+<h4 id="归并连接"><a class="markdownIt-Anchor" href="#归并连接"></a> 归并连接</h4>
+<p>简单来说，就是和两个已经排好序的关系进行归并。</p>
 <ul>
-<li><p>块传输次数：$$b_r+b_s$$</p>
+<li>
+<p>块传输次数：$$b_r+b_s$$</p>
 <p>只需要将两个关系的块放进内存一次即可。</p>
 </li>
-<li><p>寻道次数：$$\frac{b_r}{b_b} + \frac{b_s}{b_b}$$</p>
+<li>
+<p>寻道次数：$$\frac{b_r}{b_b} + \frac{b_s}{b_b}$$</p>
 <p>如果分配给每个关系的缓冲块是$$b_b$$，则每次只需要$$\frac{b_r}{b_b}$$次就可以将整个关系 r 读入内存。</p>
 </li>
 </ul>
-<h4 id="散列连接"><a href="#散列连接" class="headerlink" title="散列连接"></a>散列连接</h4><p>基本思想：假设一个 r 元组和一个 s 元组满足连接条件，那么它们对于连接属性就会取相同的值。若该值被散列成某个值 i ，则 r 元组必在 ri 中且 s元组必在 si 中。因此，只需要 ri 中的元组和 si 中的元组进行比较即可。   </p>
-
-
+<h4 id="散列连接"><a class="markdownIt-Anchor" href="#散列连接"></a> 散列连接</h4>
+<p>基本思想：假设一个 r 元组和一个 s 元组满足连接条件，那么它们对于连接属性就会取相同的值。若该值被散列成某个值 i ，则 r 元组必在 ri 中且 s元组必在 si 中。因此，只需要 ri 中的元组和 si 中的元组进行比较即可。</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/72ad2420288484e9e7ec649f75ec09de.png" srcset="/img/loading.gif" lazyload class title="img">
 <ul>
-<li><p>块传输次数：$$3(b_r+b_s)$$</p>
+<li>
+<p>块传输次数：$$3(b_r+b_s)$$</p>
 <p>先将两个关系读入内存，需要一个$$(b_r+b_s)$$；分区完之后写回磁盘，需要一个$$(b_r+b_s)$$；然后每一个拿出来比较，需要一个$$(b_r+b_s)$$。</p>
 </li>
-<li><p>寻道次数为：$$2(\frac{b_r}{b_b}+\frac{b_s}{b_b})+2*n_h$$</p>
+<li>
+<p>寻道次数为：$$2(\frac{b_r}{b_b}+\frac{b_s}{b_b})+2*n_h$$</p>
 <p>如果分配给每个关系的缓冲块是$$b_b$$，一共有$$n_h$$个分区。</p>
 <p>将两个关系完整的读入内存并写回需要$$2(\frac{b_r}{b_b}+\frac{b_s}{b_b})$$次寻道机会。每一个分区元组拿出来比较的时候，默认每个关系在每个分区都只需要一次寻道。</p>
 </li>
 </ul>
-<h2 id="第十六章-查询优化"><a href="#第十六章-查询优化" class="headerlink" title="第十六章 查询优化"></a>第十六章 查询优化</h2><p>目标是尽早执行选择和投影运算。</p>
-<h3 id="关系表达式的转换"><a href="#关系表达式的转换" class="headerlink" title="关系表达式的转换"></a>关系表达式的转换</h3><p>如果两个关系代数表达式在每个合法的数据库实例上都会产生相同的元组集，则这两个表达式是<strong>等价</strong>的。</p>
+<h2 id="第十六章-查询优化"><a class="markdownIt-Anchor" href="#第十六章-查询优化"></a> 第十六章 查询优化</h2>
+<p>目标是尽早执行选择和投影运算。</p>
+<h3 id="关系表达式的转换"><a class="markdownIt-Anchor" href="#关系表达式的转换"></a> 关系表达式的转换</h3>
+<p>如果两个关系代数表达式在每个合法的数据库实例上都会产生相同的元组集，则这两个表达式是<strong>等价</strong>的。</p>
 <blockquote>
 <p>一个合法的数据库实例是满足数据库模式中设定的完整性约束的数据库实例。</p>
 </blockquote>
-<h4 id="等价规则"><a href="#等价规则" class="headerlink" title="等价规则"></a>等价规则</h4>
-
+<h4 id="等价规则"><a class="markdownIt-Anchor" href="#等价规则"></a> 等价规则</h4>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/05422dad7e40c0b68a2679075ba334cc.png" srcset="/img/loading.gif" lazyload class title="img">
 <p>这里我就强调几个感觉挺重点的（个人感觉）：</p>
 <ul>
-<li><p><strong>连接运算满足交换律</strong></p>
-<p>连接运算（Join Operation）满足<strong>交换律</strong>，即两个关系的连接顺序可以互换，结果不变。<br>$$<br>R \bowtie S &#x3D; S \bowtie R<br>$$</p>
+<li>
+<p><strong>连接运算满足交换律</strong></p>
+<p>连接运算（Join Operation）满足<strong>交换律</strong>，即两个关系的连接顺序可以互换，结果不变。</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>⋈</mo><mi>S</mi><mo>=</mo><mi>S</mi><mo>⋈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R \bowtie S = S \bowtie R
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68833em;vertical-align:-0.005em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68833em;vertical-align:-0.005em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span></span></p>
 </li>
-<li><p><strong>自然连接满足结合律</strong></p>
-<p>自然连接（Natural Join）满足<strong>结合律</strong>，即多个自然连接的组合顺序不会影响最终结果。<br>$$<br>(R \bowtie S) \bowtie T &#x3D; R \bowtie (S \bowtie T)<br>$$</p>
+<li>
+<p><strong>自然连接满足结合律</strong></p>
+<p>自然连接（Natural Join）满足<strong>结合律</strong>，即多个自然连接的组合顺序不会影响最终结果。</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>⋈</mo><mi>S</mi><mo stretchy="false">)</mo><mo>⋈</mo><mi>T</mi><mo>=</mo><mi>R</mi><mo>⋈</mo><mo stretchy="false">(</mo><mi>S</mi><mo>⋈</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R \bowtie S) \bowtie T = R \bowtie (S \bowtie T)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68833em;vertical-align:-0.005em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span></span></p>
 </li>
-<li><p><strong>选择条件只涉及左侧关系的属性</strong><br>$$<br>\sigma_{\theta}(R \bowtie S) &#x3D; \sigma_{\theta}(R) \bowtie S<br>$$<br><strong>前提</strong>：选择条件 $$\theta$$ 只涉及关系 R 的属性。</p>
+<li>
+<p><strong>选择条件只涉及左侧关系的属性</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>σ</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>R</mi><mo>⋈</mo><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>σ</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>⋈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">\sigma_{\theta}(R \bowtie S) = \sigma_{\theta}(R) \bowtie S
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span></span></p>
+<p><strong>前提</strong>：选择条件 $$\theta$$ 只涉及关系 R 的属性。</p>
 </li>
-<li><p><strong>选择条件 $$\theta_1$$ 只涉及左侧关系的属性 和 选择条件 $$\theta_2$$ 只涉及右侧关系的属性</strong><br>$$<br>\sigma_{\theta_1 \cap \theta_2}(R \bowtie S) &#x3D; \sigma_{\theta_1}(R) \bowtie \sigma_{\theta_2}(S)<br>$$</p>
+<li>
+<p><strong>选择条件 $$\theta_1$$ 只涉及左侧关系的属性 和 选择条件 $$\theta_2$$ 只涉及右侧关系的属性</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>σ</mi><mrow><msub><mi>θ</mi><mn>1</mn></msub><mo>∩</mo><msub><mi>θ</mi><mn>2</mn></msub></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo>⋈</mo><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>σ</mi><msub><mi>θ</mi><mn>1</mn></msub></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>⋈</mo><msub><mi>σ</mi><msub><mi>θ</mi><mn>2</mn></msub></msub><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{\theta_1 \cap \theta_2}(R \bowtie S) = \sigma_{\theta_1}(R) \bowtie \sigma_{\theta_2}(S)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">∩</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span></span></p>
 </li>
-<li><p><strong>令$$L1$$和$$L2$$分别代表$$E1$$和$$E2$$的属性，假设连接条件$$\theta$$只涉及$$L1 \cup L2$$的属性</strong><br>$$<br>\pi_{L1 \cup L2}\left(E_1\bowtie_{\theta} E_2\right) &#x3D; \pi_{L_1}(E_1) \bowtie_{\theta} \pi_{L2}(E_2)<br>$$</p>
+<li>
+<p><strong>令$$L1$$和$$L2$$分别代表$$E1$$和$$E2$$的属性，假设连接条件$$\theta$$只涉及$$L1 \cup L2$$的属性</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>π</mi><mrow><mi>L</mi><mn>1</mn><mo>∪</mo><mi>L</mi><mn>2</mn></mrow></msub><mrow><mo fence="true">(</mo><msub><mi>E</mi><mn>1</mn></msub><msub><mo>⋈</mo><mi>θ</mi></msub><msub><mi>E</mi><mn>2</mn></msub><mo fence="true">)</mo></mrow><mo>=</mo><msub><mi>π</mi><msub><mi>L</mi><mn>1</mn></msub></msub><mo stretchy="false">(</mo><msub><mi>E</mi><mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo>⋈</mo><mi>θ</mi></msub><msub><mi>π</mi><mrow><mi>L</mi><mn>2</mn></mrow></msub><mo stretchy="false">(</mo><msub><mi>E</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_{L1 \cup L2}\left(E_1\bowtie_{\theta} E_2\right) = \pi_{L_1}(E_1) \bowtie_{\theta} \pi_{L2}(E_2)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">L</span><span class="mord mtight">1</span><span class="mbin mtight">∪</span><span class="mord mathnormal mtight">L</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">⋈</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">⋈</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">L</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
 </li>
 </ul>
 <p>感觉等价优化就是看能不能在<strong>连接前把选择和投影执行了</strong>。</p>
-<h3 id="规模估计"><a href="#规模估计" class="headerlink" title="规模估计"></a>规模估计</h3><p>数据库目录存储了数据库的统计信息。</p>
-<p>$$V(A,r)$$代表关系 r 中属性 A 的可取值数量。即域的大小。</p>
-<p>假设 A 是性别，则$$V(A,r)$$是 2 ，因为只有男女。</p>
-<h4 id="选择规模估计"><a href="#选择规模估计" class="headerlink" title="选择规模估计"></a>选择规模估计</h4><ul>
-<li><p>$$σ_{A&#x3D;a}(r)$$：</p>
-<p>估计为$$n_r*\frac{1}{V(A,r)}$$。</p>
-<p>就是总元组数量 乘以 属性 A 等于 a 的概率。</p>
-</li>
-<li><p>$$σ_{A&lt;a}(r)$$：</p>
-<p>估计为$$n_r * \frac{v-min(A,r)}{max(A,r)-min(A,r)}$$</p>
-</li>
-</ul>
-<h4 id="合取估计"><a href="#合取估计" class="headerlink" title="合取估计"></a>合取估计</h4><p>$$\sigma_{\theta_{1} \wedge \theta_{2} \cdots \wedge \theta_{n}}(r)$$</p>
-<p>假设一个条件满足的概率（中选率）数记为$$s_i&#x2F;n_r$$，那么估计的元组数量为$$n_{r} \cdot \frac{s_{1} \cdot s_{2} \cdot \ldots \cdot s_{n}}{n_{r}^{n}}$$</p>
-<h4 id="析取估计"><a href="#析取估计" class="headerlink" title="析取估计"></a>析取估计</h4><p>$$\sigma_{\theta_{1} \vee \theta_{2} \vee \cdots \vee \theta_{n}}(r)$$</p>
+<h3 id="规模估计"><a class="markdownIt-Anchor" href="#规模估计"></a> 规模估计</h3>
+<p>数据库目录存储了数据库的统计信息。</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 7: V(A,r)$̲$代表关系 r 中属性 A 的…">V(A,r)$$代表关系 r 中属性 A 的可取值数量。即域的大小。
+
+假设 A 是性别，则$$V(A,r)$$是 2 ，因为只有男女。
+
+#### 选择规模估计
+
+- $$σ_{A=a}(r)$$：
+
+  估计为$$n_r*\frac{1}{V(A,r)}$$。
+
+  就是总元组数量 乘以 属性 A 等于 a 的概率。
+
+- $$σ_{A&lt;a}(r)$$：
+
+估计为$$n_r * \frac{v-min(A,r)}{max(A,r)-min(A,r)}</p>
+<h4 id="合取估计"><a class="markdownIt-Anchor" href="#合取估计"></a> 合取估计</h4>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>σ</mi><mrow><msub><mi>θ</mi><mn>1</mn></msub><mo>∧</mo><msub><mi>θ</mi><mn>2</mn></msub><mo>⋯</mo><mo>∧</mo><msub><mi>θ</mi><mi>n</mi></msub></mrow></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{\theta_{1} \wedge \theta_{2} \cdots \wedge \theta_{n}}(r)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">∧</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="minner mtight">⋯</span><span class="mbin mtight">∧</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span></span></p>
+<p>假设一个条件满足的概率（中选率）数记为$$s_i/n_r$$，那么估计的元组数量为$$n_{r} \cdot \frac{s_{1} \cdot s_{2} \cdot \ldots \cdot s_{n}}{n_{r}^{n}}$$</p>
+<h4 id="析取估计"><a class="markdownIt-Anchor" href="#析取估计"></a> 析取估计</h4>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>σ</mi><mrow><msub><mi>θ</mi><mn>1</mn></msub><mo>∨</mo><msub><mi>θ</mi><mn>2</mn></msub><mo>∨</mo><mo>⋯</mo><mo>∨</mo><msub><mi>θ</mi><mi>n</mi></msub></mrow></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{\theta_{1} \vee \theta_{2} \vee \cdots \vee \theta_{n}}(r)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">∨</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">∨</span><span class="minner mtight">⋯</span><span class="mbin mtight">∨</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span></span></p>
 <p>概率估计为$$1 - \left(1 - \frac{s_{1}}{n_{r}}\right) \cdot \left(1 - \frac{s_{2}}{n_{r}}\right) \cdot \cdots \cdot \left(1 - \frac{s_{n}}{n_{r}}\right)$$</p>
-<h4 id="连接估计"><a href="#连接估计" class="headerlink" title="连接估计"></a>连接估计</h4><ol>
-<li><p><strong>R 和 S 没有交集</strong></p>
+<h4 id="连接估计"><a class="markdownIt-Anchor" href="#连接估计"></a> 连接估计</h4>
+<ol>
+<li>
+<p><strong>R 和 S 没有交集</strong></p>
 <p>当 R 和 S 没有交集时，表示没有共同的属性用于连接操作。在这种情况下，连接条件不涉及任何公共属性，因此连接操作将形成笛卡尔积（Cartesian Product），每个 R 中的元组都会与每个SS 中的元组连接。</p>
 <p>例如，假设 R 有 1000 个元组，S 有 500 个元组，则连接结果有 500,000 个元组。</p>
 </li>
-<li><p><strong>R 和 S 的交集是主码</strong></p>
+<li>
+<p><strong>R 和 S 的交集是主码</strong></p>
 <p>若交集是 R 的码，那么 S 中的每个元组最多只能跟一个 R 中的元组相连，所以连接后数量不会超过 S 中元组数量（因为可能 S 中的属性值在 R 中没有）；反之也一样。</p>
 <p>若交集是 S 中引用 R 的外码，则连接后数量与关系 S 元组数量一样。</p>
 </li>
-<li><p><strong>R 和 S 的交集不是主码</strong></p>
+<li>
+<p><strong>R 和 S 的交集不是主码</strong></p>
 <p>假设交集的属性为 A ，考虑 R 中的元组 r，估计单个元组 r 能在连接中产生$$\frac{n_s}{V(A,s)}$$个元组。</p>
 <p>一共有 $$n_r$$个元组，所以一共能产生$$\frac{n_s*n_r}{V(A,s)}$$个元组。</p>
 <p>或者产生$$\frac{n_s*n_r}{V(A,r)}$$个元组。</p>
@@ -1246,41 +1521,49 @@
 </blockquote>
 </li>
 </ol>
-<h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><ul>
-<li><p>左、右外连接</p>
+<h4 id="外连接"><a class="markdownIt-Anchor" href="#外连接"></a> 外连接</h4>
+<ul>
+<li>
+<p>左、右外连接</p>
 <p>就是自然连接的估计再加上左或者右的关系规模。</p>
 </li>
-<li><p>全外连接</p>
+<li>
+<p>全外连接</p>
 <p>自然连接的估计加上左和右的关系规模。</p>
 </li>
 </ul>
-<h2 id="第十七章-事务"><a href="#第十七章-事务" class="headerlink" title="第十七章 事务"></a>第十七章 事务</h2><h3 id="事务的四个性质"><a href="#事务的四个性质" class="headerlink" title="事务的四个性质"></a>事务的四个性质</h3><p><strong>ACID 属性</strong>是数据库事务管理的核心原则，确保事务执行的可靠性和数据库的完整性：</p>
+<h2 id="第十七章-事务"><a class="markdownIt-Anchor" href="#第十七章-事务"></a> 第十七章 事务</h2>
+<h3 id="事务的四个性质"><a class="markdownIt-Anchor" href="#事务的四个性质"></a> 事务的四个性质</h3>
+<p><strong>ACID 属性</strong>是数据库事务管理的核心原则，确保事务执行的可靠性和数据库的完整性：</p>
 <ul>
 <li><strong>原子性</strong>：事务的操作要么全部完成，要么全部不做。</li>
 <li><strong>一致性</strong>：事务执行前后，数据库始终处于一致状态。</li>
 <li><strong>隔离性</strong>：并发事务之间相互隔离，互不干扰。</li>
 <li><strong>持久性</strong>：事务一旦提交，其结果永久保存在数据库中。</li>
 </ul>
-<h3 id="抽象事务模型"><a href="#抽象事务模型" class="headerlink" title="抽象事务模型"></a>抽象事务模型</h3>
-
-<p>如果一个事务是<strong>已提交（commit）</strong>或者<strong>中止（rollback回滚之后）</strong>，才能称这个事务是<strong>终止</strong>的。</p>
+<h3 id="抽象事务模型"><a class="markdownIt-Anchor" href="#抽象事务模型"></a> 抽象事务模型</h3>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/869064f4a5fc445fb3de094eb9a44091.png" srcset="/img/loading.gif" lazyload class title="数据库事务概述_数据库事务研究概述-CSDN博客">
+<p>如果一个事务是<strong>已提交（commit）<strong>或者</strong>中止（rollback回滚之后）</strong>，才能称这个事务是<strong>终止</strong>的。</p>
 <p>当事务执行完最后⼀条语句，会进入部分提交状态。此时实际输出可能仍驻留在主存中，硬件故障可能会导致中止。</p>
-<h3 id="事务的并发调度"><a href="#事务的并发调度" class="headerlink" title="事务的并发调度"></a>事务的并发调度</h3><p>并发的好处：</p>
+<h3 id="事务的并发调度"><a class="markdownIt-Anchor" href="#事务的并发调度"></a> 事务的并发调度</h3>
+<p>并发的好处：</p>
 <ul>
 <li>提高吞吐量和资源利用率</li>
 <li>减少等待时间</li>
 </ul>
 <p><strong>当多个事务并发执行时，隔离性可能被违背，这导致即使每个单独的事务都是正确的，但数据库的一致性还是会被破坏。</strong></p>
-<p><strong>调度：</strong>描述的执行顺序，定义了指令在系统中的执行的时间顺序。必须包含所有事务的全部指令，并且这些指令必须保持它们原本事务的顺序。</p>
+<p>**调度：**描述的执行顺序，定义了指令在系统中的执行的时间顺序。必须包含所有事务的全部指令，并且这些指令必须保持它们原本事务的顺序。</p>
 <p>串行调度和并发调度这里就不写了…</p>
 <p><strong>结论：并非所有的并发执行都能得到正确的状态（即保证了数据库的一致性）。</strong></p>
-<h4 id="并发的一些问题"><a href="#并发的一些问题" class="headerlink" title="并发的一些问题"></a>并发的一些问题</h4><ol>
+<h4 id="并发的一些问题"><a class="markdownIt-Anchor" href="#并发的一些问题"></a> 并发的一些问题</h4>
+<ol>
 <li><strong>脏读</strong>： 一个事务读取了另一个事务尚未提交的数据。如果第二个事务回滚，第一事务读取到的数据就会无效。这会导致数据不一致。</li>
 <li><strong>不可重复读</strong>： 在同一事务中，两次读取同一数据得到的结果不同，原因是另一事务在期间修改了数据。</li>
 <li><strong>幻读</strong>：是指在一个事务内，多次查询同一范围的数据时，得到的结果集不一致。这种现象通常发生在并发事务中，当一个事务在读取数据时，另一个事务插入了新的数据行，导致第一个事务在后续读取时发现了新的行。</li>
 </ol>
 <p>我们想要并发调度在某种意义上等价于一个串行调度，这个调度就是<strong>可串行化调度</strong>。</p>
-<h3 id="可串行化调度"><a href="#可串行化调度" class="headerlink" title="可串行化调度"></a>可串行化调度</h3><p>主要考虑的是<strong>冲突可串行化</strong>调度。</p>
+<h3 id="可串行化调度"><a class="markdownIt-Anchor" href="#可串行化调度"></a> 可串行化调度</h3>
+<p>主要考虑的是<strong>冲突可串行化</strong>调度。</p>
 <p><strong>冲突可串行化</strong>指的是一个并发事务调度可以通过交换不冲突的操作顺序，转化为某个<strong>串行调度</strong>，且两个调度的执行结果完全相同。</p>
 <p><strong>冲突的操作顺序</strong>：</p>
 <ul>
@@ -1290,7 +1573,8 @@
 </ul>
 <p>如果调度 S 经过一系列非冲突指令的交换转换成调度 S’，则称 S 和 S‘ 是<strong>冲突等价</strong>的。</p>
 <p>如果调度 S 经过一系列非冲突指令的交换转换成串行调度，则称 S 和 S‘ 是<strong>冲突可串行化</strong>的。</p>
-<h4 id="优先图"><a href="#优先图" class="headerlink" title="优先图"></a>优先图</h4><p>结论：如果优先图中无环，则该调度是可冲突串行化的。</p>
+<h4 id="优先图"><a class="markdownIt-Anchor" href="#优先图"></a> 优先图</h4>
+<p>结论：如果优先图中无环，则该调度是可冲突串行化的。</p>
 <p>边：考虑上面的三种冲突的操作顺序，若满足这三个条件其中之一：</p>
 <ul>
 <li><strong>读-写冲突</strong>：事务 $$T_1$$读取 X 之前，事务 $$T_2$$ 写入 X。</li>
@@ -1299,60 +1583,87 @@
 </ul>
 <p>则插入由$$T_2$$为起点，$$T_1$$为终点的有向边进入优先图。代表$$T_2$$执行完后，$$T_1$$才能执行。</p>
  
-
 <p><strong>要记得起点是先执行的！！</strong></p>
-<h3 id="事务的可恢复性"><a href="#事务的可恢复性" class="headerlink" title="事务的可恢复性"></a>事务的可恢复性</h3><p><strong>可恢复调度</strong>是指一种事务调度方式，其中如果一个事务 $$T_i$$ 依赖于另一个事务 $$T_j$$的修改（即 $$T_i$$读取了 $$T_j$$修改的数据），那么 $$T_j$$ 必须在 $$T_i$$提交之前先提交。</p>
+<h3 id="事务的可恢复性"><a class="markdownIt-Anchor" href="#事务的可恢复性"></a> 事务的可恢复性</h3>
+<p><strong>可恢复调度</strong>是指一种事务调度方式，其中如果一个事务 $$T_i$$ 依赖于另一个事务 $$T_j$$的修改（即 $$T_i$$读取了 $$T_j$$修改的数据），那么 $$T_j$$ 必须在 $$T_i$$提交之前先提交。</p>
 <p>这确保了如果 $$T_j$$ 发生故障并回滚，依赖于它的事务 $$T_i$$ 也可以安全地回滚，避免数据不一致。</p>
 <p><strong>无级联调度</strong>是一种更加严格的可恢复调度。在无级联调度中，一个事务只读取已经提交事务的数据。这意味着，如果一个事务 $$T_i$$  读取了事务 $$T_j$$ 的数据，那么 $$T_j$$必须在 $$T_i$$ 读取数据之前已经提交。这样，即使$$T_j$$失败，$$T_i$$ 也不会受到影响，因为 $$T_i$$  只依赖于已提交的数据。</p>
-<h3 id="事务的隔离性级别"><a href="#事务的隔离性级别" class="headerlink" title="事务的隔离性级别"></a>事务的隔离性级别</h3><ul>
+<h3 id="事务的隔离性级别"><a class="markdownIt-Anchor" href="#事务的隔离性级别"></a> 事务的隔离性级别</h3>
+<ul>
 <li>可串行化</li>
 <li>可重复读</li>
 <li>已提交读</li>
 <li>未提交读</li>
 </ul>
-<h3 id="其他-6"><a href="#其他-6" class="headerlink" title="其他"></a>其他</h3><p>一个事务执行过程中，其正在访问的数据被其他事务所修改，导致处理结果不正确，这是由于违背了事务的何种特性而引起的<br>A、隔离性 B、 一致性 C、原子性 D、 持久性<br>正确答案：A</p>
-<p>在数据库恢复时，对尚未做完的事务执行（ ）。<br>A. REDO处理<br>B. UNDO处理<br>C. ABORT处理<br>D. ROLLBACK处理<br>正确答案： B</p>
-<p>若事务中有表达式a&#x2F;b，如果b&#x3D;0时会产生的故障属于（ ）。<br>A. 事务故障<br>B. 系统故障<br>C. 介质故障<br>D. 死机<br>正确答案： A</p>
-<p>若系统在运行过程中，由于某种硬件故障，使存储在外存上的数据部分损失或全部损失，这种情况称为（ ）。<br>A. 事务故障<br>B. 系统故障<br>C. 介质故障<br>D. 运行故障<br>正确答案： C</p>
-<p>数据库恢复的基本原理是利用冗余数据。<br>A. 正确<br>B. 错误<br>正确答案： A</p>
-
-
-
-
-<h2 id="第十八章-并发控制"><a href="#第十八章-并发控制" class="headerlink" title="第十八章 并发控制"></a>第十八章 并发控制</h2><p>悲观的并发控制就是一检测到出事就立马回滚。</p>
+<h3 id="其他-7"><a class="markdownIt-Anchor" href="#其他-7"></a> 其他</h3>
+<p>一个事务执行过程中，其正在访问的数据被其他事务所修改，导致处理结果不正确，这是由于违背了事务的何种特性而引起的<br>
+A、隔离性 B、 一致性 C、原子性 D、 持久性<br>
+正确答案：A</p>
+<p>在数据库恢复时，对尚未做完的事务执行（ ）。<br>
+A. REDO处理<br>
+B. UNDO处理<br>
+C. ABORT处理<br>
+D. ROLLBACK处理<br>
+正确答案： B</p>
+<p>若事务中有表达式a/b，如果b=0时会产生的故障属于（ ）。<br>
+A. 事务故障<br>
+B. 系统故障<br>
+C. 介质故障<br>
+D. 死机<br>
+正确答案： A</p>
+<p>若系统在运行过程中，由于某种硬件故障，使存储在外存上的数据部分损失或全部损失，这种情况称为（ ）。<br>
+A. 事务故障<br>
+B. 系统故障<br>
+C. 介质故障<br>
+D. 运行故障<br>
+正确答案： C</p>
+<p>数据库恢复的基本原理是利用冗余数据。<br>
+A. 正确<br>
+B. 错误<br>
+正确答案： A</p>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102173104107.png" srcset="/img/loading.gif" lazyload class title="image-20250102173104107">
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102173203172.png" srcset="/img/loading.gif" lazyload class title="image-20250102173203172">
+<h2 id="第十八章-并发控制"><a class="markdownIt-Anchor" href="#第十八章-并发控制"></a> 第十八章 并发控制</h2>
+<p>悲观的并发控制就是一检测到出事就立马回滚。</p>
 <blockquote>
 <p>跟我的人生一样…</p>
 </blockquote>
-<h3 id="封锁协议（悲观）"><a href="#封锁协议（悲观）" class="headerlink" title="封锁协议（悲观）"></a>封锁协议（悲观）</h3><p>锁有两种：</p>
+<h3 id="封锁协议悲观"><a class="markdownIt-Anchor" href="#封锁协议悲观"></a> 封锁协议（悲观）</h3>
+<p>锁有两种：</p>
 <ul>
 <li><strong>共享锁（S）</strong>：是读取数据用的。</li>
 <li><strong>排他锁（X）</strong>：是写数据用的。</li>
 </ul>
 <p>只有共享锁和共享锁之间是相容的，其他情况都不相容。</p>
 <p>数据项上可同时被多个事务持有共享锁（S），此时的排他锁必须一直等到这些事务都释放共享锁才能获得。</p>
-<h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>若假设事务$$T_i$$在等待事务$$T_j$$释放关于数据 X 的锁，与此同时，事务$$T_j$$在等待事务$$T_i$$释放关于数据 Y 的锁，<strong>两个事务之间互相等待，就发生了死锁。</strong></p>
+<h4 id="死锁"><a class="markdownIt-Anchor" href="#死锁"></a> 死锁</h4>
+<p>若假设事务$$T_i$$在等待事务$$T_j$$释放关于数据 X 的锁，与此同时，事务$$T_j$$在等待事务$$T_i$$释放关于数据 Y 的锁，<strong>两个事务之间互相等待，就发生了死锁。</strong></p>
 <p>一旦死锁发生时，就必须在这两个事务中选择一个牺牲者进行回滚。一旦其中一个事务被回滚，另一个事务就可以获得正在等待的锁了。</p>
-<h4 id="死锁检测"><a href="#死锁检测" class="headerlink" title="死锁检测"></a>死锁检测</h4><p>可以利用等待图来检测是否产生死锁（有环）。</p>
+<h4 id="死锁检测"><a class="markdownIt-Anchor" href="#死锁检测"></a> 死锁检测</h4>
+<p>可以利用等待图来检测是否产生死锁（有环）。</p>
 <p>若假设事务$$T_i$$在等待事务$$T_j$$释放关于数据 X 的锁，那么在等待图内就有起点在$$T_i$$终点在$$T_j$$的有向边。</p>
 <blockquote>
 <p>注意：等待图和前面讲的优先图的方向其实是反的… 优先图是等待的事务在有向边终点，而等待图是等待的事务在起点。</p>
 </blockquote>
-<h4 id="死锁恢复"><a href="#死锁恢复" class="headerlink" title="死锁恢复"></a>死锁恢复</h4><p>选择牺牲者，回滚牺牲者的事务…</p>
+<h4 id="死锁恢复"><a class="markdownIt-Anchor" href="#死锁恢复"></a> 死锁恢复</h4>
+<p>选择牺牲者，回滚牺牲者的事务…</p>
 <p>因为选择牺牲者可能基于某个指标，所以可能存在某个事务一直被牺牲，可能会产生饥饿现象。</p>
 <p>死锁不太像会考…</p>
-<h4 id="两阶段封锁协议"><a href="#两阶段封锁协议" class="headerlink" title="两阶段封锁协议"></a>两阶段封锁协议</h4><p>事务分成<strong>增长阶段（获得锁）</strong>和<strong>缩减阶段（释放锁）</strong>。</p>
+<h4 id="两阶段封锁协议"><a class="markdownIt-Anchor" href="#两阶段封锁协议"></a> 两阶段封锁协议</h4>
+<p>事务分成<strong>增长阶段（获得锁）<strong>和</strong>缩减阶段（释放锁）</strong>。</p>
 <p>事务最后一次获得锁的位置称为<strong>封锁点</strong>。</p>
 <p>即事务不可以<code>lock -- unlock -- lock --unlock</code>，只可以<code>lock -- lock -- unlock --unlock</code>。</p>
 <p>两阶段封锁协议保证了冲突可串行化，因为假设冲突不可串行化，则优先图存在环，证明如下图：</p>
-
-
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102120040632.png" srcset="/img/loading.gif" lazyload class title="image-20250102120040632">
 <p>但是两阶段封锁协议<strong>不保证死锁</strong>，例如在两个事务的增长阶段就可以发生死锁了…</p>
 <p>并且也<strong>不保证无级联调度</strong>，因为两阶段协议没有对于提交有限制。</p>
 <blockquote>
 <p>无级联调度其实就是已提交读。就是只能读取提交之后的数据（写到磁盘内），否则该数据若回滚则读取该数据的事务也需要回滚。</p>
 </blockquote>
-<h4 id="严格两阶段封锁协议"><a href="#严格两阶段封锁协议" class="headerlink" title="严格两阶段封锁协议"></a>严格两阶段封锁协议</h4><p>为了保证无级联调度，严格两阶段封锁协议<strong>要求事务只能在提交之后释放排他锁</strong>。以满足已提交读。</p>
-<h3 id="基于时间戳的协议（悲观）"><a href="#基于时间戳的协议（悲观）" class="headerlink" title="基于时间戳的协议（悲观）"></a>基于时间戳的协议（悲观）</h3><p>这个协议保证了<strong>冲突可串行化</strong>和<strong>无死锁（因为不会发生等待）</strong>。</p>
+<h4 id="严格两阶段封锁协议"><a class="markdownIt-Anchor" href="#严格两阶段封锁协议"></a> 严格两阶段封锁协议</h4>
+<p>为了保证无级联调度，严格两阶段封锁协议<strong>要求事务只能在提交之后释放排他锁</strong>。以满足已提交读。</p>
+<h3 id="基于时间戳的协议悲观"><a class="markdownIt-Anchor" href="#基于时间戳的协议悲观"></a> 基于时间戳的协议（悲观）</h3>
+<p>这个协议保证了<strong>冲突可串行化</strong>和<strong>无死锁（因为不会发生等待）</strong>。</p>
 <p>但是可能会发生不必要的回滚操作和饿死。</p>
 <p>对于每个事务，根据<strong>系统时钟</strong>或者<strong>逻辑计数器</strong>分配一个时间戳。</p>
 <p>基本思想：</p>
@@ -1360,63 +1671,71 @@
 <li>开始早的事务<strong>不能读</strong>开始晚的事务写的数据。</li>
 <li>开始早的事务<strong>不能写</strong>开始晚的事务已经读过或写过的数据。</li>
 </ul>
-<h4 id="读操作（Read-Operation）"><a href="#读操作（Read-Operation）" class="headerlink" title="读操作（Read Operation）"></a><strong>读操作（Read Operation）</strong></h4><p>当事务 $$T_i$$ 试图读取数据项 X 时：</p>
+<h4 id="读操作read-operation"><a class="markdownIt-Anchor" href="#读操作read-operation"></a> <strong>读操作（Read Operation）</strong></h4>
+<p>当事务 $$T_i$$ 试图读取数据项 X 时：</p>
 <ul>
 <li>检查 X 的最后<strong>写时间戳</strong> W(X)。</li>
 <li>如果 $$W(X) &gt; TS(T_i)$$，表示有一个较晚的事务已经修改了 X，此时 $$T_i$$读取到的数据可能是不一致的，因此 <strong>拒绝</strong> $$T_i$$ 的读操作，并 <strong>回滚</strong> $$T_i$$。</li>
-<li>否则，允许 $$T_i$$ 读取 X，并更新 X 的读时间戳 $$R(X) &#x3D; \max(R(X), TS(T_i))$$。</li>
+<li>否则，允许 $$T_i$$ 读取 X，并更新 X 的读时间戳 $$R(X) = \max(R(X), TS(T_i))$$。</li>
 </ul>
-<h4 id="写操作（Write-Operation）"><a href="#写操作（Write-Operation）" class="headerlink" title="写操作（Write Operation）"></a><strong>写操作（Write Operation）</strong></h4><p>当事务 $$T_i$$ 试图写入数据项 X 时：</p>
+<h4 id="写操作write-operation"><a class="markdownIt-Anchor" href="#写操作write-operation"></a> <strong>写操作（Write Operation）</strong></h4>
+<p>当事务 $$T_i$$ 试图写入数据项 X 时：</p>
 <ul>
 <li>检查 X 的最后读时间戳 R(X) 和最后写时间戳 W(X)。</li>
 <li>如果 $$R(X) &gt; TS(T_i)$$ 或 $$W(X) &gt; TS(T_i)$$，表示有一个较晚的事务已经读取或修改了 X，此时 <strong>拒绝</strong> $$T_i$$ 的写操作，并 <strong>回滚</strong> $$T_i$$。</li>
-<li>否则，允许 $$T_i$$ 写入 X，并更新 X 的写时间戳 $$W(X) &#x3D; TS(T_i)$$。</li>
+<li>否则，允许 $$T_i$$ 写入 X，并更新 X 的写时间戳 $$W(X) = TS(T_i)$$。</li>
 </ul>
-<h4 id="Thomas-写规则"><a href="#Thomas-写规则" class="headerlink" title="Thomas 写规则"></a>Thomas 写规则</h4><p>大部分都跟时间戳排序一样，不过在<strong>写操作</strong>中，如果$$W(X) &gt; TS(T_i)$$，则不选择回滚，而是忽略。</p>
-<h3 id="基于有效性检查的协议（乐观）"><a href="#基于有效性检查的协议（乐观）" class="headerlink" title="基于有效性检查的协议（乐观）"></a>基于有效性检查的协议（乐观）</h3><blockquote>
+<h4 id="thomas-写规则"><a class="markdownIt-Anchor" href="#thomas-写规则"></a> Thomas 写规则</h4>
+<p>大部分都跟时间戳排序一样，不过在<strong>写操作</strong>中，如果$$W(X) &gt; TS(T_i)$$，则不选择回滚，而是忽略。</p>
+<h3 id="基于有效性检查的协议乐观"><a class="markdownIt-Anchor" href="#基于有效性检查的协议乐观"></a> 基于有效性检查的协议（乐观）</h3>
+<blockquote>
 <p>tmd ppt就三页，而且我书上没有画任何笔记。</p>
 </blockquote>
 <p><strong>可串行化</strong>和<strong>避免级联回滚</strong>。</p>
 <p><strong>基于有效性检查的协议</strong>假设事务之间很少发生冲突，因此允许事务自由执行，直到提交阶段才进行冲突检测和验证。</p>
 <p>为了判断有效性，需要增加三个时间戳：</p>
 <ol>
-<li>**StartTS(Ti)**：事务Ti开始的时间。</li>
-<li>**ValidationTS(Ti)**：事务Ti进行有效性检查的时间。</li>
-<li>**FinishTS(Ti)**：事务Ti完成其写阶段的时间。</li>
+<li><strong>StartTS(Ti)</strong>：事务Ti开始的时间。</li>
+<li><strong>ValidationTS(Ti)</strong>：事务Ti进行有效性检查的时间。</li>
+<li><strong>FinishTS(Ti)</strong>：事务Ti完成其写阶段的时间。</li>
 </ol>
 <p>通常分为三个阶段：</p>
 <ol>
-<li><p><strong>读阶段</strong></p>
+<li>
+<p><strong>读阶段</strong></p>
 <p>读取各项数据，并且将其保存在局部变量中。这时候执行的 write 操作都是对局部变量进行的。</p>
 </li>
-<li><p><strong>有效性检查阶段</strong></p>
+<li>
+<p><strong>有效性检查阶段</strong></p>
 <p>判断读阶段的 write 操作是否满足有效性，满足的话进入写阶段；不满足则回滚。</p>
 <p>事务 Ti 的有效性检查时对于满足 TS(Tk) &lt; TS(Ti) 的所有事务 Tk 需满足下列条件的其中一个：</p>
 <ol>
-<li><p><strong>FinishTS(Tk) &lt; StartTS(Ti)</strong></p>
+<li>
+<p><strong>FinishTS(Tk) &lt; StartTS(Ti)</strong></p>
 <p>即事务 Tk 在事务 Ti 开始之前已经完成执行了。</p>
 </li>
-<li><p>Tk 所写的数据项集合和 Ti 所读的数据项集合并不相交，并且在 Ti 开始有效性检查之前，Tk 已经完成写阶段了，即**(StartTS(Ti) &lt; FinishTS(Tk) &lt; Validation(Ti))**。</p>
+<li>
+<p>Tk 所写的数据项集合和 Ti 所读的数据项集合并不相交，并且在 Ti 开始有效性检查之前，Tk 已经完成写阶段了，即**(StartTS(Ti) &lt; FinishTS(Tk) &lt; Validation(Ti))**。</p>
 </li>
 </ol>
 </li>
-<li><p><strong>写阶段</strong></p>
+<li>
+<p><strong>写阶段</strong></p>
 <p>将局部变量的 write 操作结果拷入到数据库中。</p>
 </li>
 </ol>
-<h3 id="多版本机制"><a href="#多版本机制" class="headerlink" title="多版本机制"></a>多版本机制</h3><p>每个 write (Q) 的操作<strong>就创建一个 Q 的新版本</strong>。</p>
+<h3 id="多版本机制"><a class="markdownIt-Anchor" href="#多版本机制"></a> 多版本机制</h3>
+<p>每个 write (Q) 的操作<strong>就创建一个 Q 的新版本</strong>。</p>
 <p>感觉不太重要。</p>
-<h3 id="其他-7"><a href="#其他-7" class="headerlink" title="其他"></a>其他</h3>
-
-
-
-
-
-
-
-
-
-<h2 id="第十九章-恢复系统"><a href="#第十九章-恢复系统" class="headerlink" title="第十九章 恢复系统"></a>第十九章 恢复系统</h2><h3 id="恢复与原子性"><a href="#恢复与原子性" class="headerlink" title="恢复与原子性"></a>恢复与原子性</h3><p>使用最广泛的数据库修改的结构就是<strong>日志</strong>。</p>
+<h3 id="其他-8"><a class="markdownIt-Anchor" href="#其他-8"></a> 其他</h3>
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102173345056.png" srcset="/img/loading.gif" lazyload class title="image-20250102173345056">
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102173436119.png" srcset="/img/loading.gif" lazyload class title="image-20250102173436119">
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102173456720.png" srcset="/img/loading.gif" lazyload class title="image-20250102173456720">
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102173533214.png" srcset="/img/loading.gif" lazyload class title="image-20250102173533214">
+<img src="/2025/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/01/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9/image-20250102173611024.png" srcset="/img/loading.gif" lazyload class title="image-20250102173611024">
+<h2 id="第十九章-恢复系统"><a class="markdownIt-Anchor" href="#第十九章-恢复系统"></a> 第十九章 恢复系统</h2>
+<h3 id="恢复与原子性"><a class="markdownIt-Anchor" href="#恢复与原子性"></a> 恢复与原子性</h3>
+<p>使用最广泛的数据库修改的结构就是<strong>日志</strong>。</p>
 <p>日志是<strong>日志记录</strong>的序列。</p>
 <p><strong>更新日志记录</strong>具有以下字段：&lt;$$T_i$$, $$X_j$$,$$V_1$$,$$V_2$$&gt;。</p>
 <ul>
@@ -1434,37 +1753,49 @@
 <p>每次事务执行写操作时，必须在数据库修改前建立该次写操作的日志记录并把它加到日志中。再实际执行写数据库。</p>
 <p>利用日志来恢复数据。</p>
 <p>日志的恢复原理是<strong>利用了冗余</strong>数据。</p>
-<h3 id="使用日志重做和撤销事务"><a href="#使用日志重做和撤销事务" class="headerlink" title="使用日志重做和撤销事务"></a>使用日志重做和撤销事务</h3><h4 id="重做（redo-T-i-）"><a href="#重做（redo-T-i-）" class="headerlink" title="重做（redo($$T_i$$)）"></a>重做（redo($$T_i$$)）</h4><p>这个过程将事务$$T_i$$更新过的数据项的值都设为<strong>新值</strong>。</p>
+<h3 id="使用日志重做和撤销事务"><a class="markdownIt-Anchor" href="#使用日志重做和撤销事务"></a> 使用日志重做和撤销事务</h3>
+<h4 id="重做redot_i"><a class="markdownIt-Anchor" href="#重做redot_i"></a> 重做（redo($$T_i$$)）</h4>
+<p>这个过程将事务$$T_i$$更新过的数据项的值都设为<strong>新值</strong>。</p>
 <ul>
 <li>如果日志中只有&lt;$$T_i$$​ start&gt;语句并且有&lt;$$T_i$$ commit&gt;或&lt;$$T_i$$ abort&gt;语句，需要<strong>重做</strong>。</li>
 </ul>
-<h4 id="撤销（undo-T-i-）"><a href="#撤销（undo-T-i-）" class="headerlink" title="撤销（undo($$T_i$$)）"></a>撤销（undo($$T_i$$)）</h4><p>该过程将事务$$T_i$$更新过的数据项的值都设为<strong>旧值</strong>。</p>
+<h4 id="撤销undot_i"><a class="markdownIt-Anchor" href="#撤销undot_i"></a> 撤销（undo($$T_i$$)）</h4>
+<p>该过程将事务$$T_i$$更新过的数据项的值都设为<strong>旧值</strong>。</p>
 <ul>
-<li><p>撤销过程需要写日志记录！这个特殊的日志记录是 read-only 记录。</p>
+<li>
+<p>撤销过程需要写日志记录！这个特殊的日志记录是 read-only 记录。</p>
 <p>类似&lt;$$T_i$$, $$X_j$$, $$V_1$$&gt;，这种日志也叫<strong>补偿日志记录</strong>。</p>
 </li>
-<li><p>完成撤销操作之后需要增加&lt;$$T_i$$, abort&gt;语句，表示 undo 完成了。</p>
+<li>
+<p>完成撤销操作之后需要增加&lt;$$T_i$$, abort&gt;语句，表示 undo 完成了。</p>
 </li>
-<li><p>如果日志中只有&lt;$$T_i$$ start&gt;语句并且没有&lt;$$T_i$$ commit&gt;或&lt;$$T_i$$ abort&gt;语句，需要<strong>撤销</strong>。</p>
+<li>
+<p>如果日志中只有&lt;$$T_i$$ start&gt;语句并且没有&lt;$$T_i$$ commit&gt;或&lt;$$T_i$$ abort&gt;语句，需要<strong>撤销</strong>。</p>
 </li>
 </ul>
 <p>每个事务在日志中，一定会以 &lt;$$T_i$$, commit&gt;或者&lt;$$T_i$$, abort&gt;终止。</p>
-<h3 id="检查点"><a href="#检查点" class="headerlink" title="检查点"></a>检查点</h3><p>在执行检查点的过程中将所有修改过的缓冲块（存在内存）全部写入磁盘（永久保存）。</p>
+<h3 id="检查点"><a class="markdownIt-Anchor" href="#检查点"></a> 检查点</h3>
+<p>在执行检查点的过程中将所有修改过的缓冲块（存在内存）全部写入磁盘（永久保存）。</p>
 <p>然后在日志中加入&lt; check point &gt;语句。</p>
 <p>提高了<strong>数据恢复</strong>的效率。</p>
 <p>假设事务$$T_i$$在日志中的&lt; check point &gt;语句前已经有&lt;$$T_i$$, commit&gt;或者&lt;$$T_i$$, abort&gt;语句，则数据恢复的时候可以不用对事务$$T_i$$进行 redo 操作。</p>
-<h3 id="恢复算法（感觉本章重点）"><a href="#恢复算法（感觉本章重点）" class="headerlink" title="恢复算法（感觉本章重点）"></a>恢复算法（感觉本章重点）</h3><h4 id="事务回滚"><a href="#事务回滚" class="headerlink" title="事务回滚"></a>事务回滚</h4><p>正常情况下的事务$$T_i$$回滚流程：</p>
+<h3 id="恢复算法感觉本章重点"><a class="markdownIt-Anchor" href="#恢复算法感觉本章重点"></a> 恢复算法（感觉本章重点）</h3>
+<h4 id="事务回滚"><a class="markdownIt-Anchor" href="#事务回滚"></a> 事务回滚</h4>
+<p>正常情况下的事务$$T_i$$回滚流程：</p>
 <ol>
-<li>从后往前检查日志，对于发现的&lt;$$T_i$$, $$X_j$$,$$V_1$$,$$V_2$$&gt;语句记录：<ul>
+<li>从后往前检查日志，对于发现的&lt;$$T_i$$, $$X_j$$,$$V_1$$,$$V_2$$&gt;语句记录：
+<ul>
 <li>将值$$V_1$$写入数据项$$X_j$$。</li>
 <li>往日志中写入&lt;$$T_i$$, $$X_j$$, $$V_1$$&gt;这种 read-only 记录（也叫<strong>补偿日志记录</strong>）。</li>
 </ul>
 </li>
 <li>一旦发现&lt;$$T_i$$ start&gt;语句，就停止算法，并且往日志中写入&lt;$$T_i$$, abort&gt;语句。</li>
 </ol>
-<h4 id="系统崩溃后的恢复"><a href="#系统崩溃后的恢复" class="headerlink" title="系统崩溃后的恢复"></a>系统崩溃后的恢复</h4><p>分为<strong>重做阶段</strong>（从上到下）和<strong>撤销阶段</strong>（从下到上）。</p>
+<h4 id="系统崩溃后的恢复"><a class="markdownIt-Anchor" href="#系统崩溃后的恢复"></a> 系统崩溃后的恢复</h4>
+<p>分为<strong>重做阶段</strong>（从上到下）和<strong>撤销阶段</strong>（从下到上）。</p>
 <ol>
-<li><p><strong>重做阶段</strong></p>
+<li>
+<p><strong>重做阶段</strong></p>
 <p>系统通过从最后一个检查点开始从上到下扫描日志来重演所有事务的更新。</p>
 <ul>
 <li>初始化 undo-list ，将检查点时刻未终止的事务加入 undo-list。</li>
@@ -1474,7 +1805,8 @@
 </ul>
 <p>此时 undo-list 中的事务是发生故障时还没终止的事务。</p>
 </li>
-<li><p><strong>撤销阶段</strong></p>
+<li>
+<p><strong>撤销阶段</strong></p>
 <p>系统回滚 undo-list 中的事务。</p>
 <ul>
 <li>一旦发现 undo-list 中的事务的日志记录，就执行撤销操作。</li>
@@ -1491,7 +1823,7 @@
 <p>连接代价</p>
 <p><strong>数据模型</strong>是数据库的核心</p>
 <p>数据模型是<strong>数据结构</strong> <strong>数据操作</strong> <strong>完整性约束</strong></p>
-<p>关系模型的完整性是<strong>实体完整性</strong> <strong>用户自定义完整性</strong> <strong>参照完整性</strong> </p>
+<p>关系模型的完整性是<strong>实体完整性</strong> <strong>用户自定义完整性</strong> <strong>参照完整性</strong></p>
 <p>物理数据独立性</p>
 <p><strong>逻辑层的简单实现可能在物理层很复杂，但是逻辑层的用户并不清楚。</strong></p>
 <p>逻辑数据独立性</p>
@@ -1630,6 +1962,11 @@
 
 
   
+
+
+  
+  
+
 
 
 
