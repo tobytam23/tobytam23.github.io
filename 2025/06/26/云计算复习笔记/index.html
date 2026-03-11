@@ -1,0 +1,3394 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>云计算复习笔记 | Toby.dev</title>
+  <meta name="description" content="作者：哈利波特👑">
+  
+  <!-- 載入 Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
+  
+  <!-- 載入 Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- 載入 MathJax 以支援 LaTeX 公式渲染 -->
+  <script>
+    window.MathJax = {
+      tex: {
+        // 維持標準 LaTeX 分隔符：$...$ 為行內，$$...$$ 為區塊
+        // 這裡將 $$ 也設定為 inlineMath，確保行內公式不會自動換行
+        inlineMath: [['$$', '$$'], ['$', '$'], ['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body class="bg-slate-50 dark:bg-[#0a0f1a] text-slate-900 dark:text-slate-300 font-sans selection:bg-blue-200 dark:selection:bg-cyan-500/30 selection:text-blue-900 dark:selection:text-cyan-100 transition-colors duration-500 min-h-screen">
+  <div id="app-container">
+    
+    <!-- 導覽列 -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent">
+      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <a href="../../../../index.html" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors flex items-center gap-1">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span class="hidden sm:inline text-sm font-medium">返回首頁</span>
+          </a>
+          <div class="h-4 w-px bg-slate-300 dark:bg-slate-700 hidden sm:block"></div>
+          <span class="font-bold text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <i data-lucide="terminal" class="w-4 h-4 text-blue-600 dark:text-cyan-400"></i>
+            Toby<span class="text-blue-600 dark:text-cyan-400">.dev</span>
+          </span>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="theme-toggle" class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-800 transition-all hover:scale-105 active:scale-95" aria-label="切換深淺色模式">
+            <i data-lucide="sun" id="icon-sun" class="w-4 h-4 hidden"></i>
+            <i data-lucide="moon" id="icon-moon" class="w-4 h-4 block"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 版面佈局：左側文章主體 (flex-1) + 右側側邊導航 (w-64) -->
+    <div class="max-w-6xl mx-auto px-6 flex items-start justify-center gap-12 pt-32 pb-24">
+      
+      <!-- 文章主體區塊 -->
+      <main class="w-full max-w-3xl min-w-0">
+        <header class="mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight mb-6 transition-colors mt-8">云计算复习笔记</h1>
+          <div class="flex flex-wrap items-center gap-4 py-6 border-y border-slate-200 dark:border-slate-800 transition-colors">
+            <div class="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+              <div class="flex items-center gap-2">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>2025年6月26日</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+                <span>閱讀時間約 253 分鐘</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex items-center gap-3 text-slate-600 dark:text-slate-400">
+            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center overflow-hidden">
+              <i data-lucide="terminal-square" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-slate-900 dark:text-white">哈利波特👑</div>
+              <div class="text-sm text-slate-500 dark:text-slate-500">作者</div>
+            </div>
+          </div>
+        </header>
+
+        <div class="w-full aspect-[21/9] md:aspect-[21/9] bg-slate-100 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 mb-12 flex items-center justify-center overflow-hidden transition-colors relative">
+          <div class="absolute inset-0 opacity-[0.05] dark:opacity-[0.1] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-lime-100 via-green-50 to-emerald-100 dark:from-lime-950 dark:via-slate-900 dark:to-emerald-950"></div>
+          <div class="relative text-slate-900/60 dark:text-white/50 font-mono text-4xl md:text-6xl font-bold opacity-70 select-none px-6 text-center break-words">云计算复习笔记</div>
+        </div>
+
+        <article id="article-content" class="prose prose-slate dark:prose-invert prose-lg max-w-none
+          prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-900 dark:prose-headings:text-white
+          prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-slate-200 dark:prose-h2:border-slate-800 prose-h2:pb-4 scroll-mt-24
+          prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 scroll-mt-24
+          prose-h4:text-xl prose-h4:mt-6 prose-h4:mb-3 scroll-mt-24
+          prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6
+          prose-li:text-slate-700 dark:prose-li:text-slate-300
+          prose-a:text-blue-600 dark:prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:underline
+          prose-blockquote:border-l-4 prose-blockquote:border-blue-500 dark:prose-blockquote:border-cyan-500 prose-blockquote:bg-blue-50/50 dark:prose-blockquote:bg-cyan-900/10 prose-blockquote:py-1 prose-blockquote:px-5 prose-blockquote:rounded-r-lg prose-blockquote:font-normal prose-blockquote:not-italic
+          prose-code:text-blue-600 dark:prose-code:text-cyan-400 prose-code:bg-slate-100 dark:prose-code:bg-slate-800/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-code:font-mono prose-code:text-sm
+          prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800/80 prose-pre:text-slate-800 dark:prose-pre:text-slate-200 prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-700 prose-pre:rounded-xl prose-pre:shadow-sm prose-pre:p-4
+          prose-table:w-full prose-table:border-collapse
+          prose-th:border prose-th:border-slate-300 dark:prose-th:border-slate-600 prose-th:bg-slate-100 dark:prose-th:bg-slate-800 prose-th:px-4 prose-th:py-3 prose-th:text-left
+          prose-td:border prose-td:border-slate-200 dark:prose-td:border-slate-700 prose-td:px-4 prose-td:py-3 prose-td:text-left
+          prose-img:rounded-xl prose-img:border prose-img:border-slate-200 dark:prose-img:border-slate-800 prose-img:shadow-md prose-img:mx-auto
+          transition-colors duration-500">
+          
+          <p>我理解的云计算就是：</p>
+
+          <p>之前跑任何程序都需要在自己电脑上跑，自己电脑上有数据，有很好的计算能力，但是有云计算可以将数据存储在网盘上，运行程序在远程服务器，计算能力也可以按需租用。</p>
+
+          <h2>第一章：概述</h2>
+
+          <h3>什么是云计算？</h3>
+
+          <blockquote><p>公式：云计算 = 数据 * (软件 + 平台 + 基础设施) * 服务</p></blockquote>
+
+          <p>云计算的价值是建立在大量的数据基础之上，再搭配软件、平台、基础设施的组合以及提供服务，构建了一套完整的系统。</p>
+
+          <ol>
+            <li><strong>数据（Data）</strong>：描述数据量急剧增长的现象，比如传感器、物联网设备大量产生数据。</li>
+            <li><strong>软件（Software）</strong>：指的是处理这些数据的软件工具，比如：搜索数据，分析数据。</li>
+            <li><strong>平台（Platform）</strong>：平台提供的是一整套通用的工具和环境，让用户可以在其上开发应用、部署系统。</li>
+            <li><strong>基础设施（Infrastructure）</strong>：指的是最底层的物理资源，比如：存储设备（硬盘、云盘等），计算资源（CPU、GPU、内存等）。</li>
+            <li><strong>服务（Service）</strong>：把传统的 IT 产品变成了“服务”模式。比如过去你要买一套软件，现在可以直接在线使用软件（即 SaaS）。</li>
+          </ol>
+
+          <blockquote><p>云计算就像一个大型“网络超市”，<br>
+           - 数据是原材料；<br>
+           - 软件是加工工具；<br>
+           - 平台是操作台；<br>
+           - 基础设施是工厂；<br>
+           - 服务是快递，把这些都包装好送到你手里。</p></blockquote>
+
+          <h3>技术特点与优缺点</h3>
+
+          <blockquote><p>优点：按需扩展，不需要维护硬件。<br>缺点：数据放数据中心不安全，网络延迟。</p></blockquote>
+
+          <ul>
+            <li><strong>按需自助服务：</strong>比如：你想要一台云电脑，只要点几下鼠标就能自动开通，像用自助贩卖机买东西一样方便。</li>
+            <li><strong>广泛的网络访问：</strong>不管是手机、平板还是电脑，只要能连上网，就能使用云里的内容，像看在线视频一样方便。</li>
+            <li><strong>资源池化和多租户：</strong>云厂商把很多计算资源集中起来，用户之间共享这些资源，但每个人的“账号和数据”是隔离的，安全分开。</li>
+            <li><strong>快速弹性伸缩：</strong>对于用户来说资源是“无限的”。</li>
+            <li><strong>服务可测量：</strong>需要知道你使用了多少资源，需要可量化。</li>
+          </ul>
+
+          <h4>多租户</h4>
+
+          <p><img src="./9d7fd3c5c464b555a1ad5f4339d8e70.jpg" alt="多租户示意图" /></p>
+
+          <p>将资源集中起来，每个用户共享这些资源，但是每个用户的数据是隔离的。</p>
+
+          <p>就像共享充电宝，大家在用同一批资源，但互不影响。</p>
+
+          <h3>风险与挑战</h3>
+
+          <ul>
+            <li><strong>网络空间安全风险：</strong>把数据放在远程数据中心（云端），增加了安全风险。<strong>尤其是多租户情况下，大家的底层硬件资源是共享的</strong>。</li>
+          </ul>
+
+          <blockquote><p>信任边界重叠 ： <strong>共享物理IT资源的云用户的信任边界是重叠的</strong>。 恶意的云服务用户将攻击目标设定为共享的IT资源，从而损害其他共享信任边界的云服务用户或IT资源。</p></blockquote>
+
+          <ul>
+            <li><strong>运营管理控制风险：</strong>降低了对资源的控制能力。</li>
+            <li><strong>软件移植性问题：</strong>例如阿里云和腾讯云的硬件配置不同，难以移植。</li>
+            <li><strong>跨地区法律风险：</strong>例如数据只能存放在自己国家内。</li>
+          </ul>
+
+          <h3>服务和部署模型</h3>
+
+          <p><img src="./67fbb982a6c0b089fceebbe26c4ad3b.jpg" alt="服务模型" /></p>
+
+          <blockquote><p>假设你想吃一顿炒饭：<br>
+           Iaas：我租厨房自己炒！<br>
+           PaaS：帮你备好锅和调料，只需要来炒！<br>
+           SaaS：直接点一份外卖，啥都不用做！</p></blockquote>
+
+          <h4>Iaas（基础设施作为服务）</h4>
+
+          <p>其实主要就是<strong>物理资源层</strong>和<strong>虚拟化资源层</strong>，将<strong>硬件资源</strong>作为服务提供给用户。</p>
+
+          <p>主要技术：<strong>虚拟化技术</strong>、<strong>资源动态管理和调度技术</strong>。</p>
+
+          <p>也可以通过租物理服务器来实现（不虚拟化），但是就会没有云特性了。</p>
+
+          <h4>Paas（平台作为服务）</h4>
+
+          <p>向用户交付的是已经<strong>设置好的 “就绪可用” 的环境</strong>。</p>
+
+          <p>提供应用软件的开发、测试、部署、运行环境。</p>
+
+          <p>主要技术：<strong>分布式文件系统</strong>、<strong>分布式数据库</strong>、<strong>并行计算框架</strong>。</p>
+
+          <h4>Saas（软件作为服务）</h4>
+
+          <p>云用户对于 Saas 的管理权限十分低。（因为都实现好了，当然 Iaas 管理权限最高）</p>
+
+          <p>将运行<strong>在云中的软件的功能</strong>交付给用户。</p>
+
+          <p><img src="./image-20250617162039149.png" alt="SaaS示意图1" /></p>
+
+          <p><img src="./397b33e585102f48bae07713c135d61.jpg" alt="SaaS示意图2" /></p>
+
+          <p><img src="./197b25cb5b6979f4fbd8f41fa30efd5.jpg" alt="SaaS示意图3" /></p>
+
+          <p><img src="./image-20250625120326299.png" alt="云部署模型示意图" style="zoom:67%;" /></p>
+
+          <h3>云部署模型</h3>
+
+          <ul>
+            <li><strong>公有云：</strong>大家都可用。</li>
+            <li><strong>社区云：</strong>由<strong>特定组织或行业的多个用户</strong>共享使用。例如 <code>easyhpc</code> 的云计算课程作业只有选了这门课的才可以交。</li>
+            <li><strong>私有云：</strong>只供一个组织自己使用。</li>
+            <li><strong>混合云：</strong>结合公有云和私有云，<strong>核心数据放私有云，普通业务放公有云</strong>。</li>
+          </ul>
+
+          <p><img src="./fe96c8b1f3fc900961b62706e3f0aff.jpg" alt="部署模型" /></p>
+
+          <h3>SLA 和 QoS</h3>
+
+          <p>SLA 是云服务商和用户之间签的<strong>服务保证合同</strong>。</p>
+
+          <p>QoS 特性有以下指标：</p>
+
+          <ul>
+            <li><strong>可用性：</strong>关注的是出错后需要多少时间修复。</li>
+            <li><strong>可用性比率：</strong>运行时间的百分比。例如：<strong>至少 99.5% 的运行时间</strong>。</li>
+            <ul>
+              <li><strong>停用时间指标：</strong>停用时间是指在某个可用性等级下，服务“最多可以宕机”的时间。例如：某云数据库服务承诺“99.99%”可用性，表示一年最多只能宕机 <strong>52 分钟</strong>。</li>
+            </ul>
+            <li><strong>可靠性：</strong>关注的是连续运行多久才出一次错。</li>
+            <li><strong>平均故障间隔时间：</strong>系统连续运行的平均时间长度，直到下次故障发生。（<strong>Iaas</strong>、<strong>Paas</strong>）</li>
+            <li><strong>可靠性比率指标：</strong>表示系统在某段时间内<strong>持续不出错的概率</strong>，是一个概率值，通常用指数衰减模型计算。(<strong>Saas</strong>)</li>
+          </ul>
+
+          <p><img src="./image-20250625121652815.png" alt="SLA与QoS" /></p>
+
+          <ul>
+            <li><strong>性能：</strong>例如像<strong>网络带宽</strong>、<strong>存储容量</strong>。</li>
+            <li><strong>服务可扩展性：</strong>比如突然访问量暴增，系统能自动加资源支撑。</li>
+            <li><strong>服务器可扩展性（水平）指标：</strong> <strong>通过增加服务器节点的数量</strong>来扩展系统能力。</li>
+            <li><strong>服务器可扩展性（垂直）指标：</strong> <strong>通过增强单个服务器的硬件配置</strong>（CPU、内存等）来扩展系统能力。</li>
+            <li><strong>弹性：</strong>IT 资源从运行问题中恢复的能力。</li>
+          </ul>
+
+          <h2>第二章：基础算法与机制</h2>
+
+          <blockquote><p>分布式通信（消息队列，rpc，多播与广播），时钟，互斥，选举，副本（一致性，为什么要一致性，最终一致性），主副本有什么差别，数据客户一致性差在哪里，共识（CAP，拜占庭和一般的区别），要知道paxos在做什么，BFT协议，分布式提交（二提交，三提交区别）</p></blockquote>
+
+          <h3>分布式通信</h3>
+
+          <h4>消息队列</h4>
+
+          <p>一种<strong>异步通信机制</strong>，用来在分布式系统中<strong>解耦发送方与接收方</strong>。</p>
+
+          <ul>
+            <li>就像一个“快递中转站”，发送者把消息投进去，接收者按需取出，不需要同时在线。</li>
+            <li>用户下单后，订单服务把消息放入“发货队列”，物流服务异步读取并处理。</li>
+            <li>会有 <strong>消息代理</strong> 将不同应用的信息转换（序列化和反序列化）并发送。</li>
+          </ul>
+
+          <p><img src="./image-20250625140552038.png" alt="消息队列" /></p>
+
+          <h4>远程过程调用（RPC）</h4>
+
+          <p>一种<strong>同步通信方式</strong>，使一个服务可以像调用本地函数一样调用远程服务的函数。</p>
+
+          <ul>
+            <li>像“打电话咨询”，你发起一个请求，对方接听、处理后返回结果，你才能继续。</li>
+          </ul>
+
+          <p>基本流程如下：</p>
+
+          <p><strong>客户端流程</strong></p>
+
+          <ol>
+            <li><strong>客户端调用本地代理（Stub）</strong>：
+              <ul>
+                <li>客户端调用一个本地方法（例如 <code>doit(a, b)</code>），看起来像本地函数调用。</li>
+                <li>实际上，这个方法会被传递给客户端的“Stub”（代理）处理。</li>
+              </ul>
+            </li>
+            <li><strong>客户端 Stub 构建消息</strong>：
+              <ul>
+                <li>客户端的 Stub 将调用的函数名（<code>doit</code>）、参数类型（如 <code>type1</code>）和参数值（如 <code>val(a)</code>）打包成一个消息。</li>
+                <li>Stub 的工作是将本地调用转换为可以通过网络发送的消息（<strong>序列化</strong>）。</li>
+              </ul>
+            </li>
+          </ol>
+
+          <blockquote><p>函数参数可能是复杂的对象、列表、字符串等，无法直接通过网络传输</p></blockquote>
+
+          <ol start="3">
+            <li><strong>客户端操作系统发送消息</strong>：
+              <ul>
+                <li>客户端 Stub 调用本地操作系统（Client OS）来通过网络发送消息到服务端。</li>
+              </ul>
+            </li>
+          </ol>
+
+          <p><strong>服务端流程</strong></p>
+
+          <ol>
+            <li><strong>服务端操作系统接收消息</strong>：
+              <ul>
+                <li>消息通过网络到达服务端的操作系统（Server OS）。</li>
+                <li>操作系统将消息传递给服务端的 Stub。</li>
+              </ul>
+            </li>
+            <li><strong>服务端 Stub 解包消息</strong>：
+              <ul>
+                <li>服务端的 Stub 从消息中提取出函数名和参数，将其翻译成服务端可以理解的本地调用。</li>
+              </ul>
+            </li>
+            <li><strong>服务端调用实际方法</strong>：
+              <ul>
+                <li>服务端 Stub 调用对应的实际实现方法（例如 <code>doit</code> 方法）。</li>
+                <li>方法使用解包后的参数（如 <code>val(a)</code> 和 <code>val(b)</code>）进行计算，返回结果。</li>
+              </ul>
+            </li>
+          </ol>
+
+          <p><strong>服务端返回结果到客户端</strong></p>
+
+          <ol>
+            <li><strong>服务端 Stub 构建响应消息</strong>：
+              <ul>
+                <li>服务端 Stub 将返回的结果打包成一个响应消息。</li>
+              </ul>
+            </li>
+            <li><strong>服务端操作系统发送消息</strong>：
+              <ul>
+                <li>服务端 Stub 调用操作系统，将响应消息通过网络发送回客户端。</li>
+              </ul>
+            </li>
+            <li><strong>客户端操作系统接收消息</strong>：
+              <ul>
+                <li>客户端操作系统接收响应消息，并将其传递给客户端的 Stub。</li>
+              </ul>
+            </li>
+            <li><strong>客户端 Stub 解包消息并返回结果</strong>：
+              <ul>
+                <li>客户端 Stub 解包消息，提取出返回值并将其交给调用者。</li>
+                <li>对客户端调用者来说，整个过程就像是一次本地函数调用。</li>
+              </ul>
+            </li>
+          </ol>
+
+          <p><img src="./image-20250625140935741.png" alt="RPC流程" /></p>
+
+          <h4>多播</h4>
+
+          <p>一种<strong>发送一份消息给一组特定接收者</strong>的通信方式。</p>
+
+          <ul>
+            <li>像“微信群发定向消息”——只发送给部分人（指定群组），不是全员广播。</li>
+            <li>可以使用<strong>数据结构</strong> <strong>树</strong> 或者 <strong>网络</strong> 来实现。</li>
+          </ul>
+
+          <p><img src="./image-20250625141344199.png" alt="多播结构" style="zoom:50%;" /></p>
+
+          <ul>
+            <li>也可以基于 Gossip 实现：</li>
+          </ul>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>模式</th>
+                  <th>主动方</th>
+                  <th>数据传播方向</th>
+                  <th>特点</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Push</td>
+                  <td>发送者</td>
+                  <td>A ➝ B</td>
+                  <td>主动推送</td>
+                </tr>
+                <tr>
+                  <td>Pull</td>
+                  <td>接收者</td>
+                  <td>B ➝ A</td>
+                  <td>主动拉取</td>
+                </tr>
+                <tr>
+                  <td>Push-Pull</td>
+                  <td>双方</td>
+                  <td>双向</td>
+                  <td>高效传播</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><img src="./image-20250625141701408.png" alt="Gossip协议" /></p>
+
+          <h4>广播</h4>
+
+          <p>向<strong>所有节点</strong>发送同一份消息的通信方式，不区分接收者。</p>
+
+          <ul>
+            <li>像在“学校广播系统”中发通知，所有班级都能听到。</li>
+          </ul>
+
+          <h3>分布式同步</h3>
+
+          <h4>happen-before关系</h4>
+
+          <p>所有的进程并不一定在时间上达成一致，而<strong>只需要在时间发生顺序上达成一致</strong>。</p>
+
+          <p>实际上隐含的是<strong>因果关系</strong>。</p>
+
+          <p>定义如下：</p>
+
+          <ul>
+            <li>如果a 和 b 是同一个进程中的两个事件，并且 a 在 b 之 前到达，则有：a-&gt;b；</li>
+            <li>如果 a 是消息的发送者，b 是消息的接收者，则 a-&gt;b；</li>
+            <li>如果 a-&gt;b 并且 b-&gt;c 则 a-&gt;c；</li>
+          </ul>
+
+          <p><img src="./image-20250625142149650.png" alt="因果关系" /></p>
+
+          <h4>逻辑时钟</h4>
+
+          <p>为每一个事件 e 分配一个时间戳 C(e) 使其满足以下属性：</p>
+
+          <ul>
+            <li>如果 a 和 b 是同一个进程中的事件，并且a-&gt;b， 那么有：C(a) &lt; C(b);</li>
+            <li>如果 a 是信息 m 的发送方，并且 b 是信息的接收者，那么C(a) &lt; C(b);</li>
+          </ul>
+
+          <blockquote><p>这个时间戳实际上是一个计数器，每个进程自己维护，每当发生事件就加一这样子。</p></blockquote>
+
+          <p>算法如下：</p>
+
+          <p><img src="./image-20250110011038539.png" alt="逻辑时钟1" /></p>
+
+          <p>例子如下：</p>
+
+          <p><img src="./image-20250110011308031.png" alt="逻辑时钟2" /></p>
+
+          <p><img src="./image-20250110011702398.png" alt="逻辑时钟3" /></p>
+
+          <p>要记得！时间戳并不能推出因果关系！ 只有因果关系能推出时间戳关系！所以后面引入了向量时钟</p>
+
+          <h4>全序多播</h4>
+
+          <p>在一个分布式系统内，每个副本更新完之后多播自己的操作，要求<strong>满足所有副本上执行的并发操作顺序是一样的</strong>。</p>
+
+          <p>例如像两个人同时对一个银行账户操作，一个增加1%余额，一个增加100元余额，必须保证并发操作顺序一样才能够保证账户余额一致。</p>
+
+          <p><img src="./image-20250110013353293.png" alt="全序多播1" /></p>
+
+          <p><img src="./image-20250110013517034.png" alt="全序多播2" /></p>
+
+          <p><img src="./image-20250110013529791.png" alt="全序多播3" /></p>
+
+          <h3>向量时钟</h3>
+
+          <p>因为逻辑时钟不能从C(a) &lt; C(b) 推导出 a-&gt;b，所以引入向量时钟来从时间戳推导出因果关系。</p>
+
+          <p>每个进程维护一个时钟向量（作为自己的全局视图）。</p>
+
+          <p><strong>因果依赖</strong></p>
+
+          <p><img src="./image-20250110020238341.png" alt="因果依赖" /></p>
+
+          <p>算法如下：</p>
+
+          <p><img src="./image-20250110020404305.png" alt="算法1" /></p>
+
+          <p><img src="./image-20250110030315861.png" alt="算法2" /></p>
+
+          <h3>分布式互斥</h3>
+
+          <p>分布式系统中的多个进程需要互斥地访问某些资源。</p>
+
+          <h4>基于令牌的方法</h4>
+
+          <p>仅有的一个令牌在进程之间传递。拥有令牌的进程 可以访问临界区或者将令牌传递给其他进程。</p>
+
+          <p>可能存在的问题：如果令牌传丢了（进程突然被kill了）或者令牌不知道传哪去了。</p>
+
+          <p><img src="./image-20250110095854289.png" alt="令牌" /></p>
+
+          <h4>基于许可的集中式方法</h4>
+
+          <p>找一个协作者来管理节点，其他节点如果想访问临界资源需要先询问协作者。</p>
+
+          <p><img src="./image-20250110031011651.png" alt="集中式方法" /></p>
+
+          <p>可能存在的问题：太依赖协作者了，如果协作者寄了就寄了。</p>
+
+          <h4>非集中式算法</h4>
+
+          <p>因此才有了下面这种分布式的协作者方法：假设每个临界资源有N个副本，每个副本都有一个协作者管理访问，一个进程 m 需要获得 N/2 个协作者的许可（过半数）即可访问临界资源，避免单一协作者crash之后崩溃。</p>
+
+          <p><img src="./image-20250110031340569.png" alt="非集中式" /></p>
+
+          <p>但是存在一个问题：<img src="./image-20250110031555473.png" alt="问题" /></p>
+
+          <h4>Ricart &amp; Agrawala互斥算法</h4>
+
+          <p>要求系统中的所有事件都是完全排序的。对于每对事件， 比方说消息，哪个事件先发生都必须非常明确。</p>
+
+          <p>进程要访问共享资源时，构造一个消息，包括资源名、它的进程号和当前逻辑时间。然后发送给所有的其他进程</p>
+
+          <p>接收到消息的决策动作分为三种情况：</p>
+
+          <ul>
+            <li>若接收进程没有访问资源，而且也不想访问资源，向发送者返回一个OK消息；</li>
+            <li>若接收者已获得对资源的访问，那么它就不答应，而是将该请求放入队列中；</li>
+            <li>如果接收者想访问资源但尚未访问时，它将收到消息的时间戳与它发送到其他进程的消息的时间戳进行比较。时间戳早的那个进程获胜，如果接收到的消息的时间戳比较早，那么返回一个OK消息。如果它自己的消息的时间戳比较早，那么接收者将收到的消息放入队列中，并且不发送任何消息；</li>
+          </ul>
+
+          <p><img src="./image-20250110100553468.png" alt="互斥算法" /></p>
+
+          <p>算法遇到的问题：若有单个进程crash了算法就跑不动了，因为需要全部进程发ack。并且每次想访问就进行多播，网络流量大大的增加。进程需要维护一个消息队列，不适用于进程多的情况。</p>
+
+          <h3>分布式选举</h3>
+
+          <h3>选举算法</h3>
+
+          <p>某些算法需要一些进程作为一个协作者。问题是如何<strong>动态的选择</strong>（自动选择）这个特殊的进程。</p>
+
+          <h4>基本假设</h4>
+
+          <ul>
+            <li>每个进程都有一个ID。</li>
+            <li>每个进程都知道其他进程的ID，但是不知道它们是否还在运行。</li>
+            <li>选举算法是找到具有最大ID的活跃进程。</li>
+          </ul>
+
+          <h4>bully 算法</h4>
+
+          <p><img src="./image-20250110101654321.png" alt="bully1" /></p>
+
+          <p><img src="./image-20250110101741100.png" alt="bully2" /></p>
+
+          <h4>Ring 算法</h4>
+
+          <p><img src="./image-20250110101930034.png" alt="ring1" /></p>
+
+          <p><img src="./image-20250110101948458.png" alt="ring2" /></p>
+
+          <h3>数据副本和一致性</h3>
+
+          <p>一致性模型实际上本质是进程（客户）和数据存储的一个约定。当对数据存储的操作需要满足一定的规则，才会正常存储。特别是当多个进程发生并发读写操作，需要如何返回结果。</p>
+
+          <p>一致性模型解决了分布式系统中的核心问题：<strong>并发操作导致的结果不确定性</strong>。</p>
+
+          <h4>数据一致性和客户一致性区别</h4>
+
+          <p>先讨论数据一致性模型的特点：<strong>读写并重</strong>的数据存储，以<strong>进程</strong>作为视角。</p>
+
+          <p>但是以客户为中心的一致性模型是<strong>读多写少</strong>的，即大部分都是查询操作，所以提供弱一致性（最终一致性），以<strong>副本</strong>作为视角。</p>
+
+          <blockquote><p>从<strong>单个客户端的角度</strong>出发，确保它在不同时间或不同节点上看到的数据<strong>符合直觉逻辑</strong>。</p></blockquote>
+
+          <p>即使全局数据暂时不一致，只要<strong>客户端本身看到的数据变化合理</strong>，就认为符合客户一致性。</p>
+
+          <p><strong>适合数据一致性的场景：银行系统，需要确保每个账号的写操作顺序是一致的；库存管理系统，不允许衣服超卖了。</strong></p>
+
+          <p><strong>适合客户一致性的场景：社交媒体平台（朋友圈），允许有更新延迟；在线协作工具。</strong></p>
+
+          <h4>数据一致性</h4>
+
+          <h5>顺序一致性</h5>
+
+          <p>以数据为中心的一致性模型。</p>
+
+          <p>任何时候的执行结果都是相同的，所有进程对数据存储的操作是按照某种顺序序列执行的，并且每个进程的操作按照程序所定制的顺序出现在这个序列中。</p>
+
+          <p><img src="./image-20250110134742361.png" alt="顺序一致性" /></p>
+
+          <p>只需要观察每个进程的读操作是否顺序一样即可。</p>
+
+          <h5>因果一致性</h5>
+
+          <p>一种<strong>弱化的顺序一致性模型</strong>。</p>
+
+          <p>所有的进程必须要以一样的顺序看到具有因果关系的写操作。</p>
+
+          <p>不同进程看到的并发写操作可以不同。</p>
+
+          <p><img src="./image-20250110135356953-1736488437839-1.png" alt="因果一致性1" /></p>
+
+          <p><img src="./image-20250110135435084.png" alt="因果一致性2" /></p>
+
+          <h4>基于主备份的协议（数据一致性）</h4>
+
+          <p>分为远程写协议和本地写协议。</p>
+
+          <h5>远程写协议</h5>
+
+          <p>从名字看，实现数据项X的更新是在远端的主备份上实现的。</p>
+
+          <p><strong>所有读操作和写操作都转发给单个固定的远程（主）服务器</strong>：要在数据项 x上执行一个写操作的进程，会把该操作转发给x的主服务器。该主服务器在其 x 的本地副本上执行更新操作，随后把该更新转发给备份服务器。</p>
+
+          <p>写操作：经过的比较长，W1-W2-W3-W4-W5</p>
+
+          <p>可靠性很好，但是性能不高。</p>
+
+          <p>实现了顺序一致性，完成了阻塞操作。</p>
+
+          <p><img src="./image-20250110163109491.png" alt="远程写" /></p>
+
+          <h5>本地写协议</h5>
+
+          <p><strong>主副本在要执行写操作的进程之间迁移</strong>：某个进程对x进行写操作，则定位x的主副本，然后将x转移到自己的位置上。 W3处就已经返回了。</p>
+
+          <p>在断网之前将数据保存在本地，然后修改是对本地操作的，等重新联网后向原来的主备份同步。</p>
+
+          <p><img src="./image-20250110170135278.png" alt="本地写" /></p>
+
+          <h4>客户一致性</h4>
+
+          <h4>最终一致性的优缺点</h4>
+
+          <p>定义：如果副本最近很长一段时间没有更新操作，那么所有副本都会变得趋于一致。简单来说，就是更新操作最终会传到每个副本。</p>
+
+          <p>优点：只要求更新操作能传播到副本即可，开销小。</p>
+
+          <p>缺点：如果用户访问到了还未更新的节点则会发现不一致性。</p>
+
+          <p><img src="./image-20250110141105103.png" alt="最终一致性" /></p>
+
+          <h4>读写一致性</h4>
+
+          <p>单调读：一旦一个进程读取了某个数据项的某个版本，接下来的所有读取操作将只会看到相同或更新的版本。</p>
+
+          <p><img src="./image-20250110142127211.png" alt="单调读" /></p>
+
+          <p>单调写：一个进程对数据项 x 执行的写操作必须在该进程对 x 执行任何后续写操作之前完成。</p>
+
+          <p><img src="./image-20250110142141135.png" alt="单调写" /></p>
+
+          <p><strong>读写一致性：一个进程对 X 的写操作总是会被该进程后续对 X 的读操作看见。</strong></p>
+
+          <p>即一个用户一定能看见自己写入的内容。</p>
+
+          <p><img src="./image-20250110142511802.png" alt="读写一致性" /></p>
+
+          <p>例子：更新自己的Web界面，确保自己刚刚修改的内容能够被自己重新登录Web页面看见（不是读取缓存的界面）。其他用户的更新可能一会才看到，但是自己的更新是立刻被看到的。</p>
+
+          <h4>写读一致性</h4>
+
+          <p>写读一致性：一个进程对 X 进行读操作后的写操作，保证发生在与 X 取值更新的值上或者与之相等的情况。</p>
+
+          <p><img src="./image-20250110143940658.png" alt="写读一致性" /></p>
+
+          <p>例子：刷新闻的时候看到原文章才能看到回复文章。</p>
+
+          <h3>分布式共识</h3>
+
+          <p>定义：有故障场景下，使所有非故障进程在有限步骤内就某个值达成一致</p>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>共识类型</th>
+                  <th>场景</th>
+                  <th>能容忍的故障类型</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>一般共识</strong></td>
+                  <td>只考虑节点“宕机”或“不响应”</td>
+                  <td>宕机（Crash）</td>
+                </tr>
+                <tr>
+                  <td><strong>拜占庭共识</strong></td>
+                  <td>节点可能行为异常，甚至恶意作假</td>
+                  <td>拜占庭错误（恶意、错误、伪造等）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ul>
+            <li><strong>一般共识：</strong>至少 <strong>2f + 1 个节点</strong>，才能容忍 <strong>f 个宕机节点</strong>。</li>
+            <li><strong>拜占庭共识：</strong>至少 <strong>3f + 1 个节点</strong>，才能容忍 <strong>f 个拜占庭节点</strong>（即：可恶意撒谎的节点）。</li>
+          </ul>
+
+          <p>paxos，raft，泛洪，ZAB是处理<strong>一般共识</strong>问题的。</p>
+
+          <p>BFT，PBFT，PoW是处理<strong>拜占庭共识</strong>问题的。</p>
+
+          <h4>CAP 原理</h4>
+
+          <p>CAP原则又称CAP定理，指的是在一个分布式系统中，Consistency（一致性）、 Availability（可用性）、Partition tolerance（分区容错性），三者不可得兼得。</p>
+
+          <p><img src="./image-20250110112431970.png" alt="CAP" /></p>
+
+          <ul>
+            <li>一致性：无论用户从哪个节点访问副本，都会获得最新的副本版本。</li>
+            <li>可用性：无论用户何时开始访问，都会获得响应。</li>
+            <li>分区可容忍性：系统需要在部分节点通信失败的时候系统仍能运作。</li>
+          </ul>
+
+          <p>三者不可兼得，简单来说：一个分布式系统在网络分区存在时，必须权衡：</p>
+
+          <ol>
+            <li><strong>是否保证一致性</strong>，但可能牺牲可用性。</li>
+          </ol>
+
+          <p>例如像保证分区可容忍性和一致性，就不能保证可用性，因为当发生某些节点通信失败的时候，为了保证副本的一致性，就不允许用户进行操作（可用性）。</p>
+
+          <ol start="2">
+            <li><strong>是否保证可用性</strong>，但可能牺牲一致性。</li>
+          </ol>
+
+          <p>保证分区可容忍性和可用性，即在发生通信失败的时候为了响应客户的访问，可能会造成一致性的问题。</p>
+
+          <p><strong>分区可容忍性是分布式系统避免不了的一个情况！！</strong></p>
+
+          <h3>分布式提交</h3>
+
+          <p>一个操作要么被进程组中的每一个成员执行，要么一个都不执行。（原子多播的更一般化抽象）</p>
+
+          <p><strong>两阶段提交协议：</strong></p>
+
+          <ol>
+            <li>协作者发起投票请求。</li>
+            <li>参与者收到投票请求，并根据自身情况返回 abort 或者 commit。</li>
+            <li>协作者收集请求，如果没有收到 abort，则发送 global commit；否则，发送 global abort.</li>
+            <li>参与者根据收到的全局消息执行对应的动作。</li>
+          </ol>
+
+          <p><img src="./image-20250625153141386.png" alt="两阶段" /></p>
+
+          <p>如果协作者在wait阶段崩溃，则整个协议就崩了。</p>
+
+          <p><strong>三提交协议：</strong></p>
+
+          <p><img src="./image-20250625153303963.png" alt="三阶段" /></p>
+
+          <h2>第三章：虚拟化技术</h2>
+
+          <blockquote><p>这里基本上讲的是基础设施部分，部署模型的 Iaas 部分。</p></blockquote>
+
+          <p>虚拟化是指将<strong>物理 IT 资源转化成虚拟 IT 资源的过程</strong>。（例如服务器、存储设备、网络、电源都可以被虚拟化）</p>
+
+          <h3>虚拟化技术的优势</h3>
+
+          <ul>
+            <li><strong>硬件无关性：</strong>
+              <ul>
+                <li>意思是装好的系统可以在虚拟化后的硬件上运行，不关心实际的硬件是什么配置的服务器。</li>
+                <li>不用担心硬件型号不一样，换台机器就崩了。</li>
+              </ul>
+            </li>
+            <li><strong>服务器整合：</strong>
+              <ul>
+                <li>可以在一台物理服务器上创建多台虚拟服务器，可以提高资源利用率，是云特性的基础。</li>
+              </ul>
+            </li>
+            <li><strong>资源复制：</strong>
+              <ul>
+                <li>虚拟机的状态可以保存为文件形式，最终可以通过文件来实现虚拟机的迁移。</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h3>虚拟机架构</h3>
+
+          <h4>基于操作系统的虚拟化--寄生架构</h4>
+
+          <ul>
+            <li>虚拟机是建立在一个已经运行的操作系统之上的。</li>
+            <li>所有虚拟机<strong>共享同一个操作系统内核</strong>，就像住在同一个大楼里的不同租户。</li>
+            <li>启动快、占资源少，但<strong>安全性稍差，不能运行不同操作系统</strong>。</li>
+          </ul>
+
+          <blockquote><p>安全性差是因为共享操作系统内核，如果其中一个虚拟机被攻击了可能会影响其他虚拟机。</p></blockquote>
+
+          <p><img src="./d947feb671221c1cc264687592973fa.jpg" alt="寄生架构" style="zoom:45%;" /></p>
+
+          <h4>基于硬件的虚拟化--裸金属架构</h4>
+
+          <ul>
+            <li>不依赖已有操作系统，虚拟机直接控制底层硬件。</li>
+            <li>每个虚拟机都可以跑自己的操作系统（Windows/Linux都行），<strong>隔离性好、安全性高</strong>。</li>
+            <li>比较适合云平台、大型数据中心，但<strong>启动慢、资源开销大</strong>。</li>
+          </ul>
+
+          <blockquote><p>启动慢是因为需要像电脑一样启动整个操作系统。</p></blockquote>
+
+          <p><img src="./3fa9ef6612266b6a869a6b424c4de70.jpg" alt="裸金属" style="zoom:40%;" /></p>
+
+          <h4>虚拟机技术</h4>
+
+          <blockquote><p><strong>都是在“模拟一台电脑的硬件”</strong>，让你可以在一台物理机器上跑出多个“虚拟机器”。</p></blockquote>
+
+          <h5>硬件仿真</h5>
+
+          <ul>
+            <li>寄生架构。</li>
+            <li>利用软件来模拟一整套硬件给操作系统用。</li>
+            <li><strong>技术要点：特权指令 &gt;&gt; 陷入 &gt;&gt; VMM &gt;&gt; 模拟执行 &gt;&gt; 特权指令（Host）</strong></li>
+            <li>像在纸上画了一个键盘给人打字，能用但很慢。</li>
+          </ul>
+
+          <p><img src="./66ac783d0167b6d88b61d836e050084.jpg" alt="硬件仿真" style="zoom:50%;" /></p>
+
+          <h5>全虚拟化（最常见）</h5>
+
+          <ul>
+            <li>寄生架构和裸金属架构都有。</li>
+            <li>Hypervisor 会在客户操作系统和硬件之间捕捉对虚拟化敏感的特权指令，使得客户操作系统无需修改，就像在一个真实硬件上运行。</li>
+          </ul>
+
+          <p><img src="./51d8b6f5f397e63398f8a6bc016af31.jpg" alt="全虚拟化" style="zoom:50%;" /></p>
+
+          <h5>半虚拟化</h5>
+
+          <ul>
+            <li>裸金属架构</li>
+            <li>与全虚拟化类似，利用Hypervisor实现对底层硬件的访问。</li>
+            <li>客户操作系统需要直接将对虚拟化敏感的特权指令交给Hypervisor（全虚拟化是自己捕捉），所以需要更改客户操作系统。</li>
+            <li>效率很高。</li>
+          </ul>
+
+          <blockquote><p>半虚拟化就像演员知道自己在演戏，会主动配合摄影机和导演的安排，拍得更快。 <br>而全虚拟化的演员被“骗”以为是真实世界，需要后台偷偷拦住他做错动作。</p></blockquote>
+
+          <h5>硬件辅助虚拟化</h5>
+
+          <ul>
+            <li>虚拟机直接访问硬件。（不通过Hypervisor了）</li>
+          </ul>
+
+          <p><img src="./b43ff1e0a49cdb2c775d7dc81f59175.jpg" alt="硬件辅助" /></p>
+
+          <h3>CPU 虚拟化</h3>
+
+          <blockquote><p>CPU 虚拟化是让多个 Guest 系统“共享用一颗 CPU”，<br>并让每个系统以为自己“独占”了这颗 CPU。</p></blockquote>
+
+          <p>核心问题是 <strong>特权/敏感指令执行</strong>。这些指令都需要在最高特权级上运行，<strong>如果不在最高特权级运行会引发异常陷入到最高特权级</strong>。</p>
+
+          <p>例如虚拟机作为一个应用程序运行在宿主操作系统内（不在最高特权），但是虚拟机需要调用特权指令（需要最高特权）就会存在问题。</p>
+
+          <blockquote><p>正常情况下，只有操作系统才能执行“控制 CPU 的指令”（比如中断、内存映射）。<br>为了让多个操作系统共存，虚拟机管理器（VMM）通过“拦截这些指令”，在背后偷偷“代劳”。</p></blockquote>
+
+          <p>RISC体系指令会比X86更加适合虚拟化。</p>
+
+          <p><img src="./41c4c43ad8297248d7702b32a1ca237.jpg" alt="CPU虚拟化" /></p>
+
+          <h4>CPU全虚拟化（模拟执行）</h4>
+
+          <p>使用到<strong>优先级压缩技术（把客户操作系统改成 Ring 1）</strong>：</p>
+
+          <ul>
+            <li>优先级压缩能让<strong>VMM和Guest运行在不同的特权级下</strong>。</li>
+            <li><strong>让VMM截获一部分在Guest上执行的特权指令</strong>，并对其进行虚拟化。</li>
+          </ul>
+
+          <p><img src="./image-20250617192133981.png" alt="优先级压缩" /></p>
+
+          <p>执行流程如下：</p>
+
+          <ol>
+            <li>Guest OS 在 Ring 1 运行，试图执行特权指令（比如访问内存页表）。</li>
+            <li>CPU 发现：你不是 Ring 0，不能执行 → <strong>触发“陷入”事件</strong>。</li>
+            <li>VMM（在真正的 Ring 0）接手，<strong>模拟这个指令的结果</strong>。</li>
+            <li>然后把“假结果”返回给 Guest OS，让它继续运行，以为自己干成了。</li>
+          </ol>
+
+          <p>也有<strong>使用到二进制代码翻译技术</strong>：</p>
+
+          <ul>
+            <li>用于一些对虚拟化不友好的指令。</li>
+            <li>通过扫描并修改Guest的二进制代码来将那些难以虚拟化的指令转化为支持虚拟化的指令。</li>
+          </ul>
+
+          <blockquote><p>当 Guest 操作系统里有一些 <strong>无法被正常虚拟化的指令</strong>，我们就偷偷把这些指令 <strong>改写成别的、能拦截的指令</strong>。</p></blockquote>
+
+          <h4>CPU半虚拟化（操作系统辅助）</h4>
+
+          <ul>
+            <li><strong>通过修改Guest OS的代码（和半虚拟化虚拟机一样需要修改客户操作系统）</strong>，使其将那些和特权指令相关的操作都转换会发给VMM的Hypercall（超级调用）</li>
+          </ul>
+
+          <h4>CPU硬件辅助虚拟化（CPU能够分清谁是虚拟机）</h4>
+
+          <ul>
+            <li>Root模式，VMM运行于此模式，用于处理特殊指令。</li>
+            <li>Non-Root模式，Guest OS运行于此模式。</li>
+            <li>当在Non-Root 模式Guest执行到特殊指令的时候，系统会切换到Root模式VMM，让VMM来处理特殊指令。</li>
+          </ul>
+
+          <blockquote><p>很像操作系统的中断一样。</p></blockquote>
+
+          <h3>内存虚拟化</h3>
+
+          <p>目的：做好虚拟机内存空间之间的隔离，使每个虚拟机都认为自己拥有了整个内存地址，并且效率也能接近物理机。</p>
+
+          <h4>全虚拟化（影子页表Shadow Page Table）</h4>
+
+          <ul>
+            <li>为每个客户维护一个<strong>影子页表</strong>，写入虚拟化后的内存映射（GVA 到 HPA）。</li>
+            <li><strong>GVA-&gt;GPA-&gt;HVA-&gt;HPA→SPT</strong>。</li>
+            <li>VMM将影子页表交给MMU进行地址转换。</li>
+          </ul>
+
+          <p><img src="./image-20250617193743493.png" alt="影子页表1" /></p>
+
+          <p><img src="./image-20250617193722203.png" alt="影子页表2" style="zoom:67%;" /></p>
+
+          <h4>硬件辅助虚拟化（EPT/NPT）</h4>
+
+          <ul>
+            <li>虚拟机内部维护自己的GVA-&gt;GPA页表结构。</li>
+            <li>硬件辅助维护 <strong>EPT/NPT</strong> 来进行GPA-&gt;HPA的映射。</li>
+          </ul>
+
+          <h3>IO虚拟化</h3>
+
+          <blockquote><p><strong>I/O 虚拟化</strong>是指让虚拟机可以“访问磁盘、网卡等设备”，<br>虽然它们用的是<strong>假的设备接口</strong>，但最终由宿主机的真实硬件完成。</p></blockquote>
+
+          <p>目的：不仅让虚拟机访问到它们所需要的I/O资源，而且要做好它们之间的隔离工作，更重要的是，减轻由于虚拟化所带来的开销。</p>
+
+          <h4>全虚拟化</h4>
+
+          <ul>
+            <li>通过模拟I/O设备（磁盘和网卡等）来实现虚拟化。</li>
+            <li>Guest OS每次I/O操作都会陷入到VMM，让VMM来执行。</li>
+            <li>对Guest OS而言，它看到就是一组统一的I/O设备，完全透明。</li>
+          </ul>
+
+          <h4>半虚拟化</h4>
+
+          <ul>
+            <li>通过前端（Front-End）/后端（Back-End）架构，将Guest的I/O请求传递到特权域（Privileged Domain，即Domain-0）。</li>
+            <li><strong>前端（Front-End）</strong>：Guest OS 中的驱动程序，发送 I/O 请求。</li>
+            <li><strong>后端（Back-End）</strong>：运行在主系统（特权域 Domain-0）中的服务，负责真正的 I/O 执行。</li>
+            <li><strong>需要修改客户操作系统！</strong></li>
+          </ul>
+
+          <h4>软件模拟虚拟化</h4>
+
+          <ul>
+            <li>用软件模拟I/O设备。</li>
+            <li>Guest OS的操作被VMM捕获并交给Host OS的用户态进程，由其进行系统调用</li>
+          </ul>
+
+          <h4>硬件辅助虚拟化</h4>
+
+          <ul>
+            <li>让虚拟机能直接使用物理设备。</li>
+          </ul>
+
+          <h3>Open Stack</h3>
+
+          <p><strong>OpenStack可以规划并管理大量虚拟机</strong>，从而允许企业或服务提供商按需提供计算资源。</p>
+
+          <h4>主要组件</h4>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>组件</th>
+                  <th>作用</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Nova</strong></td>
+                  <td>提供计算资源</td>
+                </tr>
+                <tr>
+                  <td><strong>Neutron</strong></td>
+                  <td>提供网络资源及网络连接</td>
+                </tr>
+                <tr>
+                  <td><strong>Glance</strong></td>
+                  <td>提供镜像</td>
+                </tr>
+                <tr>
+                  <td><strong>Cinder</strong></td>
+                  <td>提供块存储资源</td>
+                </tr>
+                <tr>
+                  <td><strong>Swift</strong></td>
+                  <td>提供数据备份、镜像备份</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <blockquote><p><strong>下列关于 OpenStack 中 Nova 组件的说法正确的是：</strong><br>
+           A. 提供对象存储服务 B. 管理虚拟机和计算资源 C. 实现身份验证和授权 D. 负责虚拟机镜像管理<br>
+           <strong>答案：B</strong><br>
+           <strong>解析：</strong><br>
+           Nova 是 OpenStack 的 <strong>计算核心组件</strong>，用于启动、关闭、调度虚拟机等。<br>
+           A 是 Swift，C 是 Keystone，D 是 Glance。<br>
+           ---<br>
+           <strong>OpenStack 属于以下哪种云计算服务模型？</strong><br>
+           A. SaaS（软件即服务） B. PaaS（平台即服务） C. IaaS（基础设施即服务） D. FaaS（函数即服务）<br>
+           <strong>答案：C</strong><br>
+           <strong>解析：</strong> OpenStack 提供的是基础设施层的服务（如虚拟机、网络、存储），属于 <strong>IaaS</strong>，与 AWS EC2 类似。<br>
+           ---<br>
+           <strong>下列哪个组件用于 OpenStack 的身份认证与授权管理？</strong><br>
+           A. Nova B. Neutron C. Keystone D. Glance<br>
+           <strong>答案：C</strong><br>
+           <strong>解析：</strong><br>
+           Keystone 是 OpenStack 的 <strong>认证与访问控制中心</strong>，负责用户认证、服务注册、令牌管理。<br>
+           ---<br>
+           <strong>下列关于 OpenStack 中 Glance 组件的功能描述，最准确的是：</strong><br>
+           A. 管理网络拓扑结构和路由 B. 提供用户身份和权限管理 C. 存储虚拟机运行时数据 D. 管理虚拟机镜像文件<br>
+           <strong>答案：D</strong><br>
+           <strong>解析：</strong> Glance 是 OpenStack 的 <strong>镜像服务组件</strong>，用于上传、下载、查询、删除 VM 镜像。<br>
+           ---<br>
+           <strong>在 OpenStack 中，如果希望实现块存储（虚拟硬盘），应使用哪个组件？</strong><br>
+           A. Swift B. Cinder C. Heat D. Horizon<br>
+           <strong>答案：B</strong><br>
+           <strong>解析：</strong><br>
+           Cinder 提供 <strong>块存储服务</strong>，可以将存储卷挂载到虚拟机上。<br>
+           Swift 是对象存储，Heat 是编排服务，Horizon 是 Web 控制台。<br>
+           ---<br>
+           <strong>用户通过 OpenStack 启动一台虚拟机，以下组件中不会直接参与该过程的是：</strong><br>
+           A. Nova B. Keystone C. Glance D. Ceilometer<br>
+           <strong>答案：D</strong><br>
+           <strong>解析：</strong><br>
+           Ceilometer 是监控和计费组件，不直接参与虚拟机的创建过程。<br>
+           创建 VM 需要 Nova（调度）、Keystone（认证）、Glance（镜像）、Neutron（网络）。</p></blockquote>
+
+          <h3>容器技术（操作系统级别虚拟化）</h3>
+
+          <p>容器在操作系统中的运行：</p>
+
+          <ul>
+            <li>容器自带环境在操作系统中启动进程。</li>
+            <li>所有容器共用一个操作系统。</li>
+            <li>通过命名空间和进程组来提供隔离性。</li>
+          </ul>
+
+          <blockquote><p>因为共用一个操作系统，所以隔离性没有虚拟机好（每个虚拟机一个操作系统）。但是性能好过虚拟机。</p></blockquote>
+
+          <h4>容器虚拟化优势</h4>
+
+          <ul>
+            <li>轻量级虚拟化，没有独立的操作系统，额外开销很小。</li>
+            <li>每个主机可以支撑上千容器，且容器启动时间在毫秒级。</li>
+            <li>自带运行环境，开发过程中打包好的应用，在生产环境中能迅速部署。</li>
+          </ul>
+
+          <h4>容器虚拟化劣势</h4>
+
+          <ul>
+            <li>隔离性、安全性较差。</li>
+            <li>多容器共享操作系统，不能随意修改操作系统相关的配置。</li>
+          </ul>
+
+          <p>容器轻便高效，适合快速部署和微服务。</p>
+
+          <p>虚拟机隔离强安全性高，例如银行核心交易系统。</p>
+
+          <h4>容器基本技术</h4>
+
+          <ul>
+            <li><strong>Namespace</strong></li>
+          </ul>
+
+          <ul>
+            <li>视图隔离</li>
+            <ul>
+              <li>让进程只能看到Namespace中的世界</li>
+            </ul>
+          </ul>
+
+          <p>它让不同容器之间 <strong>看不到彼此的进程、网络、挂载点等</strong>，就像每个容器是“自己的一台机器”。</p>
+
+          <p>自己的 PID 为 1。</p>
+
+          <ul>
+            <li><strong>Cgroups</strong></li>
+          </ul>
+
+          <ul>
+            <li>资源隔离</li>
+            <ul>
+              <li>对容器进行分组，可以按照组来管理</li>
+            </ul>
+          </ul>
+
+          <p>容器共享同一台宿主机的资源，<strong>但不能互相抢资源或用光资源</strong>，就是靠 cgroups 限制的。</p>
+
+          <ul>
+            <li><strong>Rootfs</strong></li>
+          </ul>
+
+          <ul>
+            <li><strong>就是所谓的“容器镜像”</strong></li>
+            <ul>
+              <li>rootfs 只是⼀个操作系统所包含的文件、配置和目录， 但不包括内核</li>
+            </ul>
+          </ul>
+
+          <p>Rootfs 是容器“看到的根目录世界”，相当于给容器单独配了个文件系统家。</p>
+
+          <blockquote><p><strong>下列哪项是 Linux 容器中实现资源限制的关键技术？</strong><br>
+           A. Namespace B. Rootfs C. Cgroups D. OverlayFS<br>
+           <strong>答案：C</strong><br>
+           <strong>解析：</strong> Cgroups（Control Groups）用于限制 CPU、内存、IO 等资源的使用。Namespace 实现隔离，Rootfs 是文件系统，OverlayFS 是分层存储。<br>
+           ---<br>
+           <strong>容器之间可以拥有不同主机名、不同网络配置，是因为使用了哪种技术？</strong><br>
+           A. Rootfs B. Dockerfile C. Namespace D. DaemonSet<br>
+           <strong>答案：C</strong><br>
+           <strong>解析：</strong> Namespace（尤其是 <code>net</code> 和 <code>uts</code> namespace）让每个容器拥有独立的网络和主机名视图。Rootfs 是文件系统，DaemonSet 是 K8s 里的控制器。<br>
+           ------<br>
+           <strong>容器的文件系统来自于镜像的哪一部分？</strong><br>
+           A. Kernel B. Rootfs C. Entrypoint D. Tag<br>
+           <strong>答案：B</strong><br>
+           <strong>解析：</strong> 镜像中的 Rootfs 是容器运行时看到的 <code>/</code> 根文件系统，如 <code>/bin</code>, <code>/etc</code> 等。Kernel 是共享的，Entrypoint 是启动命令。<br>
+           ------<br>
+           <strong>以下哪个选项不是由 Namespace 提供的隔离能力？</strong><br>
+           A. 网络隔离 B. 内存隔离 C. 主机名隔离 D. 进程视图隔离<br>
+           <strong>答案：B</strong><br>
+           <strong>解析：</strong> 内存资源的隔离是由 Cgroups 实现的，而网络（net）、主机名（uts）、进程（pid）是 Namespace 提供的。<br>
+           ------<br>
+           <strong>使用 Cgroups 创建多个控制组的主要目的是：</strong><br>
+           A. 把容器部署在不同主机上 B. 设置容器的启动顺序 C. 对进程分组，并控制它们的资源使用 D. 安装 Linux 内核模块<br>
+           <strong>答案：C</strong><br>
+           <strong>解析：</strong> Cgroups 的“Groups”指的就是对进程进行分组，统一设置资源限制或监控。<br>
+           ------<br>
+           <strong>容器技术采用哪种方法来避免为每个实例都启动一个完整操作系统？</strong><br>
+           A. 每个容器都运行一个轻量内核 B. 容器共享宿主机内核，使用 rootfs 隔离文件系统 C. 每个容器内嵌独立 Linux 发行版 D. 容器使用虚拟化 BIOS 启动系统<br>
+           <strong>答案：B</strong><br>
+           <strong>解析：</strong> 容器共享宿主机内核，只在用户空间创建 rootfs 实现文件系统隔离，不是完整虚拟机，不含独立内核。</p></blockquote>
+
+          <h3>Kubernetes集群</h3>
+
+          <h4>集群架构（主从）</h4>
+
+          <ul>
+            <li><strong>Master节点</strong></li>
+          </ul>
+
+          <p>负责管理和调度整个集群的 pod。</p>
+
+          <p>负责与集群外交互。</p>
+
+          <ul>
+            <li><strong>Node节点</strong></li>
+          </ul>
+
+          <p>集群中具体执行任务的节点。</p>
+
+          <h4>核心概念</h4>
+
+          <ul>
+            <li><strong>Pod：</strong> 由一个或多个互相协作的容器组成。（一起start，一起终止）</li>
+          </ul>
+
+          <ul>
+            <li><strong>Service：</strong>提供一组 Pod 的<strong>统一访问入口（负载均衡 + 发现）</strong>，即使 Pod 被替换、IP 改变，Service 仍保持<strong>访问地址稳定</strong>。</li>
+          </ul>
+
+          <blockquote><p>就是访问 Pod 不需要使用 ip，而是使用 Service 来访问。</p></blockquote>
+
+          <ul>
+            <li><strong>Replication Controller：</strong>负责保证某个 Pod 的副本数<strong>始终等于预期数量</strong>，如果有 Pod 挂了，它会自动重启新的 Pod。</li>
+          </ul>
+
+          <ul>
+            <li><strong>Label：</strong>为集群提供管理信息。</li>
+          </ul>
+
+          <ul>
+            <li><strong>Namespace：</strong>适合多团队开发。</li>
+          </ul>
+
+          <blockquote><p>你有一个网站程序要部署 3 个副本，Kubernetes 会：<br>
+           1. 找到 3 台服务器（Node）<br>
+           2. 在每台上启动一个 Pod，里面跑你的程序容器<br>
+           3. 设置健康检查，如果挂了自动重启<br>
+           4. 给它们分配统一的访问地址（Service）<br>
+           5. 后续你想更新版本，只要改配置，它自动滚动升级</p></blockquote>
+
+          <h3>网络虚拟化</h3>
+
+          <p>目的：将网络资源（路由器、二层交换机、三层交换机）和功能集成到一个软件中统一管控。</p>
+
+          <h4>主机网络虚拟化</h4>
+
+          <p>目的：如何让虚拟机共享一个网卡。</p>
+
+          <blockquote><p>假设你有一台物理机（Host）只有<strong>一个网口</strong>，但你在上面开了 5 台虚拟机：<br>
+           - 每台虚拟机都希望能联网、访问互联网。<br>
+           - 所以问题来了：<strong>怎么让这些虚拟机“假装”有自己的网卡，实际却共用一个物理网卡？</strong></p></blockquote>
+
+          <p><img src="./image-20250617201720872.png" alt="网络虚拟化1" style="zoom:50%;" /></p>
+
+          <ul>
+            <li>虚拟机 → 虚拟网卡 → 虚拟交换机 → 物理网卡 → 外部网络。</li>
+            <li>外部网络 → 物理网卡 → 虚拟交换机 → 目标虚拟机。</li>
+          </ul>
+
+          <h4>桥接和NAT</h4>
+
+          <ul>
+            <li><strong>网桥：</strong>把一台机器上的若干个网络接口“连接”起来，其中一个网口收到报文时会复制给其它网口。</li>
+          </ul>
+
+          <blockquote><p>网桥就像一个“插排”，插进来的设备都能互相交流。</p></blockquote>
+
+          <ul>
+            <li><strong>桥接模式：</strong>虚拟机的虚拟网卡<strong>通过虚拟交换机，和宿主机的物理网卡</strong>连接到<strong>同一个局域网（LAN）上</strong>，</li>
+          </ul>
+
+          <p>就像它自己也是局域网中的一台<strong>独立电脑</strong>。</p>
+
+          <ul>
+            <li>虚拟机的网卡就像插在一台交换机的端口上。</li>
+            <ul>
+              <li>它和宿主机<strong>在同一个局域网</strong>，有自己的 IP。</li>
+              <li>其他设备可以直接访问这台虚拟机。</li>
+            </ul>
+          </ul>
+
+          <ul>
+            <li><strong>NAT模式：</strong>虚拟网卡插在路由器（宿主机）后面，靠宿主机转发访问外网。</li>
+          </ul>
+
+          <ul>
+            <li>宿主机相当于一个“路由器”。</li>
+            <ul>
+              <li>所有虚拟机连在这个路由器后面。</li>
+              <li>对外访问时，共用宿主机的 IP。</li>
+              <li>外部设备<strong>无法主动访问虚拟机</strong>。</li>
+            </ul>
+          </ul>
+
+          <blockquote><p>虚拟机能上网，不能被外网主动访问。</p></blockquote>
+
+          <p><strong>以上说的有关网络虚拟化的部分都是在一部主机上的虚拟机！！</strong></p>
+
+          <p>接下来说下多部主机的网络虚拟化：</p>
+
+          <h4>分布式交换机</h4>
+
+          <p>分布式交换机在所有关联主机之间作为单个虚拟交换机使用。此功能可使虚拟机在跨主机进行迁移时确保其网络配置保持一致。</p>
+
+          <p>例如 VM1 从 Host1 迁移到 Host2 上，不需要再配置网络。</p>
+
+          <h4>SDN（软件定义网络）</h4>
+
+          <p>将网络的<strong>控制</strong>与<strong>转发</strong>进行分离。</p>
+
+          <p>把传统网络中的“控制功能”从“网络设备”中<strong>分离出来，集中管理</strong>，从而让网络像软件一样灵活编程、集中调度。</p>
+
+          <p>主要用于数据中心网络。</p>
+
+          <h2>第四章 数据中心管理</h2>
+
+          <h3>数据中心网络</h3>
+
+          <p>常用的网络架构有 <strong>胖树</strong>、<strong>多维组构</strong>、<strong>去中心化架构</strong>。</p>
+
+          <h4>胖树网络架构</h4>
+
+          <ul>
+            <li>是基本的树状拓扑。</li>
+          </ul>
+
+          <ul>
+            <li>有三层网络：<strong>核心交换机、汇聚交换机、接入交换机</strong>。</li>
+          </ul>
+
+          <blockquote><p>越往上交换机管的节点越多，即性能要求更大。</p></blockquote>
+
+          <ul>
+            <li>限制了扩展性。</li>
+          </ul>
+
+          <p><img src="./ac2e55836898d91d7c23dbd3924fc83.jpg" alt="胖树" /></p>
+
+          <h4>胖树网络改进版（其实就是连更多线）</h4>
+
+          <p>连接方法：</p>
+
+          <ul>
+            <li>每台核心交换机有 k 个端口，代表一共有 k 个 pod。</li>
+          </ul>
+
+          <ul>
+            <li>每个 pod 内会有 k/2 个汇聚交换机和 k/2 个边缘交换机。</li>
+          </ul>
+
+          <ul>
+            <li>每个汇聚交换机会有 k/2 个端口连接核心，会有 k/2 个端口连接边缘交换机。</li>
+          </ul>
+
+          <blockquote><p>一共有 （k/2）* (k/2) 个核心交换机，因为每个pod有(k/2)个汇聚交换机，每个汇聚交换机连接(k/2)个核心交换机。</p></blockquote>
+
+          <ul>
+            <li>每个边缘交换机会有 k/2 个端口连接汇聚交换机，会有 k/2 个端口连接主机。</li>
+          </ul>
+
+          <p><img src="./bdf1e075030269dad926f8e9805f53b.jpg" alt="胖树改进" /></p>
+
+          <p>优点：</p>
+
+          <ul>
+            <li>每台核心都可以跟一个 pod 相联，只要不是全部核心崩了，网络就不会崩。</li>
+          </ul>
+
+          <ul>
+            <li>同个 pod 内，每个接入和汇聚都是相联的，所以 pod 内的流量可以自己消化。</li>
+          </ul>
+
+          <ul>
+            <li>最大可连主机数量为 k * (k/2) * (k/2)</li>
+          </ul>
+
+          <blockquote><p>pod数量 * 每个pod内的接入交换机 * 每个接入交换机连的主机数量</p></blockquote>
+
+          <p>其他思路：为了降低接入和汇聚交换机的数量，可以每20部主机才与一部接入交换机相连接。</p>
+
+          <h4>多维组构（Spine-Leaf架构）</h4>
+
+          <p><strong>前面提到的胖树比较偏向纵向流量，这个Spine-Leaf架构比较偏向横向扩展。</strong></p>
+
+          <ul>
+            <li><strong>Leaf：</strong>接入交换机，负责一个机架的节点接入。</li>
+            <li><strong>Spine：</strong>负责节点间的横向连接。</li>
+            <li>横向流量变大了（多交叉），受限于Spine的密度，扩展性很好。</li>
+          </ul>
+
+          <p><img src="./dcc73835ece379ff202d84c71376e19.jpg" alt="Spine-Leaf" /></p>
+
+          <p><strong>胖树会有多路径，但是扩展性不好（加一个pod就得加好多交换机），而 spineleaf 路径比较少但是结构简单并且扩展性好。</strong></p>
+
+          <p>Spine-Leaf 架构是为东西向流量而生的扁平网络，而胖树是传统树型网络的进化版，层级结构更多、路径更长。</p>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>对比维度</th>
+                  <th>胖树架构</th>
+                  <th>Spine-Leaf 架构</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>网络结构</td>
+                  <td>分层结构（接入 → 汇聚 → 核心）</td>
+                  <td>扁平结构（Leaf ↔ Spine）</td>
+                </tr>
+                <tr>
+                  <td>流量跳数</td>
+                  <td>多跳</td>
+                  <td>固定 2 跳</td>
+                </tr>
+                <tr>
+                  <td>东西向流量路径</td>
+                  <td>经“上层再下层”绕行，延迟较高</td>
+                  <td>直接上 Spinal ↔ 下 Leaf，路径短</td>
+                </tr>
+                <tr>
+                  <td>路由路径是否等价</td>
+                  <td>不是完全对等，易产生拥塞热点</td>
+                  <td>全网等价路径</td>
+                </tr>
+                <tr>
+                  <td>带宽利用率</td>
+                  <td>易出现局部瓶颈</td>
+                  <td>全局流量可均匀分摊</td>
+                </tr>
+                <tr>
+                  <td>横向扩展性</td>
+                  <td>需分层扩展，复杂</td>
+                  <td>增加 Leaf/Spine 即可，弹性好</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ul>
+            <li>Spine-Leaf 在处理东西向流量更加好，在现代云数据中心中，<strong>服务之间的内部通信（东西向流量）远大于用户进出数据中心的流量（南北向流量）</strong>。</li>
+            <li>我会把胖树想象成文件系统存储，而 Spine-Leaf 则是对象存储。</li>
+          </ul>
+
+          <h4>去中心化架构</h4>
+
+          <h5>Dcell</h5>
+
+          <p>采用<strong>递归</strong>来构造连接方法：</p>
+
+          <ul>
+            <li>第0层由一个交换机连接n个服务器。</li>
+            <li>第一层由n+1个第0层节点组成（n个别人加上自己）。</li>
+            <li>第k层服务器数量：（k-1层服务器数量）*（k-1层服务器数量+1）</li>
+          </ul>
+
+          <p><img src="./244c7be67fb2cfdf224b3eb4171e414.jpg" alt="Dcell" /></p>
+
+          <p>优缺点：</p>
+
+          <ul>
+            <li>布线复杂。</li>
+            <li>性能差（只有一条链路）。</li>
+            <li>层数受限于端口数。</li>
+            <li>扩展性很好。</li>
+          </ul>
+
+          <h5>FiConn</h5>
+
+          <p>采用递归来连线：</p>
+
+          <ul>
+            <li>第0层由一个交换机连接n个服务器，<strong>每个服务器还有一个备用端口待用</strong>。</li>
+            <li>第一层由 <strong>第0层备用端口数/2</strong> 个第0层节点组成。</li>
+            <li>第k层服务器数量：（k-1层服务器数量）*（k-1层服务器数量+1）</li>
+          </ul>
+
+          <p><img src="./8b9e9d901ca524ab852b48b598b1a2a.jpg" alt="FiConn" /></p>
+
+          <h5>Bcube</h5>
+
+          <p>也是一种去中心化结构。</p>
+
+          <h4>互联协议</h4>
+
+          <p>指<strong>用于实现不同节点之间数据交换的通信协议</strong>，可以看作是计算节点之间交流的语言。</p>
+
+          <ul>
+            <li>一般数据中心：IP</li>
+            <li>高性能协议：IB（实际上也有用到RDMA技术）、IP + RDMA协议</li>
+          </ul>
+
+          <h5>RDMA技术</h5>
+
+          <blockquote><p><strong>RDMA 的核心目标</strong>是：<br>
+           <strong>让一台服务器的应用程序可以“绕过远端机器的 CPU 和操作系统”，直接访问对方内存中的数据。</strong></p></blockquote>
+
+          <p><img src="./d385b27c717740cfc93ac1e061209de.jpg" alt="RDMA" style="zoom:50%;" /></p>
+
+          <ul>
+            <li>减少延迟和CPU负担。</li>
+          </ul>
+
+          <h5>IB协议</h5>
+
+          <ul>
+            <li>取代 PCI 总线，引入 RDMA 技术，实现高IO吞吐。</li>
+          </ul>
+
+          <ul>
+            <li>四层协议，IPV6 报文头格式，拥有较强的地址扩展能力。</li>
+            <li>低延迟，高带宽，高IO吞吐。</li>
+          </ul>
+
+          <h5>IP+RDMA</h5>
+
+          <p>RDMA 不只跑在 IB 网络上，也可以跑在以太网上，常见有两种方式：</p>
+
+          <ul>
+            <li><strong>RoCE：</strong>知道一下有点印象就行了。</li>
+            <li><strong>iWARP：</strong>基于TCP实现。</li>
+          </ul>
+
+          <h3>资源管理与监控</h3>
+
+          <h4>自动化部署</h4>
+
+          <p>利用自动化工具快速的部署、配置、管理数据中心的资源。</p>
+
+          <h4>持续集成/部署</h4>
+
+          <ul>
+            <li><strong>持续集成（CI）：</strong>可以想象成将代码变更合并到共享的主分支上，并且进行自动化测试，尽早发现错误。</li>
+            <li><strong>持续部署（CD）：</strong>将通过持续集成验证的代码自动部署到生产环境当中。</li>
+          </ul>
+
+          <h4>集群监控</h4>
+
+          <p>通过自动化工具，实时监控分布式集群内的节点的状态。</p>
+
+          <h4>智能运维（AIOps）</h4>
+
+          <p>就是利用AI来帮助运维。</p>
+
+          <p>可以通过数据中心的历史数据让AI利用机器学习算法挖掘数据的规律。</p>
+
+          <p>这样可以异常检测、判断趋势等等。</p>
+
+          <blockquote><p>例如双11，若人工扩容可能会估多（cost提升），估少（崩了）。<br>
+           智能运维则自己按虚扩容。</p></blockquote>
+
+          <h2>第五章 云计算平台</h2>
+
+          <p>这一章基本讲的是 Paas 的资源管理层内容。</p>
+
+          <h3>分布式协同管理（ZooKeeper）</h3>
+
+          <blockquote><p>假设你有一个分布式应用，运行在 10 台服务器上：<br>
+           - ZooKeeper 可以帮助你选出一个“主服务器”来负责分配任务<br>
+           - 如果主服务器宕机了，ZooKeeper 会自动选出新的主节点<br>
+           - 所有配置、状态信息都记录在 ZooKeeper 的数据树结构中，所有服务器都可以访问它获取最新信息</p></blockquote>
+
+          <h4>ZooKeeper术语解释</h4>
+
+          <ul>
+            <li><strong>Client（客户端）：</strong>指的是使用 ZooKeeper 服务的用户，比如一个分布式应用。</li>
+            <ul>
+              <li>会连接到 ZooKeeper，进行注册、读写、监听（watch）等操作。</li>
+            </ul>
+            <li><strong>Server（服务端）：</strong>是提供 ZooKeeper 服务的进程。（多个 Server 构成 ZooKeeper 集群）</li>
+            <li><strong>znode（节点）：</strong>是 ZooKeeper 中的 <strong>内存数据节点</strong>，类似文件系统中的目录或文件。</li>
+            <li><strong>Session（会话）：</strong>客户端每次连接 ZooKeeper 都会建立一个“会话”，保持通信。</li>
+            <ul>
+              <li>会有超时时间！</li>
+            </ul>
+          </ul>
+
+          <h4>Znode数据模型</h4>
+
+          <blockquote><p>Znode 是 ZooKeeper 中的节点，所有 Znode 组成一棵树，类似 Unix 文件系统的层级目录结构。</p></blockquote>
+
+          <p><img src="./058f356c5aed47f3ba43882e9edc8f3.jpg" alt="Znode数据模型1" /></p>
+
+          <p>有以下好处：</p>
+
+          <ul>
+            <li>层级结构清晰，不同的客户端可以明显的分开（分布式资源本身就是层级结构的）。</li>
+            <li>用路径来定位节点，方便客户端查找。</li>
+            <li>并且<strong>可以路径递归</strong>（对一个路径下的所有子路径、子节点进行一层层的访问或操作）：</li>
+            <ul>
+              <li>例如<code>/services/app1</code> 表示某个服务的所有实例，你可以对这个路径设置 <strong>watch</strong>，监听它下面的所有节点变化（比如实例上线或宕机），这样只监听一个节点，就可以感知一整类资源的动态变化。</li>
+            </ul>
+          </ul>
+
+          <p><img src="./a488521b5ec1e14fe3886244f7a00f1.jpg" alt="Znode数据模型2" /></p>
+
+          <p>Znode 节点有<strong>临时</strong>和<strong>顺序</strong>两个标签（当然也可以一起用）。</p>
+
+          <ul>
+            <li><strong>临时节点：</strong>就是客户端进程挂了这个节点跟着一起挂。</li>
+            <li><strong>顺序节点：</strong>节点名称后面会自动加编号，形成全局有序队列。</li>
+          </ul>
+
+          <p><img src="./bd899deae0d6a8ae9bff13071543af7.jpg" alt="Znode数据模型3" /></p>
+
+          <h4>原子性与一致性</h4>
+
+          <p>ZooKeeper <strong>写操作</strong>必须经 Leader 发起并通过 <strong>原子广播协议（Zab）</strong> （类 paxos 协议）同步到所有副本。</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">1. Client 发写请求  
+2. Leader 接收请求生成 txn（原子事务单元）  
+3. Leader 使用 Zab 原子广播 txn  
+4. 所有节点先写日志  
+5. 半数以上确认  
+6. Leader 发出 commit  
+7. 所有节点提交内存状态  
+8. Leader 回复客户端成功</code></pre>
+          </div>
+
+          <p>而<strong>读操作</strong>可以直接从本地副本读，读快写稳，实现强一致性。</p>
+
+          <h4>Znode watch flag 监听机制</h4>
+
+          <p><strong>客户端是否希望对某个 znode 设置监听器（watch）</strong>，一旦这个节点发生变化，ZooKeeper 就通知客户端。</p>
+
+          <blockquote><p>有点类似操作系统的中断。</p></blockquote>
+
+          <p>这个监听是一次性的。</p>
+
+          <p>只能由客户端向服务器端注册！</p>
+
+          <p>Watcher 可以监听以下事件类型：</p>
+
+          <ul>
+            <li>节点创建</li>
+            <li>节点删除</li>
+            <li>节点数据变更</li>
+            <li>子节点变更（更加体现出为什么需要使用树型结构）</li>
+          </ul>
+
+          <h4>例子（成员管理）</h4>
+
+          <ul>
+            <li><strong>问题1：子节点如何向zookeeper注册自己</strong></li>
+          </ul>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">create(/app1/workers/worker, data, EPHE.)</code></pre>
+          </div>
+
+          <ul>
+            <li>某个 worker 向 ZooKeeper 创建一个 znode 节点。</li>
+            <ul>
+              <li>路径为 <code>/app1/workers/workerX</code>，内容是 <code>data</code>。</li>
+              <li>类型是 <strong>EPHEMERAL（临时节点）</strong>，表示只要这个 worker 一断线，这个节点就自动删除！</li>
+            </ul>
+          </ul>
+
+          <ul>
+            <li><strong>问题2：如何知道还有哪些活着的worker</strong></li>
+          </ul>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">getChildren(/app1/workers, true)</code></pre>
+          </div>
+
+          <ul>
+            <li>监控程序读取 <code>/app1/workers</code> 下的子节点列表(路径递归)。</li>
+            <ul>
+              <li><code>true</code> 表示加了 <strong>watch</strong>，一旦有 worker 加入或退出，会收到通知！</li>
+            </ul>
+          </ul>
+
+          <p><img src="./b69a7f30dd62a45cfa99d4bccedce37.jpg" alt="成员管理" style="zoom:30%;" /></p>
+
+          <h4>例子（创建简单锁）</h4>
+
+          <p>所有 worker 尝试建立锁这个 znode</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">create(/app1/lock1,...,EPHE.)</code></pre>
+          </div>
+
+          <p>成功则获得锁，失败则watch这个锁看看什么时候释放。</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">getData(/app1/lock1,true)</code></pre>
+          </div>
+
+          <p><img src="./e0d7953462d8e05241b676045cd79a6.jpg" alt="创建锁" style="zoom:30%;" /></p>
+
+          <h4>例子（创建排队的锁）</h4>
+
+          <p><strong>创建临时+顺序的znode。</strong></p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">create(/app1/locks/lock_, SEQ|EPHE)</code></pre>
+          </div>
+
+          <p>然后获取当前的所有znode编号</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">getChildren(/app1/locks, false)</code></pre>
+          </div>
+
+          <p>检查自己是不是<strong>编号最小的那个</strong>，如果是，则获取锁；如果不是，watch自己前面的那个znode。</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">exists(max_id &lt; id, true)</code></pre>
+          </div>
+
+          <p><img src="./7859020a9441d994537487124d1154f.jpg" alt="排队的锁" style="zoom:50%;" /></p>
+
+          <h4>例子（leader选举）</h4>
+
+          <p>先 watch leader 是否有变动：</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">getData(/app1/workers/leader,true)</code></pre>
+          </div>
+
+          <p>如果有，则 follow；如果没有，则自己创建一个znode节点自己变leader：</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">create(/app1/workers/leader,IP,EPHE)</code></pre>
+          </div>
+
+          <p><img src="./image-20250625195234366.png" alt="leader选举" /></p>
+
+          <h3>虚拟化资源集群（kubernetes）</h3>
+
+          <p><strong>Kubernetes 就是“集群的自动化管理员”</strong>，它帮你把一堆容器程序部署好、安排好、调度好、监控好。</p>
+
+          <blockquote><p>如果有上百个容器要运行怎么办？需要一个“大总管”来统一调度和管理所有容器，Kubernetes 就是为此诞生的。</p></blockquote>
+
+          <h4>集群架构（主从）</h4>
+
+          <ul>
+            <li><strong>Master节点</strong></li>
+          </ul>
+
+          <p>负责管理和调度整个集群的 pod。</p>
+
+          <p>负责与集群外交互。</p>
+
+          <ul>
+            <li><strong>Node节点</strong></li>
+          </ul>
+
+          <p>集群中具体执行任务的节点。</p>
+
+          <h4>核心概念</h4>
+
+          <ul>
+            <li><strong>Pod：</strong> 由一个或多个互相协作的容器组成。（一起start，一起终止）</li>
+            <li><strong>Service：</strong>提供一组 Pod 的<strong>统一访问入口（负载均衡 + 发现）</strong>，即使 Pod 被替换、IP 改变，Service 仍保持<strong>访问地址稳定</strong>。</li>
+            <li><strong>Label：</strong>为集群提供管理信息。</li>
+            <li><strong>Namespace：</strong>适合多团队开发。</li>
+          </ul>
+
+          <blockquote><p>你有一个网站程序要部署 3 个副本，Kubernetes 会：<br>
+           1. 找到 3 台服务器（Node）<br>
+           2. 在每台上启动一个 Pod，里面跑你的程序容器<br>
+           3. 设置健康检查，如果挂了自动重启<br>
+           4. 给它们分配统一的访问地址（Service）<br>
+           5. 后续你想更新版本，只要改配置，它自动滚动升级</p></blockquote>
+
+          <h3>云计算任务</h3>
+
+          <p>云计算任务 = 在线任务 + 离线任务</p>
+
+          <blockquote><p>有些任务其实是<strong>离线和在线配合完成的</strong>：<br>
+           - 在线：你打开淘宝推荐页，看到“你可能喜欢”<br>
+           - 离线：背后是一个模型每天离线训练出你喜欢的品类 → 供推荐系统使用</p></blockquote>
+
+          <ul>
+            <li><strong>在线任务</strong> 是指<strong>用户立刻能看到结果的任务</strong>，要求<strong>快、实时、低延迟</strong>。</li>
+            <li><strong>离线任务</strong> 是指<strong>不需要马上得到结果的任务</strong>，可以<strong>慢慢做、批量做、定时做</strong>。</li>
+          </ul>
+
+          <h4>在线任务调度/分发</h4>
+
+          <ul>
+            <li><strong>基于 DNS 的请求调度</strong></li>
+          </ul>
+
+          <p>客户端在访问服务时，首先会<strong>请求域名解析（DNS）</strong>，DNS 服务器会返回一个<strong>后端服务器的 IP 地址</strong>。</p>
+
+          <p>如果这个服务后面挂了多台服务器，那 DNS 可以返回哪一个？</p>
+
+          <ul>
+            <li><strong>轮询（Round-Robin）</strong>：轮流返回一台服务器 IP</li>
+          </ul>
+
+          <ul>
+            <li><strong>基于负载均衡器的请求调度</strong></li>
+          </ul>
+
+          <p>是指用户请求到达服务前，<strong>先经过一个请求分发器（负载均衡器）</strong>，它会<strong>根据后端服务器的健康状态、繁忙程度等</strong>，<strong>把请求合理地分配给某一个服务器去处理。</strong></p>
+
+          <h5>负载均衡调度LVS</h5>
+
+          <p>LVS 就像是一个隐藏在服务前面的<strong>“超级网关”</strong>：</p>
+
+          <ul>
+            <li>用户的请求先打到 LVS。</li>
+            <li>LVS 不处理内容，只负责<strong>转发请求到后端服务器（Real Server）</strong>。</li>
+            <li>用户得到的响应就像是直接从这台 LVS 收到的。</li>
+          </ul>
+
+          <p>一共有以下三个模式：</p>
+
+          <ul>
+            <li><strong>NAT 模式：</strong></li>
+          </ul>
+
+          <p>LVS 修改报文源地址再发给 RS，回包再过 LVS，开销大。</p>
+
+          <p><img src="./image-20250618014817470.png" alt="NAT模式" style="zoom:33%;" /></p>
+
+          <ul>
+            <li><strong>TUN 模式(隧道)</strong></li>
+          </ul>
+
+          <p>调度器根据各个服务器的负载情况，动态地选择一台服务器，将请求报文封装在另一个IP报文中，转发给选出的服务器。</p>
+
+          <p>服务器收到报文后，先将报文解封获得原来目标地址为VIP的报文，处理这个请求，然后根据路由表将响应报文直接返回给客户。</p>
+
+          <p><img src="./1b00343df9c7d3bf87549d4ca77ac0f.jpg" alt="TUN模式" style="zoom:33%;" /></p>
+
+          <ul>
+            <li><strong>DR 模式(直接路由)</strong></li>
+          </ul>
+
+          <p>调度器不修改也不封装IP报文，而是将数据帧的MAC地址改为选出服务器的MAC地址，再在局域网上发送。以服务器收到这个数据帧，获得该IP报文，处理这个报文，然后根据路由表将响应报文直接返回给客户。</p>
+
+          <p><strong>LVS和RS要在同一个网段!</strong></p>
+
+          <p><img src="./ef8755ae6352287d1f85d245e6ea0e6.jpg" alt="DR模式" style="zoom:33%;" /></p>
+
+          <blockquote><p>最常用的是 <strong>DR 模式</strong>：负载均衡器只负责转发请求（没有封装ip包），<strong>响应不经过 LVS</strong>，非常快！</p></blockquote>
+
+          <p><img src="./6c22fb19176331a70c466c6e4e8ec59.jpg" alt="LVS调度" /></p>
+
+          <p>LVS的调度策略有：RR、带服务器处理能力权重的RR、根据目标IP地址进行哈希映射、根据源IP地址进行哈希映射；将请求分发给最少连接数的服务器等等。</p>
+
+          <h4>离线任务调度</h4>
+
+          <p>离线任务 = 不需要实时响应、可以<strong>定时、批量处理</strong>的数据任务。</p>
+
+          <blockquote><p>比如：每天统计一整天的订单数量，每小时对日志做一次清洗。</p></blockquote>
+
+          <p>调度器分为全局和分布式：</p>
+
+          <ul>
+            <li><strong>全局调度器：</strong>可以获得全局最优调度，但是计算很复杂，很困难。</li>
+            <li><strong>分布式调度器（局部）</strong>只有局部最优调度，但是计算快，不复杂。</li>
+          </ul>
+
+          <h5>全局调度器 （yarn）</h5>
+
+          <ul>
+            <li><strong>ResourceManager 资源管理器：</strong>类似大脑的存在，负责管理全局资源。</li>
+            <li><strong>ApplicationMaster 应用主控程序：</strong>负责本应用的所有任务调度。</li>
+            <ul>
+              <li>负责拆分 task</li>
+              <li>向 RM 申请资源</li>
+            </ul>
+            <li><strong>NodeManager 节点管理器：</strong>负责向 RM 报告目前工作节点的状态。</li>
+            <li><strong>Container：</strong> 执行 task 的环境。</li>
+          </ul>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">客户端提交作业 → RM
+RM 分配资源 → 启动 ApplicationMaster（AM）
+AM 向 RM 申请资源 → 启动多个 NodeManager
+在节点中启动具体 task
+任务运行于容器内
+NM 向 RM 报告状态，RM 统一调度</code></pre>
+          </div>
+
+          <h5>分布式调度器（mesos）</h5>
+
+          <p>Mesos = 多种应用共享一堆机器的资源调度中心</p>
+
+          <p><img src="./image-20250625203038921.png" alt="mesos" /></p>
+
+          <p>Mesos 提供资源，具体怎么用，由计算框架自己决定。</p>
+
+          <p>Mesos 更加灵活，但是框架必须聪明、有调度能力</p>
+
+          <p><strong>对比：</strong></p>
+
+          <ul>
+            <li>YARN 是你申请资源，调度器（RM）替你决定怎么安排。</li>
+            <li>Mesos 是我给你资源报价，计算框架自己决定要不要。</li>
+          </ul>
+
+          <h5>资源调度算法</h5>
+
+          <p>分为<strong>单资源调度</strong>和<strong>多资源调度</strong>。</p>
+
+          <ul>
+            <li><strong>单资源调度</strong></li>
+          </ul>
+
+          <p>调度时只考虑一种资源（例如 CPU）</p>
+
+          <p><img src="./08453e2a73e5f4385ce4104753e0b85.jpg" alt="单资源调度" style="zoom:50%;" /></p>
+
+          <p><strong>最大最小公平分配</strong></p>
+
+          <ul>
+            <li>保证最小分额最大化，避免饥饿。</li>
+          </ul>
+
+          <p><img src="./21537b97c9421d2264da40c0aa02cd9.jpg" alt="最大最小公平" /></p>
+
+          <ul>
+            <li><strong>共享保障：</strong>可以保证每个用户一定至少获得(1/n)，除非原本的要求就小于1/n。</li>
+            <ul>
+              <li><strong>策略无关性：</strong>每个用户讲实话更好（不会撒谎把需求报大，因为优先满足小需求）</li>
+              <li>最大最小公平分配是唯一满足上述两点的机制。</li>
+            </ul>
+          </ul>
+
+          <ul>
+            <li><strong>多资源调度</strong></li>
+          </ul>
+
+          <p>调度时考虑多种资源（例如CPU和内存）</p>
+
+          <p>以下有一个“自然”的调度方法：把多种资源（如 CPU、内存）<strong>赋予权重</strong>，然后让每个用户获得“<strong>相等价值的资源</strong>”。</p>
+
+          <p><img src="./3fabe4ec148f03e1d9e2d5cc9de2383.jpg" alt="多资源调度1" /></p>
+
+          <p>但是<strong>违反了共享保障</strong>，因为只有两个user，应该至少获得50%以上，但是User1两个资源都没有超过50%。</p>
+
+          <p>所以引入了 <strong>主导资源公平性调度策略(DRF)</strong> 调度方法（让 dominant share 一样大）：</p>
+
+          <ul>
+            <li><strong>对某个用户来说，占用比例最大的那种资源</strong>，叫做这个用户的主导资源。</li>
+          </ul>
+
+          <blockquote><p>- 系统总资源：8 CPU，5 GB RAM<br>
+           - User 1 拿到了：<br>
+           &nbsp;&nbsp;&nbsp;- 2 CPU → 2 / 8 = 25%<br>
+           &nbsp;&nbsp;&nbsp;- 1 GB RAM → 1 / 5 = 20%<br>
+           <strong>User 1 的主导资源就是 CPU</strong>，因为她在 CPU 上占比更大（25% &gt; 20%）</p></blockquote>
+
+          <ul>
+            <li>用户对其主导资源的占比是多少，就叫 dominant share（按照上述例子是 25%）。</li>
+          </ul>
+
+          <p>然后，<strong>在每个用户的主导资源上使用最大最小公平调度</strong>：</p>
+
+          <p><img src="./6c1bcf29a900140e2456556325d72c1.jpg" alt="主导资源公平性调度" style="zoom: 33%;" /></p>
+
+          <h2>第六章 云存储与文件系统</h2>
+
+          <p>这一章讲的是 PaaS 的部分。</p>
+
+          <p>云存储：就是将数据存在远程数据中心内，按需收费（<strong>租用别人的硬盘</strong>），可以有<strong>对象存储、块存储、文件存储</strong>。</p>
+
+          <p>文件系统：组织和管理存储设备中的文件，例如<strong>通过路径名（<code>/foo/bar.txt</code>）来访问文件，系统能自动找到这个文件背后的多个数据块”</strong>，并完成 合并 / 读取 / 写入 的操作。</p>
+
+          <h3>网络存储系统</h3>
+
+          <p>存储设备和计算节点分离，用户通过<strong>网络</strong>来访问数据资源。</p>
+
+          <p>存储系统可以分为<strong>集中式</strong>（管理集中）和<strong>分布式</strong>（扩展性好）。</p>
+
+          <p><img src="./64823dc9406fec8fe110085796faf25.jpg" alt="网络存储系统" style="zoom:50%;" /></p>
+
+          <h3>集中式存储类型</h3>
+
+          <p>分为 <strong>DAS 、SAN、NAS</strong> 三种。</p>
+
+          <ul>
+            <li><strong>DAS：</strong>直接通过总线连接到存储设备，不需要网络，不能多服务器共享存储设备。（有点像插在电脑的移动硬盘）</li>
+          </ul>
+
+          <ul>
+            <li><strong>SAN：</strong>文件系统在应用服务器这边，服务器在本地选择文件后，透过<strong>专门的高速网络访问远程硬盘</strong>。</li>
+          </ul>
+
+          <blockquote><p>实际上就是将存储设备通过网络连到服务器。</p></blockquote>
+
+          <ul>
+            <li><strong>NAS：</strong>文件系统在存储设备这边，实际上有点像应用服务器访问远程文件夹。</li>
+          </ul>
+
+          <p><img src="./e98fdec7ea62c5326f628d7d5dd0088.jpg" alt="集中式存储" style="zoom:30%;" /></p>
+
+          <h4>SAN</h4>
+
+          <p>使用的高速网络有 <strong>IP SAN</strong> 和 <strong>FC SAN</strong>。</p>
+
+          <h4>NAS</h4>
+
+          <p>带有文件系统功能的磁盘阵列。</p>
+
+          <p><img src="./9e79873119716e92208d0247d46659e.jpg" alt="NAS1" style="zoom:40%;" /></p>
+
+          <p><img src="./a886b8b9004997b91695f1dd12aaccd.jpg" alt="NAS2" style="zoom:50%;" /></p>
+
+          <h3>分布式文件系统</h3>
+
+          <p>传统的分布式文件系统有：<strong>NFS、CIFS</strong>。</p>
+
+          <p>现代分布式系统有：<strong>GFS、HDFS、Ceph</strong>。</p>
+
+          <h4>NFS(网络文件系统)</h4>
+
+          <p>用于 Unix 操作系统中文件共享。</p>
+
+          <p>将远程文件系统挂载在自己的文件系统下。</p>
+
+          <p><img src="./2df8f19eb3778d4ddc58b635289d79e.jpg" alt="NFS" style="zoom:50%;" /></p>
+
+          <h4>CIFS</h4>
+
+          <p>类似 NFS，但是这个是给 Windows 操作系统使用的。</p>
+
+          <h4>HDFS</h4>
+
+          <p><strong>支持大文件数据存储</strong>，<strong>按块存储</strong>，<strong>并行读取</strong>，大量的数据复制（<strong>高容错</strong>），<strong>针对 MapReduce 设计</strong>（任务尽可能分到有数据的节点上运行）。</p>
+
+          <h5>适用场景</h5>
+
+          <ul>
+            <li>大量的从文件中<strong>顺序读</strong>（一次读很多数据，文件被拆成很多个大块）。</li>
+            <li>支持一次写，多次读（<strong>数据写入后不能修改</strong>，只能够进行文件替换）。</li>
+            <li><strong>不支持本地缓存</strong>（文件太大，并且顺序读只分析一次，缓存没有必要）。</li>
+          </ul>
+
+          <h5>架构如下</h5>
+
+          <p>采用主 (NameNode) 从 (DataNode) 架构。</p>
+
+          <ul>
+            <li><strong>NameNode：</strong>负责存储文件的元数据：文件目录结构（像 <code>/user/data/log.txt</code>），文件被切成哪些块（Block），每个块在哪些 DataNode 上。</li>
+          </ul>
+
+          <ul>
+            <li><strong>DataNode：</strong>存储文件的<strong>实际数据块</strong>，实际上是一部 Linux 服务器，数据存储在每台服务器的 disk 上。</li>
+          </ul>
+
+          <p>DataNode之间不会互相通信。</p>
+
+          <p><img src="./a2e0684df51f19b395482654f27fba2.jpg" alt="HDFS架构1" style="zoom:40%;" /></p>
+
+          <p><img src="./f2ac1fed52c03b6c856d4a4bd6da95d.jpg" alt="HDFS架构2" style="zoom:40%;" /></p>
+
+          <h5>基本设计如下</h5>
+
+          <ul>
+            <li>基于块的文件存储。</li>
+            <li>数据块默认有三个副本。</li>
+            <li>默认块的大小是 128 MB（减少元数据量，有利于顺序读写）。</li>
+          </ul>
+
+          <h5>节点通信</h5>
+
+          <ul>
+            <li><strong>所有HDFS通信都是基于 TCP/IP 协议。</strong></li>
+            <li>Client to NameNode：使用 RPC 进行通信。</li>
+            <li>Client to DataNode：使用 RPC 进行通信。</li>
+            <li>DataNode to NameNodeto：使用专门的协议。</li>
+          </ul>
+
+          <h5>数据内容</h5>
+
+          <p><img src="./57dedd323be13cd783a0897cfc372a5.jpg" alt="数据内容" /></p>
+
+          <h5>数据容错 (可能考)</h5>
+
+          <p>通常一个块会存储三次（两个副本），但是这样的存储开销十分的大，所以也会使用 <strong>纠删码</strong>。</p>
+
+          <ul>
+            <li>将数据切成 <code>k</code> 个<strong>数据块</strong>，再计算出 <code>m</code> 个<strong>校验块（Parity）</strong>。</li>
+            <li>只要不超过 <code>m</code> 个块丢失，就能恢复原始数据。</li>
+          </ul>
+
+          <p>下图是 6 个数据块 + 3 个校验块 ，每个校验块是通过多个数据块“异或”得到的。</p>
+
+          <p><img src="./c883d01d6fa171d5a2fe3a045a48cf8.jpg" alt="纠删码" /></p>
+
+          <h5>NameNode数据结构如下</h5>
+
+          <ul>
+            <li><strong>FsImage：</strong>维护文件目录树以及文件和目录的元数据。</li>
+            <li><strong>EditLog: </strong>记录对文件的所有操作。</li>
+          </ul>
+
+          <p>对文件的修改不会直接动到 FsImage(通常这个文件很大，动到需要很慢)而是保存在 EditLog 中。</p>
+
+          <p><img src="./2e84c6a2f84e8fb9f7e7f9621f06f61.jpg" alt="NameNode数据结构" style="zoom:40%;" /></p>
+
+          <h5>Secondary NameNode(重点)</h5>
+
+          <p>主要功能是：</p>
+
+          <ul>
+            <li>保存元数据备份。</li>
+            <li>加速NameNode启动。</li>
+          </ul>
+
+          <blockquote><p>如果 editlog 太长，启动会变慢，甚至无法恢复<br>
+           所以需要定期把两者合并成一个新的 fsimage，这就是 Secondary NameNode 的任务。</p></blockquote>
+
+          <p>流程如下：</p>
+
+          <ol>
+            <li><strong>通知 NameNode</strong> 停止写入 editlog：临时切换写入到 <code>edits.new</code>。</li>
+            <li><strong>Secondary NameNode 下载</strong>：下载当前的 <code>fsimage</code> 和 <code>editlog</code>。</li>
+            <li><strong>合并操作</strong>（在 Secondary 节点本地完成）：将 editlog 中的变更合并进 fsimage，生成新的快照文件<code>fsimage.ckpt</code>。</li>
+            <li><strong>上传新 fsimage 给 NameNode</strong>：并清除旧的 editlog，开始新的日志。</li>
+          </ol>
+
+          <p><img src="./90bcde8bb130a004e452ded140b2260.jpg" alt="Secondary NameNode" /></p>
+
+          <h5>DataNode</h5>
+
+          <ul>
+            <li>保存文件数据。</li>
+            <li>保存校验信息。</li>
+            <li>周期性的跟 NameNode 说我目前有什么块。</li>
+            <li>一个块一次性写三次。</li>
+          </ul>
+
+          <p><strong>块放置策略：</strong></p>
+
+          <p>一共需要存三次块。</p>
+
+          <p>第一个块放在执行写入操作的机器上，第二个和第三个块同时放在其他的远程机架上。</p>
+
+          <p>整个的流程是：</p>
+
+          <ul>
+            <li>客户会向 NameNode 取回一个 DataNode 序列，说明接下来存的块要放在这里。</li>
+            <li>数据<strong>首先被写到第一个 DataNode（比如 DN1）</strong>。</li>
+            <li>DN1 <strong>一边接收客户端数据，一边把数据转发给 DN2</strong>。</li>
+            <li>DN2 再继续转发给 DN3。</li>
+            <li>整个过程就像“传球”一样顺序进行，<strong>不是客户端三次分别发送</strong></li>
+          </ul>
+
+          <h5>Data 正确性</h5>
+
+          <p>使用 Checksum 来保证块数据的正确性。</p>
+
+          <p>客户端每隔 512 个字节就会计算一次 checksum。</p>
+
+          <p>如果客户取回数据和 checksum 发现错误，则向其他副本读取该数据。</p>
+
+          <h5>容错和高可用（重点）</h5>
+
+          <ul>
+            <li>DataNode 失效：可以有<strong>副本</strong>和<strong>心跳检测</strong>。</li>
+            <li>Data 完整性：可以由 <strong>checksum</strong> 保证。</li>
+            <li>元数据失效（其实就是 NameNode 的数据出问题）：有 secondary namenode 来周期性的将 FsImage 和 Editlog 合并成检查点。</li>
+            <li>NameNode失效：使用多个 NameNode 节点。</li>
+          </ul>
+
+          <p><strong>Active</strong>：真正工作的主节点</p>
+
+          <p><strong>Standby</strong>：备用节点，实时同步状态，但不参与工作</p>
+
+          <p><strong>QJM</strong>：专门用于存储 NameNode 编辑日志（EditLog）的服务器，保证主备 NameNode 之间的数据同步。</p>
+
+          <p>这是系统正常时的行为流程：</p>
+
+          <p>① <code>Active logs...</code></p>
+
+          <ul>
+            <li>活跃的 NameNode 把修改操作（如创建/删除文件）同步到所有 JournalNode 上</li>
+          </ul>
+
+          <p>② <code>Standby reads...</code></p>
+
+          <ul>
+            <li>备用的 NameNode 会不断从 JournalNode 拉日志，保持自己的元数据状态和 Active 一致</li>
+          </ul>
+
+          <p>③ <code>Datanodes send block report and heartbeat to both</code></p>
+
+          <ul>
+            <li>所有 DataNode 会向 <strong>两个 NameNode 同时汇报心跳和块信息</strong></li>
+            <ul>
+              <li>这样一旦主节点切换，Standby 能立即接手而无需等待同步</li>
+            </ul>
+          </ul>
+
+          <p><img src="./image-20250624193749224.png" alt="NameNode HA" /></p>
+
+          <p>但是这样会产生一个问题，如果网络比较慢的情况下，备用节点以为主节点挂了，然后自己变主节点对 HDFS 进行操作，但是实际上主节点没挂，<strong>就会产生两个主节点对 HDFS 进行操作的问题</strong>。</p>
+
+          <p>所以需要 fencing（规避） 机制保证只会有一个主节点可以执行写操作，并且当备用节点变成主节点后需要确保之前的主节点没有写 QJM 的权限了。</p>
+
+          <h5>读数据的工作流</h5>
+
+          <p><img src="./image-20250624200110700.png" alt="读数据工作流" /></p>
+
+          <p>HDFS 读文件的流程是：<strong>向 NameNode 获取 block 位置信息 → 客户端直接并发从多个 DataNode 下载 block 数据 → 顺序拼接为完整文件</strong></p>
+
+          <h5>写数据的工作流</h5>
+
+          <p><img src="./image-20250624200734920.png" alt="写数据工作流" /></p>
+
+          <p>HDFS 写数据的流程是：客户端从 NameNode 获取位置 → 启动 DataNode 写入 pipeline → 数据一层层传下去 → 写入确认 ack 回传 → 出错则重建 pipeline → NameNode 最终确认写入完成。</p>
+
+          <h4>Ceph 文件系统</h4>
+
+          <p>提供 <strong>块存储、对象存储、文件系统存储</strong> 三种接口。</p>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>类型</th>
+                  <th>类比</th>
+                  <th>适合场景</th>
+                  <th>优点</th>
+                  <th>缺点</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>块存储</td>
+                  <td>裸硬盘</td>
+                  <td>数据库</td>
+                  <td>高性能、低延迟</td>
+                  <td>需要自己管理文件系统，不能共享</td>
+                </tr>
+                <tr>
+                  <td>文件存储</td>
+                  <td>文件夹+文件系统</td>
+                  <td>文件共享</td>
+                  <td>简单直观、易用，可以共享</td>
+                  <td>扩展性较差、性能受限</td>
+                </tr>
+                <tr>
+                  <td>对象存储</td>
+                  <td>智能快递柜</td>
+                  <td>图像</td>
+                  <td>高扩展、支持元数据</td>
+                  <td>不适合频繁修改的小文件，一次要取整个数据出来，就算只是改一个小部分</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>采用<strong>去中心化</strong>的设计。（<strong>HDFS 是主从架构的</strong>）</p>
+
+          <h4>DHT</h4>
+
+          <p><strong>DHT（分布式哈希表）是一种用于在</strong>多台机器（节点）<strong>之间存储和查找数据的方法。</strong></p>
+
+          <ul>
+            <li>它是<strong>去中心化</strong>的：没有一个“老板”节点说了算，每个节点都平等。</li>
+            <li>它是<strong>高效的</strong>：查找一个数据项，通常只需要经过 log(N) 次跳转。</li>
+            <li>它用的是<strong>哈希表的思想</strong>：将“键”通过哈希函数转成“编号”，然后存在“对应负责的节点”上。</li>
+          </ul>
+
+          <p><strong>Chord结构：通过finger table提高搜索效率</strong></p>
+
+          <p><img src="./image-20250624203109569.png" alt="Chord结构" /></p>
+
+          <p>指状表公式如下：</p>
+
+          <p><img src="./image-20250624203213678.png" alt="指状表公式" /></p>
+
+          <p><strong>指状表实为搜索捷径，根据哈希值范围确定，保证不会错过目标实体。</strong></p>
+
+          <h4>Dynamo</h4>
+
+          <p>完全的去分布式，去中心化架构。</p>
+
+          <p>只支持简单的 key/value 存储。</p>
+
+          <ul>
+            <li>查询效率高</li>
+            <li>可扩展性好</li>
+          </ul>
+
+          <h5>高可靠高可用</h5>
+
+          <p>高可靠就是分区容错性（P），高可用是（A）。</p>
+
+          <p><img src="./image-20250624204621260.png" alt="Dynamo高可用" /></p>
+
+          <ul>
+            <li>数据均衡分布使用 DHT 和 虚拟节点</li>
+            <li>数据一致性使用向量时钟</li>
+            <li>成员资格使用 Gossip 协议检测</li>
+          </ul>
+
+          <p><strong>preference list存储与某个特定键值相对应的数据的节点列表</strong></p>
+
+          <blockquote><p>就是存储这个键值数据的对应列表</p></blockquote>
+
+          <h5>均衡分布</h5>
+
+          <p><strong>每个虚拟节点都隶属于某一个实际的物理节点</strong>，一个物理节点根据其性能的差异被分为一个或多个虚拟节点。</p>
+
+          <p><strong>各个虚拟节点的能力基本相当</strong>，并随机分布在哈希环上。</p>
+
+          <p><strong>Dynamo将整个哈希环划分成Q等份，每个等份称为一个数据分区。</strong></p>
+
+          <p><img src="./image-20250624205012381.png" alt="虚拟节点" style="zoom:50%;" /></p>
+
+          <p>在存储数据时，每个数据会被先分配到某个数据分区，再根据负责该数据分区的虚拟节点，最终确定其所存储的物理节点。</p>
+
+          <p><strong>数据分区的好处如下：</strong></p>
+
+          <ul>
+            <li>可以更好的均衡分布。</li>
+            <li>增加和删除节点的开销更小。</li>
+          </ul>
+
+          <h5>数据备份</h5>
+
+          <p>一般会有三个副本。</p>
+
+          <p>每个数据的副本备份存储在哈希环顺 时针方向上该数据所在虚拟节点的后继节点中。</p>
+
+          <h5>数据一致性</h5>
+
+          <p>Dynamo采用了最终一致性模型：通过牺牲一致性来保证可靠性和可用性。</p>
+
+          <p>使用向量时钟。</p>
+
+          <h5>容错保障</h5>
+
+          <p><strong>Dynamo 的 sloppy quorum 只要写入 preference list 中的任意 N 个“活着”的节点即可。</strong></p>
+
+          <ul>
+            <li>比如你写 <code>user42</code> 本来应该写到 A、B、C 三台机器上（在 preference list 中），但 A 宕机了。</li>
+            <li>Dynamo 不会卡住，而是<strong>临时把数据写到别的节点（比如 D）</strong>。</li>
+            <li>写成功后仍算成功（W 达到了），<strong>一致性由后台恢复机制保障</strong>。</li>
+          </ul>
+
+          <p><strong>Hinted Handoff（带监听的数据回传机制）</strong></p>
+
+          <p>这是 Sloppy Quorum 的保障机制。</p>
+
+          <p><strong>过程如下：</strong></p>
+
+          <ol>
+            <li>本来应该写到虚拟节点 A。</li>
+            <li>但 A 宕机了，于是数据临时写入 preference list 中下一个节点 D。</li>
+            <li>D 会在本地记录一条 hint：这个数据其实是“代替 A 存”的。</li>
+            <li>等 A 恢复上线后，D 会<strong>自动把数据“回传”给 A</strong>。</li>
+            <li>之后 A 拥有自己的数据副本，D 的 hint 被清除。</li>
+          </ol>
+
+          <h5>成员构成维护</h5>
+
+          <p>成员构成维护：基于Gossip协议，每固定时间（1秒）随机选节点进行通信。 •</p>
+
+          <ul>
+            <li>若对方没反应，判定其失效</li>
+            <li>若连接成功，交换各自保存的信息（数据、路由）</li>
+          </ul>
+
+          <p><img src="./image-20250624210302871.png" alt="Gossip成员维护" style="zoom:50%;" /></p>
+
+          <h4>对象存储</h4>
+
+          <p>将数据组织成离散的数据单元，称为“对象”。</p>
+
+          <p>使用唯一的标识符（ID）来访问数据，而不是路径。</p>
+
+          <p>每个对象还会存储数据的元数据。</p>
+
+          <ul>
+            <li>扩展性好：方便增删节点（扁平式架构）</li>
+            <li>查询效率高</li>
+          </ul>
+
+          <p><img src="./image-20250624210931509.png" alt="对象存储" /></p>
+
+          <h3>几种存储方式的区别</h3>
+
+          <ul>
+            <li>块存储适合高性能、高控制需求的底层系统与数据库。</li>
+            <li>文件存储适合多用户共享文件和传统文件操作场景。</li>
+            <li>对象存储适合云环境中海量、非结构化、整体读写的静态数据。</li>
+          </ul>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>存储方式</th>
+                  <th>特点简述</th>
+                  <th>典型使用场景</th>
+                  <th>访问方式</th>
+                  <th>是否支持共享</th>
+                  <th>是否支持目录结构</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>块存储</strong></td>
+                  <td>底层磁盘按块划分，需自己装文件系统，读写高性能</td>
+                  <td>数据库存储</td>
+                  <td>挂载为磁盘设备，OS 级访问</td>
+                  <td>否（一般独占）</td>
+                  <td>否</td>
+                </tr>
+                <tr>
+                  <td><strong>文件存储</strong></td>
+                  <td>类似操作系统文件系统，支持文件夹/权限/共享</td>
+                  <td>团队代码共享</td>
+                  <td>路径访问（如 <code>/home/data</code>）</td>
+                  <td>支持多人共享</td>
+                  <td>支持</td>
+                </tr>
+                <tr>
+                  <td><strong>对象存储</strong></td>
+                  <td>数据作为对象整体存取，通过 URL 访问，无目录，支持海量数据</td>
+                  <td>用户上传图片/视频</td>
+                  <td>API 访问</td>
+                  <td>可控共享（设置权限）</td>
+                  <td>否（伪目录）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>回答：可扩展性，共享，存储数据大不大，适合频繁访问吗。</p>
+
+          <h2>第七章 分布式数据库</h2>
+
+          <h3>NoSQL 数据库</h3>
+
+          <p>NoSQL 数据库是一类不使用传统关系模型的数据库，专为大规模、高并发、<strong>灵活结构</strong>的数据存储设计。</p>
+
+          <p>它们之间的差别如下：</p>
+
+          <p><img src="./image-20250624212035773.png" alt="NoSQL差别" /></p>
+
+          <p>一般有四种：<strong>key-value 数据库</strong>、<strong>文档数据库</strong>、<strong>列族数据库</strong>、<strong>图数据库</strong>。</p>
+
+          <h3>键值数据库</h3>
+
+          <p>例如：DynamoDB、Redis。</p>
+
+          <p><img src="./image-20250624212503283.png" alt="键值数据库" /></p>
+
+          <p><strong>优点：</strong></p>
+
+          <ul>
+            <li>查询非常快</li>
+            <li>可扩展性好</li>
+            <li>数据模型简单</li>
+            <li>最终一致性（带监听的数据回传机制）</li>
+            <li>适合分布式（因为每个key都是独立的，可以把不同的key分给不同的分区）</li>
+          </ul>
+
+          <p><strong>缺点：</strong></p>
+
+          <p>不能很好地表达复杂数据结构，比如对象、嵌套关系、查询条件等。</p>
+
+          <p><img src="./image-20250624212745011.png" alt="键值数据库缺点" /></p>
+
+          <h3>列族数据库</h3>
+
+          <p>例子：BigTable  Htable</p>
+
+          <p>结构比键值存储更复杂，功能也更强。</p>
+
+          <p>数据按“列族”存储：</p>
+
+          <ul>
+            <li><strong>一个列族中的列数据物理上相邻</strong></li>
+          </ul>
+
+          <p><img src="./image-20250624213940384.png" alt="列族数据库" /></p>
+
+          <p>这样子查询单列（属性会很快），例如上面的例子说 键值数据库很难查出全部地址在北京的用户，但是列族数据库可以，因为列都是存在一起的。</p>
+
+          <p>不同 row key 下列数可能不一样。</p>
+
+          <h3>文档数据库</h3>
+
+          <p>例子有： MongoDB。</p>
+
+          <p>文档型数据库是一种 NoSQL 数据库，用来存储结构灵活的“文档数据” —— 常见格式是 JSON 或 XML，数据以<strong>文档为单位</strong>进行组织和查询。</p>
+
+          <p><img src="./image-20250624214522262.png" alt="文档数据库" /></p>
+
+          <p>相比键值数据库只能存 <code>"user123": "Alice"</code> 文档型可以存：</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">json</div>
+            <pre class="!mt-0"><code class="language-json">{
+  "id": "user123",
+  "name": "Alice",
+  "address": {
+    "city": "Shanghai",
+    "zip": "200000"
+  },
+  "orders": [
+    {"id": 1, "item": "Book"},
+    {"id": 2, "item": "Pen"}
+  ]
+}</code></pre>
+          </div>
+
+          <p>文档数据库中，数据不是表格，而是一堆文档（JSON/XML 格式）；</p>
+
+          <p>文档集合（collection）类似关系型数据库中的“表”；</p>
+
+          <p>每个文档就类似“表中的一行”，但它<strong>不要求结构一致</strong>！</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">json</div>
+            <pre class="!mt-0"><code class="language-json">Collection: users
+  - Document 1: {"name": "Alice", "age": 25}
+  - Document 2: {"name": "Bob", "email": "b@example.com"}</code></pre>
+          </div>
+
+          <h3>图数据库</h3>
+
+          <p>例子有：Neo4J。</p>
+
+          <p>图数据库是一种以 <strong>图论结构来建模数据和它们之间关系</strong>的数据库。数据以“节点”和“边”形式组织，非常适合处理“人与人” “物与物” 的<strong>网络关系</strong>。</p>
+
+          <p>图数据库<strong>特别关注“数据之间的连接关系”</strong>，而不是数据本身。</p>
+
+          <p><img src="./image-20250624215002411.png" alt="图数据库" /></p>
+
+          <h3>不同数据库之间的对比</h3>
+
+          <p><img src="./image-20250624215205405.png" alt="不同数据库对比" /></p>
+
+          <h2>第八章 计算框架</h2>
+
+          <blockquote><p>MAP REDUCE过程（shuffle sort 等），hadoop 和 spark的区别，RDD要知道。</p></blockquote>
+
+          <h3>传统分布式并行 与 大数据分布并行</h3>
+
+          <p>传统分布式并行主要是任务并行，并行处理计算量大的任务，计算耦合度高，<strong>像多个计算节点并行处理一个很复杂的问题。</strong></p>
+
+          <p>大数据分布并行主要是处理大量的数据计算，但是这个计算是十分简单的，<strong>关注点是如何处理成千上万的简单结构的数据。</strong></p>
+
+          <p>传统并行注重精度和协同计算，大数据并行注重扩展性和容错能力。</p>
+
+          <h3>大数据并行（MapReduce）</h3>
+
+          <p>用于大规模数据集的并行计算，主要操作是 MAP(映射) 和 Reduce(归约）。</p>
+
+          <blockquote><p>主要流程 输入切分成多个片，然后输入到 mapper 中。 <br>
+           mapper 对输入的键值对进行处理，输出键值对。然后为了避免数据量过大，会进行一次局部合并（combine）。 <br>
+           局部合并完之后根据 key 值计算对应的 reducer，然后写入磁盘。 <br>
+           再进行 shuffle&amp;sort，将相同 key 值聚合到一起，并且进行排序。 <br>
+           然后根据前面的 key 值计算到的 reducer 发任务给它，执行 reduce 操作。</p></blockquote>
+
+          <h4>整体流程</h4>
+
+          <ol>
+            <li><strong>输入切分</strong>：</li>
+          </ol>
+
+          <p>原始数据被切分成多个片段（Split），并分配给多个 <code>Mapper</code> 处理。</p>
+
+          <ol start="2">
+            <li><strong>Map 阶段</strong>：</li>
+          </ol>
+
+          <p>每个 <code>Mapper</code> 处理一部分输入，输出一组中间的 <code>key-value</code> 对。</p>
+
+          <ol start="3">
+            <li><strong>Combine（局部合并）</strong>：</li>
+          </ol>
+
+          <p>为减少网络传输开销，对同一个 Mapper 内部相同 key 的结果做一次本地归并。</p>
+
+          <ol start="4">
+            <li><strong>Partition（分区）</strong>：</li>
+          </ol>
+
+          <p>根据 key 的哈希结果决定将该 key 分配给哪个 <code>Reducer</code>，并写入本地磁盘。</p>
+
+          <ol start="5">
+            <li><strong>Shuffle &amp; Sort（分发与排序 核心）</strong>：</li>
+          </ol>
+
+          <p>系统将所有 <code>Mapper</code> 的输出根据 key 聚合，<strong>把相同的 key 聚合在一起</strong>，并对 key 进行排序后，发送给对应的 <code>Reducer</code>。</p>
+
+          <ol start="6">
+            <li><strong>Reduce 阶段</strong>：</li>
+          </ol>
+
+          <p>每个 <code>Reducer</code> 对收到的每个 key 及其对应的一组 values 进行归约计算，输出最终结果。</p>
+
+          <p><img src="./b28e09ff6d3cdacd8ef4d80b6fd843dc.png" alt="MapReduce流程" /></p>
+
+          <p><strong>Shuffle &amp; Sort 是 MapReduce 成功的关键机制</strong>，自动完成“聚合 + 分发 + 排序”，是 Map 和 Reduce 的桥梁。</p>
+
+          <ul>
+            <li><strong>Shuffle 本身</strong>不做计算（比如加法、求和、平均）：</li>
+            <ul>
+              <li><strong>把 Map 阶段输出的所有相同 key 的数据聚在一起</strong></li>
+              <li><strong>并把这些数据分发给对应的 Reducer</strong></li>
+            </ul>
+            <li>Reducer 输入的 key 是排好序的：</li>
+            <ul>
+              <li>一边读 key 一边处理，不用缓存所有数据</li>
+              <li>遇到新的 key，说明上一个 key 的数据处理完了</li>
+            </ul>
+          </ul>
+
+          <p><strong>MapReduce 的中间结果是写入本地磁盘的</strong>，这是为了容错、大数据处理做出的权衡，也是它的特点之一。</p>
+
+          <blockquote><p>MapReduce 用户只需要写 Map 和 Reduce 逻辑，<strong>系统自动完成 Shuffle &amp; Sort</strong>，大大简化编程复杂度 <br>
+           在分布式场景下，<strong>Shuffle 包括了数据的网络传输、合并、缓存和排序，非常复杂</strong>，但你完全不用操心</p></blockquote>
+
+          <p><img src="./image-20250625011710086.png" alt="MapReduce架构" /></p>
+
+          <h4>与传统的高性能计算相比，MapReduce的优势是什么？</h4>
+
+          <h5><strong>简化的编程模型（Simplicity of Programming Model）</strong>：</h5>
+
+          <ul>
+            <li><strong>传统 HPC</strong>：传统的高性能计算往往需要复杂的并行编程技术，如 MPI（消息传递接口）、OpenMP（开放多处理）等。开发人员需要手动管理数据的并行化、负载平衡、通信等方面，要求较高的计算机科学知识。</li>
+            <li><strong>MapReduce</strong>：MapReduce 提供了一个非常简单和抽象的编程模型，开发者只需要实现两个函数（Map 和 Reduce）。这些函数通过定义输入数据的处理方式和输出方式，完成了所有复杂的并行计算和分布式操作。MapReduce 的高层抽象隐藏了底层的并行化和分布式管理，极大简化了开发过程。</li>
+          </ul>
+
+          <h5><strong>更高的可扩展性（Scalability）</strong>：</h5>
+
+          <ul>
+            <li><strong>传统 HPC</strong>：高性能计算通常依赖于大规模的单机系统（如超级计算机或集群），这些系统依赖于强大的硬件和高效的计算架构。然而，传统 HPC 系统的扩展性受限于硬件的投入和成本，通常只能在单一集群或数据中心中扩展。</li>
+            <li><strong>MapReduce</strong>：MapReduce 设计上就是为大规模分布式环境量身定制的，它能够通过增加计算节点来水平扩展，不需要特别昂贵的硬件，只需要普通的计算机节点即可。MapReduce 使得计算可以从几十台机器扩展到几千台机器，适用于大数据量的分布式处理。</li>
+          </ul>
+
+          <h3>大数据并行框架</h3>
+
+          <h4>Hadoop</h4>
+
+          <p>Hadoop 是一个开源的 <strong>分布式计算框架</strong>，它能够让我们使用<strong>普通机器（低成本服务器）组成的集群来存储和处理海量数据</strong>。</p>
+
+          <p><strong>采用主-从架构！</strong></p>
+
+          <p>举个例子说明：</p>
+
+          <p>假如你有 <strong>1PB</strong> 的网页日志要分析：</p>
+
+          <ul>
+            <li>用 HDFS 把日志分成很多块，分布在 1000 台机器上</li>
+            <li>用 MapReduce 启动 1000 个任务并行处理，每台只做一点工作</li>
+            <li>每个任务计算访问次数，最后合并统计结果</li>
+            <li>整个过程只要几十分钟，极大提高处理效率！</li>
+          </ul>
+
+          <p>Hadoop 的核心分别是：</p>
+
+          <ul>
+            <li><strong>HDFS</strong>：存储数据</li>
+            <li><strong>YARN</strong>：管理计算资源和调度</li>
+            <li><strong>MapReduce / Spark</strong>：执行计算任务</li>
+          </ul>
+
+          <p>Hadoop 是一个分布式大数据平台，MapReduce 是它的计算模型，而 Spark 是对 MapReduce 的改进和替代。</p>
+
+          <h4>Spark</h4>
+
+          <p><strong>主要针对 Hadoop 的 IO 开销问题引出的。</strong></p>
+
+          <ul>
+            <li>因为直接访问 HDFS （顺序读，非随机读）</li>
+            <li>每次数据存储需要写三次</li>
+            <li>Mapreduce 的中间结果（mapper输出）是存在磁盘的</li>
+          </ul>
+
+          <p><strong>对于 Hadoop Mapreduce 的几个优势：</strong></p>
+
+          <ul>
+            <li>使用内存计算（Hadoop使用磁盘），加快 IO 速度。</li>
+            <li>提供更多的操作类型。</li>
+            <li>基于 DAG 调度，效果更好</li>
+          </ul>
+
+          <h4>运行架构</h4>
+
+          <ul>
+            <li>集群资源管理器（Cluster Manager）</li>
+            <li>运行作业任务的工作节点（Worker Node）</li>
+            <li>每个应用的任务控制节点（Driver）</li>
+            <li>每个工作节点上负责具体任务的执行进程（Executor）</li>
+          </ul>
+
+          <p><img src="./image-20250625015025338.png" alt="Spark运行架构" /></p>
+
+          <p><strong>Spark 把一个任务拆得很细，方便并行执行：</strong></p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">Application（一个应用）
+  └─ Job（每次触发的动作，如 count()）
+       └─ Stage（按依赖划分的执行阶段）
+           └─ Task（在某个分区上执行的最小单位）</code></pre>
+          </div>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">Application（一个完整程序，比如 WordCount.py）
+  └── Job 1：rdd.count()
+       ├── Stage 1（Map 阶段）
+       │     ├── Task 0（在分区 0 上运行）
+       │     ├── Task 1（在分区 1 上运行）
+       │     └── ...
+       └── Stage 2（Reduce 阶段）
+             ├── Task 0
+             └── Task 1
+  └── Job 2：rdd.saveAsTextFile()
+       ├── Stage 1
+       └── ...</code></pre>
+          </div>
+
+          <p><strong>举个例子：</strong>运行 <code>rdd.count()</code>，Spark 会产生一个 Job，然后分成多个 Stage，每个 Stage 被切分成多个 Task 并分发给不同机器执行。</p>
+
+          <p><img src="./image-20250625015326390.png" alt="Spark Task" /></p>
+
+          <p><strong>执行流程如下：</strong></p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">Driver 向 Cluster Manager 申请资源（Executor）
+分配成功后，Worker 节点上启动 Executor 进程
+Driver 将应用代码、依赖文件和 Task 发给各个 Executor
+Executor 执行 Task，过程中可能会读 HDFS、缓存、写数据
+最终结果发送回 Driver 或写入外部系统（如 HDFS、数据库）</code></pre>
+          </div>
+
+          <h4>Spark RDD</h4>
+
+          <p><strong>RDD</strong> 是 Spark 中最基本的数据结构。它代表一个<strong>只读的、分布式的、可并行操作的数据集合</strong>。</p>
+
+          <p>可以把 RDD 想象成一个“大号的分布式数组”，它被切成很多片（分区），分布在不同机器上，每片都能并行处理。</p>
+
+          <p>就像这样：</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">c</div>
+            <pre class="!mt-0"><code class="language-c">RDD： ["a b", "c d", "e f", "g h"]
+        ├── 分区0：["a b"]
+        ├── 分区1：["c d"]
+        ├── 分区2：["e f"]
+        └── 分区3：["g h"]</code></pre>
+          </div>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>特性</th>
+                  <th>解释</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>弹性 Resilient</strong></td>
+                  <td>有容错机制，节点挂了能自动恢复</td>
+                </tr>
+                <tr>
+                  <td><strong>分布式 Distributed</strong></td>
+                  <td>数据自动分布在集群中多个节点</td>
+                </tr>
+                <tr>
+                  <td><strong>数据集 Dataset</strong></td>
+                  <td>是一个逻辑上的数据集合，可以批量并行操作</td>
+                </tr>
+                <tr>
+                  <td><strong>不可变 Immutable</strong></td>
+                  <td>一旦创建，不能修改，只能生成新的 RDD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ul>
+            <li>一个RDD的不同分区可以被保存到集群中不同的节点上，从而可以在集群中的不同节点上进行并行计算。</li>
+            <li>RDD提供了一个抽象的数据架构，<strong>屏蔽底层数据的分布式特性</strong>。</li>
+          </ul>
+
+          <p>RDD提供了丰富的操作以支持常见的数据运算：</p>
+
+          <ul>
+            <li>分为 <strong>动作（Action）</strong>和 <strong>转换（Transformation）</strong>两种类型</li>
+          </ul>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>操作类型</th>
+                  <th>方法示例</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>转换操作</td>
+                  <td><code>map()</code>、<code>filter()</code>、<code>flatMap()</code></td>
+                  <td>返回新的 RDD（<strong>懒执行</strong>）</td>
+                </tr>
+                <tr>
+                  <td>行动操作</td>
+                  <td><code>count()</code>、<code>collect()</code>、<code>saveAsTextFile()</code></td>
+                  <td>触发执行，开始计算</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><img src="./image-20250625021103494.png" alt="RDD操作" /></p>
+
+          <blockquote><p><strong>懒执行 = 不立即计算，只记录操作步骤，直到真正需要结果时才开始执行。</strong></p></blockquote>
+
+          <p><strong>提高性能（避免重复中间计算）</strong></p>
+
+          <p>假设你写了很多 <code>map</code>、<code>filter</code>、<code>flatMap</code> 操作，如果每一步都立即执行，中间结果要频繁写入内存或磁盘，<strong>非常慢！</strong></p>
+
+          <p>懒执行让 Spark 可以<strong>合并多个操作、统一优化</strong>、统一调度，极大提升效率。</p>
+
+          <p>RDD 的数据依赖：</p>
+
+          <ul>
+            <li><strong>窄依赖（可以并行）</strong>：一个父 RDD 的分区只对应子 RDD 的一个分区。</li>
+            <li><strong>宽依赖（不可并行）</strong>：一个父 RDD 的分区只对应子 RDD 的多个分区。</li>
+          </ul>
+
+          <p>细节的整体流程如下：</p>
+
+          <p><img src="./image-20250625021456725.png" alt="RDD依赖" /></p>
+
+          <h4>Spark 优势</h4>
+
+          <ul>
+            <li>中间结果持久化到内存，数据在内存中的多个RDD操作之间进行传递，避免了不必要的读写磁盘开销。</li>
+          </ul>
+
+          <p><img src="./image-20250625022509850.png" alt="Spark优势" /></p>
+
+          <ul>
+            <li><strong>有容错机制，每个 RDD 都会记录自己是如何从前一个 RDD 转换而来的（比如通过 map、filter 等），如果出现故障可以再计算一次。</strong></li>
+          </ul>
+
+          <h4>流计算框架 Storm</h4>
+
+          <p>Spark 是离线，Strom 是在线。</p>
+
+          <p>Storm 是一个 <strong>实时流处理框架</strong>，可以让你像处理一条流水线一样，<strong>连续处理源源不断的数据流</strong>，而不是等数据全来了再处理（像 MapReduce 那样的批处理）。</p>
+
+          <p><strong>Spout（喷口）：</strong></p>
+
+          <ul>
+            <li>就像数据“水龙头”，<strong>负责从外部源源不断读取数据</strong>，比如 Kafka、消息队列、日志文件。</li>
+            <li>举例：每收到一条用户点击日志，就发出去一条数据。</li>
+          </ul>
+
+          <p><strong>Bolt（螺栓）：</strong></p>
+
+          <ul>
+            <li><strong>真正处理数据的地方</strong>，可以进行过滤、转换、聚合等操作。</li>
+            <li>Bolt 可以连接成多级流水线，比如：</li>
+            <ul>
+              <li>Bolt1：过滤非法数据</li>
+              <li>Bolt2：统计数量</li>
+              <li>Bolt3：写入数据库</li>
+            </ul>
+          </ul>
+
+          <p><strong>Topology（拓扑图）：</strong></p>
+
+          <ul>
+            <li>是整个工作流的“流程图”，定义了 <strong>Spout → Bolt → Bolt…</strong> 的结构。</li>
+            <li>一旦提交，Topology 会一直运行，实时处理数据。</li>
+          </ul>
+
+          <p><img src="./image-20250625231340785.png" alt="Storm" /></p>
+
+          <h2>第九章 云应用程序</h2>
+
+          <h3>应用程序框架技术</h3>
+
+          <p>应用程序设计架构：是设计原则与策略，决定了系统的结构，功能与性能</p>
+
+          <ul>
+            <li><strong>单体架构</strong></li>
+          </ul>
+
+          <p>整个应用打包成一个<strong>整体部署单元</strong>，所有功能模块（用户、订单、支付、日志等）都在<strong>一个进程</strong>里运行。</p>
+
+          <blockquote><p>就是所有代码都在一个文件里。</p></blockquote>
+
+          <p>优点：开发、部署简单，初期维护成本低。</p>
+
+          <p>缺点：改一个模块可能影响整个系统</p>
+
+          <ul>
+            <li><strong>SOA</strong></li>
+          </ul>
+
+          <p>将应用拆分为若干个<strong>服务（Service）</strong>，每个服务完成一类业务功能，并通过<strong>接口</strong>通信。</p>
+
+          <blockquote><p>例如前端后端</p></blockquote>
+
+          <p>优点：每个服务可以独立维护</p>
+
+          <p>缺点：部署复杂</p>
+
+          <ul>
+            <li><strong>微服务</strong></li>
+          </ul>
+
+          <p>将系统拆成 <strong>粒度更小的服务</strong>，每个服务只做一件事（比如“用户服务”、“订单服务”、“库存服务”），服务之间通过轻量级协议（如 REST、gRPC）通信。</p>
+
+          <p>优点：每个服务独立部署，容错性好，一个服务挂了不影响全局。</p>
+
+          <p>缺点：架构复杂、需要服务治理（注册、发现、限流、熔断）</p>
+
+          <ul>
+            <li><strong>函数</strong></li>
+          </ul>
+
+          <p>应用不是由服务组成，而是由<strong>函数组成</strong>。每个函数被事件触发执行（例如用户上传文件、消息到达队列、定时触发），不需要自己管理服务器。</p>
+
+          <blockquote><p>典型代表：<strong>Serverless 架构</strong></p></blockquote>
+
+          <p>优点：无需运维服务器，按需计费</p>
+
+          <p>缺点：无状态性，适合短任务，不适合长时间运行程序</p>
+
+          <h4>SOA 架构模型</h4>
+
+          <p>Service-Oriented Architecture（面向服务架构）</p>
+
+          <p><strong>一共有以下三种角色：</strong></p>
+
+          <ul>
+            <li>服务提供者</li>
+            <li>服务请求者</li>
+            <li>服务代理</li>
+          </ul>
+
+          <p><strong>三个操作：</strong></p>
+
+          <ul>
+            <li>发布(Publish)</li>
+            <li>查找(Discover)</li>
+            <li>绑定(Bind)</li>
+          </ul>
+
+          <p><img src="./image-20250625023916173.png" alt="SOA" /></p>
+
+          <h4>微服务架构</h4>
+
+          <p>对比 SOA 切分的粒度更小了，将传统的单体应用在功能、数据等方面进行切分。</p>
+
+          <p><strong>SOA 强调“服务整合”（多系统通信）</strong>，更适合企业内部系统集成。</p>
+
+          <p><strong>微服务强调“服务拆分”（单一职责 + 自主运行）</strong>，更适合快速迭代、部署在云环境的现代应用。</p>
+
+          <p>每个微服务可以独立部署，而每个 SOA 的服务不可以，因为可能共用底层数据库了。</p>
+
+          <p><strong>框架组件如下：</strong></p>
+
+          <p>注册中心、服务网关、断路器</p>
+
+          <ol>
+            <li>服务启动，注册到服务注册中心。</li>
+            <li>客户端访问网关（Gateway）。</li>
+            <li>网关从注册中心发现目标服务的地址，路由请求给 Edge Service。</li>
+            <li>Edge Service 可能调用 Middle Tier Service 继续处理。</li>
+            <li>返回结果逐层返回给客户端。</li>
+          </ol>
+
+          <p><img src="./image-20250625024841337.png" alt="微服务" /></p>
+
+          <h4>微服务与容器</h4>
+
+          <p>容器是承载微服务的理想平台</p>
+
+          <p>容器所提供的轻量级、面向应用的虚拟化运行环境为微服务提供了理想的载体</p>
+
+          <div class="overflow-x-auto mb-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>微服务需求</th>
+                  <th>容器提供的能力</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>每个服务都要<strong>独立运行</strong></td>
+                  <td>容器天然支持“一个服务一个容器”</td>
+                </tr>
+                <tr>
+                  <td>服务之间<strong>技术栈可以不同</strong></td>
+                  <td>容器允许每个服务有自己的运行环境（Python、Java、Go…）</td>
+                </tr>
+                <tr>
+                  <td>服务<strong>需要快速部署、回滚、扩缩容</strong></td>
+                  <td>容器镜像构建 + 自动化部署（CI/CD）非常灵活</td>
+                </tr>
+                <tr>
+                  <td>服务间需要<strong>资源隔离</strong></td>
+                  <td>容器提供轻量级隔离，效率高于虚拟机</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>微服务 VS SOA</h4>
+
+          <ul>
+            <li>可以持续集成和持续部署：因为粒度更小，并且微服务之间解耦了，可以独立测试。</li>
+            <li>易于维护。</li>
+            <li>独立扩展</li>
+            <li>容错性：一个微服务崩了不会影响到其他的服务。</li>
+            <li>功能可重用。</li>
+          </ul>
+
+          <h4>函数服务（serverless）架构</h4>
+
+          <p>核心思想是<strong>用户无须关注支撑应用服务运行的底层主机</strong>。</p>
+
+          <p>服务器对于用户而言是透明的，不再是用户所操心的资源对象。</p>
+
+          <p>要实现真正意义上的 Serverless 应用，需要：</p>
+
+          <ul>
+            <li><strong>FaaS：让你写的函数能“跑”起来（代码执行）</strong></li>
+            <li><strong>BaaS：让你可以“调用现成服务”，如数据库、存储、认证等（功能支持）</strong></li>
+          </ul>
+
+          <p><img src="./image-20250625025727376.png" alt="serverless" /></p>
+
+          <p><strong>举例：</strong>（Faas）</p>
+
+          <ul>
+            <li>你写了一个函数 <code>check_order()</code>，处理用户下单请求。</li>
+            <li>当用户下单时，这个函数被自动触发执行。</li>
+            <li>平时不运行，不占资源；需要时自动调度运行。</li>
+          </ul>
+
+          <p><strong>举例：</strong>（Baas）</p>
+
+          <p>你写的函数 <code>check_order()</code>，可能需要：</p>
+
+          <ul>
+            <li>读取用户数据库 （BaaS 提供数据库）</li>
+            <li>验证用户身份 （BaaS 提供认证服务）</li>
+            <li>发送短信 （BaaS 提供消息服务）</li>
+          </ul>
+
+          <p><strong>与传统框架的区别</strong>：</p>
+
+          <ul>
+            <li>传统框架需要部署在一个服务器上，并且有一个常驻进程在跑。</li>
+            <li>serverless 框架只需要部署在 serverless 平台上即可，是事件驱动的，即有事件发生才会调用函数，无需理会数据库这些如何实现。</li>
+          </ul>
+
+          <h4>Faas</h4>
+
+          <p>核心组成如下：</p>
+
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 dark:text-slate-300 bg-gray-200 dark:bg-gray-700 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">+-------------+         +------------------+         +------------------+
+|  事件源      |  ---&gt;   |  函数运行平台      |  ---&gt;   | 后端服务    |
+|（触发函数）   |         |（运行你的函数）     |         |（如数据库、存储）   |
++-------------+         +------------------+         +------------------+</code></pre>
+          </div>
+
+          <ul>
+            <li>FaaS 是事件驱动的，函数会在特定事件（如 HTTP 请求、消息、文件上传等）发生时按需触发执行。</li>
+            <li>FaaS 函数是无状态的，每次调用彼此独立，平台按需运行函数实例，具备良好的资源利用率和弹性扩展能力。</li>
+          </ul>
+
+          <p><img src="./image-20250625030522171.png" alt="FaaS" /></p>
+
+          <h4>serverless 的技术特点</h4>
+
+          <ul>
+            <li>按需加载</li>
+            <li>事件驱动</li>
+            <li>没有状态（变量都是临时变量）</li>
+          </ul>
+
+          <h4>serverless 的局限性</h4>
+
+          <ul>
+            <li>对底层资源没有控制力</li>
+            <li>可移植性很差（依赖 faas 和 baas）</li>
+            <li>安全性很差</li>
+            <li><strong>不利于长时间执行</strong></li>
+            <li>应用的首次加载和重新加载需要点时间（冷启动）</li>
+          </ul>
+
+          <h4>Serverless vs 微服务</h4>
+
+          <ul>
+            <li><strong>粒度：</strong></li>
+          </ul>
+
+          <p>微服务是微服务，而serverless是函数。</p>
+
+          <ul>
+            <li><strong>注重点：</strong></li>
+          </ul>
+
+          <p>微服务注重于整体架构的松散耦合和微服务的独立，而serverless注重的是客户不需理会服务器。</p>
+
+          <ul>
+            <li><strong>运行时间：</strong></li>
+          </ul>
+
+          <p>一般微服务比较长，而 serverless 比较短。</p>
+
+          <p>举例：电商平台</p>
+
+          <p><strong>场景 1：用户下单</strong></p>
+
+          <ul>
+            <li>需要校验库存、计算运费、更新订单、发送短信</li>
+            <li><strong>适合：微服务架构</strong></li>
+            <ul>
+              <li>有多个独立模块，需要稳定、低延迟、可维护性强</li>
+              <li>如订单服务、库存服务、短信服务</li>
+            </ul>
+          </ul>
+
+          <p><strong>场景 2：订单支付成功后发送优惠券</strong></p>
+
+          <ul>
+            <li>支付完成后，系统触发一个异步任务，生成优惠券发送给用户</li>
+            <li><strong>适合：Serverless</strong></li>
+            <ul>
+              <li>事件驱动、逻辑简单、任务执行一次就好</li>
+              <li>用函数实现：监听支付成功事件 → 发送优惠券 → 结束</li>
+            </ul>
+          </ul>
+
+          <p><strong>Serverless 架构以其“按需执行、弹性扩展、无需运维”等优点，适合事件驱动、轻量服务和突发性高并发场景；但对于持续运行、状态依赖强或对性能要求苛刻的系统，传统的微服务或容器架构依然更合适。</strong></p>
+
+          <h3>多租户技术</h3>
+
+          <p>既共享又有差异：</p>
+
+          <ul>
+            <li>共享底层的硬件资源</li>
+            <li>需要满足每个租户不同的定制化要求</li>
+          </ul>
+
+          <p><strong>基本思想：</strong>多用户的环境下共用相同的系统或者程序组件，并且<strong>确保各个用户数据和操作的隔离性</strong>。</p>
+
+          <h4>多租户模型分类</h4>
+
+          <p><img src="./image-20250625235355482.png" alt="多租户分类" /></p>
+
+          <h4>多租户技术特点</h4>
+
+          <ul>
+            <li>隔离性：每个用户的操作不会影响到其他用户。</li>
+            <li>安全性：用户不能访问其他用户的数据。</li>
+            <li>可扩展性：当用户变多时需要扩展应用。</li>
+            <li>可恢复性：出现故障时，系统能迅速恢复每个租户的数据和服务。</li>
+          </ul>
+
+          <h4>多租户技术层次</h4>
+
+          <ul>
+            <li>基础设施层面：多租户共享操作系统和硬件资源。</li>
+            <li>中间件层面：使用共享操作系统和中间件的方法实现。</li>
+            <li>应用层面：所有租户共享单个或者若干应用，在应用内或者应用访问层实现租户隔离。</li>
+          </ul>
+
+          <p><img src="./image-20250625032458891.png" alt="多租户层次" /></p>
+
+          <h4>多租户数据存储模式</h4>
+
+          <p>应用层面多租户概念，数据存储可以分为三个数据隔离层次：</p>
+
+          <ul>
+            <li><strong>完全独立模式：</strong>独立数据库</li>
+            <li><strong>部分独立模式：</strong>共享数据库（不同表）</li>
+            <li><strong>完全共享模式：</strong>共享数据库（同表）</li>
+          </ul>
+
+          <p><img src="./image-20250625032825150.png" alt="多租户存储模式" /></p>
+        </article>
+
+        <!-- 文章結尾 -->
+        <footer class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 transition-colors">
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center overflow-hidden">
+                <i data-lucide="terminal-square" class="w-5 h-5 text-slate-500 dark:text-slate-400"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 dark:text-white">哈利波特👑</h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">計算機科學與技術系學生，喜歡分享學習筆記。</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <!-- 上一篇 / 下一篇 -->
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="../../../12/09/编译原理复习/index.html" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-cyan-500/30 transition-all group flex flex-col items-start shadow-sm dark:shadow-none">
+            <span class="text-sm text-slate-500 dark:text-slate-400 mb-2 font-medium">較新文章</span>
+            <span class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors line-clamp-2">编译原理复习</span>
+            <span class="text-sm text-slate-500 dark:text-slate-400 mt-3">2025年12月9日</span>
+          </a>
+          
+          <a href="../../24/并行复习/index.html" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-cyan-500/30 transition-all group flex flex-col items-end text-right shadow-sm dark:shadow-none">
+            <span class="text-sm text-slate-500 dark:text-slate-400 mb-2 font-medium">較早文章</span>
+            <span class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors line-clamp-2">并行复习</span>
+            <span class="text-sm text-slate-500 dark:text-slate-400 mt-3">2025年6月24日</span>
+          </a>
+        </div>
+      </main>
+
+      <!-- 側邊目錄導航 (TOC) -->
+      <aside class="hidden lg:block w-64 shrink-0 sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto custom-scrollbar">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <i data-lucide="list" class="w-4 h-4 text-blue-600 dark:text-cyan-400"></i>
+          目錄
+        </h3>
+        <ul id="toc-list" class="space-y-3 text-sm text-slate-500 dark:text-slate-400 border-l-2 border-slate-100 dark:border-slate-800 pl-4 transition-colors">
+          <!-- 目錄項目將透過 JS 自動生成 -->
+        </ul>
+      </aside>
+
+    </div>
+
+    <!-- 回到頂部按鈕 -->
+    <button id="btn-scroll-top" class="fixed bottom-8 right-8 p-3 rounded-full bg-blue-600 text-white dark:bg-cyan-500 dark:text-slate-950 shadow-lg shadow-blue-600/20 dark:shadow-cyan-500/20 hover:-translate-y-1 transition-all duration-300 z-50 opacity-0 translate-y-10 pointer-events-none" aria-label="回到頂部">
+      <i data-lucide="chevron-up" class="w-6 h-6"></i>
+    </button>
+
+    <footer class="py-8 border-t border-slate-200 dark:border-slate-800/50 text-center transition-colors">
+      <p class="text-sm text-slate-500 mb-2">© <span id="current-year"></span> Toby. Designed with Vibecoding(ahhhh).</p>
+    </footer>
+  </div>
+
+  <style>
+    #article-content li {
+      color: #000 !important;
+    }
+
+    #article-content li::marker {
+      color: #000 !important;
+    }
+
+    .dark #article-content li {
+      color: #cbd5e1 !important;
+    }
+
+    .dark #article-content li::marker {
+      color: #cbd5e1 !important;
+    }
+
+    #article-content :not(pre) > code {
+      color: #111827 !important;
+      background: #e5e7eb !important;
+      font-size: 1em !important;
+      padding: 0.12em 0.35em !important;
+      border-radius: 0.35rem !important;
+      font-weight: 500;
+    }
+
+    .dark #article-content :not(pre) > code {
+      color: #e5e7eb !important;
+      background: rgba(51, 65, 85, 0.75) !important;
+    }
+
+    /* 美化右側目錄的滾動條 */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+  </style>
+
+  <script>
+    lucide.createIcons();
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // 深淺色模式邏輯
+    let isDarkMode = false;
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const iconSun = document.getElementById('icon-sun');
+    const iconMoon = document.getElementById('icon-moon');
+    const navbar = document.getElementById('navbar');
+    const btnScrollTop = document.getElementById('btn-scroll-top');
+
+    function updateTheme() {
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        iconSun.classList.remove('hidden');
+        iconSun.classList.add('block');
+        iconMoon.classList.remove('block');
+        iconMoon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        iconSun.classList.remove('block');
+        iconSun.classList.add('hidden');
+        iconMoon.classList.remove('hidden');
+        iconMoon.classList.add('block');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+      updateTheme();
+    });
+
+    updateTheme();
+
+    // 導覽列與回到頂部按鈕邏輯
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('bg-white/80', 'dark:bg-[#0a0f1a]/80', 'backdrop-blur-md', 'border-b', 'border-slate-200', 'dark:border-slate-800/80');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-white/80', 'dark:bg-[#0a0f1a]/80', 'backdrop-blur-md', 'border-b', 'border-slate-200', 'dark:border-slate-800/80');
+        navbar.classList.add('bg-transparent');
+      }
+
+      if (window.scrollY > 400) {
+        btnScrollTop.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+        btnScrollTop.classList.add('opacity-100', 'translate-y-0');
+      } else {
+        btnScrollTop.classList.remove('opacity-100', 'translate-y-0');
+        btnScrollTop.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+      }
+    });
+
+    btnScrollTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ==========================================
+    // 自動生成目錄 (TOC) 與 ScrollSpy 滾動監聽邏輯
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', () => {
+      const article = document.getElementById('article-content');
+      // 抓取文章內所有的 h2 和 h3
+      const headings = Array.from(article.querySelectorAll('h2, h3'));
+      const tocList = document.getElementById('toc-list');
+      const tocLinks = [];
+
+      if (headings.length === 0) {
+        document.querySelector('aside').style.display = 'none';
+        return;
+      }
+
+      headings.forEach((heading, index) => {
+        // 如果標題沒有 id，自動幫它加上一個
+        if (!heading.id) {
+          heading.id = `heading-${index}`;
+        }
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent;
+        
+        // 判斷是 h2 還是 h3 來決定縮進與字體粗細
+        if (heading.tagName.toLowerCase() === 'h3') {
+          a.className = 'block ml-4 text-slate-500 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors';
+        } else {
+          a.className = 'block font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors';
+        }
+
+        li.appendChild(a);
+        tocList.appendChild(li);
+        tocLinks.push({ heading, link: a });
+      });
+
+      // 設定 ScrollSpy (滾動監聽)
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80% 0px', // 當標題滾動到畫面上方 20% 時觸發
+        threshold: 1.0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // 移除所有啟動狀態
+            tocLinks.forEach(item => {
+              item.link.classList.remove('text-blue-600', 'dark:text-cyan-400', 'font-bold');
+            });
+            // 找出對應的連結並加上啟動狀態
+            const activeItem = tocLinks.find(item => item.heading.id === entry.target.id);
+            if (activeItem) {
+              activeItem.link.classList.add('text-blue-600', 'dark:text-cyan-400', 'font-bold');
+            }
+          }
+        });
+      }, observerOptions);
+
+      headings.forEach(heading => observer.observe(heading));
+    });
+  </script>
+</body>
+</html>

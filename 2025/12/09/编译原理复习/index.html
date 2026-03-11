@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编译原理复习 | Toby.dev</title>
+  <meta name="description" content="作者：哈利波特👑">
+  
+  <!-- 載入 Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
+  
+  <!-- 載入 Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- 載入 MathJax 以支援 LaTeX 公式渲染 -->
+  <script>
+    window.MathJax = {
+      tex: {
+        // 維持標準 LaTeX 分隔符：$...$ 為行內，$$...$$ 為區塊
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body class="bg-slate-50 dark:bg-[#0a0f1a] text-slate-900 dark:text-slate-300 font-sans selection:bg-blue-200 dark:selection:bg-cyan-500/30 selection:text-blue-900 dark:selection:text-cyan-100 transition-colors duration-500 min-h-screen">
+  <div id="app-container">
+    
+    <!-- 導覽列 -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent">
+      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <a href="../../../../index.html" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors flex items-center gap-1">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span class="hidden sm:inline text-sm font-medium">返回首頁</span>
+          </a>
+          <div class="h-4 w-px bg-slate-300 dark:bg-slate-700 hidden sm:block"></div>
+          <span class="font-bold text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <i data-lucide="terminal" class="w-4 h-4 text-blue-600 dark:text-cyan-400"></i>
+            Toby<span class="text-blue-600 dark:text-cyan-400">.dev</span>
+          </span>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="theme-toggle" class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-800 transition-all hover:scale-105 active:scale-95" aria-label="切換深淺色模式">
+            <i data-lucide="sun" id="icon-sun" class="w-4 h-4 hidden"></i>
+            <i data-lucide="moon" id="icon-moon" class="w-4 h-4 block"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 版面佈局：左側文章主體 (flex-1) + 右側側邊導航 (w-64) -->
+    <div class="max-w-6xl mx-auto px-6 flex items-start justify-center gap-12 pt-32 pb-24">
+      
+      <!-- 文章主體區塊 -->
+      <main class="w-full max-w-3xl min-w-0">
+        <header class="mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight mb-6 transition-colors mt-8">编译原理复习</h1>
+          <div class="flex flex-wrap items-center gap-4 py-6 border-y border-slate-200 dark:border-slate-800 transition-colors">
+            <div class="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+              <div class="flex items-center gap-2">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>2025年12月9日</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+                <span>閱讀時間約 95 分鐘</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex items-center gap-3 text-slate-600 dark:text-slate-400">
+            <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center overflow-hidden">
+              <i data-lucide="terminal-square" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-slate-900 dark:text-white">哈利波特👑</div>
+              <div class="text-sm text-slate-500 dark:text-slate-500">作者</div>
+            </div>
+          </div>
+        </header>
+
+        <div class="w-full aspect-[21/9] md:aspect-[21/9] bg-slate-100 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 mb-12 flex items-center justify-center overflow-hidden transition-colors relative">
+          <div class="absolute inset-0 opacity-[0.05] dark:opacity-[0.1] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-100 via-pink-50 to-rose-100 dark:from-fuchsia-950 dark:via-slate-900 dark:to-rose-950"></div>
+          <div class="relative text-slate-900/60 dark:text-white/50 font-mono text-4xl md:text-6xl font-bold opacity-70 select-none px-6 text-center break-words">编译原理复习</div>
+        </div>
+
+        <article id="article-content" class="prose prose-slate dark:prose-invert prose-lg max-w-none
+          prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-900 dark:prose-headings:text-white
+          prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-slate-200 dark:prose-h2:border-slate-800 prose-h2:pb-4 scroll-mt-24
+          prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 scroll-mt-24
+          prose-h4:text-xl prose-h4:mt-6 prose-h4:mb-3 scroll-mt-24
+          prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6
+          prose-li:text-slate-700 dark:prose-li:text-slate-300
+          prose-a:text-blue-600 dark:prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:underline
+          prose-blockquote:border-l-4 prose-blockquote:border-blue-500 dark:prose-blockquote:border-cyan-500 prose-blockquote:bg-blue-50/50 dark:prose-blockquote:bg-cyan-900/10 prose-blockquote:py-1 prose-blockquote:px-5 prose-blockquote:rounded-r-lg prose-blockquote:font-normal prose-blockquote:not-italic
+          prose-code:text-blue-600 dark:prose-code:text-cyan-400 prose-code:bg-slate-100 dark:prose-code:bg-slate-800/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-code:font-mono prose-code:text-sm
+          prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800/80 prose-pre:text-slate-800 dark:prose-pre:text-slate-200 prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-700 prose-pre:rounded-xl prose-pre:shadow-sm prose-pre:p-4
+          prose-table:w-full prose-table:border-collapse
+          prose-th:border prose-th:border-slate-300 dark:prose-th:border-slate-600 prose-th:bg-slate-100 dark:prose-th:bg-slate-800 prose-th:px-4 prose-th:py-3 prose-th:text-left
+          prose-td:border prose-td:border-slate-200 dark:prose-td:border-slate-700 prose-td:px-4 prose-td:py-3 prose-td:text-left
+          prose-img:rounded-xl prose-img:border prose-img:border-slate-200 dark:prose-img:border-slate-800 prose-img:shadow-md prose-img:mx-auto
+          transition-colors duration-500">
+          
+          <p>其实编译就是转换语言的表达式和处理。</p>
+          <p><img src="./image-20251209153514121.png" alt="image-20251209153514121" /></p>
+          <p>上图是编译的整个流程，一共有六个步骤：<strong>词法分析</strong>、<strong>语法分析</strong>、<strong>语义分析</strong>、<strong>中间代码生成</strong>、<strong>代码优化</strong>、<strong>目标代码生成</strong>。可以分成<strong>前端</strong>和<strong>后端</strong>。</p>
+          <p><strong>输入：</strong></p>
+          <ul><li><strong>Character Stream（源代码）</strong>：原始的程序文本，字符流形式。</li></ul>
+          <p><strong>前端：负责分析和理解源代码，通常与语言无关的部分分离。</strong></p>
+          <p>走完前端流程之后，机器就可以懂得你的代码了。</p>
+          <ul><li><strong>Lexical Analyzer（词法分析器）</strong></li><ul><li>输入：字符流</li><li>输出：token 流（词法单元，比如标识符、关键字等）</li><li>功能：进行词法分析，将字符转化为有意义的词素。</li></ul><li><strong>Syntax Analyzer（语法分析器）</strong></li><ul><li>输入：token 流</li><li>输出：语法树（Syntax Tree）</li><li>功能：根据语言的文法，构建程序结构的树状表示，检查语法是否正确。</li></ul><li><strong>Semantic Analyzer（语义分析器）</strong></li><ul><li>输入：语法树</li><li>输出：语法树（带有语义信息）</li><li>功能：进行语义检查，比如类型检查、作用域检查。</li></ul></ul>
+          <p><strong>后端：负责生成、优化和输出目标代码</strong></p>
+          <p>主要是优化代码。</p>
+          <ul><li><strong>Intermediate Code Generation（中间代码生成）</strong></li><ul><li>输入：语义树</li><li>输出：中间表示（IR）</li><li>功能：生成一种抽象机器语言，方便移植和优化。</li></ul><li><strong>Code Optimizer（代码优化器）</strong></li><ul><li>输入：中间表示</li><li>输出：优化后的中间表示</li><li>功能：提升效率、减少冗余，比如常量合并、死代码删除。</li></ul><li><strong>Code Generator（代码生成器）</strong></li><ul><li>输入：优化后的中间代码</li><li>输出：目标代码（Target-machine Code）</li><li>功能：翻译成具体机器架构可以执行的指令。</li></ul></ul>
+          <p><strong>输出：</strong></p>
+          <ul><li><strong>target-machine code（可执行文件）</strong>：最终的机器代码，可以直接运行。</li></ul>
+          
+          <h2>词法分析</h2>
+          <blockquote><p>重点：<strong>给定 RE 构造 NFA ，NFA 转 DFA，DFA 最小化（必考）。</strong>token, lexeme 的区别，字母表 串 语言的定义，RE 的一些运算，给定语言叫你写 RE。</p></blockquote>
+          <p><strong>词法分析 是识别子串（词素）并生成词法单元（token）的过程。</strong></p>
+          <p>把源代码当作字符串，分割出有意义的片段，判断每个片段属于哪一类（关键字、标识符、符号等）。</p>
+          
+          <h3>词法单元 (Token) &amp; 词素 (lexeme)</h3>
+          <p><strong>Token：</strong></p>
+          <ul><li>是语言中最小的意义单位。</li><li>是一个元组，表示一个类别（class）和一个具体的值（lexeme），例如：</li><ul><li><code>Token = (class, lexeme)</code></li><li>如 <code>(keyword, "while")</code>、<code>(id, "x")</code>、<code>(number, "42")</code></li></ul></ul>
+          <ul><li><strong>Token name（class）</strong> 就是分类的名字，比如 keyword、id、number、operator。</li></ul>
+          <p><strong>Lexeme（词素）：</strong></p>
+          <ul><li>代码中存在的词。</li></ul>
+          <ul><li>是 token 的具体实例。</li><li>比如在源代码中写了 <code>while</code>，这是一个词素，对应的 token 是 <code>(keyword, "while")</code>。</li></ul>
+          <p>词法分析就是把将输入字符串划分为一系列 token（词法单元）。</p>
+          <p>问题：如何判断一个字符串属于哪个 token class？</p>
+          <img src="./image-20250620200650174.png" alt="image-20250620200650174" style="zoom:50%;" />
+          <p>可以使用<strong>正则表达式</strong>。</p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>Token Class（类别）</th><th>Pattern（模式）</th><th>解释</th></tr></thead><tbody><tr><td>identifier（标识符）</td><td><code>[a-zA-Z_][a-zA-Z0-9_]*</code></td><td>首字符是字母或下划线，后面跟字母或数字</td></tr><tr><td>integer（整数）</td><td><code>[0-9]+</code></td><td>至少一个数字</td></tr></tbody></table>
+          </div>
+          
+          <h3>语言定义</h3>
+          <h4><strong>Alphabet（字母表）</strong></h4>
+          <ul><li>是一个<strong>有限符号集合</strong></li><li>每个符号是构成字符串的<strong>基本单位</strong></li><li>例如：<code>{0, 1}</code>：二进制， <code>{a, b, c}</code>：英文小写， <code>ASCII</code> 字符集</li></ul>
+          <h4><strong>String（字符串）</strong></h4>
+          <ul><li>是一个<strong>由字母表中的符号组成的有限序列</strong></li><li>例如：<code>"abc"</code> 是长度为 3 的字符串（|abc| = 3），<code>ε</code> 表示<strong>空串</strong>（长度为 0）</li></ul>
+          <h4><strong>Language（语言）</strong></h4>
+          <ul><li>语言 = 某个给定字母表上一个任意的可数的串集合</li><li><strong>语言是所有可能串的子集</strong></li></ul>
+          <p>举例：</p>
+          <ul><li>若 Σ = {a, b}，可能的语言有：<code>{ab, ba}</code>，<code>{a, aa, aaa, ...}</code>， <code>∅</code>（空集）， <code>{ε}</code>（仅包含空串）</li></ul>
+          <p><strong>注意：</strong></p>
+          <ul><li><code>∅ ≠ {ε}</code></li><ul><li><code>∅</code> 是什么都不包含</li><li><code>{ε}</code> 是包含一个元素：空串</li></ul></ul>
+          
+          <h3>语言运算</h3>
+          <p>一共有 <strong>并、连接、闭包</strong> 三种操作。</p>
+          <p><img src="./image-20250620202632809.png" alt="image-20250620202632809" /></p>
+          <p>以下有一些例子：</p>
+          <p><img src="./image-20250620202721750.png" alt="image-20250620202721750" /></p>
+          <p><img src="./image-20250620202846988.png" alt="image-20250620202846988" /></p>
+          
+          <h3>构建正则表达式</h3>
+          <p>正则表达式是<strong>递归定义的</strong>，从最基本的单位（原子）开始。</p>
+          <blockquote><p><code>r</code> 表示的是一个<strong>正则表达式</strong> - 是你写出来的“形式”，例如：<code>a|b</code>、<code>(a*b)*c</code> <br> <code>L(r)</code> 表示的是这个正则表达式<strong>所代表的语言</strong> - 是一个<strong>集合</strong>，包含所有能够被正则表达式 <code>r</code> 匹配的字符串 - 所以 <code>L(r)</code> 是一个集合，而不是一个字符串</p></blockquote>
+          <p><strong>Atomic 表达式有三种基本形式：</strong></p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>正则表达式</th><th>对应语言 L(r)</th><th>含义解释</th></tr></thead><tbody><tr><td><code>ε</code></td><td><code>L(ε) = {""}</code></td><td>匹配空串（长度为 0 的字符串）</td></tr><tr><td><code>a</code></td><td><code>L(a) = {"a"}</code></td><td>匹配单个字符 <code>a</code></td></tr><tr><td><code>∅</code></td><td><code>L(∅) = {}</code>（空集合）</td><td>不匹配任何字符串</td></tr></tbody></table>
+          </div>
+          <p><strong>注意：</strong><code>∅</code> 和 <code>ε</code> 是不同的：</p>
+          <ul><li><code>L(ε)</code> 有一个元素：空串。</li><li><code>L(∅)</code> 是空集合，没有任何元素。</li><li>所以：<code>size(L(∅)) = 0</code>, <code>size(L(ε)) = 1</code>, <code>length(ε) = 0</code></li></ul>
+          <p>在原子的基础上，我们可以用运算符递归地构造更复杂的正则表达式。</p>
+          <p><strong>假设 <code>r</code> 和 <code>s</code> 是正则表达式，表示语言 <code>L(r)</code> 和 <code>L(s)</code>：</strong></p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>正则表达式</th><th>含义说明</th></tr></thead><tbody><tr><td><code>(r)</code></td><td>加括号不影响含义，<code>(r)</code> ≡ <code>r</code></td></tr><tr><td><code>(r)|(s)</code></td><td><code>L(r) ∪ L(s)</code>，即<strong>并</strong></td></tr><tr><td><code>(r)(s)</code></td><td>表示 <code>L(r)L(s)</code>，即<strong>连接</strong></td></tr><tr><td><code>(r)*</code></td><td>表示 <code>L(r)*</code>，即<strong>Kleene 闭包</strong></td></tr></tbody></table>
+          </div>
+          <p>例子：</p>
+          <p><img src="./image-20250620204008201.png" alt="image-20250620204008201" /></p>
+          <p><img src="./image-20250620204337420.png" alt="image-20250620204337420" /></p>
+          <p>正则表达式只是描述语言的工具，它告诉我们“什么样的字符串是合法的”，但它<strong>本身不能识别字符串</strong>。</p>
+          <p><strong>正则表达式 → 语言的描述（L(r))</strong></p>
+          <p><strong>有限自动机 → 语言的识别器（是否属于 L(r)）</strong></p>
+          
+          <h3>RE 题目</h3>
+          <blockquote><p>还有Quiz 1.2, Asg.1 (2)(3)(4)都可以刷</p></blockquote>
+          <ol><li>ppt 例题</li></ol>
+          <p><img src="./image-20250620204738772.png" alt="image-20250620204738772" /></p>
+          <ol start="2"><li>ppt 例题</li></ol>
+          <p><img src="./image-20250620204754781.png" alt="image-20250620204754781" /></p>
+          
+          <h3>有穷自动机 FA</h3>
+          <p><img src="./image-20250620210459497.png" alt="image-20250620210459497" /></p>
+          <p>自动机其实就是状态转换。</p>
+          <p>正则表达式只是定义了正确的语言，但是不能实现检测。</p>
+          <p>需要使用 FA 来检测，FA 分成 <strong>NFA (非确定的有穷自动机) 和 DFA (确定的有穷自动机）</strong> 。</p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>特性</th><th>DFA（确定）</th><th>NFA（非确定）</th></tr></thead><tbody><tr><td>状态数</td><td>任意时刻只能<strong>在一个状态</strong></td><td>同时可以<strong>在多个状态</strong></td></tr><tr><td>输入转移</td><td>每个状态对每个输入<strong>最多一条转移</strong></td><td>每个状态对同一个输入<strong>可多条转移</strong></td></tr><tr><td>ε-move（ε 转移）</td><td>不允许</td><td>允许</td></tr><tr><td>接受条件</td><td>唯一一条路径接受</td><td><strong>只要有一条路径接受</strong>就接受</td></tr><tr><td>图中路径</td><td>only one path</td><td>some of these paths</td></tr></tbody></table>
+          </div>
+          <ul><li><strong>NFA：</strong></li></ul>
+          <p><img src="./image-20250620210938930.png" alt="image-20250620210938930" /></p>
+          <ul><li><strong>DFA：</strong></li></ul>
+          <p><img src="./image-20250620210953682.png" alt="image-20250620210953682" /></p>
+          
+          <h3>汤普森构造法（RE to NFA）</h3>
+          <img src="./image-20250620211046239.png" alt="image-20250620211046239" style="zoom:50%;" />
+          <p>示例如下：</p>
+          <p><img src="./image-20250620211619392.png" alt="image-20250620211619392" /></p>
+          <p><strong>L(NFA) ≡ L(DFA)</strong></p>
+          <blockquote><p><strong>NFA 和 DFA 能识别的语言是完全一样的，都是正则语言</strong></p></blockquote>
+          <ul><li><strong>任意一个 NFA</strong>，都可以转换成<strong>一个 DFA</strong>，使得两者识别的是<strong>相同的语言</strong>。</li></ul>
+          
+          <h3>子集构造法（NFA to DFA）</h3>
+          <p><img src="./image-20250620212322999.png" alt="image-20250620212322999" /></p>
+          <p><img src="./image-20250620212348758.png" alt="image-20250620212348758" /></p>
+          
+          <h3>分区算法（最小化 DFA 状态数）</h3>
+          <p>算法步骤如下：</p>
+          <p><img src="./image-20250620212721080.png" alt="image-20250620212721080" /></p>
+          <p>简单示例：</p>
+          <p><img src="./image-20250620212748293.png" alt="image-20250620212748293" /></p>
+          <p>复杂示例：</p>
+          <p><img src="./image-20250620213130957.png" alt="image-20250620213130957" /></p>
+          <p><img src="./image-20250620213140981.png" alt="image-20250620213140981" /></p>
+          <p>其他示例：</p>
+          <p><img src="./image-20250620213229936.png" alt="image-20250620213229936" /></p>
+          
+          <h3>正则语言的局限性</h3>
+          <p>正则语言表达不了以下内容：</p>
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 bg-gray-200 dark:bg-gray-700 dark:text-slate-400 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">c</div>
+            <pre class="!mt-0"><code class="language-c">L = { aⁿ b aⁿ | n ≥ 0 }</code></pre>
+          </div>
+          <p>这些语言的特点是：<strong>需要记住有多少个 a，然后在之后匹配相同数量的 a 或 b</strong>。</p>
+          <p>因为<strong>有限自动机没有“记忆”能力</strong></p>
+          <ul><li>它不能“数”有几个 a</li><li>它不能“记住”之前看到的内容数量</li><li>所以它无法判断“前后 a 的个数是否一致”</li></ul>
+          <p>所以 <code>a*ba*</code> 虽然匹配了类似的结构，但它不能保证前后的 a 数量一致，所以<strong>是错误的</strong>。</p>
+          <ul><li>括号匹配不是正则，<code>if - else</code> 嵌套的也不是。</li></ul>
+          
+          <h3>FA 题目</h3>
+          <p><img src="./image-20250620215303726.png" alt="image-20250620215303726" /></p>
+          <p>第一个问题是可以的，左边就是答案。</p>
+          <p>第二个是可以的，虽然没有记忆，但是 n 是有限的，枚举就可以。</p>
+          <p>第三个不行。</p>
+          
+          <h2>语法分析</h2>
+          <blockquote><p>重点：二义性（最左和最右推导有两棵树，文法二义，语言未必二义），乔姆斯基文法体系（要会判断什么文法），上下文无关文法的句子句型定义，first 和 follow 集合，LL(1)，LR(0)，SLR(1)，LALR(1)，LR(1)这些一定要会。</p></blockquote>
+          <p>语法分析器输入是 Token 流，输出是一棵语法分析树（根据语法规则生成的）。</p>
+          <p>语法分析验证 Token 是否满足源语言的规则。</p>
+          <p><img src="./image-20250620220434596.png" alt="image-20250620220434596" /></p>
+          <p>语言大致上可以分成下表的两种：</p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>类型</th><th>特点</th></tr></thead><tbody><tr><td>自然语言（如中文、英语）</td><td>模糊、多义、对人友好、人能理解</td></tr><tr><td><strong>形式语言（Formal Language）</strong></td><td>精确、规则、可被计算机处理，用于程序语言</td></tr></tbody></table>
+          </div>
+          <p>一种形式语言可以用以下三种方式之一来定义：</p>
+          <ol><li><strong>Regular Expressions（正则表达式）</strong></li><ul><li>用于简单结构，如词法（token）层次</li></ul><li><strong>Finite Automata（有限自动机）</strong></li><ul><li>正则语言的机器模型实现</li></ul><li><strong>Grammars（文法）</strong></li><ul><li>用于更复杂结构（语法分析）</li></ul></ol>
+          <blockquote><p>文法可以表达一些 正则和FA 表达不了的语法，文法更加强大（所有能够被正则表达的都可以被文法表达）</p></blockquote>
+          
+          <h3>文法</h3>
+          <!-- 這裡使用了 LaTeX 公式 -->
+          <p>形式文法（Grammar）通常记为：$G = (V_T, V_N, S, \delta)$。</p>
+          <p><img src="./image-20250620223415191.png" alt="image-20250620223415191" /></p>
+          <p><strong>The symbol → is used in place of the  arrow. [读作“定义为”]</strong></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250620223454880.png" alt="image-20250620223454880" /></p>
+          
+          <h3>上下文无关文法</h3>
+          <p>其实就是在上面文法的基础定义上，<strong>限制产生式的左部只能有一个非终结符</strong>。</p>
+          <p><img src="./image-20250620223724958.png" alt="image-20250620223724958" /></p>
+          <p>简单示例：</p>
+          <img src="./image-20250620223900625.png" alt="image-20250620223900625" style="zoom:67%;" />
+          
+          <h3>文法上的约定</h3>
+          <p><strong>可能会考如何判断 终结符、非终结符、开始符号。</strong></p>
+          <p><strong>记得空串不是终结符！</strong></p>
+          <p>正常来说，一个文法只需要写 产生式 部分即可：</p>
+          <p><strong>第一个产生式的头是开始符号。</strong></p>
+          <p><img src="./image-20250620224403178.png" alt="image-20250620224403178" /></p>
+          <p>一些约定：</p>
+          <p><img src="./image-20250620224425741.png" alt="image-20250620224425741" /></p>
+          <p><img src="./image-20250620224617204.png" alt="image-20250620224617204" /></p>
+          <p><img src="./image-20250620224629697.png" alt="image-20250620224629697" /></p>
+          
+          <h3>推导规则</h3>
+          <p><strong>产生式规则</strong></p>
+          <p>形式为：$A \rightarrow \alpha$</p>
+          <ul><li>意思是：<strong>非终结符 A 可以被替换为字符串 α</strong></li><li>这个替换称为<strong>一步推导</strong></li></ul>
+          <p><strong>推导定义</strong></p>
+          <blockquote><p><strong>推导 = 多次连续应用产生式，逐步替换非终结符</strong></p></blockquote>
+          <p>举例：$\alpha A \beta \Rightarrow \alpha \gamma \beta \quad \text{(因为 } A \rightarrow \gamma)$</p>
+          <p>那么：</p>
+          <ul><li><code>⇒</code> 表示<strong>一步推导</strong></li><li><code>αAβ ⇒ αγβ</code> 表示：在中间把 <code>A</code> 替换成 <code>γ</code></li></ul>
+          <p><strong>推导符号说明</strong></p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>符号</th><th>解释</th></tr></thead><tbody><tr><td><code>⇒</code></td><td>一步推导</td></tr><tr><td><code>⇒*</code></td><td>零步或多步推导</td></tr><tr><td><code>⇒+</code></td><td>一步或多步推导</td></tr></tbody></table>
+          </div>
+          <p><img src="./image-20250620225249421.png" alt="image-20250620225249421" /></p>
+          
+          <h3>句型、句子、语言</h3>
+          <p><strong>Sentential Form（句型）</strong></p>
+          <ul><li>如果 $S \Rightarrow^* \alpha$，其中 $S$ 是文法的开始符号，那么 $\alpha$ 是一个 <strong>句型</strong>。</li><li>句型可以：</li><ul><li>包含 <strong>终结符</strong> 和 <strong>非终结符</strong></li><li>是<strong>中间推导过程的任何结果</strong></li><li>可以为空串 ε</li><li><strong>句子和开始符号也是</strong></li></ul></ul>
+          <p><strong>Sentence（句子）</strong></p>
+          <ul><li>一个<strong>句型中不再包含非终结符</strong>，就叫句子。</li><li>换句话说：<strong>句子是完全推导完毕的结果，只由终结符组成</strong></li></ul>
+          <p><strong>Language（语言）</strong></p>
+          <ul><li>一个文法 $G$ 所<strong>能推导出所有“句子”组成的集合</strong>，就是它的语言：</li></ul>
+          <p>$$ L(G) = \{ w \mid S \Rightarrow^* w,\ w \in V_T^* \} $$</p>
+          <blockquote><p>所有能从开始符号 S 推导出、并且只含终结符的串 $w$，都属于语言 $L(G)$。 我的理解是这里的句子有点像串。语言就是串的集合。</p></blockquote>
+          <p>示例如下：</p>
+          <p><img src="./image-20250620225844280.png" alt="image-20250620225844280" /></p>
+          
+          <h3>文法推导</h3>
+          <p>在每一次推导中，都需要去想<strong>选择哪个非终结符来换</strong>以及<strong>使用哪个产生式来进行更换</strong>。</p>
+          <p>为了解决第一个问题，所以有 <strong>最左推导</strong> 和 <strong>最右推导</strong>。</p>
+          <p>就是每次都选择 最左/最右 的非终结符进行更换。</p>
+          <p><img src="./image-20250620230139717.png" alt="image-20250620230139717" /></p>
+          <p><strong>判断二义性的方法：最左推导的语法树和最右推导的语法树是同一棵。</strong></p>
+          
+          <h3>分析树 Parse tree</h3>
+          <p><strong>Parse Tree:</strong></p>
+          <ul><li>它是<strong>推导过程的图形表示</strong>。</li><li>作用是：表示一个句型是如何一步一步地由产生式推导出来的。</li><li><strong>但不关注推导顺序</strong>（是左推、右推）。</li></ul>
+          <blockquote><p>多个不同推导过程可能产生 <strong>相同的分析树</strong>。</p></blockquote>
+          <h4><strong>分析树结构的组成：</strong></h4>
+          <p><strong>内部结点</strong></p>
+          <ul><li>表示<strong>应用的产生式的左部</strong>，即非终结符号。</li><li>内部结点的子结点代表产生式右部。</li></ul>
+          <p><strong>叶子结点</strong></p>
+          <ul><li>是终结符（或尚未替换的非终结符）。</li><li><strong>产出（yield）：</strong>从左往右读所有叶子节点，得到一个<strong>句型</strong>（还未推导完分析树）。</li><li>如果所有叶子都是终结符，是一个<strong>句子</strong>。</li></ul>
+          <p><img src="./image-20250620231323062.png" alt="image-20250620231323062" /></p>
+          
+          <h3>二义性</h3>
+          <p><strong>文法的二义性 </strong></p>
+          <p>如果<strong>一个句子对应多个语法分析树</strong>，则说明这个文法是二义的。</p>
+          <ul><li>某个文法 <code>G</code> 对同一个句子 <code>w</code>，能推导出两棵不同的语法树，意味着这个 <code>G</code> 是二义性的。</li></ul>
+          <p><strong>语言的二义性 </strong></p>
+          <ul><li>一个语言 <code>L</code> 是二义的，指的是：<strong>对这个语言的所有文法来说，全都是二义文法</strong>。</li><li>也就是说，<strong>不存在一个无二义性的文法来描述该语言</strong>。</li><li>如果能找到一个无二义性的文法来描述语言 <code>L</code>，则 <code>L</code> 是无二义语言。</li></ul>
+          <p><strong>关系对比</strong></p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>概念</th><th>定义</th><th>是否说明语言有问题</th></tr></thead><tbody><tr><td>文法的二义性</td><td>某个句子有多棵语法树</td><td>❌ 不一定，可能只是文法设计不好</td></tr><tr><td>语言的二义性</td><td>所有描述它的文法都是二义的</td><td>✅ 是语言本身的问题</td></tr></tbody></table>
+          </div>
+          <p><strong>可以通过指定优先级和结合性来消除二义性。</strong>（同种符号间考虑结合性，不同符号考虑优先级）</p>
+          
+          <h3>乔姆斯基文法体系</h3>
+          <blockquote><p>给出一个文法要会分是第几类。</p></blockquote>
+          <p>将<strong>形式文法</strong>按照表达能力的强弱分为<strong>四类（Type 0 到 Type 3）</strong>：</p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>类型</th><th>名</th><th>中文</th></tr></thead><tbody><tr><td>Type 0</td><td>无限制文法</td><td><strong>最强表达能力</strong>，没有限制</td></tr><tr><td>Type 1</td><td>上下文有关文法</td><td><strong>可描述长度不减</strong>的语言</td></tr><tr><td>Type 2</td><td>上下文无关文法</td><td>常用于<strong>编程语言语法</strong></td></tr><tr><td>Type 3</td><td>正则文法</td><td><strong>最弱表达能力</strong>，可被<strong>正则表达式/有限自动机识别</strong></td></tr></tbody></table>
+          </div>
+          <p><img src="./image-20250620233317478.png" alt="image-20250620233317478" /></p>
+          <p><img src="./image-20250620233336832.png" alt="image-20250620233336832" /></p>
+          <p><strong>上下文有关文法不可以推出空串！其他都可以</strong></p>
+          <p><strong>正则文法左递归也行右递归也行</strong>。</p>
+          <p><img src="./image-20250621011328186.png" alt="image-20250621011328186" /></p>
+          <p>例子1：<code>S → aSb | ε</code> Type 2</p>
+          <p>例子2：<code>aAb → abb</code> Type1</p>
+          <p><img src="./image-20250620234725083.png" alt="image-20250620234725083" /></p>
+          
+          <h3>语法分析类型</h3>
+          <p>可以分成 <strong>自顶向下</strong> 和 <strong>自底向上</strong>。</p>
+          <p><strong>自顶向下分析</strong></p>
+          <ul><li>从 <strong>根节点</strong> 开始，向下构造到叶子节点（终结符）。</li><li>构造的是 <strong>最左推导</strong>。</li><li>但对 <strong>回溯</strong> 或 <strong>左递归文法</strong> 敏感，难以处理某些复杂语法。</li></ul>
+          <p><strong>自底向上分析</strong></p>
+          <ul><li>从 <strong>输入串的叶子</strong> 开始，逐步向上还原成根。</li><li>实际是构造 <strong>最右推导的逆过程（最左归约）</strong>。</li><li>每一步做的是 <strong>规约</strong>：将已识别的部分归约成某个非终结符。</li></ul>
+          <p><img src="./image-20250621013358657.png" alt="image-20250621013358657" /></p>
+          
+          <h3>自顶向下分析</h3>
+          <h4>RDP 递归下降分析</h4>
+          <ul><li>为文法中每个非终结符定义一个<strong>过程</strong>。</li><li>起始于 start symbol 对应的过程，逐步递归调用其他过程；</li><li>每次执行一个产生式形如 <code>A → X₁X₂…Xₖ</code>：</li><ul><li>如果 <code>Xᵢ</code> 是非终结符，则调用对应过程。</li><li>如果 <code>Xᵢ</code> 是终结符，尝试匹配当前输入符号。</li><li>若失败，则报错或进行<strong>回溯</strong>。</li></ul></ul>
+          <h4>回溯</h4>
+          <ul><li><strong>产生式选择不明确</strong>时，需要尝试所有候选产生式。</li><li>匹配可能是暂时成功的，后续失败时需要<strong>回溯（Backtracking）</strong>。</li><li>输入：<code>S → xAy</code>，<code>A → ** | *</code>，输入串为 <code>x*y</code>。</li><ul><li>若先选择 <code>A → **</code>，中途失败。</li><li>则回溯，改为尝试 <code>A → *</code>。</li><li>最终成功匹配 <code>x*y</code>。</li></ul></ul>
+          <p><img src="./image-20250621013858207.png" alt="image-20250621013858207" /></p>
+          <h4>左递归问题（重点）</h4>
+          <p>若某个<strong>非终结符 A</strong>存在推导 <code>A ⇒⁺ Aα</code>（即 A 能通过一系列推导再回到自身），称该文法是 <strong>左递归</strong> 的。</p>
+          <p>自顶向下分析是处理不了左递归的（最左推导）。</p>
+          <p><strong>直接左递归消除：</strong></p>
+          <p><img src="./image-20250621014354227.png" alt="image-20250621014354227" /></p>
+          <p><strong>间接左递归消除：</strong></p>
+          <p><img src="./image-20250621015508006.png" alt="image-20250621015508006" /></p>
+          <p><img src="./image-20250621015528570.png" alt="image-20250621015528570" /></p>
+          <p>RDP 一定要解决左递归问题，除此之外回溯使得性能比较差（需要穷举）。</p>
+          <p>为了解决回溯，所以引入了带预测的分析 <strong>LL(k)</strong>。</p>
+          <p><img src="./image-20250621020034906.png" alt="image-20250621020034906" /></p>
+          <h4>带预测分析</h4>
+          <p>通过向前看一步输入符号，预测正确的产生式。</p>
+          <blockquote><p>RDP 是随机选择产生式。</p></blockquote>
+          <p><img src="./image-20250621020312933.png" alt="image-20250621020312933" /></p>
+          <p>但是会有<strong>共同前缀</strong>的问题。</p>
+          <h4>共同前缀</h4>
+          <p><img src="./image-20250621020400597.png" alt="image-20250621020400597" /></p>
+          <p>共同前缀可能会导致<strong>回溯</strong>，因为可以选择多个产生式了。</p>
+          <p><img src="./image-20250621020538352.png" alt="image-20250621020538352" /></p>
+          <p>可以使用<strong>提取左公因子</strong>来解决这个问题：</p>
+          <p><img src="./image-20250621020639144.png" alt="image-20250621020639144" /></p>
+          <p>虽然带预测分析解决了 <strong>左递归问题</strong> 和 <strong>共同前缀问题</strong>，但是仍然可能避免不了 <strong>回溯</strong>，例如以下情况：</p>
+          <p><img src="./image-20250621021031217.png" alt="image-20250621021031217" /></p>
+          <blockquote><p>值得一提的是，RDP 是可以处理共同前缀的。</p></blockquote>
+          
+          <h4>First 集合（重点）</h4>
+          <p>对于任意串 α（可以是终结符串、非终结符串或混合），<strong>FIRST(α)</strong> 是所有可以出现在 α 推导出的字符串开头的终结符的集合。</p>
+          <ul><li>形式定义：</li></ul>
+          <p>$$ \text{FIRST}(\alpha) = \{ a \in V_T \mid \alpha \Rightarrow^* a... \} $$</p>
+          <ul><li>如果 α 能推出空串 ε，那么 ε 也属于 FIRST(α)。</li></ul>
+          <p>计算公式如下：</p>
+          <p><img src="./image-20250621022448455.png" alt="image-20250621022448455" /></p>
+          
+          <h4>Follow 集合（重点）</h4>
+          <blockquote><p>记得没有空串，记得开始符号有 <code>$</code>。</p></blockquote>
+          <p>对于某个非终结符 A，<strong>FOLLOW(A)</strong> 是所有能<strong>直接跟在 A 后面</strong>出现在某些推导句型中的终结符号的集合。</p>
+          <ul><li>形式定义：</li></ul>
+          <p>$$ \text{FOLLOW}(A) = \{ a \in V_T \mid S \Rightarrow^* \alpha A a \beta \} $$</p>
+          <ul><li>如果 A 是句子的最右符号，则 <strong>$</strong>（表示输入结束）属于 FOLLOW(A)。</li></ul>
+          <p>计算方式：</p>
+          <p><img src="./image-20250621023055046.png" alt="image-20250621023055046" /></p>
+          
+          <h4>LL(1) 文法</h4>
+          <p>如何判断是 LL(1) 文法：有三个条件</p>
+          <p><img src="./image-20250621024239084.png" alt="image-20250621024239084" /></p>
+          <p>LL(1) 文法也是不能有左递归问题的！因为是自顶向下。</p>
+          <p><img src="./image-20250621024512008.png" alt="image-20250621024512008" /></p>
+          <p>LL(1) 的实现基本如下：</p>
+          <p><img src="./image-20250621025142555.png" alt="image-20250621025142555" /></p>
+          
+          <h4>使用LL 预测分析表</h4>
+          <p>栈的开始状态是 <strong>开始符号紧跟着结束符号</strong>：</p>
+          <img src="./image-20250621025843673.png" alt="image-20250621025843673" style="zoom:40%;" />
+          <p><strong>考试的时候应该要这样写：</strong></p>
+          <p><img src="./image-20250621030156241.png" alt="image-20250621030156241" /></p>
+          
+          <h4>如何判断是不是 LL(1) 文法</h4>
+          <p>如果有以下产生式：<code>A → α|β</code>，需满足：</p>
+          <ul><li><strong>FIRST(α) ∩ FIRST(β) = φ</strong></li><li><strong>If ε ∈ FIRST(β)，FIRST(α) ∩ FOLLOW(A) = φ</strong></li></ul>
+          <p>或者判断它的预测分析表，<strong>最多一个空格只能填一个产生式</strong>：</p>
+          <p><img src="./image-20250621030505240.png" alt="image-20250621030505240" /></p>
+          
+          <h4>LL 可能考的</h4>
+          <p><strong>写个 LL(2) 文法：</strong></p>
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 bg-gray-200 dark:bg-gray-700 dark:text-slate-400 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">S → a A | a B
+A → b
+B → cb</code></pre>
+          </div>
+          <ul><li>输入 <code>ab....</code> 时，看第一个 <code>a</code> 无法确定选 A 还是 B。</li></ul>
+          <ul><li>但若 <strong>k = 2</strong>，读到前缀 <code>ab</code> vs <code>abb</code> 就能区分，因此为 LL(2)。</li></ul>
+          <p><strong>写个 LL(3) 文法：</strong></p>
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 bg-gray-200 dark:bg-gray-700 dark:text-slate-400 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">S → a b c
+S → a b d</code></pre>
+          </div>
+          <ul><li>两条产生式的 <strong>FIRST₁</strong> 集都是 <code>{ a }</code>，冲突 ➜ 非 LL(1)。</li></ul>
+          <ul><li><strong>FIRST₂</strong>(a b c) = { ab }</li><li><strong>FIRST₂</strong>(a b d) = { ab } 仍然相交 ➜ 非 LL(2)。</li></ul>
+          <ul><li><strong>FIRST₃</strong>(a b c) = { a b c }</li><li><strong>FIRST₃</strong>(a b d) = { a b d }</li></ul>
+          <p>这两个长度为 3 的前缀集合<strong>互不相交</strong>，且两条产生式都不会推出 ε，所以也不存在 FIRST/FOLLOW 冲突。 ➜ 满足判定条件，因此 <strong>G 是 LL(3)</strong>。</p>
+          
+          <p><strong>LL(0) 文法：</strong></p>
+          <p>不需要看 <code>lookahead</code> 也能够选择哪条，每个非终结符只有一条产生式，<strong>甚至这个语言只有一个串</strong>。</p>
+          <p>就是开始符号直接推：（只有 a b c 这个串）</p>
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 bg-gray-200 dark:bg-gray-700 dark:text-slate-400 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">S → a b c</code></pre>
+          </div>
+          <p><strong>考试可能这样考：</strong></p>
+          <p><img src="./image-20250621110429857.png" alt="image-20250621110429857" /></p>
+          <p><strong>如何判断一个文法是 top-down 的：</strong> RDP 可以处理共同前缀的情况，LL 和 预测分析不能。</p>
+          
+          <h3>自底向上分析</h3>
+          <p>是<strong>最左归约（最右推导）</strong>的。</p>
+          <p>不需要再考虑 <strong>共同前缀</strong> 和 <strong>左递归</strong> 的问题。</p>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>术语</th><th>含义</th></tr></thead><tbody><tr><td><strong>Shift</strong>（移进）</td><td>将输入串中的符号<strong>压入栈中</strong>（表示“尚未归约”的一部分）</td></tr><tr><td><strong>Reduce</strong>（归约）</td><td>将栈顶的符号<strong>替换成某条产生式的左部</strong></td></tr><tr><td><strong>Stack</strong></td><td>存放中间符号（推导中的状态）</td></tr><tr><td><strong>Input buffer</strong></td><td>存放剩余输入串</td></tr></tbody></table>
+          </div>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621111651865.png" alt="image-20250621111651865" /></p>
+          
+          <h4>句柄</h4>
+          <p><strong>Right-Sentential Form（最右句型）</strong></p>
+          <ul><li><strong>定义</strong>：在最右推导、中出现的中间句型。</li><li><strong>例子</strong>：</li><ul><li>若产生式为：<code>E ⇒ T ⇒ T * F ⇒ T * id ⇒ F * id ⇒ id * id</code>（最右每次替换最右边非终结符）</li><li>这些每一步的中间结果，都是最右句型。（包括 <code>E</code> 和 <code>id * id</code>）</li></ul><li><strong>最左句型和最右句型不一样。</strong></li></ul>
+          <p><strong>Phrase（短语）</strong></p>
+          <ul><li><strong>定义</strong>：若 <code>α₁Aα₂</code> 是一个最右句型，且 <code>S ⇒* α₁Aα₂ ⇒ α₁βα₂</code>，则 <code>β</code> 是 <code>α₁Aα₂</code> 的<strong>短语</strong>（phrase）。</li><li><strong>中文理解</strong>：有某个非终结符 A 展开得到 β，这个 β 就是 A 对应的短语。</li><li><strong>就是一棵语法树的子树的叶子节点。</strong></li></ul>
+          <img src="./image-20250621112349635.png" alt="image-20250621112349635" style="zoom:67%;" />
+          <p><strong>Simple Phrase（直接短语）</strong></p>
+          <ul><li><strong>定义</strong>：在上面的推导中，若 <code>S ⇒* α₁Aα₂ ⇒ α₁βα₂</code> 是一步推导（即 A → β 只用了一步），则 β 是 <code>α₁Aα₂</code> 的<strong>直接短语</strong>（simple phrase）。</li><li><strong>语法树上“父子两代”的子树</strong>。</li></ul>
+          <p><strong>Handle（句柄）</strong></p>
+          <ul><li><strong>定义</strong>：一个句型中<strong>最左边的直接短语</strong>。</li><li><strong>中文理解</strong>：句柄是能被立即规约回一个非终结符的那段符号串，而且是最左边的一个直接短语。</li></ul>
+          <p><img src="./image-20250621112444219.png" alt="image-20250621112444219" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621112745824.png" alt="image-20250621112745824" /></p>
+          <p><strong>句柄就是在栈顶的时候一定要归约的。</strong></p>
+          
+          <h4>活前缀</h4>
+          <p><strong>什么是 Viable Prefix（活前缀）？</strong></p>
+          <ul><li><strong>定义</strong>：viable prefix 是某个<strong>最右句型的前缀</strong>，<strong>它不能超过该句型中最右句柄（handle）的结尾</strong>。</li></ul>
+          <blockquote><p>简化记忆：<strong>“可行前缀 = 包含句柄但不能越过它的前缀”</strong> 定义好了句柄前栈的可能状态。</p></blockquote>
+          <ul><li>确保栈总是包含活前缀。</li></ul>
+          <p>举个例子，比如 E+E*E 归约成 E+E，句柄是 E*E，<strong>那么它的活前缀就是 E、E+、E+E、E+E*、E+E*E。</strong></p>
+          <p>又比如id+id*id归约成E+id*id，句柄是最左边的id，<strong>那么它的活前缀是id，因为不能超过句柄</strong>。</p>
+          
+          <h4>冲突</h4>
+          <p>如果文法有二义性的话，可能会有 <strong>Shift-Shift</strong> 和 <strong>Shift-Reduce</strong> 冲突。</p>
+          
+          <h4>LR(0) 文法</h4>
+          <img src="./image-20250621115131141.png" alt="image-20250621115131141" style="zoom:50%;" />
+          <ul><li>栈中的内容 + 剩下的输入串，构成一个右句型（right sentential form）。</li><li>栈中不仅有文法符号，还有<strong>状态信息</strong>，用于记住当前分析进度。</li><li>LR(k) 和 LR(q) 的区别就是 Action 和 Goto 表的区别。</li></ul>
+          
+          <h4>动作表</h4>
+          <img src="./image-20250621115436731.png" alt="image-20250621115436731" style="zoom:50%;" />
+          <p>可能的动作如下：</p>
+          <img src="./image-20250621115547987.png" alt="image-20250621115547987" style="zoom:50%;" />
+          
+          <h4>跳转表</h4>
+          <p>归约后找状态用的。</p>
+          <img src="./image-20250621115642323.png" alt="image-20250621115642323" style="zoom:50%;" />
+          <p>一些可能的操作：</p>
+          <p><img src="./image-20250621115852486.png" alt="image-20250621115852486" /></p>
+          <p><img src="./image-20250621115920346.png" alt="image-20250621115920346" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621120058404.png" alt="image-20250621120058404" /></p>
+          
+          <h4>其他 LR 文法</h4>
+          <p>LR(0) 最弱，SLR(1) 只看一个符号（利用follow），LALR(1)，LR(1) 最强。</p>
+          
+          <h4>项目 (item)</h4>
+          <p><strong>状态其实就是 项目 的集合。</strong></p>
+          <p><img src="./image-20250621120528389.png" alt="image-20250621120528389" /></p>
+          <p>项目的意义：</p>
+          <p><img src="./image-20250621120616799.png" alt="image-20250621120616799" /></p>
+          <p>示例：</p>
+          <p><img src="./image-20250621120749950.png" alt="image-20250621120749950" /></p>
+          
+          <h4>增广文法</h4>
+          <p><img src="./image-20250621120840695.png" alt="image-20250621120840695" /></p>
+          
+          <h4>LR(0) 自动机</h4>
+          <p><img src="./image-20250621121018010.png" alt="image-20250621121018010" /></p>
+          <p>示例：</p>
+          <p><img src="./image-20250621122549058.png" alt="image-20250621122549058" /></p>
+          
+          <h4>构造 LR(0) 自动机</h4>
+          <p>首先，需要先构造 LR(0) 状态集。</p>
+          <p><img src="./image-20250621121403127.png" alt="image-20250621121403127" /></p>
+          <p>然后计算所有状态的集合和所有边：</p>
+          <p><img src="./image-20250621121449861.png" alt="image-20250621121449861" /></p>
+          <p>示例结果如下：</p>
+          <p><img src="./image-20250621121703483.png" alt="image-20250621121703483" /></p>
+          <ul><li>因为 LR(0) 归约的时候没有 lookahead，所以每个状态的 reduce 都是全部一起的。（就是到了这个状态直接归约）</li></ul>
+          <ul><li>在 LR(0) 的分析表中，每个状态要么是 shift 状态，要么是 reduce 状态，<strong>不能两者都有</strong>。</li></ul>
+          <ul><li>如果文法中存在形如 <code>A → ε</code> 的产生式（即 A 可推导出空串），那么对应的 LR 项 <code>A → ·ε</code> 会在构造分析表时，<strong>与其它 A 的非空产生式冲突</strong>，从而造成 shift/reduce 冲突。</li></ul>
+          <div class="relative group my-8">
+            <div class="absolute top-0 right-0 px-3 py-1 text-xs font-mono text-slate-500 bg-gray-200 dark:bg-gray-700 dark:text-slate-400 rounded-bl-lg rounded-tr-xl border-b border-l border-gray-300 dark:border-gray-600">text</div>
+            <pre class="!mt-0"><code class="language-text">A → ε  
+A → a</code></pre>
+          </div>
+          <ul><li><code>A → ·ε</code> 是 reduce 项（代表可以归约 A）</li><ul><li><code>A → ·a</code> 是 shift 项（代表期望读入 a）</li></ul></ul>
+          
+          <h4>LR(0) 冲突</h4>
+          <p><img src="./image-20250621122311812.png" alt="image-20250621122311812" /></p>
+          
+          <h4>LR(0) 可能会考的</h4>
+          <p>问你预测分析表有多少行（状态数量），多少列（action 是所有终结符(<code>$</code>)，goto是非终结符）。</p>
+          
+          <h4>SLR(1)</h4>
+          <p>对比 LR(0) 的归约，会看看下一个 token 是不是在归约后的 Follow 集合中。</p>
+          
+          <h4>SLR(1) 文法</h4>
+          <p><img src="./image-20250621123510055.png" alt="image-20250621123510055" /></p>
+          
+          <h4>SLR(1) 局限性</h4>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621124125127.png" alt="image-20250621124125127" /></p>
+          <p>Follow 集合的信息还是太空泛了。</p>
+          <p>没有利用到栈内的信息，所以<strong>引入 LR(1)</strong>。</p>
+          
+          <h4>LR(1)</h4>
+          <p>在 LR(0) 的基础上，增加了 lookahead。</p>
+          <p><img src="./image-20250621124414988.png" alt="image-20250621124414988" /></p>
+          
+          <h4>LR(1) 状态创建</h4>
+          <p><img src="./image-20250621124636779.png" alt="image-20250621124636779" /></p>
+          <ul><li><strong>记得 b 属于 first(va)。</strong></li><li>移进项目的lookahead没有任何作用，仅用作传递。</li><li>对归约项目起作用。 • 判断输入的1个lookahead能否跟随栈中的活前缀，比SLR(1)更加精确。</li></ul>
+          <p>示例：</p>
+          <p><img src="./image-20250621124944670.png" alt="image-20250621124944670" /></p>
+          
+          <h4>LR(1) 冲突</h4>
+          <p><img src="./image-20250621125212110.png" alt="image-20250621125212110" /></p>
+          
+          <h4>LR(1) 局限性</h4>
+          <p>LR(1) 的状态数量太多了（因为使用lookahead对状态进行了细分），LR(0) 和 SLR(1) 的状态数量是一样的，所以希望减少 LR(1) 的状态数量，做了一个折中处理，引入了 LALR(1)。</p>
+          
+          <h4>LALR(1)</h4>
+          <p>找到相似的状态（即项目一样，但是lookahead不一样）进行合并，把 lookahead 集中到一起。</p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621125829024.png" alt="image-20250621125829024" /></p>
+          <p><img src="./image-20250621125931777.png" alt="image-20250621125931777" /></p>
+          
+          <h4>LALR(1) 问题</h4>
+          <p><strong>可能会引入 reduce-reduce (r-r) 冲突</strong></p>
+          <ul><li>原始的 <strong>LR(1)</strong> 分析器使用 <strong>lookahead 符号</strong> 来精确区分什么时候进行归约（reduce）。</li><li><strong>LALR(1)</strong> 会将若干个 LR(1) 状态（它们具有相同的核心项）合并为一个。</li><li>合并后多个不同的 <strong>lookahead</strong> 被混在一起 → 有可能导致：</li><ul><li>同一个状态中出现 <strong>两个不同的完整项（A→α· 和 B→β·）</strong></li><li>而且它们的 lookahead 符号有交集，<strong>产生 reduce-reduce 冲突</strong>。</li></ul></ul>
+          <blockquote><p>LR 是通过不同的 lookahead 来“划分” Follow 集，避免冲突 而 LALR 合并状态后，这种区分被“取消”了</p></blockquote>
+          <p><strong>不会引入：shift-reduce (s-r) 冲突</strong></p>
+          <p><img src="./image-20250621130645381.png" alt="image-20250621130645381" /></p>
+          <p><strong>合并状态会推迟错误检测</strong></p>
+          <ul><li>在 LR(1) 分析器中，由于状态区分精细，当输入出错时可能 <strong>尽早发现错误</strong>。</li><li>LALR 合并后，parser 可能会：</li><ul><li>由于误归约或多归约，<strong>延后发现输入串有问题</strong></li><li>它可能在错误的路径上多执行几步归约（reduce）操作</li></ul></ul>
+          
+          <h4>LALR(1) 预测分析表构造</h4>
+          <blockquote><p>高效方式（Efficient Way） 避免一开始就构造完整的 LR(1) 状态，<strong>边构造边合并</strong>（on-the-fly merging）。</p></blockquote>
+          <ul><li>状态构造过程仍然使用 LR(1) 的推导逻辑。</li><li>一旦构造出一个新状态，就立即检查有没有其他核心相同的状态可以合并。</li><li><strong>核心相同</strong> = 项目中点号（·）所在位置一样，只是 lookahead 不同。</li></ul>
+          
+          <h4>LALR(1)</h4>
+          <p>LALR(1) 的状态数量和 SLR(1) 和 LR(0) 一样多，但是归约的次数更少。</p>
+          <p><img src="./image-20250621131231571.png" alt="image-20250621131231571" /></p>
+          
+          <h3>语法分析题目</h3>
+          <p><strong>第六个ppt的最后有答案</strong></p>
+          <p><img src="./image-20250621131508763.png" alt="image-20250621131508763" /></p>
+          <p><img src="./image-20250621131520939.png" alt="image-20250621131520939" /></p>
+          <p><img src="./image-20250621131558970.png" alt="image-20250621131558970" /></p>
+          <p><img src="./image-20250621131658385.png" alt="image-20250621131658385" /></p>
+          <p><img src="./image-20250621132033779.png" alt="image-20250621132033779" /></p>
+          <p><img src="./image-20250621132042110.png" alt="image-20250621132042110" /></p>
+          <p><img src="./image-20250621132052408.png" alt="image-20250621132052408" /></p>
+          <p><img src="./image-20250621132110477.png" alt="image-20250621132110477" /></p>
+          
+          <h2>语义分析</h2>
+          <p>语义分析的目标是带标注的抽象语法分析树。</p>
+          <p>语法分析只是检查形式上有没有问题，语义则是检查意义。</p>
+          <p>例如：数组下标越界就是一个语义问题。</p>
+          
+          <h3>语法制导翻译</h3>
+          <p><img src="./image-20250621133217640.png" alt="image-20250621133217640" /></p>
+          <p>翻译是<strong>依据程序的文法结构</strong>进行的。即<strong>根据上下文无关文法（CFG）来指导</strong>程序的语义分析与中间代码生成。</p>
+          <p>语法分析过程构造出语法树，然后在语法树的基础上执行语义分析或翻译（如生成中间代码）。</p>
+          <p>我们给语法符号（终结符或非终结符）<strong>附加语义属性</strong>，并为每条产生式规则定义“语义规则”。</p>
+          <p><img src="./image-20250621133616089.png" alt="image-20250621133616089" /></p>
+          
+          <h3>SDD 和 SDT</h3>
+          <p><strong>SDD 语法制导定义</strong></p>
+          <p><img src="./image-20250621133715759.png" alt="image-20250621133715759" /></p>
+          <p><strong>SDT 语法制导翻译</strong></p>
+          <p><img src="./image-20250621133746196.png" alt="image-20250621133746196" /></p>
+          <p><strong>之间的区别：</strong></p>
+          <p><img src="./image-20250621133811257.png" alt="image-20250621133811257" /></p>
+          
+          <h3>SDD</h3>
+          <p>文法符号中有 <strong>综合属性</strong> 和 <strong>继承属性</strong>：</p>
+          <p><img src="./image-20250621134054354.png" alt="image-20250621134054354" /></p>
+          <ul><li>终结符可以有综合属性。</li></ul>
+          <p><img src="./image-20250621134144272.png" alt="image-20250621134144272" /></p>
+          <ul><li>终结符无继承属性。</li></ul>
+          <p>产生式中的依赖图如下：</p>
+          <p><img src="./image-20250621134358558.png" alt="image-20250621134358558" /></p>
+          
+          <h3>依赖图</h3>
+          <p><img src="./image-20250621134719122.png" alt="image-20250621134719122" /></p>
+          <p>依赖图需要无环才能够给自动机自动处理。</p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621134830502.png" alt="image-20250621134830502" /></p>
+          <p>为了避免依赖图有环，所以引入了属性文法。</p>
+          
+          <h3>属性文法</h3>
+          <p><strong>综合属性文法：就是所有的属性都是综合的。</strong></p>
+          <p>适合<strong>与自底向上的语法分析同时进行</strong>。</p>
+          <p><img src="./image-20250621145200957.png" alt="image-20250621145200957" /></p>
+          <p><strong>左属性文法：每个属性只能从左侧传来（即依赖图只能从左往右，没有回头路）</strong></p>
+          <p>可以用 LL 或者 LR 来实现。</p>
+          <p><img src="./image-20250621145450731.png" alt="image-20250621145450731" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621145551154.png" alt="image-20250621145551154" /></p>
+          
+          <h3>SDD 实现</h3>
+          <p><img src="./image-20250621145639821.png" alt="image-20250621145639821" /></p>
+          
+          <h4>综合属性实现</h4>
+          <p><img src="./image-20250621145734112.png" alt="image-20250621145734112" /></p>
+          <p>在 LR 的基础上进行修改实现：扩展栈，额外放属性值即可。</p>
+          <p><img src="./image-20250621150045188.png" alt="image-20250621150045188" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621150208610.png" alt="image-20250621150208610" /></p>
+          
+          <h4>左属性文法实现</h4>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621150407273.png" alt="image-20250621150407273" /></p>
+          <p><strong>如果文法是 LL 可解析的：</strong>就可以在 <strong>LL 或 LR 分析过程中</strong> 实现 L-SDD 的语义动作（SDT）。</p>
+          <p>可以有三种方法实现左属性文法：</p>
+          <ul><li><strong>RDP</strong></li><li><strong>LL</strong></li><li><strong>LR</strong></li></ul>
+          <p>在使用自顶向下的方法时，一定要先<strong>消除左递归</strong>！</p>
+          
+          <h4>消除左递归</h4>
+          <p><img src="./image-20250621151608028.png" alt="image-20250621151608028" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621151635509.png" alt="image-20250621151635509" /></p>
+          <p><strong>公式如下：</strong></p>
+          <p><img src="./image-20250621151648756.png" alt="image-20250621151648756" /></p>
+          
+          <h5>RDP 实现左属性文法</h5>
+          <p>把<strong>继承属性当成函数参数</strong>，<strong>综合属性当成返回值即可</strong>。</p>
+          <p><img src="./image-20250621152156800.png" alt="image-20250621152156800" /></p>
+          
+          <h5>LL分析 实现左属性文法</h5>
+          <p><strong>通过扩展语法分析栈来实现。</strong></p>
+          <p>先压综合属性，再压继承属性。</p>
+          <p><img src="./image-20250621152731424.png" alt="image-20250621152731424" /></p>
+          <ul><li><strong>为什么先压综合再压继承：</strong>因为假设 A定义为BC，需要把 A 的继承先 pop 出去，再把BC压进来，这个时候因为已经有记录 A 的继承值，所以B和C的继承属性都可以计算，当B和C的属性都计算好之后弹出栈，那么也代表 A 的综合属性可以算了。</li></ul>
+          
+          <h5>LR分析 实现左属性文法</h5>
+          <p>使用 Marker 技术来实现，将 L-SDD 转换成 S-SDD。</p>
+          <p><img src="./image-20250621154242623.png" alt="image-20250621154242623" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621154612486.png" alt="image-20250621154612486" /></p>
+          
+          <h3>符号表</h3>
+          <p>其实就是保留用户的定义。</p>
+          <p><strong>符号表</strong>是用来<strong>存储和查询程序中所有符号（标识符）相关信息</strong>的数据结构。</p>
+          <p><strong>编译的阶段中用到符号表：</strong></p>
+          <ol><li><strong>词法分析阶段</strong>：发现新的标识符，加入符号表</li><li><strong>语法分析阶段</strong>：检查标识符是否已经声明过（查符号表）</li><li><strong>语义分析阶段</strong>：做类型检查，变量作用域判断（用符号表）</li><li><strong>中间代码生成 / 优化 / 目标代码生成</strong>：用符号表信息分配内存地址、生成指令</li></ol>
+          <p><strong>符号表的访问会严重的影响前端的性能！</strong></p>
+          <p>符号表可以有三种实现方式：</p>
+          <ul><li>数组</li><li>链表</li><li>二叉树</li><li>哈希表</li></ul>
+          
+          <h3>类型检查</h3>
+          <ul><li><strong>静态类型检查</strong>：在<strong>编译时</strong>进行类型检查，类型错误在程序运行前就会被发现。</li><li><strong>动态类型检查</strong>：在<strong>运行时</strong>进行类型检查，类型错误在程序执行时才会被发现。</li></ul>
+          <div class="overflow-x-auto mb-6">
+            <table><thead><tr><th>特性</th><th>静态类型检查 (Static)</th><th>动态类型检查 (Dynamic)</th></tr></thead><tbody><tr><td><strong>检查时机</strong></td><td>编译时（编译器检查类型）</td><td>运行时（解释器/VM检查类型）</td></tr><tr><td><strong>错误发现早晚</strong></td><td>运行前发现（较早）</td><td>运行中才发现（可能很晚）</td></tr><tr><td><strong>执行效率</strong></td><td>通常更高（类型已知）</td><td>通常稍慢（运行中要做类型判断）</td></tr><tr><td><strong>代码安全性</strong></td><td>更强（类型问题在编译时就能暴露）</td><td>较弱（要依赖运行时测试）</td></tr><tr><td><strong>灵活性</strong></td><td>较低（变量类型必须事先指定）</td><td>更高（变量类型可改变）</td></tr><tr><td><strong>典型语言</strong></td><td>C, C++, Java, Rust, Go</td><td>Python, JavaScript, Ruby, PHP</td></tr><tr><td><strong>变量声明</strong></td><td>需显式声明类型（如：<code>int x = 5;</code>）</td><td>通常不需要（如：<code>x = 5</code>）</td></tr></tbody></table>
+          </div>
+          <p><img src="./image-20250621160524983.png" alt="image-20250621160524983" /></p>
+          
+          <h3>语义分析题目</h3>
+          <p><img src="./image-20250621161256523.png" alt="image-20250621161256523" /></p>
+          
+          <h2>中间代码生成</h2>
+          <blockquote><p>重点：计算数组引用，TAC的三种表达，SSA是什么，布尔表达式回填。</p></blockquote>
+          <p>常见的中间代码表示有：<strong>TAC</strong>，<strong>AST</strong>，<strong>DAG</strong>。</p>
+          <p>中间代码分成了三个层级，高层级代表靠近源语言，与源语言相关；中层级代表跟源语言和机器语言都不相关；低层级代表靠近机器语言，与机器码相关。</p>
+          
+          <h3>为什么要多层级中间代码呢</h3>
+          <p>实际上，也可以只有一个中间代码：AST，从 AST 直接到机器码（事实上，Java 就是这么干的）。</p>
+          <p>但是这样会丧失很多代码优化的机会，以及多层级的中间代码表示可以把整个逻辑分的更清晰，特别是易于修改或者扩展。</p>
+          
+          <h3>TAC 三地址码</h3>
+          <p>最多只能三个操作数：<code>X = Y op Z</code>。</p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250621170152039.png" alt="image-20250621170152039" /></p>
+          <p>可以分成<strong>四元式</strong>、<strong>三元式</strong>、<strong>间接三元式</strong>。</p>
+          
+          <h4>四元式</h4>
+          <p>一共有四个参数要填：<strong>操作符、操作数1、操作数2、结果数。</strong></p>
+          <p><img src="./image-20250621180821922.png" alt="image-20250621180821922" /></p>
+          
+          <h4>三元式</h4>
+          <p>是对四元式的一个精简，去掉了结果这个参数，用下标表示结果。</p>
+          <p><img src="./image-20250621180905730.png" alt="image-20250621180905730" /></p>
+          <p>三元式有个问题，当需要优化三地址码的时候，三元式内的指令需要不停的迭代的变更。</p>
+          <p><img src="./image-20250621205052035.png" alt="image-20250621205052035" /></p>
+          
+          <h4>间接三元式</h4>
+          <p><img src="./image-20250621205324269.png" alt="image-20250621205324269" /></p>
+          <p><img src="./image-20250621205336831.png" alt="image-20250621205336831" /></p>
+          
+          <h4>SSA</h4>
+          <p>将变量变得跟常量一样，所有变量只用一次。</p>
+          <p><img src="./image-20250621210053198.png" alt="image-20250621210053198" /></p>
+          <p>SSA 可以帮助数据流更加的清晰，更容易发现死代码。</p>
+          
+          <h3>代码生成</h3>
+          <p>有以下几个工具函数：</p>
+          <p><img src="./image-20250621210849112.png" alt="image-20250621210849112" /></p>
+          <p>以下有一个赋值的例子：</p>
+          <p><img src="./image-20250621211156540.png" alt="image-20250621211156540" /></p>
+          
+          <h4>数组引用</h4>
+          <p>给你一个数组和下标要会算地址。</p>
+          <p><img src="./image-20250621211825126.png" alt="image-20250621211825126" /></p>
+          <p><img src="./image-20250621211843765.png" alt="image-202506211843765" /></p>
+          <p>还有这个更加复杂的例子：</p>
+          <p><img src="./image-20250621214235458.png" alt="image-20250621214235458" /></p>
+          
+          <h4>布尔表达式</h4>
+          <p><img src="./image-20250621215439257.png" alt="image-20250621215439257" /></p>
+          
+          <h4>控制流语句</h4>
+          <p><img src="./image-20250621220155476.png" alt="image-20250621220155476" /></p>
+          <p><img src="./image-20250621220211669.png" alt="image-20250621220211669" /></p>
+          
+          <h4>回填</h4>
+          <p>有个问题：我现在要生成跳转指令，但还不知道将来要跳去哪里。</p>
+          <p>有时候需要往前跳转，但是还未生成到那个部分的指令，就先挖个洞，之后生成了再补上。</p>
+          <p><img src="./image-20250621223924089.png" alt="image-20250621223924089" /></p>
+          <p><img src="./image-20250621221713070.png" alt="image-20250621221713070" /></p>
+          
+          <h2>代码优化</h2>
+          <blockquote><p>重点：DAG，basic block，本地优化，活性变量，去除死代码。</p></blockquote>
+          <p><strong>优化目标：</strong></p>
+          <p>优化的目的不是“越复杂越好”，而是<strong>提升实际性能</strong>，主要包括：</p>
+          <ul><li><strong>Execution time（执行时间）</strong>：让程序跑得更快。</li><li><strong>Memory usage（内存使用）</strong>：减少内存占用。</li><li><strong>Energy consumption（能耗）</strong>：在嵌入式/移动平台尤其重要。</li><li><strong>Binary executable size（二进制文件大小）</strong>：让最终程序更小。</li></ul>
+          <p><strong>优化应遵循的三大原则：</strong></p>
+          <ol><li><strong>Equivalence（等价性）</strong></li><li><strong>Efficiency（效率）</strong></li><li><strong>Cost-effectiveness（性价比）</strong></li></ol>
+          <p>优化可以分为<strong>布局相关</strong>和<strong>代码相关</strong>。</p>
+          
+          <h3>布局相关</h3>
+          <p>主要使用<strong>空间局部性</strong></p>
+          <p>例子1：</p>
+          <p><img src="./image-20250621233133579.png" alt="image-20250621233133579" /></p>
+          <p>例子2：</p>
+          <p><img src="./image-20250621233211801.png" alt="image-20250621233211801" /></p>
+          <p>例子3：</p>
+          <p><img src="./image-20250621233229714.png" alt="image-20250621233229714" /></p>
+          
+          <h3>代码相关</h3>
+          <p>目标：尽量让代码用更少昂贵的指令。</p>
+          <p>就是让代码尽量少点，在功能相同的情况下。</p>
+          <p>有<strong>控制流分析</strong> (CFA) 可以生成 <strong>CFG</strong>，<strong>数据流分析</strong> (DFA) 可以生成 <strong>DFG</strong>。</p>
+          
+          <h3>Basic block</h3>
+          <p>一串没有分支跳转的连续代码序列，可以理解成一个原子操作。</p>
+          <p><strong>基本块是 CFG 的节点。</strong></p>
+          <ul><li><strong>局部优化</strong>是<strong>优化的作用范围局限在一个基本块（basic block）内</strong>。</li><li><strong>全局优化</strong>是<strong>优化会跨越多个基本块进行分析和修改</strong>。</li></ul>
+          
+          <h3>构造 CFG</h3>
+          <p>步骤1：<img src="./image-20250622012413703.png" alt="image-20250622012413703" /></p>
+          <p>步骤2：</p>
+          <p><img src="./image-20250622012435842.png" alt="image-20250622012435842" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250622012525155.png" alt="image-20250622012525155" /></p>
+          
+          <h3>本地优化</h3>
+          <p>常见的方法有：<strong>删除公共子表达式</strong>，<strong>死代码消除</strong>。</p>
+          <p><img src="./image-20250622013145590.png" alt="image-20250622013145590" /></p>
+          <p>也可以用<strong>代数恒等式和强度低的指令进行优化</strong>：</p>
+          <p><img src="./image-20250622013920811.png" alt="image-20250622013920811" /></p>
+          <p><strong>常量折叠</strong>和<strong>常量传播</strong>：</p>
+          <p><img src="./image-20250622014110078.png" alt="image-20250622014110078" /></p>
+          <p><img src="./image-20250622014123804.png" alt="image-20250622014123804" /></p>
+          
+          <h3>构造 DAG</h3>
+          <p><img src="./image-20250622013211699.png" alt="image-20250622013211699" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250622013238484.png" alt="image-20250622013238484" /></p>
+          <p>创建完 DAG 之后，可以进行代码消除：</p>
+          <p><img src="./image-20250622013804129.png" alt="image-20250622013804129" /></p>
+          
+          <h3>全局优化</h3>
+          <p><strong>全局优化必须覆盖所有路径</strong></p>
+          <ul><li>哪怕只有一条路径上优化会导致结果出错，也不能做。</li><li><strong>必须沿所有路径成立，才能优化</strong>。</li></ul>
+          <p><strong>保守性</strong></p>
+          <ul><li>编译器要做全局优化时，必须能证明某个性质 X 在所有路径上成立。</li><li>如果不能确定（分析结果为 "don’t know"），则<strong>不做优化</strong>。</li><li>即使会错过优化机会，也必须保证结果仍然正确。</li></ul>
+          
+          <h3>全局常量传播</h3>
+          <p>观察每一条路径上的变量的值，并且进行传播：</p>
+          <p><img src="./image-20250622015219681.png" alt="image-20250622015219681" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250622015241116.png" alt="image-20250622015241116" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250622015317301.png" alt="image-20250622015317301" /></p>
+          
+          <h3>DAG 构造例子</h3>
+          <p><img src="./image-20250622015636353.png" alt="image-20250622015636353" /></p>
+          <p><img src="./image-20250622015743509.png" alt="image-20250622015743509" /></p>
+          <p><img src="./image-20250622015752683.png" alt="image-20250622015752683" /></p>
+          
+          <h2>目标代码生成</h2>
+          <blockquote><p>给指令问开销，要知内存布局，stack，heap放什么，实际是用 fp 去找栈中地址。</p></blockquote>
+          <p>实际上<strong>就是转优化后的中间代码 变成 目标代码</strong>。</p>
+          <p>三个主要目的：</p>
+          <ul><li><strong>如何选取指令（强度减弱）</strong></li><li><strong>如何分配寄存器</strong></li><li><strong>如何确定指令执行的顺序</strong></li></ul>
+          
+          <h3>内存布局</h3>
+          <p><img src="./image-20250622023524166.png" alt="image-20250622023524166" /></p>
+          <p><strong>Code 区段（代码段）</strong></p>
+          <ul><li>包含程序的机器指令。</li><ul><li><code>main()</code> 函数的代码</li><li><code>f()</code>、<code>g()</code> 等函数体</li></ul><li>特点：</li><ul><li><strong>编译时大小已知</strong></li><li>通常放在<strong>地址空间的低地址区域</strong></li></ul></ul>
+          <p><strong>Global/static（数据段）</strong></p>
+          <ul><li>存储<strong>全局变量</strong>和<strong>静态变量</strong></li><li>特点：</li><ul><li><strong>编译时就确定大小</strong></li><li>生命周期与程序一样长</li><li>初始化变量放在 <code>.data</code> 区</li></ul></ul>
+          <p><strong>Heap（堆区）</strong></p>
+          <ul><li>动态内存分配区域（比如 <code>malloc</code>, <code>new</code>）</li><li>用于存储<strong>生命周期较长</strong>的对象或数组</li><li>由程序员或垃圾回收器控制</li></ul>
+          <p><strong>Stack（栈）</strong></p>
+          <ul><li>存放函数调用时的局部变量、返回地址、参数等</li><li>特点：</li><ul><li>后进先出（LIFO）</li><li>每次调用函数会压栈，返回后出栈</li></ul></ul>
+          
+          <h3>活动管理</h3>
+          <p><strong>活动被定义为执行一次函数调用。</strong></p>
+          <p>AR 栈式管理方式（如同栈一样管理）</p>
+          <ul><li><strong>函数调用时</strong>：</li><ul><li>分配一个新的 AR（活动记录）到<strong>栈顶</strong>。</li></ul><li><strong>函数返回时</strong>：</li><ul><li>从<strong>栈顶移除</strong>该 AR。</li></ul><li>所以活动记录以<strong>栈的形式（先进后出）</strong>组织。</li></ul>
+          <p>还有 <code>fp</code> 和 <code>sp</code> 一些硬件辅助。</p>
+          <p><img src="./image-20250622024254705.png" alt="image-20250622024254705" /></p>
+          
+          <h3>调用函数的过程</h3>
+          <p><strong>一、调用前（由 caller 调用者 执行）：</strong></p>
+          <ol><li><strong>为调用做准备</strong>：</li><ul><li>在栈上分配空间，用于保存任何 caller-saved 的寄存器。</li></ul><li><strong>压入实参（arguments）</strong>：</li><ul><li>从右到左压入实参到栈中（右→左）。</li></ul><li><strong>跳转到被调用函数地址</strong>：</li><ul><li>将下一条指令地址（即函数返回点）保存到 <code>$ra</code>（return address 寄存器）。</li><li>跳转到被调用函数的入口。</li></ul></ol>
+          <p><strong>二、函数执行中（由 callee 被调用者 执行）：</strong></p>
+          <ol><li><strong>为当前调用帧分配空间</strong>：</li><ul><li>保存当前 <code>$fp</code>（frame pointer）和 <code>$ra</code> 到栈中。</li></ul><li><strong>配置帧指针</strong>：</li><ul><li>设置 <code>$fp</code> 为当前栈帧的基址（新的 AR 起点）。</li></ul><li><strong>继续分配栈帧空间</strong>：</li><ul><li>为局部变量、临时变量分配空间。</li></ul><li><strong>执行函数体代码</strong>：</li><ul><li>使用 <code>$fp</code> 作为基准访问变量：</li><ul><li>参数用正偏移（positive offset）</li><li>局部变量/临时变量用负偏移（negative offset）</li></ul></ul></ol>
+          <p><strong>三、函数返回时（由 callee 被调用者 执行）：</strong></p>
+          <ol><li><strong>处理返回值</strong>：</li><ul><li>将返回值赋给 <code>$v0</code>（返回值寄存器）。</li></ul><li><strong>恢复上下文并返回</strong>：</li><ul><li>弹出栈帧（包括局部变量、临时变量、保存的寄存器）。</li><li>恢复 <code>$fp</code> 和 <code>$ra</code>。</li><li>跳转到 <code>$ra</code> 中保存的返回地址（即 caller 的下一条指令）。</li></ul></ol>
+          <p>示例如下：记得看如何访问参数（利用 <code>FP</code>）。</p>
+          <p><img src="./image-20250622031610133.png" alt="image-20250622031610133" /></p>
+          <p>示例如下：记得先压 <code>FP</code> 再压 <code>IP</code>，并且新的 <code>FP </code>是指着 <code>IP</code> 的。</p>
+          <p><img src="./image-20250622031913603.png" alt="image-20250622031913603" /></p>
+          <p><strong>访问函数参数时，利用 <code>FP</code> 进行位移，函数参数通常是 <code>FP</code> + 4 或者 <code>FP</code> + 8，函数内的临时变量一般是<code>FP</code> - ...</strong></p>
+          
+          <h3>指令成本</h3>
+          <p><img src="./image-20250622032121009.png" alt="image-20250622032121009" /></p>
+          <p>示例如下：</p>
+          <p><img src="./image-20250622032254111.png" alt="image-20250622032254111" /></p>
+        </article>
+
+        <!-- 文章結尾 -->
+        <footer class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 transition-colors">
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center overflow-hidden">
+                <i data-lucide="terminal-square" class="w-5 h-5 text-slate-500 dark:text-slate-400"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 dark:text-white">哈利波特👑</h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">計算機科學與技術系學生，喜歡分享學習筆記。</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <!-- 上一篇 / 下一篇 -->
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none">
+            <span class="text-sm text-slate-500 dark:text-slate-400 mb-2 font-medium block">較新文章</span>
+            <span class="font-bold text-slate-900 dark:text-white block mb-2">已經沒有更多文章</span>
+            <span class="text-sm text-slate-500 dark:text-slate-400">你可以返回 <a class="text-blue-600 dark:text-cyan-400" href="../../../../index.html">首頁列表</a> 繼續閱讀其他內容。</span>
+          </div>
+          
+          <a href="../../../06/26/云计算复习笔记/index.html" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-cyan-500/30 transition-all group flex flex-col items-end text-right shadow-sm dark:shadow-none">
+            <span class="text-sm text-slate-500 dark:text-slate-400 mb-2 font-medium">較早文章</span>
+            <span class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors line-clamp-2">云计算复习笔记</span>
+            <span class="text-sm text-slate-500 dark:text-slate-400 mt-3">2025年6月26日</span>
+          </a>
+        </div>
+      </main>
+
+      <!-- 側邊目錄導航 (TOC) -->
+      <aside class="hidden lg:block w-64 shrink-0 sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto custom-scrollbar">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <i data-lucide="list" class="w-4 h-4 text-blue-600 dark:text-cyan-400"></i>
+          目錄
+        </h3>
+        <ul id="toc-list" class="space-y-3 text-sm text-slate-500 dark:text-slate-400 border-l-2 border-slate-100 dark:border-slate-800 pl-4 transition-colors">
+          <!-- 目錄項目將透過 JS 自動生成 -->
+        </ul>
+      </aside>
+
+    </div>
+
+    <!-- 回到頂部按鈕 -->
+    <button id="btn-scroll-top" class="fixed bottom-8 right-8 p-3 rounded-full bg-blue-600 text-white dark:bg-cyan-500 dark:text-slate-950 shadow-lg shadow-blue-600/20 dark:shadow-cyan-500/20 hover:-translate-y-1 transition-all duration-300 z-50 opacity-0 translate-y-10 pointer-events-none" aria-label="回到頂部">
+      <i data-lucide="chevron-up" class="w-6 h-6"></i>
+    </button>
+
+    <footer class="py-8 border-t border-slate-200 dark:border-slate-800/50 text-center transition-colors">
+      <p class="text-sm text-slate-500 mb-2">© <span id="current-year"></span> Toby. Designed with Vibecoding(ahhhh).</p>
+    </footer>
+  </div>
+
+  <style>
+    #article-content li {
+      color: #000 !important;
+    }
+
+    #article-content li::marker {
+      color: #000 !important;
+    }
+
+    .dark #article-content li {
+      color: #cbd5e1 !important;
+    }
+
+    .dark #article-content li::marker {
+      color: #cbd5e1 !important;
+    }
+
+    #article-content :not(pre) > code {
+      color: #111827 !important;
+      background: #e5e7eb !important;
+      font-size: 1em !important;
+      padding: 0.12em 0.35em !important;
+      border-radius: 0.35rem !important;
+      font-weight: 500;
+    }
+
+    .dark #article-content :not(pre) > code {
+      color: #e5e7eb !important;
+      background: rgba(51, 65, 85, 0.75) !important;
+    }
+
+    /* 美化右側目錄的滾動條 */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+  </style>
+
+  <script>
+    lucide.createIcons();
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // 深淺色模式邏輯
+    let isDarkMode = false;
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const iconSun = document.getElementById('icon-sun');
+    const iconMoon = document.getElementById('icon-moon');
+    const navbar = document.getElementById('navbar');
+    const btnScrollTop = document.getElementById('btn-scroll-top');
+
+    function updateTheme() {
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        iconSun.classList.remove('hidden');
+        iconSun.classList.add('block');
+        iconMoon.classList.remove('block');
+        iconMoon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        iconSun.classList.remove('block');
+        iconSun.classList.add('hidden');
+        iconMoon.classList.remove('hidden');
+        iconMoon.classList.add('block');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+      updateTheme();
+    });
+
+    updateTheme();
+
+    // 導覽列與回到頂部按鈕邏輯
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('bg-white/80', 'dark:bg-[#0a0f1a]/80', 'backdrop-blur-md', 'border-b', 'border-slate-200', 'dark:border-slate-800/80');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-white/80', 'dark:bg-[#0a0f1a]/80', 'backdrop-blur-md', 'border-b', 'border-slate-200', 'dark:border-slate-800/80');
+        navbar.classList.add('bg-transparent');
+      }
+
+      if (window.scrollY > 400) {
+        btnScrollTop.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+        btnScrollTop.classList.add('opacity-100', 'translate-y-0');
+      } else {
+        btnScrollTop.classList.remove('opacity-100', 'translate-y-0');
+        btnScrollTop.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+      }
+    });
+
+    btnScrollTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ==========================================
+    // 自動生成目錄 (TOC) 與 ScrollSpy 滾動監聽邏輯
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', () => {
+      const article = document.getElementById('article-content');
+      // 抓取文章內所有的 h2 和 h3
+      const headings = Array.from(article.querySelectorAll('h2, h3'));
+      const tocList = document.getElementById('toc-list');
+      const tocLinks = [];
+
+      if (headings.length === 0) {
+        document.querySelector('aside').style.display = 'none';
+        return;
+      }
+
+      headings.forEach((heading, index) => {
+        // 如果標題沒有 id，自動幫它加上一個
+        if (!heading.id) {
+          heading.id = `heading-${index}`;
+        }
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent;
+        
+        // 判斷是 h2 還是 h3 來決定縮進與字體粗細
+        if (heading.tagName.toLowerCase() === 'h3') {
+          a.className = 'block ml-4 text-slate-500 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors';
+        } else {
+          a.className = 'block font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors';
+        }
+
+        li.appendChild(a);
+        tocList.appendChild(li);
+        tocLinks.push({ heading, link: a });
+      });
+
+      // 設定 ScrollSpy (滾動監聽)
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80% 0px', // 當標題滾動到畫面上方 20% 時觸發
+        threshold: 1.0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // 移除所有啟動狀態
+            tocLinks.forEach(item => {
+              item.link.classList.remove('text-blue-600', 'dark:text-cyan-400', 'font-bold');
+            });
+            // 找出對應的連結並加上啟動狀態
+            const activeItem = tocLinks.find(item => item.heading.id === entry.target.id);
+            if (activeItem) {
+              activeItem.link.classList.add('text-blue-600', 'dark:text-cyan-400', 'font-bold');
+            }
+          }
+        });
+      }, observerOptions);
+
+      headings.forEach(heading => observer.observe(heading));
+    });
+  </script>
+</body>
+</html>

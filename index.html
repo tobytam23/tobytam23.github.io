@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAM CHEOK HANG | 個人網站</title>
+  
+  <!-- 載入 Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 設定 Tailwind 的深色模式策略為 'class' -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
+
+  <!-- 載入 Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 dark:bg-[#0a0f1a] text-slate-900 dark:text-slate-300 font-sans selection:bg-blue-200 dark:selection:bg-cyan-500/30 selection:text-blue-900 dark:selection:text-cyan-100 transition-colors duration-500 min-h-screen">
+
+  <!-- 1. 載入中畫面 (Loading Screen) -->
+  <div id="loading-screen" class="min-h-screen flex items-center justify-center p-6 font-mono transition-colors duration-500">
+    <div class="w-full max-w-2xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg p-6 shadow-xl shadow-blue-900/5 dark:shadow-cyan-900/20">
+      <div class="flex gap-2 mb-4">
+        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+      </div>
+      <pre class="text-blue-600 dark:text-cyan-400 text-sm md:text-base whitespace-pre-wrap"><span id="loading-text"></span><span class="animate-pulse inline-block w-2 h-4 bg-blue-600 dark:bg-cyan-400 align-middle ml-1"></span></pre>
+    </div>
+  </div>
+
+  <!-- 2. 主畫面 (Main Portfolio - 預設載入時隱藏) -->
+  <div id="main-content" class="hidden">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent">
+      <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <span class="font-bold text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="terminal" class="w-4 h-4 text-blue-600 dark:text-cyan-400"></i>
+          Toby<span class="text-blue-600 dark:text-cyan-400">.dev</span>
+        </span>
+        <div class="flex items-center gap-6">
+          <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+            <a href="#about" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">關於我</a>
+            <a href="#blog" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">最新文章</a>
+            <a href="#contact" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">聯絡我</a>
+          </div>
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle" class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-800 transition-all hover:scale-105 active:scale-95" aria-label="切換深淺色模式">
+            <i data-lucide="sun" id="icon-sun" class="w-4 h-4 hidden"></i>
+            <i data-lucide="moon" id="icon-moon" class="w-4 h-4 block"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 pt-32 pb-24 space-y-32">
+      
+      <!-- 1. Hero Section -->
+      <section id="hero" class="flex flex-col md:flex-row items-center gap-12 pt-12 relative">
+        <!-- 背景發光效果 -->
+        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-400/10 dark:bg-cyan-600/10 rounded-full blur-[100px] -z-10 transition-colors duration-500"></div>
+        
+        <div class="flex-1 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-slate-900 border border-blue-200 dark:border-slate-800 text-blue-700 dark:text-cyan-400 text-sm font-mono mb-2 shadow-[0_0_15px_rgba(37,99,235,0.1)] dark:shadow-[0_0_15px_rgba(34,211,238,0.1)] transition-colors">
+            <i data-lucide="terminal-square" class="w-3.5 h-3.5"></i>
+            <span>計算機科學與技術系學生 @廣州中山大學</span>
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight transition-colors">
+            分享生活與<br/>
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent">學習筆記</span>的點滴。
+          </h1>
+          <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed transition-colors">
+            大家好呀，我係 Toby。一名計算機科學與技術系大四學生，希望將自己係大學所整理的學習筆記分享給大家。
+          </p>
+          <div class="flex flex-wrap items-center gap-4 pt-4">
+            <a href="#blog" class="bg-blue-600 hover:bg-blue-700 text-white dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-slate-950 px-6 py-3 rounded-lg font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)] dark:shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] dark:hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] flex items-center gap-2">
+              閱讀文章 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#about" class="bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2">
+              關於我
+            </a>
+          </div>
+        </div>
+        <div class="w-48 h-48 md:w-72 md:h-72 shrink-0 relative group">
+          <!-- 照片外圈科技感光環 -->
+          <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-indigo-500 dark:from-cyan-500 dark:to-blue-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+          <!-- Profile Photo Placeholder -->
+          <div class="w-full h-full rounded-full bg-slate-100 dark:bg-slate-900 border-2 border-white dark:border-slate-800 relative flex items-center justify-center overflow-hidden transition-colors">
+            <!-- <div class="absolute inset-0 bg-[url('./images/toby.jpg')] opacity-10 dark:opacity-20"></div> -->
+            <img src="./images/toby.jpg" alt="Toby" class="w-full h-full object-cover" />
+            <svg class="w-1/2 h-1/2 text-slate-300 dark:text-slate-700 z-10 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. About Section -->
+      <section id="about" class="scroll-mt-24">
+        <div class="flex flex-col md:flex-row gap-12">
+          <div class="md:w-1/3">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 transition-colors">關於我</h2>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4 transition-colors">
+              因爲在中大學習旅途中自己整理左好多學習筆記，希望可以分享給有需要的學弟妹們，係中大留下屬於自己的痕跡。
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4 transition-colors">
+              平時除了訓教還會睇IU、打波同跑步，唔係KamL。
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed transition-colors">
+              目前正在等待畢業變成牛馬。
+            </p>
+          </div>
+          
+          <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Skill Cards -->
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-cyan-500/30 transition-colors shadow-sm dark:shadow-none">
+              <div class="w-10 h-10 rounded-lg bg-blue-50 dark:bg-cyan-500/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center mb-4 border border-blue-100 dark:border-cyan-500/20 transition-colors">
+                <i data-lucide="code-2" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-semibold text-slate-900 dark:text-white mb-3 transition-colors">期望自己會識的程式語言</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">Python</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">C++</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">Java</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">JavaScript</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">TypeScript</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">Go</span>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-cyan-500/30 transition-colors shadow-sm dark:shadow-none">
+              <div class="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-blue-500/10 text-indigo-600 dark:text-blue-400 flex items-center justify-center mb-4 border border-indigo-100 dark:border-blue-500/20 transition-colors">
+                <i data-lucide="cpu" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-semibold text-slate-900 dark:text-white mb-3 transition-colors">唔太想接觸的系統與技術</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">Linux</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">Docker</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">AWS</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">Gem5</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">WSL</span>
+                <span class="inline-flex items-center justify-center leading-none px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-sm font-mono transition-colors">Openclaw</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Blog Section -->
+      <section id="blog" class="scroll-mt-24">
+        <div class="mb-10">
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2 flex items-center gap-2 transition-colors">
+            <i data-lucide="terminal-square" class="w-7 h-7 text-blue-600 dark:text-cyan-400 transition-colors"></i>
+            最新筆記
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 transition-colors">紀錄我的學習歷程。</p>
+        </div>
+
+        <div id="blog-post-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <!-- Blog Article Card 1 -->
+          <a href="#" class="group flex flex-col rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-blue-400 dark:hover:border-cyan-500/50 hover:shadow-lg hover:shadow-blue-500/10 dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 shadow-sm dark:shadow-none">
+            <div class="aspect-[4/3] w-full bg-slate-50 dark:bg-slate-950 relative overflow-hidden border-b border-slate-100 dark:border-slate-800 transition-colors">
+              <div class="absolute inset-0 bg-gradient-to-br from-slate-100 to-blue-50 dark:from-slate-900 dark:to-[#0a0f1a] flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                <i data-lucide="database" class="w-10 h-10 text-blue-200 group-hover:text-blue-500 dark:text-cyan-500/30 dark:group-hover:text-cyan-400 transition-colors"></i>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <div class="text-sm font-mono text-blue-600 dark:text-cyan-400 mb-2 transition-colors">2026年3月10日</div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors mb-4 line-clamp-2">深入理解 C++ 記憶體管理與智慧指標</h3>
+              <div class="mt-auto flex items-center text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                閱讀文章 <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Blog Article Card 2 -->
+          <a href="#" class="group flex flex-col rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-blue-400 dark:hover:border-cyan-500/50 hover:shadow-lg hover:shadow-blue-500/10 dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 shadow-sm dark:shadow-none">
+            <div class="aspect-[4/3] w-full bg-slate-50 dark:bg-slate-950 relative overflow-hidden border-b border-slate-100 dark:border-slate-800 transition-colors">
+              <div class="absolute inset-0 bg-gradient-to-br from-slate-100 to-blue-50 dark:from-slate-900 dark:to-[#0a0f1a] flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                <i data-lucide="code-2" class="w-10 h-10 text-blue-200 group-hover:text-blue-500 dark:text-cyan-500/30 dark:group-hover:text-cyan-400 transition-colors"></i>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <div class="text-sm font-mono text-blue-600 dark:text-cyan-400 mb-2 transition-colors">2026年2月15日</div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors mb-4 line-clamp-2">不使用 CRA 或 Vite 建立 React 應用程式</h3>
+              <div class="mt-auto flex items-center text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                閱讀文章 <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Blog Article Card 3 -->
+          <a href="#" class="group flex flex-col rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-blue-400 dark:hover:border-cyan-500/50 hover:shadow-lg hover:shadow-blue-500/10 dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 shadow-sm dark:shadow-none">
+            <div class="aspect-[4/3] w-full bg-slate-50 dark:bg-slate-950 relative overflow-hidden border-b border-slate-100 dark:border-slate-800 transition-colors">
+              <div class="absolute inset-0 bg-gradient-to-br from-slate-100 to-blue-50 dark:from-slate-900 dark:to-[#0a0f1a] flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                <i data-lucide="cpu" class="w-10 h-10 text-blue-200 group-hover:text-blue-500 dark:text-cyan-500/30 dark:group-hover:text-cyan-400 transition-colors"></i>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <div class="text-sm font-mono text-blue-600 dark:text-cyan-400 mb-2 transition-colors">2026年1月20日</div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors mb-4 line-clamp-2">從零開始實作 Raft 分散式共識演算法</h3>
+              <div class="mt-auto flex items-center text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                閱讀文章 <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- 4. Contact Section -->
+      <section id="contact" class="py-12 border-t border-slate-200 dark:border-slate-800/50 transition-colors">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-10 md:p-16 text-center border border-slate-200 dark:border-slate-800 relative overflow-hidden transition-colors shadow-sm dark:shadow-none">
+          <!-- 裝飾性科技網格背景 -->
+          <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.03] bg-[linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+          
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 relative z-10 transition-colors">保持聯繫</h2>
+          <p class="text-slate-600 dark:text-slate-400 max-w-lg mx-auto mb-8 relative z-10 transition-colors">
+            我非常樂意討論任何關於情感以及學習筆記的交流。歡迎隨時與我聯絡！
+          </p>
+          
+          <div class="flex justify-center gap-6 relative z-10">
+            <button id="btn-instagram" type="button" class="p-4 bg-slate-50 dark:bg-slate-950 rounded-xl text-slate-500 dark:text-slate-400 hover:text-[#E4405F] dark:hover:text-[#E4405F] border border-slate-200 dark:border-slate-800 hover:border-[#E4405F]/50 dark:hover:border-[#E4405F]/50 transition-all hover:-translate-y-1">
+              <i data-lucide="instagram" class="w-6 h-6"></i>
+              <span class="sr-only">Instagram</span>
+            </button>
+            <a href="https://github.com/tobytam23" target="_blank" rel="noreferrer" class="p-4 bg-slate-50 dark:bg-slate-950 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-white/50 transition-all hover:-translate-y-1">
+              <i data-lucide="github" class="w-6 h-6"></i>
+              <span class="sr-only">GitHub</span>
+            </a>
+            <button id="btn-email" type="button" class="p-4 bg-slate-50 dark:bg-slate-950 rounded-xl text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-cyan-500/50 transition-all hover:-translate-y-1">
+              <i data-lucide="mail" class="w-6 h-6"></i>
+              <span class="sr-only">Email</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div id="contact-modal" class="hidden fixed inset-0 z-[60] bg-slate-950/60 backdrop-blur-sm p-6">
+      <div class="min-h-full flex items-center justify-center">
+        <div class="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden">
+          <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+            <h3 id="contact-modal-title" class="text-lg font-semibold text-slate-900 dark:text-white">Contact</h3>
+            <button id="contact-modal-close" type="button" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" aria-label="Close dialog">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+          <div id="contact-modal-body" class="p-6"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-200 dark:border-slate-800/50 text-center transition-colors">
+      <p class="text-sm text-slate-500 mb-2">© <span id="current-year"></span> Toby. Designed with Vibecoding(ahhhh).</p>
+    </footer>
+  </div>
+
+  <!-- JavaScript 邏輯：取代原本 React 的狀態與生命週期 -->
+  <script>
+    // 1. 初始化 Lucide Icons
+    lucide.createIcons();
+
+    // 2. 設定當前年份
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    const blogPostList = document.getElementById('blog-post-list');
+
+    const blogPosts = [
+      {
+        title: '编译原理复习',
+        date: '2025年12月9日',
+        tag: '课程复习',
+        summary: '整理词法分析、语法分析、语义检查与编译优化等重点，适合作为考前快速回顾。',
+        path: './2025/12/09/编译原理复习/index.html',
+        coverLabel: 'Compiler',
+        gradient: 'from-amber-100 via-orange-50 to-red-100 dark:from-orange-950 dark:via-slate-900 dark:to-red-950'
+      },
+      {
+        title: '云计算复习笔记',
+        date: '2025年6月26日',
+        tag: '课程复习',
+        summary: '聚焦虚拟化、服务模型、部署模式与云平台核心概念，帮助快速建立完整框架。',
+        path: './2025/06/26/云计算复习笔记/index.html',
+        coverLabel: 'Cloud',
+        gradient: 'from-sky-100 via-cyan-50 to-blue-100 dark:from-cyan-950 dark:via-slate-900 dark:to-blue-950'
+      },
+      {
+        title: '并行复习',
+        date: '2025年6月24日',
+        tag: '课程复习',
+        summary: '围绕并行模型、性能指标、加速比与常见并行策略整理出一套便于记忆的复习路线。',
+        path: './2025/06/24/并行复习/index.html',
+        coverLabel: 'Parallel',
+        gradient: 'from-violet-100 via-fuchsia-50 to-indigo-100 dark:from-violet-950 dark:via-slate-900 dark:to-indigo-950'
+      },
+      {
+        title: '数据库复习内容',
+        date: '2025年1月25日',
+        tag: '课程复习',
+        summary: '涵盖关系模型、事务、范式、索引与查询优化，是数据库课程的重要知识清单。',
+        path: './2025/01/25/数据库复习内容/index.html',
+        coverLabel: 'Database',
+        gradient: 'from-emerald-100 via-green-50 to-teal-100 dark:from-emerald-950 dark:via-slate-900 dark:to-teal-950'
+      },
+      {
+        title: '极速版机器学习',
+        date: '2025年1月25日',
+        tag: '速览笔记',
+        summary: '用更紧凑的方式回顾监督学习、常见模型与核心概念，适合短时间内快速过一遍。',
+        path: './2025/01/25/极速版机器学习/index.html',
+        coverLabel: 'ML',
+        gradient: 'from-pink-100 via-rose-50 to-orange-100 dark:from-pink-950 dark:via-slate-900 dark:to-orange-950'
+      },
+      {
+        title: '分布式笔记',
+        date: '2025年1月25日',
+        tag: '课程复习',
+        summary: '记录一致性、复制、容错与常见分布式系统设计要点，方便后续回看与串联。',
+        path: './2025/01/25/分布式笔记/index.html',
+        coverLabel: 'Distributed',
+        gradient: 'from-indigo-100 via-blue-50 to-cyan-100 dark:from-indigo-950 dark:via-slate-900 dark:to-cyan-950'
+      },
+      {
+        title: '计算机网络复习',
+        date: '2025年1月24日',
+        tag: '课程复习',
+        summary: '聚焦分层体系、路由转发、传输控制与常见网络协议，适合作为计算机网络考试前的集中复习入口。',
+        path: './2025/01/24/复习笔记/index.html',
+        coverLabel: 'Network',
+        gradient: 'from-sky-100 via-cyan-50 to-blue-100 dark:from-sky-950 dark:via-slate-900 dark:to-blue-950'
+      },
+      {
+        title: '操作系统复习',
+        date: '2024年12月2日',
+        tag: '课程复习',
+        summary: '覆盖进程、线程、内存管理、文件系统与同步机制，是操作系统核心内容的浓缩版。',
+        path: './2024/12/02/操作系统复习/index.html',
+        coverLabel: 'OS',
+        gradient: 'from-lime-100 via-green-50 to-emerald-100 dark:from-lime-950 dark:via-slate-900 dark:to-emerald-950'
+      },
+      {
+        title: '人工智能复习',
+        date: '2024年12月2日',
+        tag: '课程复习',
+        summary: '整理搜索、推理、知识表示与经典 AI 主题，帮助在考试前快速建立知识地图。',
+        path: './2024/12/02/人工智能复习/index.html',
+        coverLabel: 'AI',
+        gradient: 'from-fuchsia-100 via-pink-50 to-rose-100 dark:from-fuchsia-950 dark:via-slate-900 dark:to-rose-950'
+      }
+    ];
+
+    function escapeHtml(value) {
+      return value
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function renderBlogPosts() {
+      if (!blogPostList) {
+        return;
+      }
+
+      blogPostList.innerHTML = blogPosts.map((post) => `
+        <a href="${post.path}" class="group flex flex-col h-full rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 shadow-sm dark:shadow-none hover:border-blue-300 dark:hover:border-cyan-500/30 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/5 dark:hover:shadow-cyan-900/10 transition-all duration-300">
+          <div class="aspect-video rounded-[20px] border border-slate-200 dark:border-slate-800 overflow-hidden relative">
+            <div class="absolute inset-0 opacity-[0.05] dark:opacity-[0.08] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+            <div class="absolute inset-0 bg-gradient-to-br ${post.gradient}"></div>
+            <div class="relative h-full w-full flex items-center justify-center">
+              <div class="text-3xl font-bold tracking-tight text-slate-900/70 dark:text-white/70">${escapeHtml(post.coverLabel)}</div>
+            </div>
+          </div>
+          <div class="p-3 pt-5 flex flex-col flex-1">
+            <div class="flex flex-wrap items-center gap-4 py-4 border-y border-slate-200 dark:border-slate-800 mb-5">
+              <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>${escapeHtml(post.date)}</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+                <span>${escapeHtml(post.tag)}</span>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white leading-snug mb-4 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">${escapeHtml(post.title)}</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 min-h-[72px]">${escapeHtml(post.summary)}</p>
+            <div class="mt-auto inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+              閱讀文章
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    renderBlogPosts();
+    lucide.createIcons();
+
+    // 3. 處理深淺色模式切換 (預設淺色)
+    let isDarkMode = false;
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const iconSun = document.getElementById('icon-sun');
+    const iconMoon = document.getElementById('icon-moon');
+
+    function updateTheme() {
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        iconSun.classList.remove('hidden');
+        iconSun.classList.add('block');
+        iconMoon.classList.remove('block');
+        iconMoon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        iconSun.classList.remove('block');
+        iconSun.classList.add('hidden');
+        iconMoon.classList.remove('hidden');
+        iconMoon.classList.add('block');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+      updateTheme();
+    });
+    // 執行初始主題設定
+    updateTheme();
+
+    // 4. 模擬終端機載入動畫（當前瀏覽會話只播放一次）
+    const loadingScreen = document.getElementById('loading-screen');
+    const mainContent = document.getElementById('main-content');
+    const loadingTextEl = document.getElementById('loading-text');
+    const loadingSessionKey = 'toby.dev.loading-shown';
+    const textToType = "> Initializing Toby.dev OS...\n> Loading modules: [██████████] 100%\n> Establishing secure connection...\n> System Ready.";
+
+    function hasShownLoadingInSession() {
+      try {
+        return sessionStorage.getItem(loadingSessionKey) === '1';
+      } catch {
+        return false;
+      }
+    }
+
+    function markLoadingShown() {
+      try {
+        sessionStorage.setItem(loadingSessionKey, '1');
+      } catch {
+        // ignore sessionStorage failures
+      }
+    }
+
+    function showMainContent() {
+      loadingScreen.classList.add('hidden');
+      mainContent.classList.remove('hidden');
+    }
+
+    if (hasShownLoadingInSession()) {
+      showMainContent();
+    } else {
+      let currentIndex = 0;
+      const typingInterval = setInterval(() => {
+        loadingTextEl.textContent = textToType.slice(0, currentIndex);
+        currentIndex++;
+
+        if (currentIndex > textToType.length) {
+          clearInterval(typingInterval);
+          setTimeout(() => {
+            markLoadingShown();
+            showMainContent();
+          }, 800);
+        }
+      }, 30);
+    }
+
+    // 5. 處理導覽列滾動效果
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('bg-white/80', 'dark:bg-[#0a0f1a]/80', 'backdrop-blur-md', 'border-b', 'border-slate-200', 'dark:border-slate-800/80');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-white/80', 'dark:bg-[#0a0f1a]/80', 'backdrop-blur-md', 'border-b', 'border-slate-200', 'dark:border-slate-800/80');
+        navbar.classList.add('bg-transparent');
+      }
+    });
+
+    // 6. Contact modal interactions
+    const btnInstagram = document.getElementById('btn-instagram');
+    const btnEmail = document.getElementById('btn-email');
+    const contactModal = document.getElementById('contact-modal');
+    const contactModalTitle = document.getElementById('contact-modal-title');
+    const contactModalBody = document.getElementById('contact-modal-body');
+    const contactModalClose = document.getElementById('contact-modal-close');
+
+    function openContactModal(title, content) {
+      contactModalTitle.textContent = title;
+      contactModalBody.innerHTML = content;
+      contactModal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeContactModal() {
+      contactModal.classList.add('hidden');
+      contactModalBody.innerHTML = '';
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    btnInstagram.addEventListener('click', () => {
+      openContactModal(
+        'Instagram',
+        `
+          <div class="space-y-4 text-center">
+            <img src="./images/Instagram.png" alt="Instagram QR code for @tobytam_23" class="w-full max-w-xs mx-auto rounded-2xl border border-slate-200 dark:border-slate-800" />
+            <p class="text-sm text-slate-600 dark:text-slate-400">@tobytam_23</p>
+          </div>
+        `
+      );
+    });
+
+    btnEmail.addEventListener('click', () => {
+      openContactModal(
+        'Email',
+        `
+          <div class="space-y-4 text-center">
+            <p class="text-sm text-slate-600 dark:text-slate-400">You can reach me at</p>
+            <p class="text-lg font-semibold text-slate-900 dark:text-white break-all">tam1515572913@gmail.com</p>
+          </div>
+        `
+      );
+    });
+
+    contactModalClose.addEventListener('click', closeContactModal);
+    contactModal.addEventListener('click', (event) => {
+      if (event.target === contactModal) {
+        closeContactModal();
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !contactModal.classList.contains('hidden')) {
+        closeContactModal();
+      }
+    });
+
+  </script>
+</body>
+</html>
