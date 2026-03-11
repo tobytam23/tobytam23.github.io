@@ -230,6 +230,10 @@
               <i data-lucide="instagram" class="w-6 h-6"></i>
               <span class="sr-only">Instagram</span>
             </button>
+            <button id="btn-xhs" type="button" class="p-4 bg-slate-50 dark:bg-slate-950 rounded-xl text-slate-500 dark:text-slate-400 hover:text-[#FF2442] dark:hover:text-[#FF2442] border border-slate-200 dark:border-slate-800 hover:border-[#FF2442]/50 dark:hover:border-[#FF2442]/50 transition-all hover:-translate-y-1">
+              <span class="text-sm font-bold tracking-wide">XHS</span>
+              <span class="sr-only">Xiaohongshu</span>
+            </button>
             <a href="https://github.com/tobytam23" target="_blank" rel="noreferrer" class="p-4 bg-slate-50 dark:bg-slate-950 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-white/50 transition-all hover:-translate-y-1">
               <i data-lucide="github" class="w-6 h-6"></i>
               <span class="sr-only">GitHub</span>
@@ -494,6 +498,7 @@
 
     // 6. Contact modal interactions
     const btnInstagram = document.getElementById('btn-instagram');
+    const btnXhs = document.getElementById('btn-xhs');
     const btnEmail = document.getElementById('btn-email');
     const contactModal = document.getElementById('contact-modal');
     const contactModalTitle = document.getElementById('contact-modal-title');
@@ -520,6 +525,18 @@
           <div class="space-y-4 text-center">
             <img src="./images/Instagram.png" alt="Instagram QR code for @tobytam_23" class="w-full max-w-xs mx-auto rounded-2xl border border-slate-200 dark:border-slate-800" />
             <p class="text-sm text-slate-600 dark:text-slate-400">@tobytam_23</p>
+          </div>
+        `
+      );
+    });
+
+    btnXhs.addEventListener('click', () => {
+      openContactModal(
+        '小红书',
+        `
+          <div class="space-y-4 text-center">
+            <img src="./images/xhs.jpg" alt="Xiaohongshu QR code" class="w-full max-w-xs mx-auto rounded-2xl border border-slate-200 dark:border-slate-800" />
+            <p class="text-sm text-slate-600 dark:text-slate-400">扫描查看我的小红书</p>
           </div>
         `
       );
